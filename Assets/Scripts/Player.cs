@@ -1,0 +1,36 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Random = UnityEngine.Random;
+
+public class Player : MonoBehaviour
+{
+    public float Speed = 5.0f;
+
+    private Vector3 prevPos;
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        /*임시로 서버에 보내는 아이디*/
+        string tempId = Random.Range(0, 1000).ToString();
+        TCPManager.Instance.playerId = tempId;
+        TcpProtobufClient.Instance.SendLoginMessage(tempId);
+
+        prevPos = transform.position;
+    }
+
+    private void Update()
+    {
+        Vector3 dis = transform.position - prevPos;
+        dis.Normalize();
+        
+        if (dis.sqrMagnitude > 0)
+        {
+            TcpProtobufClient.Instance.SendPlayerPosition(TCPManager.Instance.playerId,
+                transform.position.x, transform.position.y, transform.position.z);
+            prevPos = transform.position;
+        }
+    }
+}
