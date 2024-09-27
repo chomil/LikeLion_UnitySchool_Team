@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject playerCharacter;
     
     public GameObject cameraArm;
+
+    public StepTrigger stepCollider;
 
     private Rigidbody rigid;
     private Animator anim;
@@ -19,7 +22,8 @@ public class PlayerMovement : MonoBehaviour
 
     private float camPitchAngle = 0f;
     private float camYawAngle = 0f;
-    
+
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
@@ -30,24 +34,11 @@ public class PlayerMovement : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Physics.gravity = new Vector3(0f,-12f,0f);
+        stepCollider.OnStepEvent += OnStepEnter; // 이벤트 바인딩
     }
 
     void Update()
     {        
-        // 땅에 닿아 있는지 확인
-        bool isGroundedTemp = Physics.Raycast(transform.position+new Vector3(0,0.2f,0), Vector3.down, 0.3f);
-
-        if (isGroundedTemp == true && rigid.velocity.y<=0)
-        {
-            isGrounded = true;
-            isSliding = false;
-            isJumping = false;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-        
         // 점프 입력 처리
         if (Input.GetButtonDown("Jump") && isGrounded==true && isJumping==false)
         {
@@ -118,6 +109,17 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetFloat("SpeedForward",0);
                 anim.SetFloat("SpeedRight",0);
             }
+        }
+    }
+    
+    private void OnStepEnter(Collider other)
+    {        
+        //바닥 체크
+        if (rigid.velocity.y<=0)
+        {
+            isGrounded = true;
+            isSliding = false;
+            isJumping = false;
         }
     }
 }
