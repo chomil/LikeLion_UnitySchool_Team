@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,14 @@ public class PlayerMovement : MonoBehaviour
     
     public GameObject cameraArm;
 
+    public StepTrigger stepCollider;
+
     private Rigidbody rigid;
     private Animator anim;
-    private float speed = 3f;
+    
+    private Vector3 moveVector;
+    
+    private float speed = 3.5f;
     private float jumpPower = 6f;
     private float slidePower = 6f;
     private bool isGrounded = false;
@@ -19,7 +25,8 @@ public class PlayerMovement : MonoBehaviour
 
     private float camPitchAngle = 0f;
     private float camYawAngle = 0f;
-    
+
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
@@ -30,24 +37,11 @@ public class PlayerMovement : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Physics.gravity = new Vector3(0f,-12f,0f);
+        stepCollider.OnStepEvent += OnStep; // 이벤트 바인딩
     }
 
     void Update()
-    {        
-        // 땅에 닿아 있는지 확인
-        bool isGroundedTemp = Physics.Raycast(transform.position+new Vector3(0,0.2f,0), Vector3.down, 0.3f);
-
-        if (isGroundedTemp == true && rigid.velocity.y<=0)
-        {
-            isGrounded = true;
-            isSliding = false;
-            isJumping = false;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-        
+    {
         // 점프 입력 처리
         if (Input.GetButtonDown("Jump") && isGrounded==true && isJumping==false)
         {
@@ -58,12 +52,13 @@ public class PlayerMovement : MonoBehaviour
         }
         
         // 슬라이드
-        if (Input.GetButtonDown("Slide") && isGrounded==false && isSliding==false)
+        if (Input.GetButtonDown("Slide") && isSliding==false)
         {
             rigid.velocity = Vector3.zero;
-            Vector3 slideVec = playerCharacter.transform.forward * 3f + Vector3.up;
+            Vector3 slideVec = playerCharacter.transform.forward * 2f + Vector3.up;
             slideVec.Normalize();
             rigid.AddForce(slideVec * slidePower, ForceMode.Impulse);
+            isGrounded = false;
             isSliding = true;
             anim.SetTrigger("SlideTrigger");
         }
@@ -92,24 +87,27 @@ public class PlayerMovement : MonoBehaviour
         right.y = 0;
         forward.Normalize();
         right.Normalize();
-        Vector3 move = right * moveX + forward * moveZ;
-        Vector3 moveDirection = move.normalized;
+        moveVector = right * moveX + forward * moveZ;
+        if (moveVector.magnitude > 1)
+        {
+            moveVector.Normalize();
+        }
 
         if (isGrounded)
         {
             //이동
-            rigid.velocity = new Vector3(moveDirection.x * speed, rigid.velocity.y, moveDirection.z * speed);
-            if (move != Vector3.zero)
+            rigid.velocity = new Vector3(moveVector.x * speed, rigid.velocity.y, moveVector.z * speed);
+            if (moveVector != Vector3.zero)
             {            
-                // 이동방향에 따른 플레이어 회전 처리
-                float angle = Vector3.SignedAngle(playerCharacter.transform.forward, moveDirection, Vector3.up);
+                //땅에선 입력 이동방향에 따른 플레이어 회전 처리
+                float angle = Vector3.SignedAngle(playerCharacter.transform.forward, moveVector.normalized, Vector3.up);
                 Quaternion targetRotation = Quaternion.Euler(0, angle, 0);                
                 playerCharacter.transform.rotation = Quaternion.RotateTowards(playerCharacter.transform.rotation,
                     playerCharacter.transform.rotation * targetRotation, 360f * Time.deltaTime);
 
                 // 방향에 따른 이동애니메이션 블렌드
-                float speedForward = Vector3.Dot(move, playerCharacter.transform.forward);
-                float speedRight = Vector3.Dot(move, playerCharacter.transform.right);
+                float speedForward = Vector3.Dot(moveVector, playerCharacter.transform.forward);
+                float speedRight = Vector3.Dot(moveVector, playerCharacter.transform.right);
                 anim.SetFloat("SpeedForward",speedForward);
                 anim.SetFloat("SpeedRight",speedRight);
             }
@@ -118,6 +116,28 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetFloat("SpeedForward",0);
                 anim.SetFloat("SpeedRight",0);
             }
+        }
+        else
+        {
+            //공중에서 벨로시티에 따른 플레이어 회전 처리
+            Vector3 speedVec = rigid.velocity;
+            speedVec.y = 0;
+            speedVec.Normalize();
+            float angle = Vector3.SignedAngle(playerCharacter.transform.forward, speedVec, Vector3.up);
+            Quaternion targetRotation = Quaternion.Euler(0, angle, 0);                
+            playerCharacter.transform.rotation = Quaternion.RotateTowards(playerCharacter.transform.rotation,
+                playerCharacter.transform.rotation * targetRotation, 360f * Time.deltaTime);
+        }
+    }
+    
+    private void OnStep(Collider other)
+    {        
+        //바닥 체크
+        if (rigid.velocity.y <= 0)
+        {
+            isGrounded = true;
+            isSliding = false;
+            isJumping = false;
         }
     }
 }
