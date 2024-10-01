@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Vector3 = UnityEngine.Vector3;
 
 public class Player : MonoBehaviour
 {
-    public float Speed = 5.0f;
+    //public float Speed = 5.0f;
 
     private Vector3 prevPos;
     
@@ -28,8 +30,10 @@ public class Player : MonoBehaviour
         
         if (dis.sqrMagnitude > 0)
         {
+            Vector3 myRotation = transform.GetChild(0).transform.eulerAngles;
             TcpProtobufClient.Instance.SendPlayerPosition(TCPManager.Instance.playerId,
-                transform.position.x, transform.position.y, transform.position.z);
+                transform.position.x, transform.position.y, transform.position.z,
+                myRotation.x,myRotation.y,myRotation.z);
             prevPos = transform.position;
         }
     }

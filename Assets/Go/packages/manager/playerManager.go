@@ -54,7 +54,7 @@ func (pm *PlayerManager) AddPlayer(name string, age int, conn *net.Conn) Player 
 	return player
 }
 
-func (pm *PlayerManager) MovePlayer(name string, x float32, y float32, z float32) {
+func (pm *PlayerManager) MovePlayer(name string, x float32, y float32, z float32, rx float32, ry float32, rz float32) {
 	gameMessage := &pb.GameMessage{
 		Message: &pb.GameMessage_PlayerPosition{
 			PlayerPosition: &pb.PlayerPosition{
@@ -62,6 +62,9 @@ func (pm *PlayerManager) MovePlayer(name string, x float32, y float32, z float32
 				X:        x,
 				Y:        y,
 				Z:        z,
+				Rx:       rx,
+				Ry:       ry,
+				Rz:       rz,
 			},
 		},
 	}
