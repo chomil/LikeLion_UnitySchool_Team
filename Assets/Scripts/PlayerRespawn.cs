@@ -10,26 +10,25 @@ public class PlayerRespawn : MonoBehaviour
     public float respawnHeight = 2f; // Height above the ground to respawn
     public LayerMask groundLayer; // Layer(s) considered as ground
 
-    private Vector3 lastSafePosition;
+    private Vector3 lastCheckpointPosition;
     private bool isRespawning = false;
 
     void Start()
     {
         // Set the current position as the default respawn position at start
         defaultRespawnPosition = transform.position;
-        lastSafePosition = transform.position;
+        lastCheckpointPosition = transform.position;
+        
+        if (groundLayer.value == 0)
+        {
+            groundLayer = LayerMask.GetMask("Ground");
+        }
     }
 
     void Update()
     {
         if (!isRespawning)
         {
-            // Check if the current position is safe
-            if (IsPositionSafe(transform.position))
-            {
-                lastSafePosition = transform.position;
-            }
-
             // Check if the character has fallen out of the map
             if (transform.position.y < minY)
             {
@@ -37,13 +36,7 @@ public class PlayerRespawn : MonoBehaviour
             }
         }
     }
-
-    bool IsPositionSafe(Vector3 position)
-    {
-        // Use a raycast to check if there's ground below
-        return Physics.Raycast(position, Vector3.down, groundCheckDistance, groundLayer);
-    }
-
+    
     IEnumerator RespawnCoroutine()
     {
         isRespawning = true;
@@ -56,27 +49,28 @@ public class PlayerRespawn : MonoBehaviour
 
         // Wait briefly to allow the physics engine to stabilize
         yield return new WaitForSeconds(0.1f);
-
         isRespawning = false;
     }
 
     Vector3 FindSafeRespawnPosition()
     {
         RaycastHit hit;
+        Vector3 startPos = lastCheckpointPosition + Vector3.up * 10f;
+        float distance = 500f;
+        
 
-        // Try to find safe ground from the last safe position
-        if (Physics.Raycast(lastSafePosition, Vector3.down, out hit, 100f, groundLayer))
+        if (Physics.Raycast(startPos, Vector3.down, out hit, distance, groundLayer))
         {
             return hit.point + Vector3.up * respawnHeight;
         }
         
-        // If not found, try to find safe ground from the default respawn position
-        if (Physics.Raycast(defaultRespawnPosition, Vector3.down, out hit, 100f, groundLayer))
-        {
-            return hit.point + Vector3.up * respawnHeight;
-        }
-
-        // If no safe position is found, use the default respawn position
         return defaultRespawnPosition;
+    }
+
+    // Call this method when the player reaches a new checkpoint
+    public void UpdateCheckpoint(Vector3 newCheckpointPosition)
+    {
+        lastCheckpointPosition = newCheckpointPosition;
+        Debug.Log("Checkpoint updated to: " + lastCheckpointPosition);
     }
 }
