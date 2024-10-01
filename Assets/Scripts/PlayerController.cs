@@ -44,12 +44,13 @@ public class PlayerController : MonoBehaviour
                 playerPosition.PlayerId, out OtherPlayer otherPlayer))
         {
             otherPlayer.destination = new Vector3(playerPosition.X, playerPosition.Y, playerPosition.Z);
-
+            otherPlayer.OtherRot = new Vector3(playerPosition.Rx, playerPosition.Ry, playerPosition.Rz);
             return;
         }
         
         GameObject SpawnPlayer = GameObject.Instantiate(OtherPlayerTemplate.gameObject, 
-            new Vector3(playerPosition.X, playerPosition.Y + 1f, playerPosition.Z), Quaternion.identity);
+            new Vector3(playerPosition.X, playerPosition.Y + 1f, playerPosition.Z), 
+            Quaternion.Euler(playerPosition.Rx,playerPosition.Ry,playerPosition.Rz));
         _otherPlayers.Add(playerPosition.PlayerId, SpawnPlayer.GetComponent<OtherPlayer>());
     }
 }

@@ -6,7 +6,7 @@ import (
 	"log"
 	"net"
 
-	pb "golangtcp/messages"
+	pb "golangtcp/messages" //golangtcp는 go.mod에 있는 모듈의 이름
 
 	"google.golang.org/protobuf/proto"
 
@@ -69,8 +69,9 @@ func processMessage(message *pb.GameMessage, conn *net.Conn) {
 	switch msg := message.Message.(type) {
 	case *pb.GameMessage_PlayerPosition:
 		pos := msg.PlayerPosition
-		fmt.Println("Position : ", pos.X, pos.Y, pos.Z)
-		mg.GetPlayerManager().MovePlayer(pos.PlayerId, pos.X, pos.Y, pos.Z)
+		fmt.Println("Position : ", pos.X, pos.Y, pos.Z)    //확인용 로그
+		fmt.Println("Rotation : ", pos.Rx, pos.Ry, pos.Rz) //확인용 로그
+		mg.GetPlayerManager().MovePlayer(pos.PlayerId, pos.X, pos.Y, pos.Z, pos.Rx, pos.Ry, pos.Rz)
 	case *pb.GameMessage_Chat:
 		chat := msg.Chat
 		mg.GetChatManager().Broadcast(chat.Sender, chat.Content)

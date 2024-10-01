@@ -95,14 +95,17 @@ public class TcpProtobufClient : MonoBehaviour
         }
     }
     
-    public void SendPlayerPosition(string playerId, float x, float y, float z)
+    public void SendPlayerPosition(string playerId, float x, float y, float z, float rx, float ry, float rz)
     {
         var position = new PlayerPosition
         {
             PlayerId = playerId,
             X = x,
             Y = y,
-            Z = z
+            Z = z,
+            Rx = rx,
+            Ry = ry,
+            Rz = rz
         };
         var message = new GameMessage
         {

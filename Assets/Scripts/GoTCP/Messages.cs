@@ -24,18 +24,19 @@ namespace Game {
     static MessagesReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cg5tZXNzYWdlcy5wcm90bxIEZ2FtZSJECg5QbGF5ZXJQb3NpdGlvbhIJCgF4",
-            "GAEgASgCEgkKAXkYAiABKAISCQoBehgDIAEoAhIRCglwbGF5ZXJfaWQYBCAB",
-            "KAkiLgoLQ2hhdE1lc3NhZ2USDgoGc2VuZGVyGAEgASgJEg8KB2NvbnRlbnQY",
-            "AiABKAkiIAoMTG9naW5NZXNzYWdlEhAKCHBsYXllcklkGAEgASgJIpEBCgtH",
-            "YW1lTWVzc2FnZRIvCg9wbGF5ZXJfcG9zaXRpb24YASABKAsyFC5nYW1lLlBs",
-            "YXllclBvc2l0aW9uSAASIQoEY2hhdBgCIAEoCzIRLmdhbWUuQ2hhdE1lc3Nh",
-            "Z2VIABIjCgVsb2dpbhgDIAEoCzISLmdhbWUuTG9naW5NZXNzYWdlSABCCQoH",
-            "bWVzc2FnZUIUWhJnb2xhbmd0Y3AvbWVzc2FnZXNiBnByb3RvMw=="));
+            "Cg5tZXNzYWdlcy5wcm90bxIEZ2FtZSJoCg5QbGF5ZXJQb3NpdGlvbhIJCgF4",
+            "GAEgASgCEgkKAXkYAiABKAISCQoBehgDIAEoAhIKCgJyeBgEIAEoAhIKCgJy",
+            "eRgFIAEoAhIKCgJyehgGIAEoAhIRCglwbGF5ZXJfaWQYByABKAkiLgoLQ2hh",
+            "dE1lc3NhZ2USDgoGc2VuZGVyGAEgASgJEg8KB2NvbnRlbnQYAiABKAkiIAoM",
+            "TG9naW5NZXNzYWdlEhAKCHBsYXllcklkGAEgASgJIpEBCgtHYW1lTWVzc2Fn",
+            "ZRIvCg9wbGF5ZXJfcG9zaXRpb24YASABKAsyFC5nYW1lLlBsYXllclBvc2l0",
+            "aW9uSAASIQoEY2hhdBgCIAEoCzIRLmdhbWUuQ2hhdE1lc3NhZ2VIABIjCgVs",
+            "b2dpbhgDIAEoCzISLmdhbWUuTG9naW5NZXNzYWdlSABCCQoHbWVzc2FnZUIN",
+            "WgtHby9tZXNzYWdlc2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Game.PlayerPosition), global::Game.PlayerPosition.Parser, new[]{ "X", "Y", "Z", "PlayerId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Game.PlayerPosition), global::Game.PlayerPosition.Parser, new[]{ "X", "Y", "Z", "Rx", "Ry", "Rz", "PlayerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.ChatMessage), global::Game.ChatMessage.Parser, new[]{ "Sender", "Content" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.LoginMessage), global::Game.LoginMessage.Parser, new[]{ "PlayerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.GameMessage), global::Game.GameMessage.Parser, new[]{ "PlayerPosition", "Chat", "Login" }, new[]{ "Message" }, null, null, null)
@@ -83,6 +84,9 @@ namespace Game {
       x_ = other.x_;
       y_ = other.y_;
       z_ = other.z_;
+      rx_ = other.rx_;
+      ry_ = other.ry_;
+      rz_ = other.rz_;
       playerId_ = other.playerId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -129,8 +133,44 @@ namespace Game {
       }
     }
 
+    /// <summary>Field number for the "rx" field.</summary>
+    public const int RxFieldNumber = 4;
+    private float rx_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float Rx {
+      get { return rx_; }
+      set {
+        rx_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "ry" field.</summary>
+    public const int RyFieldNumber = 5;
+    private float ry_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float Ry {
+      get { return ry_; }
+      set {
+        ry_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "rz" field.</summary>
+    public const int RzFieldNumber = 6;
+    private float rz_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float Rz {
+      get { return rz_; }
+      set {
+        rz_ = value;
+      }
+    }
+
     /// <summary>Field number for the "player_id" field.</summary>
-    public const int PlayerIdFieldNumber = 4;
+    public const int PlayerIdFieldNumber = 7;
     private string playerId_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -159,6 +199,9 @@ namespace Game {
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(X, other.X)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Y, other.Y)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Z, other.Z)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Rx, other.Rx)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Ry, other.Ry)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Rz, other.Rz)) return false;
       if (PlayerId != other.PlayerId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -170,6 +213,9 @@ namespace Game {
       if (X != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(X);
       if (Y != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Y);
       if (Z != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Z);
+      if (Rx != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Rx);
+      if (Ry != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Ry);
+      if (Rz != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Rz);
       if (PlayerId.Length != 0) hash ^= PlayerId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -201,8 +247,20 @@ namespace Game {
         output.WriteRawTag(29);
         output.WriteFloat(Z);
       }
+      if (Rx != 0F) {
+        output.WriteRawTag(37);
+        output.WriteFloat(Rx);
+      }
+      if (Ry != 0F) {
+        output.WriteRawTag(45);
+        output.WriteFloat(Ry);
+      }
+      if (Rz != 0F) {
+        output.WriteRawTag(53);
+        output.WriteFloat(Rz);
+      }
       if (PlayerId.Length != 0) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(58);
         output.WriteString(PlayerId);
       }
       if (_unknownFields != null) {
@@ -227,8 +285,20 @@ namespace Game {
         output.WriteRawTag(29);
         output.WriteFloat(Z);
       }
+      if (Rx != 0F) {
+        output.WriteRawTag(37);
+        output.WriteFloat(Rx);
+      }
+      if (Ry != 0F) {
+        output.WriteRawTag(45);
+        output.WriteFloat(Ry);
+      }
+      if (Rz != 0F) {
+        output.WriteRawTag(53);
+        output.WriteFloat(Rz);
+      }
       if (PlayerId.Length != 0) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(58);
         output.WriteString(PlayerId);
       }
       if (_unknownFields != null) {
@@ -248,6 +318,15 @@ namespace Game {
         size += 1 + 4;
       }
       if (Z != 0F) {
+        size += 1 + 4;
+      }
+      if (Rx != 0F) {
+        size += 1 + 4;
+      }
+      if (Ry != 0F) {
+        size += 1 + 4;
+      }
+      if (Rz != 0F) {
         size += 1 + 4;
       }
       if (PlayerId.Length != 0) {
@@ -273,6 +352,15 @@ namespace Game {
       }
       if (other.Z != 0F) {
         Z = other.Z;
+      }
+      if (other.Rx != 0F) {
+        Rx = other.Rx;
+      }
+      if (other.Ry != 0F) {
+        Ry = other.Ry;
+      }
+      if (other.Rz != 0F) {
+        Rz = other.Rz;
       }
       if (other.PlayerId.Length != 0) {
         PlayerId = other.PlayerId;
@@ -308,7 +396,19 @@ namespace Game {
             Z = input.ReadFloat();
             break;
           }
-          case 34: {
+          case 37: {
+            Rx = input.ReadFloat();
+            break;
+          }
+          case 45: {
+            Ry = input.ReadFloat();
+            break;
+          }
+          case 53: {
+            Rz = input.ReadFloat();
+            break;
+          }
+          case 58: {
             PlayerId = input.ReadString();
             break;
           }
@@ -343,7 +443,19 @@ namespace Game {
             Z = input.ReadFloat();
             break;
           }
-          case 34: {
+          case 37: {
+            Rx = input.ReadFloat();
+            break;
+          }
+          case 45: {
+            Ry = input.ReadFloat();
+            break;
+          }
+          case 53: {
+            Rz = input.ReadFloat();
+            break;
+          }
+          case 58: {
             PlayerId = input.ReadString();
             break;
           }

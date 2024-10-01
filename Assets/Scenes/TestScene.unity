@@ -979,7 +979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MyPlayerTemplate: {fileID: 5912211204070274582, guid: 30e66c41a7c36f74496a74ad33e3b762,
     type: 3}
-  OtherPlayerTemplate: {fileID: 2302550681324728162, guid: be4a83af8ac085a4392389127aa42d46,
+  OtherPlayerTemplate: {fileID: -5677562895014742263, guid: a04f14caee451cb44bca10c142cca05e,
     type: 3}
 --- !u!4 &1645282589
 Transform:
