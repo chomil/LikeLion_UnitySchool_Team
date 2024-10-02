@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     
     private float speed = 3.5f;
     private float jumpPower = 6f;
-    private float slidePower = 6f;
+    private float slidePower = 5f;
     private bool isGrounded = false;
     private bool isJumping = false;
     private bool isSliding = false;
@@ -45,17 +45,14 @@ public class PlayerMovement : MonoBehaviour
         // 점프 입력 처리
         if (Input.GetButtonDown("Jump") && isGrounded==true && isJumping==false)
         {
-            rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
-            isGrounded = false;
-            isJumping = true;
-            anim.SetTrigger("JumpTrigger");
+            Jump(jumpPower);
         }
         
         // 슬라이드
         if (Input.GetButtonDown("Slide") && isSliding==false)
         {
             rigid.velocity = Vector3.zero;
-            Vector3 slideVec = playerCharacter.transform.forward * 2f + Vector3.up;
+            Vector3 slideVec = playerCharacter.transform.forward + Vector3.up;
             slideVec.Normalize();
             rigid.AddForce(slideVec * slidePower, ForceMode.Impulse);
             isGrounded = false;
@@ -119,15 +116,28 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            //공중에서 벨로시티에 따른 플레이어 회전 처리
             Vector3 speedVec = rigid.velocity;
             speedVec.y = 0;
-            speedVec.Normalize();
-            float angle = Vector3.SignedAngle(playerCharacter.transform.forward, speedVec, Vector3.up);
+            
+            //에어 컨트롤 적용
+            rigid.AddForce(moveVector, ForceMode.Force);
+            
+            //공중에서 벨로시티에 따른 플레이어 회전 처리
+            float angle = Vector3.SignedAngle(playerCharacter.transform.forward, speedVec.normalized, Vector3.up);
             Quaternion targetRotation = Quaternion.Euler(0, angle, 0);                
             playerCharacter.transform.rotation = Quaternion.RotateTowards(playerCharacter.transform.rotation,
                 playerCharacter.transform.rotation * targetRotation, 360f * Time.deltaTime);
         }
+    }
+
+    public void Jump(float power)
+    {
+        rigid.AddForce(Vector3.up * power, ForceMode.Impulse);
+        isGrounded = false;
+        isJumping = true;
+        anim.SetTrigger("JumpTrigger");
+        
+        Debug.Log("점프");
     }
     
     private void OnStep(Collider other)
