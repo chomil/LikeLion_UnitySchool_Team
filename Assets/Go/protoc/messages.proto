@@ -23,10 +23,19 @@ message LoginMessage {
   string playerId = 1;    
 }
 
+message PlayerAnimation{
+  string player_anim_state = 1;
+  string player_id = 2;
+  float SpeedForward = 3;
+  float SpeedRight = 4;
+}
+
 message GameMessage {
   oneof message {
     PlayerPosition player_position = 1;
     ChatMessage chat = 2;
     LoginMessage login = 3;
+    PlayerAnimation player_anim_state = 4;
   }
-} 
+}
+

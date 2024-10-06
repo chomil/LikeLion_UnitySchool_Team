@@ -95,7 +95,7 @@ public class TcpProtobufClient : MonoBehaviour
         }
     }
     
-    public void SendPlayerPosition(string playerId, float x, float y, float z, float rx, float ry, float rz)
+    public void SendPlayerPosition(string playerId, float x, float y, float z, float rx, float ry, float rz, string animState)
     {
         var position = new PlayerPosition
         {
@@ -137,6 +137,22 @@ public class TcpProtobufClient : MonoBehaviour
         var message = new GameMessage
         {
             Login = login
+        };
+        SendMessage(message);
+    }
+
+    public void SendPlayerAnimation(string playerAnim, string playerId, float speedF, float speedR)
+    {
+        var anim = new PlayerAnimation()
+        {
+            PlayerAnimState = playerAnim,
+            PlayerId = playerId,
+            SpeedForward = speedF,
+            SpeedRight = speedR
+        };
+        var message = new GameMessage
+        {
+            PlayerAnimState = anim
         };
         SendMessage(message);
     }

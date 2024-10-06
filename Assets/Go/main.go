@@ -69,8 +69,8 @@ func processMessage(message *pb.GameMessage, conn *net.Conn) {
 	switch msg := message.Message.(type) {
 	case *pb.GameMessage_PlayerPosition:
 		pos := msg.PlayerPosition
-		fmt.Println("Position : ", pos.X, pos.Y, pos.Z)    //확인용 로그
-		fmt.Println("Rotation : ", pos.Rx, pos.Ry, pos.Rz) //확인용 로그
+		//fmt.Println("Position : ", pos.X, pos.Y, pos.Z)    //확인용 로그
+		//fmt.Println("Rotation : ", pos.Rx, pos.Ry, pos.Rz) //확인용 로그
 		mg.GetPlayerManager().MovePlayer(pos.PlayerId, pos.X, pos.Y, pos.Z, pos.Rx, pos.Ry, pos.Rz)
 	case *pb.GameMessage_Chat:
 		chat := msg.Chat
@@ -80,6 +80,10 @@ func processMessage(message *pb.GameMessage, conn *net.Conn) {
 		fmt.Println(playerId)
 		playerManager := mg.GetPlayerManager()
 		playerManager.AddPlayer(playerId, 0, conn)
+	case *pb.GameMessage_PlayerAnimState:
+		anim := msg.PlayerAnimState
+		fmt.Println(anim.PlayerAnimState) //확인용 로그
+		mg.GetPlayerManager().SendPlayerAnimation(anim.PlayerId, anim.PlayerAnimState, anim.SpeedForward, anim.SpeedRight)
 	default:
 		panic(fmt.Sprintf("unexpected messages.isGameMessage_Message: %#v", msg))
 	}

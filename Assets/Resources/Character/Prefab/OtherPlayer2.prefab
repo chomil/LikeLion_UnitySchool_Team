@@ -2118,7 +2118,7 @@ GameObject:
   - component: {fileID: -5677562895014742263}
   m_Layer: 6
   m_Name: OtherPlayer2
-  m_TagString: Untagged
+  m_TagString: OtherPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2260,6 +2260,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destination: {x: 0, y: 0, z: 0}
   OtherRot: {x: 0, y: 0, z: 0}
+  otherAnimState: 0
+  stepCollider: {fileID: 4880137705928406429}
 --- !u!1 &8025491020598444925
 GameObject:
   m_ObjectHideFlags: 0

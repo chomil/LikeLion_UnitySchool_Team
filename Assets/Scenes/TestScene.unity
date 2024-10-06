@@ -1045,9 +1045,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b1f080620799f46994f53ad48b5e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyPlayerTemplate: {fileID: 5912211204070274582, guid: 30e66c41a7c36f74496a74ad33e3b762,
+  myPlayerTcpTemplate: {fileID: 5912211204070274582, guid: 30e66c41a7c36f74496a74ad33e3b762,
     type: 3}
-  OtherPlayerTemplate: {fileID: -5677562895014742263, guid: a04f14caee451cb44bca10c142cca05e,
+  otherPlayerTcpTemplate: {fileID: -5677562895014742263, guid: a04f14caee451cb44bca10c142cca05e,
     type: 3}
 --- !u!4 &1645282589
 Transform:

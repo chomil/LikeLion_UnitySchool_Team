@@ -54,6 +54,41 @@ func (pm *PlayerManager) AddPlayer(name string, age int, conn *net.Conn) Player 
 	return player
 }
 
+func (pm *PlayerManager) SendPlayerAnimation(name string, animation string, speedF float32, speedR float32) {
+	// GameMessage에 PlayerAnimation 타입 추가
+	gameMessage := &pb.GameMessage{
+		Message: &pb.GameMessage_PlayerAnimState{
+			PlayerAnimState: &pb.PlayerAnimation{
+				PlayerAnimState: animation,
+				PlayerId:        name,
+				SpeedForward:    speedF,
+				SpeedRight:      speedR,
+			},
+		},
+	}
+
+	// 직렬화
+	response, err := proto.Marshal(gameMessage)
+	if err != nil {
+		log.Printf("Failed to marshal response: %v", err)
+		return
+	}
+
+	// 다른 플레이어들에게 전송
+	for _, player := range pm.players {
+		if player.Name == name {
+			continue // 자신에게는 전송하지 않음
+		}
+
+		lengthBuf := make([]byte, 4)
+		binary.LittleEndian.PutUint32(lengthBuf, uint32(len(response)))
+
+		// 메시지 길이 정보와 메시지 데이터를 결합하여 전송
+		lengthBuf = append(lengthBuf, response...)
+		(*player.Conn).Write(lengthBuf)
+	}
+}
+
 func (pm *PlayerManager) MovePlayer(name string, x float32, y float32, z float32, rx float32, ry float32, rz float32) {
 	gameMessage := &pb.GameMessage{
 		Message: &pb.GameMessage_PlayerPosition{

@@ -2383,6 +2383,7 @@ MonoBehaviour:
   playerCharacter: {fileID: 8506807582639741090}
   cameraArm: {fileID: 7484645778931943838}
   stepCollider: {fileID: 4880137705928406429}
+  myAnimState: 0
 --- !u!54 &1106929313480422172
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2445,7 +2446,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d3ac850b56972f46a01915b72c84ca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
 --- !u!114 &-7759695682707744640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2459,6 +2459,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minY: -10
+  defaultRespawnPosition: {x: 0, y: 0, z: 0}
+  groundCheckDistance: 2
+  respawnHeight: 2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &8025491020598444925
 GameObject:
   m_ObjectHideFlags: 0
