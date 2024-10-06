@@ -34,6 +34,11 @@ public class GameManager : MonoBehaviour
             {
                 PlayerController.Instance.OnOtherPlayerPositionUpdate(msg.PlayerPosition);
             }
+            
+            if (msg.MessageCase == GameMessage.MessageOneofCase.PlayerAnimState)
+            {
+                PlayerController.Instance.OnOtherPlayerAnimationStateUpdate(msg.PlayerAnimState);
+            }
         }
     }
 }

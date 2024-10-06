@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AnimState{ //서버에 애니메이션 정보를 전송하기 위한 enum
+    Idle,
+    Move,
+    Jump,
+    Slide
+}
+
 public class PlayerMovement : MonoBehaviour
 {
     public GameObject playerCharacter;
@@ -10,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject cameraArm;
 
     public StepTrigger stepCollider;
+
+    public AnimState myAnimState; //현재 나의 애니메이션 상태
 
     private Rigidbody rigid;
     private Animator anim;
@@ -25,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float camPitchAngle = 0f;
     private float camYawAngle = 0f;
+    private string lastSentAnimationState; 
 
 
     void Awake()
@@ -38,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Physics.gravity = new Vector3(0f,-12f,0f);
         stepCollider.OnStepEvent += OnStep; // 이벤트 바인딩
+        myAnimState = AnimState.Idle; //초기화
     }
 
     void Update()
@@ -58,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
             isSliding = true;
             anim.SetTrigger("SlideTrigger");
+            TcpProtobufClient.Instance.SendPlayerAnimation(AnimState.Slide.ToString(), TCPManager.Instance.playerId,0,0);
         }
         
         anim.SetBool("isLanded", isGrounded);
@@ -69,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
 
-
+        
 
         //마우스 이동에 따른 카메라 공전
         camYawAngle += mouseX;
@@ -107,12 +119,15 @@ public class PlayerMovement : MonoBehaviour
                 float speedRight = Vector3.Dot(moveVector, playerCharacter.transform.right);
                 anim.SetFloat("SpeedForward",speedForward);
                 anim.SetFloat("SpeedRight",speedRight);
+                TcpProtobufClient.Instance.SendPlayerAnimation(AnimState.Move.ToString(), TCPManager.Instance.playerId,speedForward,speedRight);
             }
             else
             {
                 anim.SetFloat("SpeedForward",0);
                 anim.SetFloat("SpeedRight",0);
+                TcpProtobufClient.Instance.SendPlayerAnimation(AnimState.Idle.ToString(), TCPManager.Instance.playerId,0,0);
             }
+
         }
         else
         {

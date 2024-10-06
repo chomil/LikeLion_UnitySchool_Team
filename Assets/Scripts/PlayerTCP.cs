@@ -6,7 +6,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 
-public class Player : MonoBehaviour
+public class PlayerTCP : MonoBehaviour
 {
     //public float Speed = 5.0f;
 
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
             Vector3 myRotation = transform.GetChild(0).transform.eulerAngles;
             TcpProtobufClient.Instance.SendPlayerPosition(TCPManager.Instance.playerId,
                 transform.position.x, transform.position.y, transform.position.z,
-                myRotation.x,myRotation.y,myRotation.z);
+                myRotation.x,myRotation.y,myRotation.z, GetComponent<PlayerMovement>().myAnimState.ToString());
             prevPos = transform.position;
         }
     }
