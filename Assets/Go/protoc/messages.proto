@@ -30,12 +30,24 @@ message PlayerAnimation{
   float SpeedRight = 4;
 }
 
+message SpawnPlayer{
+  string playerId = 1;
+  float x = 2;
+  float y = 3;
+  float z = 4;
+  float rx = 5;
+  float ry = 6;
+  float rz = 7;
+}
+
 message GameMessage {
   oneof message {
     PlayerPosition player_position = 1;
     ChatMessage chat = 2;
     LoginMessage login = 3;
     PlayerAnimation player_anim_state = 4;
+    SpawnPlayer spawnPlayer= 5;
+    SpawnPlayer spawnExistingPlayer = 6;
   }
 }
 

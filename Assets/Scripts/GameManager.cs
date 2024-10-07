@@ -39,6 +39,16 @@ public class GameManager : MonoBehaviour
             {
                 PlayerController.Instance.OnOtherPlayerAnimationStateUpdate(msg.PlayerAnimState);
             }
+
+            if (msg.MessageCase == GameMessage.MessageOneofCase.SpawnPlayer)
+            {
+                PlayerController.Instance.SpawnOtherPlayer(msg.SpawnPlayer);
+            }
+
+            if (msg.MessageCase == GameMessage.MessageOneofCase.SpawnExistingPlayer)
+            {
+                PlayerController.Instance.SpawnOtherPlayer(msg.SpawnExistingPlayer);
+            }
         }
     }
 }

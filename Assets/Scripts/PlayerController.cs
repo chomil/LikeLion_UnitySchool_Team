@@ -49,12 +49,19 @@ public class PlayerController : MonoBehaviour
             otherPlayer.OtherRot = new Vector3(playerPosition.Rx, playerPosition.Ry, playerPosition.Rz);
             return;
         }
-        
-        GameObject SpawnPlayer = GameObject.Instantiate(otherPlayerTcpTemplate.gameObject, 
-            new Vector3(playerPosition.X, playerPosition.Y + 1f, playerPosition.Z), 
-            Quaternion.Euler(playerPosition.Rx,playerPosition.Ry,playerPosition.Rz));
-        _otherPlayers.Add(playerPosition.PlayerId, SpawnPlayer.GetComponent<OtherPlayerTCP>());
     }
+
+    public void SpawnOtherPlayer(SpawnPlayer serverPlayer)
+    {
+        GameObject SpawnPlayer = GameObject.Instantiate(otherPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
+        OtherPlayerTCP otherPlayerTcp = SpawnPlayer.GetComponent<OtherPlayerTCP>();
+
+        otherPlayerTcp.destination = new Vector3(serverPlayer.X, serverPlayer.Y, serverPlayer.Z);
+        otherPlayerTcp.OtherRot = new Vector3(serverPlayer.Rx, serverPlayer.Ry, serverPlayer.Rz);
+        
+        _otherPlayers.TryAdd(serverPlayer.PlayerId, otherPlayerTcp);
+    }
+
 
     public void OnOtherPlayerAnimationStateUpdate(PlayerAnimation playerAnimation)
     {
