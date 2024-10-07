@@ -18,7 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
     public StepTrigger stepCollider;
 
-    public AnimState myAnimState; //현재 나의 애니메이션 상태
+    public AnimState curAnimState; //현재 나의 애니메이션 상태
+    public AnimState nextAnimState; //다음 나의 애니메이션 상태
 
     private Rigidbody rigid;
     private Animator anim;
@@ -48,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Physics.gravity = new Vector3(0f,-12f,0f);
         stepCollider.OnStepEvent += OnStep; // 이벤트 바인딩
-        myAnimState = AnimState.Idle; //초기화
+        curAnimState = AnimState.Idle; //초기화
     }
 
     void Update()
@@ -68,12 +69,8 @@ public class PlayerMovement : MonoBehaviour
             rigid.AddForce(slideVec * slidePower, ForceMode.Impulse);
             isGrounded = false;
             isSliding = true;
-            anim.SetTrigger("SlideTrigger");
-            TcpProtobufClient.Instance.SendPlayerAnimation(AnimState.Slide.ToString(), TCPManager.Instance.playerId,0,0);
+            nextAnimState = AnimState.Slide;
         }
-        
-        anim.SetBool("isLanded", isGrounded);
-        
         
         // 입력 받기
         float moveX = Input.GetAxis("Horizontal");
@@ -81,7 +78,6 @@ public class PlayerMovement : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
 
-        
 
         //마우스 이동에 따른 카메라 공전
         camYawAngle += mouseX;
@@ -102,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
             moveVector.Normalize();
         }
 
-        if (isGrounded)
+        if (isGrounded) //지면 이동
         {
             //이동
             rigid.velocity = new Vector3(moveVector.x * speed, rigid.velocity.y, moveVector.z * speed);
@@ -113,23 +109,16 @@ public class PlayerMovement : MonoBehaviour
                 Quaternion targetRotation = Quaternion.Euler(0, angle, 0);                
                 playerCharacter.transform.rotation = Quaternion.RotateTowards(playerCharacter.transform.rotation,
                     playerCharacter.transform.rotation * targetRotation, 360f * Time.deltaTime);
-
-                // 방향에 따른 이동애니메이션 블렌드
-                float speedForward = Vector3.Dot(moveVector, playerCharacter.transform.forward);
-                float speedRight = Vector3.Dot(moveVector, playerCharacter.transform.right);
-                anim.SetFloat("SpeedForward",speedForward);
-                anim.SetFloat("SpeedRight",speedRight);
-                TcpProtobufClient.Instance.SendPlayerAnimation(AnimState.Move.ToString(), TCPManager.Instance.playerId,speedForward,speedRight);
+                
+                nextAnimState = AnimState.Move;
             }
             else
             {
-                anim.SetFloat("SpeedForward",0);
-                anim.SetFloat("SpeedRight",0);
-                TcpProtobufClient.Instance.SendPlayerAnimation(AnimState.Idle.ToString(), TCPManager.Instance.playerId,0,0);
+                nextAnimState = AnimState.Idle;
             }
 
         }
-        else
+        else //공중
         {
             Vector3 speedVec = rigid.velocity;
             speedVec.y = 0;
@@ -145,14 +134,52 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void LateUpdate()
+    {
+        StateChange();
+
+    }
+
+
+    public void StateChange()
+    {
+        if (curAnimState != nextAnimState) //트리거 처리
+        {
+            curAnimState = nextAnimState;
+            switch (curAnimState)
+            {
+                case AnimState.Jump:
+                    anim.SetTrigger("JumpTrigger");
+                    anim.SetBool("isLanded", false);
+                    break;
+                case AnimState.Slide:
+                    anim.SetTrigger("SlideTrigger");
+                    anim.SetBool("isLanded", false);
+                    break;
+            }
+            
+            TcpProtobufClient.Instance.SendPlayerAnimation(curAnimState.ToString(), TCPManager.Instance.playerId,0,0);
+        }
+
+        
+        if (curAnimState == AnimState.Idle || curAnimState == AnimState.Move)
+        {
+            anim.SetBool("isLanded", true);
+            // 방향에 따른 이동애니메이션 블렌드
+            float speedForward = Vector3.Dot(moveVector, playerCharacter.transform.forward);
+            float speedRight = Vector3.Dot(moveVector, playerCharacter.transform.right);
+            anim.SetFloat("SpeedForward",speedForward);
+            anim.SetFloat("SpeedRight",speedRight);
+            TcpProtobufClient.Instance.SendPlayerAnimation(curAnimState.ToString(), TCPManager.Instance.playerId,speedForward,speedRight);
+        }
+    }
+
     public void Jump(float power)
     {
         rigid.AddForce(Vector3.up * power, ForceMode.Impulse);
         isGrounded = false;
         isJumping = true;
-        anim.SetTrigger("JumpTrigger");
-        
-        Debug.Log("점프");
+        nextAnimState = AnimState.Jump;
     }
     
     private void OnStep(Collider other)
