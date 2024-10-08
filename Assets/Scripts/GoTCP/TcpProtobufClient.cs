@@ -183,6 +183,11 @@ public class TcpProtobufClient : MonoBehaviour
             stream.Write(messageBytes, 0, messageBytes.Length);
         }
     }
+    
+    public void SendRaceFinish(string playerId)
+    {
+        // 레이스 완주 메시지 생성 및 전송 로직
+    }
 
     void OnDisable()
     {
