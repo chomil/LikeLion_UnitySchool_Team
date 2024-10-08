@@ -19,6 +19,11 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
+    private void OnApplicationQuit()
+    {
+        TcpProtobufClient.Instance.SendPlayerLogout(TCPManager.Instance.playerId);
+    }
 
     void Update()
     {
@@ -48,6 +53,11 @@ public class GameManager : MonoBehaviour
             if (msg.MessageCase == GameMessage.MessageOneofCase.SpawnExistingPlayer)
             {
                 PlayerController.Instance.SpawnOtherPlayer(msg.SpawnExistingPlayer);
+            }
+
+            if (msg.MessageCase == GameMessage.MessageOneofCase.Logout)
+            {
+                PlayerController.Instance.DespawnOtherPlayer(msg.Logout.PlayerId);
             }
         }
     }

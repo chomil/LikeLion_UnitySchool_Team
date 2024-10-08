@@ -40,6 +40,10 @@ message SpawnPlayer{
   float rz = 7;
 }
 
+message LogoutMessage {
+  string playerId = 1;    
+}
+
 message GameMessage {
   oneof message {
     PlayerPosition player_position = 1;
@@ -48,6 +52,7 @@ message GameMessage {
     PlayerAnimation player_anim_state = 4;
     SpawnPlayer spawnPlayer= 5;
     SpawnPlayer spawnExistingPlayer = 6;
+    LogoutMessage logout = 7;
   }
 }
 

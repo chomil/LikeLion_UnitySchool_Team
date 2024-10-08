@@ -71,4 +71,13 @@ public class PlayerController : MonoBehaviour
             otherPlayer.AnimTrigger(playerAnimation);
         }
     }
+
+    public void DespawnOtherPlayer(string playerId)
+    {
+        if (_otherPlayers.TryGetValue(playerId, out OtherPlayerTCP otherPlayer))
+        {
+            Destroy(otherPlayer.gameObject);
+            _otherPlayers.Remove(playerId);
+        }
+    }
 }

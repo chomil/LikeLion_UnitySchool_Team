@@ -3,7 +3,6 @@ package manager
 import (
 	"encoding/binary"
 	"errors"
-	"fmt"
 	"log"
 
 	pb "golangtcp/messages"
@@ -115,8 +114,6 @@ func (pm *PlayerManager) SendExistingPlayersToNewPlayer(newPlayer Player) {
 			// 자신은 제외
 			continue
 		}
-
-		fmt.Println(existingPlayer.Name, existingPlayer.X, existingPlayer.Y, existingPlayer.Z)
 
 		// 기존 플레이어 정보를 새로운 유저에게 전송
 		gameMessage := &pb.GameMessage{
@@ -245,11 +242,46 @@ func (pm *PlayerManager) GetPlayer(id int) (*Player, error) {
 }
 
 // RemovePlayer removes a player by ID
-func (pm *PlayerManager) RemovePlayer(id int) error {
-	if _, exists := pm.players[id]; !exists {
-		return errors.New("player not found")
+func (pm *PlayerManager) RemovePlayer(id string) error {
+	player, exists := pm.FindPlayerByName(id)
+	if !exists {
+		log.Printf("Player not found: %s", id)
+		return errors.New("Player not found")
 	}
-	delete(pm.players, id)
+	delete(pm.players, player.ID)
+
+	logoutPacket := &pb.GameMessage{
+		Message: &pb.GameMessage_Logout{
+			Logout: &pb.LogoutMessage{
+				PlayerId: id,
+			},
+		},
+	}
+
+	response, err := proto.Marshal(logoutPacket)
+	if err != nil {
+		log.Printf("Failed to marshal response: %v", err)
+		return errors.New("Fail to send logout packet")
+	}
+
+	for _, player := range pm.players {
+		if player.Name == id {
+			continue // 자신에게는 전송하지 않음
+		}
+
+		lengthBuf := make([]byte, 4)
+		binary.LittleEndian.PutUint32(lengthBuf, uint32(len(response)))
+
+		// 메시지 길이 정보와 메시지 데이터를 결합하여 전송
+		lengthBuf = append(lengthBuf, response...)
+		(*player.Conn).Write(lengthBuf)
+	}
+
+	// // 이 코드를 들어온 유저를 제외한 플레이어들에게 스폰시켜달라고 한다.
+	// for _, p := range pm.players {
+	// 	(*p.Conn).Write(response)
+	// }
+
 	return nil
 }
 
