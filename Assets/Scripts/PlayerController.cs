@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
         UIManager.Instance.OnRecevieChatMsg(chatmsg);
     }*/
     
+    
     public void OnOtherPlayerPositionUpdate(PlayerPosition playerPosition)
     {
         if (_otherPlayers.TryGetValue(
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
             otherPlayer.destination = new Vector3(playerPosition.X, playerPosition.Y, playerPosition.Z);
             otherPlayer.OtherRot = new Vector3(playerPosition.Rx, playerPosition.Ry, playerPosition.Rz);
             return;
+            
         }
         
         GameObject SpawnPlayer = GameObject.Instantiate(otherPlayerTcpTemplate.gameObject, 
