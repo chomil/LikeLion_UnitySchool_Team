@@ -82,8 +82,13 @@ func processMessage(message *pb.GameMessage, conn *net.Conn) {
 		playerManager.AddPlayer(playerId, 0, conn)
 	case *pb.GameMessage_PlayerAnimState:
 		anim := msg.PlayerAnimState
-		fmt.Println(anim.PlayerAnimState) //확인용 로그
+		//fmt.Println(anim.PlayerAnimState) //확인용 로그
 		mg.GetPlayerManager().SendPlayerAnimation(anim.PlayerId, anim.PlayerAnimState, anim.SpeedForward, anim.SpeedRight)
+	case *pb.GameMessage_Logout:
+		playerId := msg.Logout.PlayerId
+		playerManager := mg.GetPlayerManager()
+		playerManager.RemovePlayer(playerId)
+		fmt.Println("Logout ", playerId)
 	default:
 		panic(fmt.Sprintf("unexpected messages.isGameMessage_Message: %#v", msg))
 	}

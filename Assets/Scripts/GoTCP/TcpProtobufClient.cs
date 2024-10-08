@@ -157,6 +157,18 @@ public class TcpProtobufClient : MonoBehaviour
         SendMessage(message);
     }
     
+    public void SendPlayerLogout(string playerId)
+    {
+        var msg = new LogoutMessage()
+        {
+            PlayerId = playerId,
+        };
+        var message = new GameMessage
+        {
+            Logout = msg
+        };
+        SendMessage(message);
+    }
 
     private void SendMessage(GameMessage message)
     {

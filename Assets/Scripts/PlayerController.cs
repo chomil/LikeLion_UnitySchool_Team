@@ -51,12 +51,19 @@ public class PlayerController : MonoBehaviour
             return;
             
         }
-        
-        GameObject SpawnPlayer = GameObject.Instantiate(otherPlayerTcpTemplate.gameObject, 
-            new Vector3(playerPosition.X, playerPosition.Y + 1f, playerPosition.Z), 
-            Quaternion.Euler(playerPosition.Rx,playerPosition.Ry,playerPosition.Rz));
-        _otherPlayers.Add(playerPosition.PlayerId, SpawnPlayer.GetComponent<OtherPlayerTCP>());
     }
+
+    public void SpawnOtherPlayer(SpawnPlayer serverPlayer)
+    {
+        GameObject SpawnPlayer = GameObject.Instantiate(otherPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
+        OtherPlayerTCP otherPlayerTcp = SpawnPlayer.GetComponent<OtherPlayerTCP>();
+
+        otherPlayerTcp.destination = new Vector3(serverPlayer.X, serverPlayer.Y, serverPlayer.Z);
+        otherPlayerTcp.OtherRot = new Vector3(serverPlayer.Rx, serverPlayer.Ry, serverPlayer.Rz);
+        
+        _otherPlayers.TryAdd(serverPlayer.PlayerId, otherPlayerTcp);
+    }
+
 
     public void OnOtherPlayerAnimationStateUpdate(PlayerAnimation playerAnimation)
     {
@@ -64,6 +71,15 @@ public class PlayerController : MonoBehaviour
                 playerAnimation.PlayerId, out OtherPlayerTCP otherPlayer))
         {
             otherPlayer.AnimTrigger(playerAnimation);
+        }
+    }
+
+    public void DespawnOtherPlayer(string playerId)
+    {
+        if (_otherPlayers.TryGetValue(playerId, out OtherPlayerTCP otherPlayer))
+        {
+            Destroy(otherPlayer.gameObject);
+            _otherPlayers.Remove(playerId);
         }
     }
 }
