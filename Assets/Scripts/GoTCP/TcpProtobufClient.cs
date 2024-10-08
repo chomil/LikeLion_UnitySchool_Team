@@ -156,6 +156,7 @@ public class TcpProtobufClient : MonoBehaviour
         };
         SendMessage(message);
     }
+    
 
     private void SendMessage(GameMessage message)
     {
@@ -169,6 +170,11 @@ public class TcpProtobufClient : MonoBehaviour
             // 메시지 본문을 보냅니다
             stream.Write(messageBytes, 0, messageBytes.Length);
         }
+    }
+    
+    public void SendRaceFinish(string playerId)
+    {
+        // 레이스 완주 메시지 생성 및 전송 로직
     }
 
     void OnDisable()
