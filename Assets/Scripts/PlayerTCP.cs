@@ -44,17 +44,11 @@ public class PlayerTCP : MonoBehaviour
     {
         if (!hasFinished)
         {
-            Vector3 dis = transform.position - prevPos;
-            dis.Normalize();
-
-            if (dis.sqrMagnitude > 0)
-            {
-                Vector3 myRotation = transform.GetChild(0).transform.eulerAngles;
-                TcpProtobufClient.Instance.SendPlayerPosition(TCPManager.Instance.playerId,
-                    transform.position.x, transform.position.y, transform.position.z,
-                    myRotation.x, myRotation.y, myRotation.z, GetComponent<PlayerMovement>().myAnimState.ToString());
-                prevPos = transform.position;
-            }
+            Vector3 myRotation = transform.GetChild(0).transform.eulerAngles;
+            TcpProtobufClient.Instance.SendPlayerPosition(TCPManager.Instance.playerId,
+                transform.position.x, transform.position.y, transform.position.z,
+                myRotation.x,myRotation.y,myRotation.z, GetComponent<PlayerMovement>().curAnimState.ToString());
+            prevPos = transform.position;
         }
     }
     
