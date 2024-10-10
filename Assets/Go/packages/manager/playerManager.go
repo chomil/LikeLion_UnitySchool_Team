@@ -16,16 +16,17 @@ var playerManager *PlayerManager
 
 // Player represents a single player with some attributes
 type Player struct {
-	ID   int
-	Name string
-	Age  int
-	Conn *net.Conn
-	X    float32
-	Y    float32
-	Z    float32
-	Rx   float32
-	Ry   float32
-	Rz   float32
+	ID         int
+	Name       string
+	Age        int
+	Conn       *net.Conn
+	X          float32
+	Y          float32
+	Z          float32
+	Rx         float32
+	Ry         float32
+	Rz         float32
+	FinishTime int64
 }
 
 // PlayerManager manages a list of players
@@ -301,4 +302,43 @@ func (pm *PlayerManager) FindPlayerByName(name string) (*Player, bool) {
 		}
 	}
 	return nil, false // 찾지 못한 경우 nil과 false를 반환합니다.
+}
+
+func (pm *PlayerManager) BroadcastMessage(message *pb.GameMessage) {
+	response, err := proto.Marshal(message)
+	if err != nil {
+		log.Printf("Failed to marshal response: %v", err)
+		return
+	}
+
+	for _, player := range pm.players {
+		lengthBuf := make([]byte, 4)
+		binary.LittleEndian.PutUint32(lengthBuf, uint32(len(response)))
+
+		// 메시지 길이 정보와 메시지 데이터를 결합하여 전송
+		lengthBuf = append(lengthBuf, response...)
+		(*player.Conn).Write(lengthBuf)
+	}
+}
+
+func (pm *PlayerManager) PlayerFinishedRace(playerId string, finishTime int64) {
+	player, exists := pm.FindPlayerByName(playerId)
+	if !exists {
+		log.Printf("Player not found: %s", playerId)
+		return
+	}
+
+	player.FinishTime = finishTime
+
+	// 모든 플레이어에게 완주 정보 브로드캐스트
+	finishMessage := &pb.GameMessage{
+		Message: &pb.GameMessage_RaceFinish{
+			RaceFinish: &pb.RaceFinishMessage{
+				PlayerId:   playerId,
+				FinishTime: finishTime,
+			},
+		},
+	}
+
+	pm.BroadcastMessage(finishMessage)
 }

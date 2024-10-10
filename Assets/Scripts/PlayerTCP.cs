@@ -71,8 +71,16 @@ public class PlayerTCP : MonoBehaviour
                 SendRaceFinishMessage();
                 Debug.Log($"Local player {PlayerId} finished the race!");
             }
+        
+            // PlayerMovement의 SetIdleState 호출
+            PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+            if (playerMovement != null)
+            {
+                playerMovement.SetIdleState();
+            }
         }
     }
+    
     
     private void SendRaceFinishMessage()
     {

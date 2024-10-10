@@ -52,6 +52,18 @@ public class PlayerController : MonoBehaviour
             
         }
     }
+    
+    public void OnPlayerFinished(string playerId)
+    {
+        if (playerId == myPlayerTcp.PlayerId)
+        {
+            myPlayerTcp.FinishRace();
+        }
+        else if (_otherPlayers.TryGetValue(playerId, out OtherPlayerTCP otherPlayer))
+        {
+            otherPlayer.FinishRace();
+        }
+    }
 
     public void SpawnOtherPlayer(SpawnPlayer serverPlayer)
     {

@@ -101,6 +101,9 @@ public class GameManager : MonoBehaviour
             playerFinishTimes.Add(playerId, finishTime);
             Debug.Log($"Player {playerId} finished in {finishTime:F2} seconds!");
 
+            // 추가: PlayerController에 완주 정보 전달
+            PlayerController.Instance.OnPlayerFinished(playerId);
+
             if (playerFinishTimes.Count == activePlayers.Count)
             {
                 EndRace();

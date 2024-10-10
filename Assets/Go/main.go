@@ -89,6 +89,11 @@ func processMessage(message *pb.GameMessage, conn *net.Conn) {
 		playerManager := mg.GetPlayerManager()
 		playerManager.RemovePlayer(playerId)
 		fmt.Println("Logout ", playerId)
+	case *pb.GameMessage_RaceFinish:
+		finish := msg.RaceFinish
+		fmt.Printf("Player %s finished the race at time %d\n", finish.PlayerId, finish.FinishTime)
+		// 여기에 레이스 완주 처리 로직 추가
+		mg.GetPlayerManager().PlayerFinishedRace(finish.PlayerId, finish.FinishTime)
 	default:
 		panic(fmt.Sprintf("unexpected messages.isGameMessage_Message: %#v", msg))
 	}
