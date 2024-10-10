@@ -2384,7 +2384,8 @@ MonoBehaviour:
   playerCharacter: {fileID: 8506807582639741090}
   cameraArm: {fileID: 7484645778931943838}
   stepCollider: {fileID: 4880137705928406429}
-  myAnimState: 0
+  curAnimState: 0
+  nextAnimState: 0
 --- !u!54 &1106929313480422172
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2411,7 +2412,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!136 &4869383321740751720
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2419,7 +2420,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7924805927655566099}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 5f2236b3cb851b6439c2ce44ceace3d7, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2447,8 +2448,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d3ac850b56972f46a01915b72c84ca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTime: 60
-  disappearDelay: 2
 --- !u!114 &-7759695682707744640
 MonoBehaviour:
   m_ObjectHideFlags: 0

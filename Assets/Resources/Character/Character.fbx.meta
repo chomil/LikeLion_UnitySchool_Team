@@ -2210,14 +2210,14 @@ ModelImporter:
       takeName: FG_Ragdoll_A
       internalID: -6125828411078609447
       firstFrame: 0
-      lastFrame: 259
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
