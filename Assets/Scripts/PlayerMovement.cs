@@ -39,8 +39,9 @@ public class PlayerMovement : MonoBehaviour
     private float camPitchAngle = 0f;
     private float camYawAngle = 0f;
     private string lastSentAnimationState; 
-
-
+    
+    private bool isFinished = false;
+    
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
@@ -57,6 +58,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (isFinished) return;  // 레이스가 끝났다면 더 이상 입력을 처리하지 않음
+        
         if (curAnimState != AnimState.Ragdoll)
         {        
             // 점프 입력 처리
@@ -224,5 +227,27 @@ public class PlayerMovement : MonoBehaviour
             isSliding = false;
             isJumping = false;
         }
+    }
+    
+    public void SetIdleState()
+    {
+        // 모든 움직임 멈추기
+        rigid.velocity = Vector3.zero;
+        moveVector = Vector3.zero;
+
+        // 애니메이션 상태를 Idle로 변경
+        nextAnimState = AnimState.Idle;
+        curAnimState = AnimState.Idle;
+    
+        // Animator 파라미터 업데이트
+        anim.SetFloat("SpeedForward", 0);
+        anim.SetFloat("SpeedRight", 0);
+        anim.SetBool("isLanded", true);
+
+        // 서버에 Idle 상태 전송
+        TcpProtobufClient.Instance.SendPlayerAnimation(curAnimState.ToString(), TCPManager.Instance.playerId, 0, 0);
+
+        // 모든 입력 비활성화를 위한 플래그 설정
+        isFinished = true;
     }
 }

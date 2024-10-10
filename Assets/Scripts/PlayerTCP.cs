@@ -72,9 +72,12 @@ public class PlayerTCP : MonoBehaviour
                 Debug.Log($"Local player {PlayerId} finished the race!");
             }
         
-            // 추가: 플레이어 조작 비활성화
-            GetComponent<PlayerMovement>().enabled = false;
-            
+            // PlayerMovement의 SetIdleState 호출
+            PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+            if (playerMovement != null)
+            {
+                playerMovement.SetIdleState();
+            }
         }
     }
     
