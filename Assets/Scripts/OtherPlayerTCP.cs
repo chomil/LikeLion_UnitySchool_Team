@@ -28,8 +28,11 @@ public class OtherPlayerTCP : MonoBehaviour
 
     void Update()
     {
-        transform.rotation = Quaternion.Euler(OtherRot);
-        transform.position = destination;
+        if (!hasFinished)
+        {
+            transform.rotation = Quaternion.Euler(OtherRot);
+            transform.position = destination;
+        }
     }
     
     public void FinishRace()
@@ -40,6 +43,16 @@ public class OtherPlayerTCP : MonoBehaviour
         
             // 플레이어 움직임 멈춤
             _rb.isKinematic = true;
+        
+            // Idle 애니메이션으로 전환
+            _animator.SetBool("isLanded", true);
+            _animator.SetFloat("SpeedForward", 0);
+            _animator.SetFloat("SpeedRight", 0);
+        
+            // Idle 트리거가 있다면 사용
+            _animator.SetTrigger("IdleTrigger");
+        
+            Debug.Log($"Other player finished the race: {gameObject.name}");
         }
     }
 
@@ -47,6 +60,8 @@ public class OtherPlayerTCP : MonoBehaviour
 
     public void AnimTrigger(PlayerAnimation pa)
     {
+        if (hasFinished) return; // 레이스 완료시 애니메이션 업데이트 안함
+        
         otherAnimState = (AnimState)Enum.Parse(typeof(AnimState), pa.PlayerAnimState);
 
         switch (otherAnimState)
