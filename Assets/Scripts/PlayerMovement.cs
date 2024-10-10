@@ -1,13 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum AnimState{ //서버에 애니메이션 정보를 전송하기 위한 enum
     Idle,
     Move,
     Jump,
-    Slide
+    Slide,
+    Ragdoll
 }
 
 public class PlayerMovement : MonoBehaviour
@@ -32,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded = false;
     private bool isJumping = false;
     private bool isSliding = false;
+    private bool isRagdoll = false;
 
     private float camPitchAngle = 0f;
     private float camYawAngle = 0f;
@@ -54,23 +57,28 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // 점프 입력 처리
-        if (Input.GetButtonDown("Jump") && isGrounded==true && isJumping==false)
-        {
-            Jump(jumpPower);
+        if (curAnimState != AnimState.Ragdoll)
+        {        
+            // 점프 입력 처리
+            if (Input.GetButtonDown("Jump") && isGrounded==true && isJumping==false)
+            {
+                Jump(jumpPower);
+            }
+        
+            // 슬라이드
+            if (Input.GetButtonDown("Slide") && isSliding==false)
+            {
+                rigid.velocity = Vector3.zero;
+                Vector3 slideVec = playerCharacter.transform.forward + Vector3.up;
+                slideVec.Normalize();
+                rigid.AddForce(slideVec * slidePower, ForceMode.Impulse);
+                isGrounded = false;
+                isSliding = true;
+                nextAnimState = AnimState.Slide;
+            }
         }
         
-        // 슬라이드
-        if (Input.GetButtonDown("Slide") && isSliding==false)
-        {
-            rigid.velocity = Vector3.zero;
-            Vector3 slideVec = playerCharacter.transform.forward + Vector3.up;
-            slideVec.Normalize();
-            rigid.AddForce(slideVec * slidePower, ForceMode.Impulse);
-            isGrounded = false;
-            isSliding = true;
-            nextAnimState = AnimState.Slide;
-        }
+
         
         // 입력 받기
         float moveX = Input.GetAxis("Horizontal");
@@ -98,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
             moveVector.Normalize();
         }
 
-        if (isGrounded) //지면 이동
+        if (isGrounded && isRagdoll==false) //지면 이동
         {
             //이동
             rigid.velocity = new Vector3(moveVector.x * speed, rigid.velocity.y, moveVector.z * speed);
@@ -138,6 +146,10 @@ public class PlayerMovement : MonoBehaviour
     {
         StateChange();
 
+        if (rigid.velocity.magnitude > 20f)
+        {
+            rigid.velocity = rigid.velocity.normalized * 20f;
+        }
     }
 
 
@@ -156,6 +168,10 @@ public class PlayerMovement : MonoBehaviour
                     anim.SetTrigger("SlideTrigger");
                     anim.SetBool("isLanded", false);
                     break;
+                case AnimState.Ragdoll:
+                    anim.SetTrigger("RagdollTrigger");
+                    anim.SetBool("isLanded", false);
+                    break;
             }
             
             TcpProtobufClient.Instance.SendPlayerAnimation(curAnimState.ToString(), TCPManager.Instance.playerId,0,0);
@@ -172,6 +188,23 @@ public class PlayerMovement : MonoBehaviour
             anim.SetFloat("SpeedRight",speedRight);
             TcpProtobufClient.Instance.SendPlayerAnimation(curAnimState.ToString(), TCPManager.Instance.playerId,speedForward,speedRight);
         }
+    }
+    
+    public void Punched(Vector3 dir,float power)
+    {
+        rigid.AddForce(Vector3.up, ForceMode.Impulse);
+        rigid.AddForce(dir*power, ForceMode.Impulse);
+        StartCoroutine(Ragdoll());
+    }
+
+
+    private IEnumerator Ragdoll()
+    {
+        nextAnimState = AnimState.Ragdoll;
+        isRagdoll = true;
+        
+        yield return new WaitWhile(()=>rigid.velocity.magnitude<=0.1f);
+        isRagdoll = false;
     }
 
     public void Jump(float power)

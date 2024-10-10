@@ -115,10 +115,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2555984491021917191}
-    - targetCorrespondingSourceObject: {fileID: 877260385511212368, guid: ab1169b6977af8149b253a42b2a7db23,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 9009091094645737427}
   m_SourcePrefab: {fileID: 100100000, guid: ab1169b6977af8149b253a42b2a7db23, type: 3}
 --- !u!1 &2600405153291274548 stripped
 GameObject:
@@ -149,20 +145,6 @@ Animator:
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2555984491021917191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2600405153291274548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4e8902f20e1a144eb6d51e1b2af7263, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obstacleType: 0
-  bouncePower: 10
---- !u!114 &9009091094645737427
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
