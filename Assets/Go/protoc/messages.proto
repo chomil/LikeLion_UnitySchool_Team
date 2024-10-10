@@ -44,6 +44,11 @@ message LogoutMessage {
   string playerId = 1;    
 }
 
+message RaceFinishMessage {
+  string playerId = 1;
+  int64 finishTime = 2;
+}
+
 message GameMessage {
   oneof message {
     PlayerPosition player_position = 1;
@@ -53,6 +58,7 @@ message GameMessage {
     SpawnPlayer spawnPlayer= 5;
     SpawnPlayer spawnExistingPlayer = 6;
     LogoutMessage logout = 7;
+    RaceFinishMessage race_finish = 8;
   }
 }
 

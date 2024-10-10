@@ -15,11 +15,15 @@ public class OtherPlayerTCP : MonoBehaviour
 
     private Animator _animator;
     private Rigidbody _rb;
+    
+    private Renderer _renderer;
+    private bool hasFinished = false;
 
     void Start()
     {
         _animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
+        _renderer = GetComponentInChildren<Renderer>();
     }
 
     void Update()
@@ -27,6 +31,19 @@ public class OtherPlayerTCP : MonoBehaviour
         transform.rotation = Quaternion.Euler(OtherRot);
         transform.position = destination;
     }
+    
+    public void FinishRace()
+    {
+        if (!hasFinished)
+        {
+            hasFinished = true;
+        
+            // 플레이어 움직임 멈춤
+            _rb.isKinematic = true;
+        }
+    }
+
+    
 
     public void AnimTrigger(PlayerAnimation pa)
     {

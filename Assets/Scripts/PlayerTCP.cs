@@ -71,8 +71,13 @@ public class PlayerTCP : MonoBehaviour
                 SendRaceFinishMessage();
                 Debug.Log($"Local player {PlayerId} finished the race!");
             }
+        
+            // 추가: 플레이어 조작 비활성화
+            GetComponent<PlayerMovement>().enabled = false;
+            
         }
     }
+    
     
     private void SendRaceFinishMessage()
     {

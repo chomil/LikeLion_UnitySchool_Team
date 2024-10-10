@@ -186,7 +186,18 @@ public class TcpProtobufClient : MonoBehaviour
     
     public void SendRaceFinish(string playerId)
     {
-        // 레이스 완주 메시지 생성 및 전송 로직
+        Debug.Log($"SendRaceFinish 메서드 시작: Player {playerId}");
+        var finishMsg = new RaceFinishMessage
+        {
+            PlayerId = playerId,
+            FinishTime = (long)(Time.time * 1000)  // 밀리초 단위의 완주 시간
+        };
+        var message = new GameMessage
+        {
+            RaceFinish = finishMsg
+        };
+        SendMessage(message);
+        Debug.Log($"레이스 완주 메시지 전송 완료: Player {playerId}");
     }
 
     void OnDisable()

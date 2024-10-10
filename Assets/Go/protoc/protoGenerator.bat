@@ -8,7 +8,7 @@ REM Run protoc command
 echo Generating Go code from Protobuf...
 ::protoc --csharp_out="D:\Unity Projects\GoTcpTest\Assets\Scripts" *.proto
 ::protoc --go_out=../../ *.proto
-protoc --csharp_out="D:\Unity Projects\Fallguys\fallguys\Assets\Scripts\GoTCP" *.proto
+protoc --csharp_out="D:\Unity\TeamProject\fallguys\Assets\Scripts\GoTCP" *.proto
 protoc --go_out=../../ *.proto
 
 
