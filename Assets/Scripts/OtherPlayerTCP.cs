@@ -65,6 +65,10 @@ public class OtherPlayerTCP : MonoBehaviour
                 _animator.SetBool("isLanded", false);
                 _animator.SetTrigger("SlideTrigger");
                 break;
+            case AnimState.Ragdoll:
+                _animator.SetBool("isLanded", false);
+                _animator.SetTrigger("RagdollTrigger");
+                break;
         }
     }
 }
