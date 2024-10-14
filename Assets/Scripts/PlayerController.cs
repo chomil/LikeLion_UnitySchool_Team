@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Game;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
@@ -12,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     private PlayerTCP myPlayerTcp;
     private Dictionary<string, OtherPlayerTCP> _otherPlayers = new();
+    private GameObject SpawnPlayer;
 
     public PlayerTCP myPlayerTcpTemplate;
     public OtherPlayerTCP otherPlayerTcpTemplate;
@@ -27,11 +29,23 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        SpawnPlayer = Instantiate(myPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
     }
 
     void Start()
     {
-        GameObject SpawnPlayer = GameObject.Instantiate(myPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
+        //Main씬에서 플레이어 리스폰되지 않게 하기(임시)
+        string temp = SceneChanger.Instance.GetCurrentScene();
+        if (temp == "Main" || temp == "Loading")
+        {
+            SpawnPlayer.SetActive(false);
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(true);
+        }
+
         myPlayerTcp = SpawnPlayer.GetComponent<PlayerTCP>();
     }
 

@@ -19,17 +19,16 @@ public class PlayerTCP : MonoBehaviour
     void Start()
     {
         /*임시로 서버에 보내는 아이디*/
-        string tempId = Random.Range(0, 1000).ToString();
+        //string tempId = Random.Range(0, 1000).ToString();
         
         // GameManager에 플레이어 등록
-        if (GameManager.Instance.RegisterPlayer(tempId))
+        if (GameManager.Instance.RegisterPlayer(TCPManager.playerId))
         {
-            TCPManager.Instance.playerId = tempId;
-            TcpProtobufClient.Instance.SendLoginMessage(tempId);
+            /*TCPManager.Instance.playerId = tempId;
+            TcpProtobufClient.Instance.SendLoginMessage(tempId);*/
 
             // PlayerId 초기화 추가
-            PlayerId = tempId;
-
+            PlayerId = TCPManager.playerId;
             prevPos = transform.position;
         }
         else
@@ -45,7 +44,7 @@ public class PlayerTCP : MonoBehaviour
         if (!hasFinished)
         {
             Vector3 myRotation = transform.GetChild(0).transform.eulerAngles;
-            TcpProtobufClient.Instance.SendPlayerPosition(TCPManager.Instance.playerId,
+            TcpProtobufClient.Instance.SendPlayerPosition(TCPManager.playerId,
                 transform.position.x, transform.position.y, transform.position.z,
                 myRotation.x,myRotation.y,myRotation.z, GetComponent<PlayerMovement>().curAnimState.ToString());
             prevPos = transform.position;
@@ -89,6 +88,6 @@ public class PlayerTCP : MonoBehaviour
 
     private bool IsLocalPlayer()
     {
-        return TCPManager.Instance.playerId == PlayerId;
+        return TCPManager.playerId == PlayerId;
     }
 }
