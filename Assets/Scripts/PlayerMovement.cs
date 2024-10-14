@@ -222,6 +222,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(float power)
     {
+        rigid.velocity = new Vector3(moveVector.x * speed, 0, moveVector.z * speed);
         rigid.AddForce(Vector3.up * power, ForceMode.Impulse);
         isGrounded = false;
         isJumping = true;
