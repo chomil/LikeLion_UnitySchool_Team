@@ -2386,6 +2386,36 @@ MonoBehaviour:
   stepCollider: {fileID: 4880137705928406429}
   curAnimState: 0
   nextAnimState: 0
+  moveSounds:
+    _serializedList:
+    - Key: Jump
+      Value:
+      - {fileID: 8300000, guid: 3ca543a63b4183b4f937b5ad616a0e96, type: 3}
+      - {fileID: 8300000, guid: 77ef47ffd58b8d948b8614417ee59a02, type: 3}
+      - {fileID: 8300000, guid: ef668ee2521907a4faaefa55389f662a, type: 3}
+      - {fileID: 8300000, guid: e298067e03885a540a531ed343736b8b, type: 3}
+      - {fileID: 8300000, guid: df1913d41742355458316d6803306e8f, type: 3}
+      - {fileID: 8300000, guid: 5db459ded2a130a4cb409cddbc361973, type: 3}
+      - {fileID: 8300000, guid: e7ff4675741824d49a875d7ba9dbcf74, type: 3}
+      - {fileID: 8300000, guid: add69198461fb504585e1dc26ca62a0d, type: 3}
+    - Key: Slide
+      Value:
+      - {fileID: 8300000, guid: bf258eae3191371459b96456480d8fe1, type: 3}
+      - {fileID: 8300000, guid: aaa48012e75784946b9a9f45ee8f9572, type: 3}
+      - {fileID: 8300000, guid: a62f236d34b55784294bf1319787422a, type: 3}
+    - Key: Land
+      Value:
+      - {fileID: 8300000, guid: 2aabd8c5bc1e1f140a3098c032ab00d7, type: 3}
+      - {fileID: 8300000, guid: 9578f87bee517054188e8443534e88c7, type: 3}
+      - {fileID: 8300000, guid: 148a86d5b8102cd4a865ab3b593ec32e, type: 3}
+      - {fileID: 8300000, guid: bad9682fa43c3e142a5357d3d1136440, type: 3}
+    - Key: Run
+      Value:
+      - {fileID: 8300000, guid: 17424659cb4496141a3f49a417eae958, type: 3}
+      - {fileID: 8300000, guid: 324de9c6990aefb438a287ac0a2b93d0, type: 3}
+      - {fileID: 8300000, guid: e69a582285962ab478daba07d7db330c, type: 3}
+      - {fileID: 8300000, guid: 81d4a76cd70666540a05269f5075724c, type: 3}
+      - {fileID: 8300000, guid: b309b0186baa87d4f809a48bab496c2f, type: 3}
 --- !u!54 &1106929313480422172
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2467,6 +2497,14 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
+  respawnSounds:
+    _serializedList:
+    - Key: Checkpoint
+      Value:
+      - {fileID: 8300000, guid: 56c8c59e62c9cf34aa3f8c50bece63cf, type: 3}
+    - Key: Respawn
+      Value:
+      - {fileID: 8300000, guid: 67bcd2da275d25840930356712e1be53, type: 3}
 --- !u!114 &1086217147956779351
 MonoBehaviour:
   m_ObjectHideFlags: 0
