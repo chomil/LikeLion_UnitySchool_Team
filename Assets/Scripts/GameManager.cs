@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using Game;
 using UnityEngine;
 
@@ -12,6 +13,9 @@ public class GameManager : MonoBehaviour
     private bool isRaceActive = false;
     private const int MaxPlayers = 60;
     private HashSet<string> activePlayers = new HashSet<string>();
+    
+    [SerializedDictionary("Name","Bgm")]
+    public SerializedDictionary<string, AudioClip> bgms;
     
     private void Awake()
     {

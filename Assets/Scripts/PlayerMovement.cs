@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -41,6 +42,9 @@ public class PlayerMovement : MonoBehaviour
     private string lastSentAnimationState; 
     
     private bool isFinished = false;
+
+    [SerializedDictionary("Name","Audio List")]
+    public SerializedDictionary<string, List<AudioClip>> moveSounds;
     
     void Awake()
     {
@@ -66,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetButtonDown("Jump") && isGrounded==true && isJumping==false)
             {
                 Jump(jumpPower);
+                SoundManager.Instance.PlaySfx(moveSounds["Jump"], 0.5f);
             }
         
             // 슬라이드
@@ -78,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
                 isGrounded = false;
                 isSliding = true;
                 nextAnimState = AnimState.Slide;
+                SoundManager.Instance.PlaySfx(moveSounds["Slide"], 0.5f);
             }
         }
         
@@ -200,6 +206,10 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(Ragdoll());
     }
 
+    public void PlayFootstep()
+    {
+        SoundManager.Instance.PlaySfx(moveSounds["Run"], 0.5f);
+    }
 
     private IEnumerator Ragdoll()
     {
@@ -221,11 +231,13 @@ public class PlayerMovement : MonoBehaviour
     private void OnStep(Collider other)
     {        
         //바닥 체크
-        if (rigid.velocity.y <= 0)
+        if (isGrounded == false && rigid.velocity.y <= 0)
         {
             isGrounded = true;
             isSliding = false;
             isJumping = false;
+            
+            SoundManager.Instance.PlaySfx(moveSounds["Land"], 0.5f);
         }
     }
     
