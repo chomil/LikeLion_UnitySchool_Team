@@ -26,11 +26,11 @@ public class BounceObstacle : MonoBehaviour
             {
                 case ObstacleType.Trampoline:
                     otherRigid.velocity = new Vector3(otherRigid.velocity.x,0,otherRigid.velocity.z);
-                    otherRigid.AddForce(gameObject.transform.up * bouncePower, ForceMode.Impulse);
                     if (other.gameObject.CompareTag("Player"))
                     {
                         other.gameObject.GetComponent<PlayerMovement>().Jump(0);
                     }
+                    otherRigid.AddForce(gameObject.transform.up * bouncePower, ForceMode.Impulse);
                     break;
                 
                 case ObstacleType.Movable:
