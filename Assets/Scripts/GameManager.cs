@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     
     private void OnApplicationQuit()
     {
-        TcpProtobufClient.Instance.SendPlayerLogout(TCPManager.Instance.playerId);
+        TcpProtobufClient.Instance.SendPlayerLogout(TCPManager.playerId);
     }
     
 

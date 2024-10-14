@@ -183,7 +183,7 @@ public class PlayerMovement : MonoBehaviour
                     break;
             }
             
-            TcpProtobufClient.Instance.SendPlayerAnimation(curAnimState.ToString(), TCPManager.Instance.playerId,0,0);
+            TcpProtobufClient.Instance.SendPlayerAnimation(curAnimState.ToString(), TCPManager.playerId,0,0);
         }
 
         
@@ -195,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
             float speedRight = Vector3.Dot(moveVector, playerCharacter.transform.right);
             anim.SetFloat("SpeedForward",speedForward);
             anim.SetFloat("SpeedRight",speedRight);
-            TcpProtobufClient.Instance.SendPlayerAnimation(curAnimState.ToString(), TCPManager.Instance.playerId,speedForward,speedRight);
+            TcpProtobufClient.Instance.SendPlayerAnimation(curAnimState.ToString(), TCPManager.playerId,speedForward,speedRight);
         }
     }
     
@@ -255,11 +255,14 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("SpeedForward", 0);
         anim.SetFloat("SpeedRight", 0);
         anim.SetBool("isLanded", true);
-
+        
         // 서버에 Idle 상태 전송
-        TcpProtobufClient.Instance.SendPlayerAnimation(curAnimState.ToString(), TCPManager.Instance.playerId, 0, 0);
+        TcpProtobufClient.Instance.SendPlayerAnimation(curAnimState.ToString(), TCPManager.playerId, 0, 0);
 
         // 모든 입력 비활성화를 위한 플래그 설정
         isFinished = true;
+        
+        //다음 경기 로드
+        SceneChanger.Instance.SelectRace(); 
     }
 }
