@@ -18,6 +18,8 @@ public class OtherPlayerTCP : MonoBehaviour
     
     private Renderer _renderer;
     private bool hasFinished = false;
+    
+    public string PlayerId { get; private set; }
 
     void Start()
     {
@@ -56,7 +58,10 @@ public class OtherPlayerTCP : MonoBehaviour
         }
     }
 
-    
+    public bool HasFinished()
+    {
+        return hasFinished;
+    }
 
     public void AnimTrigger(PlayerAnimation pa)
     {

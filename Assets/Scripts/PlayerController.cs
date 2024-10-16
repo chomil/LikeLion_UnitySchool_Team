@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Game;
 using Unity.Collections;
 using UnityEngine;
@@ -17,6 +18,9 @@ public class PlayerController : MonoBehaviour
 
     public PlayerTCP myPlayerTcpTemplate;
     public OtherPlayerTCP otherPlayerTcpTemplate;
+    
+    private int finishedPlayersCount = 0;
+    private int totalPlayersCount;
     
     private void Awake()
     {
@@ -54,6 +58,19 @@ public class PlayerController : MonoBehaviour
         UIManager.Instance.OnRecevieChatMsg(chatmsg);
     }*/
     
+    void Update()
+    {
+        while (UnityMainThreadDispatcher.Instance.ExecutionQueue.Count > 0)
+        {
+            GameMessage msg = UnityMainThreadDispatcher.Instance.ExecutionQueue.Dequeue();
+        
+            if (msg.MessageCase == GameMessage.MessageOneofCase.RaceFinish)
+            {
+                OnRaceFinishMessageReceived(msg.RaceFinish);
+            }
+        }
+    }
+    
     
     public void OnOtherPlayerPositionUpdate(PlayerPosition playerPosition)
     {
@@ -67,23 +84,40 @@ public class PlayerController : MonoBehaviour
         }
     }
     
+    public void SetTotalPlayersCount(int count)
+    {
+        totalPlayersCount = count;
+    }
+    
     public void OnPlayerFinished(string playerId)
     {
-        if (playerId == myPlayerTcp.PlayerId)
+        finishedPlayersCount++;
+        Debug.Log($"Player {playerId} finished. {finishedPlayersCount}/{totalPlayersCount} players have finished.");
+        
+        if (finishedPlayersCount == totalPlayersCount)
         {
-            myPlayerTcp.FinishRace();
+            EndRace();
         }
-        else if (_otherPlayers.TryGetValue(playerId, out OtherPlayerTCP otherPlayer))
-        {
-            otherPlayer.FinishRace();
-        }
+    }
+    
+    private void EndRace()
+    {
+        Debug.Log("All players have finished the race!");
+        GameManager.Instance.EndRace();
+        
+    }
+    
+    public void OnRaceFinishMessageReceived(RaceFinishMessage finishMessage)
+    {
+        Debug.Log($"Race finish message received for player: {finishMessage.PlayerId}");
+        OnPlayerFinished(finishMessage.PlayerId);
     }
 
     public void SpawnOtherPlayer(SpawnPlayer serverPlayer)
     {
         GameObject SpawnPlayer = GameObject.Instantiate(otherPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
         OtherPlayerTCP otherPlayerTcp = SpawnPlayer.GetComponent<OtherPlayerTCP>();
-
+        
         otherPlayerTcp.destination = new Vector3(serverPlayer.X, serverPlayer.Y, serverPlayer.Z);
         otherPlayerTcp.OtherRot = new Vector3(serverPlayer.Rx, serverPlayer.Ry, serverPlayer.Rz);
         
@@ -108,4 +142,5 @@ public class PlayerController : MonoBehaviour
             _otherPlayers.Remove(playerId);
         }
     }
+    
 }

@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
         playerFinishTimes.Clear();
         activePlayers.Clear();
         Debug.Log($"Race Started! Max players: {MaxPlayers}");
+        PlayerController.Instance.SetTotalPlayersCount(activePlayers.Count);
     }
     
     public bool RegisterPlayer(string playerId)
@@ -97,29 +98,27 @@ public class GameManager : MonoBehaviour
     
     public void PlayerFinished(string playerId)
     {
-        if (!isRaceActive || !activePlayers.Contains(playerId)) return;
+        if (playerFinishTimes.ContainsKey(playerId))
+            return;
 
-        if (!playerFinishTimes.ContainsKey(playerId))
+        float finishTime = Time.time - raceStartTime;
+        playerFinishTimes.Add(playerId, finishTime);
+        Debug.Log($"Player {playerId} finished in {finishTime:F2} seconds!");
+
+        PlayerController.Instance.OnPlayerFinished(playerId);
+
+        if (playerFinishTimes.Count == activePlayers.Count)
         {
-            float finishTime = Time.time - raceStartTime;
-            playerFinishTimes.Add(playerId, finishTime);
-            Debug.Log($"Player {playerId} finished in {finishTime:F2} seconds!");
-
-            // 추가: PlayerController에 완주 정보 전달
-            PlayerController.Instance.OnPlayerFinished(playerId);
-
-            if (playerFinishTimes.Count == activePlayers.Count)
-            {
-                EndRace();
-            }
+            EndRace();
         }
+        
     }
     
-    private void EndRace()
+    public void EndRace()
     {
         isRaceActive = false;
         Debug.Log("Race Ended! Final Results:");
-        
+    
         List<KeyValuePair<string, float>> sortedResults = new List<KeyValuePair<string, float>>(playerFinishTimes);
         sortedResults.Sort((pair1, pair2) => pair1.Value.CompareTo(pair2.Value));
 

@@ -62,7 +62,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (isFinished) return;  // 레이스가 끝났다면 더 이상 입력을 처리하지 않음
+        if (isFinished)
+        {
+            return;
+        }
         
         if (curAnimState != AnimState.Ragdoll)
         {        
@@ -241,6 +244,7 @@ public class PlayerMovement : MonoBehaviour
             SoundManager.Instance.PlaySfx(moveSounds["Land"], 0.5f);
         }
     }
+    
     
     public void SetIdleState()
     {

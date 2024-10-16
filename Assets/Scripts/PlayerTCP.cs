@@ -15,6 +15,7 @@ public class PlayerTCP : MonoBehaviour
     private bool hasFinished = false;
     public string PlayerId { get; private set; }
     
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -65,11 +66,8 @@ public class PlayerTCP : MonoBehaviour
         {
             hasFinished = true;
             GameManager.Instance.PlayerFinished(PlayerId);
-            if (IsLocalPlayer())
-            {
-                SendRaceFinishMessage();
-                Debug.Log($"Local player {PlayerId} finished the race!");
-            }
+            TcpProtobufClient.Instance.SendRaceFinish(PlayerId);
+            Debug.Log($"Player {PlayerId} finished the race and sent finish message to server.");
         
             // PlayerMovement의 SetIdleState 호출
             PlayerMovement playerMovement = GetComponent<PlayerMovement>();
@@ -79,12 +77,11 @@ public class PlayerTCP : MonoBehaviour
             }
         }
     }
-    
-    
-    private void SendRaceFinishMessage()
+    public bool HasFinished()
     {
-        TcpProtobufClient.Instance.SendRaceFinish(PlayerId);
+        return hasFinished;
     }
+    
 
     private bool IsLocalPlayer()
     {

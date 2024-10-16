@@ -11,6 +11,7 @@ public class FinishLine : MonoBehaviour
         if (player != null)
         {
             player.FinishRace();
+            Debug.Log($"Player {player.PlayerId} crossed the finish line!");
         }
     }
 }
