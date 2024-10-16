@@ -43,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
     
     private bool isFinished = false;
 
+    public bool canControl = true;
+
     [SerializedDictionary("Name","Audio List")]
     public SerializedDictionary<string, List<AudioClip>> moveSounds;
     
@@ -58,11 +60,16 @@ public class PlayerMovement : MonoBehaviour
         Physics.gravity = new Vector3(0f,-12f,0f);
         stepCollider.OnStepEvent += OnStep; // 이벤트 바인딩
         curAnimState = AnimState.Idle; //초기화
+
+        if (canControl == false)
+        {
+            rigid.isKinematic = true;
+        }
     }
 
     void Update()
     {
-        if (isFinished) return;  // 레이스가 끝났다면 더 이상 입력을 처리하지 않음
+        if (isFinished || canControl==false) return;  // 레이스가 끝났다면 더 이상 입력을 처리하지 않음
         
         if (curAnimState != AnimState.Ragdoll)
         {        
@@ -183,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
                     break;
             }
             
-            TcpProtobufClient.Instance.SendPlayerAnimation(curAnimState.ToString(), TCPManager.playerId,0,0);
+            TcpProtobufClient.Instance?.SendPlayerAnimation(curAnimState.ToString(), TCPManager.playerId,0,0);
         }
 
         
@@ -195,7 +202,7 @@ public class PlayerMovement : MonoBehaviour
             float speedRight = Vector3.Dot(moveVector, playerCharacter.transform.right);
             anim.SetFloat("SpeedForward",speedForward);
             anim.SetFloat("SpeedRight",speedRight);
-            TcpProtobufClient.Instance.SendPlayerAnimation(curAnimState.ToString(), TCPManager.playerId,speedForward,speedRight);
+            TcpProtobufClient.Instance?.SendPlayerAnimation(curAnimState.ToString(), TCPManager.playerId,speedForward,speedRight);
         }
     }
     
