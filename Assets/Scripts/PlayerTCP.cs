@@ -45,7 +45,7 @@ public class PlayerTCP : MonoBehaviour
         if (!hasFinished)
         {
             Vector3 myRotation = transform.GetChild(0).transform.eulerAngles;
-            TcpProtobufClient.Instance.SendPlayerPosition(TCPManager.playerId,
+            TcpProtobufClient.Instance?.SendPlayerPosition(TCPManager.playerId,
                 transform.position.x, transform.position.y, transform.position.z,
                 myRotation.x,myRotation.y,myRotation.z, GetComponent<PlayerMovement>().curAnimState.ToString());
             prevPos = transform.position;
