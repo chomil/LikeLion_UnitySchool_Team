@@ -86,7 +86,7 @@ public class TcpProtobufClient : MonoBehaviour
             byte[] messageBuffer = (byte[])ar.AsyncState;
             GameMessage gameMessage = GameMessage.Parser.ParseFrom(messageBuffer);
             UnityMainThreadDispatcher.Instance.Enqueue(gameMessage);
-
+            
             StartReceiving(); // 다음 메시지 수신 대기
         }
         catch (Exception e)
