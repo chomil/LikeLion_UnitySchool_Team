@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        while (UnityMainThreadDispatcher.Instance.ExecutionQueue.Count > 0)
+        while (UnityMainThreadDispatcher.Instance?.ExecutionQueue.Count > 0)
         {
             GameMessage msg = UnityMainThreadDispatcher.Instance.ExecutionQueue.Dequeue();
             /*if (msg.MessageCase == GameMessage.MessageOneofCase.Chat)
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
         playerFinishTimes.Clear();
         activePlayers.Clear();
         Debug.Log($"Race Started! Max players: {MaxPlayers}");
-        PlayerController.Instance.SetTotalPlayersCount(activePlayers.Count);
+        PlayerController.Instance?.SetTotalPlayersCount(activePlayers.Count);
     }
     
     public bool RegisterPlayer(string playerId)
