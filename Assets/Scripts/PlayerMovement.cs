@@ -56,20 +56,20 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        if (canControl == false)
+        {
+            rigid.isKinematic = true;
+            return;
+        }
         Cursor.lockState = CursorLockMode.Locked;
         Physics.gravity = new Vector3(0f,-12f,0f);
         stepCollider.OnStepEvent += OnStep; // 이벤트 바인딩
         curAnimState = AnimState.Idle; //초기화
-
-        if (canControl == false)
-        {
-            rigid.isKinematic = true;
-        }
     }
 
     void Update()
     {
-        if (isFinished)
+        if (isFinished || canControl == false)
         {
             return;
         }
@@ -162,7 +162,12 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void LateUpdate()
-    {
+    {        
+        if (isFinished || canControl == false)
+        {
+            return;
+        }
+        
         StateChange();
 
         if (rigid.velocity.magnitude > 20f)
