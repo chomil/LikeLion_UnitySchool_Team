@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4998785332106441447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 817716357136386125}
+  - component: {fileID: 9061868893675653354}
+  m_Layer: 0
+  m_Name: Loading
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &817716357136386125
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998785332106441447}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.0673041, y: 0.5, z: 16.12101}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9061868893675653354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998785332106441447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc211510ffbcac94e85e144efaf5c646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoadingSceneData:
+    _serializedList:
+    - Key: Race01
+      Value:
+        loadingImage: {fileID: 21300000, guid: 70de20485e4c0054e93cad15575dad1e, type: 3}
+        mapTitle: "\uB300\uD615 \uC120\uD48D\uAE30"
+        description: "\uC7A5\uC560\uBB3C\uC744 \uD1B5\uACFC\uD558\uACE0 \uACB0\uC2B9\uC120\uC5D0
+          \uB3C4\uB2EC\uD558\uC138\uC694!"
+    - Key: Race02
+      Value:
+        loadingImage: {fileID: 21300000, guid: b0d5930437b2f884c9b349f67b7998a3, type: 3}
+        mapTitle: "\uC815\uAE00 \uBC14\uC6B4\uC2A4"
+        description: "\uB4DC\uB7FC\uC744 \uD0C0\uACE0 \uB6F0\uC5B4\uC62C\uB77C \uACB0\uC2B9\uC120\uC5D0
+          \uB3C4\uB2EC\uD558\uC138\uC694!"
+  _progressBar: {fileID: 0}
