@@ -282,4 +282,18 @@ public class PlayerMovement : MonoBehaviour
         //다음 경기 로드
         SceneChanger.Instance.SelectRace(); 
     }
+    // 관전 시스템
+    public void EnterSpectatorMode()
+    {
+        isFinished = true;
+        nextAnimState = AnimState.Idle;
+        rigid.isKinematic = true;
+        canControl = false;
+    
+        // 플레이어 캐릭터를 숨깁니다 (선택적)
+        this.gameObject.SetActive(false);
+    
+        // 플레이어 카메라 비활성화
+        GetComponentInChildren<Camera>().gameObject.SetActive(false);
+    }
 }

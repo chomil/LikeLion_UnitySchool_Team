@@ -143,4 +143,28 @@ public class PlayerController : MonoBehaviour
         }
     }
     
+    // 관전 시스템
+    public void SetPlayerToSpectatorMode(string playerId)
+    {
+        if (playerId == TCPManager.playerId)
+        {
+            // 로컬 플레이어를 관전 모드로 설정
+            myPlayerTcp.GetComponent<PlayerMovement>().EnterSpectatorMode();
+        }
+        // 서버에 플레이어의 상태 변경을 알림
+        TcpProtobufClient.Instance.SendPlayerStateUpdate(playerId, "Spectating");
+    }
+
+    public void SwitchSpectatorTarget(string targetPlayerId)
+    {
+        foreach (var otherPlayerTcp in _otherPlayers)
+        {
+            otherPlayerTcp.Value.GetComponent<SpectatorCamera>().ClearCamera();
+        }
+
+        if (_otherPlayers.TryGetValue(targetPlayerId, out OtherPlayerTCP targetPlayer))
+        {
+            targetPlayer.GetComponent<SpectatorCamera>().SetCamera();
+        }
+    }
 }

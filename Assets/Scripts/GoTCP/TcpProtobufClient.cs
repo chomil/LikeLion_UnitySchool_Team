@@ -206,4 +206,19 @@ public class TcpProtobufClient : MonoBehaviour
         if (stream != null) stream.Close();
         if (tcpClient != null) tcpClient.Close();
     }
+    
+    public void SendPlayerStateUpdate(string playerId, string state)
+    {
+        // // 여기에 서버로 플레이어 상태를 전송하는 로직을 구현합니다.
+        // var stateUpdate = new PlayerStateUpdate
+        // {
+        //     PlayerId = playerId,
+        //     State = state
+        // };
+        // var message = new GameMessage
+        // {
+        //     PlayerStateUpdate = stateUpdate
+        // };
+        // SendMessage(message);
+    }
 }
