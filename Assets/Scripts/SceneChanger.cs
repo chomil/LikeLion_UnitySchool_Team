@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
+
+
 public class SceneChanger : MonoBehaviour
 {
     public static SceneChanger Instance { get; private set; }
