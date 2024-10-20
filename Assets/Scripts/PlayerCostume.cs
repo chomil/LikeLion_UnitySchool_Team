@@ -12,25 +12,50 @@ public class PlayerCostume : MonoBehaviour
 
     private SkinnedMeshRenderer targetSkin;
     [SerializeField] private Transform rootBone;
-    private void Awake()
+    private void Start()
     {
-        if (costumeTop)
-        {
-            GameObject top = Instantiate(costumeTop, playerTop.transform);
-            targetSkin = top.GetComponentInChildren<SkinnedMeshRenderer>();
-            TransferBones();
-        }
-        if (costumeBottom)
-        {
-            GameObject bottom = Instantiate(costumeBottom, playerTop.transform);
-            targetSkin = bottom.GetComponentInChildren<SkinnedMeshRenderer>();
-            TransferBones();
-        }
+        ChangeCostume();
     }
 
     public void ChangeCostume()
     {
+        GameData data = GameManager.Instance.gameData;
+        GameObject newTop = data.GetItemByName(data.playerInfo.playerItems[ItemType.Upper], ItemType.Upper).itemObject;
+        GameObject newBottom = data.GetItemByName(data.playerInfo.playerItems[ItemType.Lower], ItemType.Lower).itemObject;
+        if (costumeTop != newTop)
+        {
+            //기존 코스튬 삭제
+            foreach (Transform child in playerTop.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            //새 코스튬 장착
+            if (newTop)
+            {
+                GameObject top = Instantiate(newTop, playerTop.transform);
+                targetSkin = top.GetComponentInChildren<SkinnedMeshRenderer>();
+                TransferBones();
+            }
+            costumeTop = newTop;
+        }
+        if (costumeBottom != newBottom)
+        {            
+            //기존 코스튬 삭제
+            foreach (Transform child in playerBottom.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            //새 코스튬 장착
+            if (newBottom)
+            {
+                GameObject bottom = Instantiate(newBottom, playerBottom.transform);
+                targetSkin = bottom.GetComponentInChildren<SkinnedMeshRenderer>();
+                TransferBones();
+            }
+            costumeBottom = newBottom;
+        }
         
+        gameObject.GetComponent<Outline>().Refresh();
     }
     
     public void TransferBones()

@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     
     [SerializedDictionary("Name","Bgm")]
     public SerializedDictionary<string, AudioClip> bgms;
+
+    public GameData gameData;
+    
     
     private void Awake()
     {
@@ -23,11 +26,20 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
+            
+            InitializeData();
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    public void InitializeData()
+    {
+        gameData.playerInfo.playerItems = new Dictionary<ItemType, string>();
+        gameData.playerInfo.playerItems.Add(ItemType.Upper,"없음");
+        gameData.playerInfo.playerItems.Add(ItemType.Lower,"없음");
     }
     
     private void OnApplicationQuit()
