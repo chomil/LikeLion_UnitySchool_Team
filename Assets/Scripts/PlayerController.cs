@@ -11,14 +11,14 @@ using UnityEngine.Serialization;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
-
-    private PlayerTCP myPlayerTcp;
-    private Dictionary<string, OtherPlayerTCP> _otherPlayers = new();
-    private GameObject SpawnPlayer;
-
+    
     public PlayerTCP myPlayerTcpTemplate;
     public OtherPlayerTCP otherPlayerTcpTemplate;
+    [SerializeField] public Vector3 LobbyPlayerPos;
     
+    private PlayerTCP myPlayerTcp;
+    private Dictionary<string, OtherPlayerTCP> _otherPlayers = new();
+    private GameObject myPlayer;
     private int finishedPlayersCount = 0;
     private int totalPlayersCount;
     
@@ -33,24 +33,36 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        SpawnPlayer = Instantiate(myPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
+        myPlayer = Instantiate(myPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
     }
 
     void Start()
     {
         //Main씬에서 플레이어 리스폰되지 않게 하기(임시)
         string temp = SceneChanger.Instance.GetCurrentScene();
-        if (temp == "Main" || temp == "Loading")
+        if (temp == "Loading")
         {
-            SpawnPlayer.SetActive(false);
-            gameObject.SetActive(false);
+            myPlayer.SetActive(false);
+            //gameObject.SetActive(false);
+        }
+        else if (temp == "Main")
+        {
+            //로비에서 플레이어 위치
+            myPlayer.transform.position = LobbyPlayerPos;
+            myPlayer.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            //로비에서 플레이어 카메라, 움직임 못하게 하기
+            myPlayer.GetComponent<PlayerMovement>().cameraArm.SetActive(false);
+            myPlayer.GetComponent<PlayerMovement>().enabled = false;
         }
         else
         {
+            //메인, 로딩 씬 외에서는 원복
             gameObject.SetActive(true);
+            myPlayer.GetComponent<PlayerMovement>().cameraArm.SetActive(true);
+            myPlayer.GetComponent<PlayerMovement>().enabled = true;
         }
 
-        myPlayerTcp = SpawnPlayer.GetComponent<PlayerTCP>();
+        myPlayerTcp = myPlayer.GetComponent<PlayerTCP>();
     }
 
     /*public void OnRecevieChatMsg(ChatMessage chatmsg) //유저 간의 채팅 기능
