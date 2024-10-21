@@ -32,6 +32,7 @@ public class TcpProtobufClient : MonoBehaviour
     void Start()
     {
         ConnectToServer();
+        SendLoginMessage(TCPManager.playerId);
     }
 
     void ConnectToServer()

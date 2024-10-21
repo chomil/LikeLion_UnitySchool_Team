@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2261da8fe83aa46a468a83cb559027, type: 3}
+  m_Name: GameDatabase
+  m_EditorClassIdentifier: 
+  allItemDatas:
+    _serializedList:
+    - Key: 0
+      Value: []
+    - Key: 1
+      Value: []
+    - Key: 2
+      Value: []
+    - Key: 3
+      Value:
+      - itemName: "\uC5C6\uC74C"
+        itemType: 3
+        itemObject: {fileID: 0}
+        itemIcon: {fileID: 0}
+      - itemName: "\uBC84\uAC70\uAC00\uC774"
+        itemType: 3
+        itemObject: {fileID: 919132149155446097, guid: 2655ed0b5bfbfdd4dbc7bf8ca96d4ddb,
+          type: 3}
+        itemIcon: {fileID: 21300000, guid: 023e202047ad3ba4a82ceb2f3466b09a, type: 3}
+      - itemName: "\uC120\uC778\uC7A5"
+        itemType: 3
+        itemObject: {fileID: 919132149155446097, guid: 8ec75a174f707ca47b39a5ba1a1f3807,
+          type: 3}
+        itemIcon: {fileID: 21300000, guid: abcb65fc58913bf4bbb714f132c91954, type: 3}
+      - itemName: "\uB099\uD0C0"
+        itemType: 3
+        itemObject: {fileID: 919132149155446097, guid: 77599565aafcf744c947eae65b229ff4,
+          type: 3}
+        itemIcon: {fileID: 21300000, guid: 4d047fa297442924388ae75bdcc1dd65, type: 3}
+      - itemName: "\uC591\uCD08"
+        itemType: 3
+        itemObject: {fileID: 919132149155446097, guid: 6a62c3ad3ac67954b856ad92dea02cd8,
+          type: 3}
+        itemIcon: {fileID: 21300000, guid: b2a944c5f6f39194295ae7cc34f3bf1a, type: 3}
+      - itemName: "\uC9C0\uB2C8"
+        itemType: 3
+        itemObject: {fileID: 919132149155446097, guid: 2d98a4827396eb742be67dbd95223129,
+          type: 3}
+        itemIcon: {fileID: 21300000, guid: ae745c5e5fe56a741aca16206b70e12d, type: 3}
+    - Key: 4
+      Value:
+      - itemName: "\uC5C6\uC74C"
+        itemType: 4
+        itemObject: {fileID: 0}
+        itemIcon: {fileID: 0}
+      - itemName: "\uBC84\uAC70\uAC00\uC774"
+        itemType: 4
+        itemObject: {fileID: 919132149155446097, guid: c2014ff2d172b6b4e9dca581bb49d126,
+          type: 3}
+        itemIcon: {fileID: 21300000, guid: 766fff9e1d7c3d347828fa5a585e6e19, type: 3}
+      - itemName: "\uC120\uC778\uC7A5"
+        itemType: 4
+        itemObject: {fileID: 919132149155446097, guid: d93d605c6a18f6e4e9eb479df7190038,
+          type: 3}
+        itemIcon: {fileID: 21300000, guid: 3084d468c09c3174d81bb6bb300bc446, type: 3}
+      - itemName: "\uB099\uD0C0"
+        itemType: 4
+        itemObject: {fileID: 919132149155446097, guid: 24f6581a40c90b9408b4d561548d3743,
+          type: 3}
+        itemIcon: {fileID: 21300000, guid: 637d16b36d296394ca1530d67f373e45, type: 3}
+      - itemName: "\uC591\uCD08"
+        itemType: 4
+        itemObject: {fileID: 919132149155446097, guid: 260eefc652bd9d04394d7ba09eab139f,
+          type: 3}
+        itemIcon: {fileID: 21300000, guid: 8d523423106497143afff406d876760f, type: 3}
+      - itemName: "\uC9C0\uB2C8"
+        itemType: 4
+        itemObject: {fileID: 919132149155446097, guid: 880bf5c4bdccf5444a70e394e9c6c16f,
+          type: 3}
+        itemIcon: {fileID: 21300000, guid: 5a69bd2c65a694f4daf7f22c06338e11, type: 3}
+  playerInfo:
+    playerName: 
+    playerItemNames: []
