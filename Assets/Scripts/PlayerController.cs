@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         //Main씬에서 플레이어 리스폰되지 않게 하기(임시)
-        string temp = SceneChanger.Instance.GetCurrentScene();
+        string temp = SceneChanger.Instance?.GetCurrentScene();
         if (temp == "Loading")
         {
             myPlayer.SetActive(false);
