@@ -280,7 +280,7 @@ public class PlayerMovement : MonoBehaviour
         isFinished = true;
         
         //다음 경기 로드
-        SceneChanger.Instance.SelectRace(); 
+        SceneChanger.Instance.PlayRace(); 
     }
     // 관전 시스템
     public void EnterSpectatorMode()

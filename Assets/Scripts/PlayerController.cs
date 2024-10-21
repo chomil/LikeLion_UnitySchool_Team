@@ -33,20 +33,27 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        myPlayer = Instantiate(myPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
+        
+        InitMainScene();   
     }
 
-    void Start()
+    private void OnEnable()
     {
-        //Main씬에서 플레이어 리스폰되지 않게 하기(임시)
-        string temp = SceneChanger.Instance?.GetCurrentScene();
-        if (temp == "Loading")
+        SceneManager.sceneLoaded += OnMainLoaded;
+    }
+    
+    private void OnDisable() {
+        SceneManager.sceneLoaded -= OnMainLoaded;
+    }
+
+    void OnMainLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Main")
         {
-            myPlayer.SetActive(false);
-            //gameObject.SetActive(false);
-        }
-        else if (temp == "Main")
-        {
+            if (myPlayer == null)
+            {
+                myPlayer = Instantiate(myPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
+            }
             //로비에서 플레이어 위치
             myPlayer.transform.position = LobbyPlayerPos;
             myPlayer.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
@@ -54,12 +61,21 @@ public class PlayerController : MonoBehaviour
             myPlayer.GetComponent<PlayerMovement>().cameraArm.SetActive(false);
             myPlayer.GetComponent<PlayerMovement>().enabled = false;
         }
+    }
+
+    private void InitMainScene()
+    {
+        string temp = SceneChanger.Instance?.GetCurrentScene();
+
+        if (temp == "Main") return;
+        
+        if (temp == "Loading")
+        {
+            myPlayer.SetActive(false);
+        }
         else
         {
-            //메인, 로딩 씬 외에서는 원복
-            gameObject.SetActive(true);
-            myPlayer.GetComponent<PlayerMovement>().cameraArm.SetActive(true);
-            myPlayer.GetComponent<PlayerMovement>().enabled = true;
+            myPlayer = Instantiate(myPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
         }
 
         myPlayerTcp = myPlayer.GetComponent<PlayerTCP>();
