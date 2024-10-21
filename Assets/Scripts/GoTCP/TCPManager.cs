@@ -33,8 +33,8 @@ public class TCPManager : MonoBehaviour
         if (!hasExecuted)
         {
             playerId = Random.Range(0, 1000).ToString();
-            GameManager.Instance.RegisterPlayer(playerId);
-            TcpProtobufClient.Instance.SendLoginMessage(playerId);
+            //TcpProtobufClient.Instance.SendLoginMessage(playerId);
+            //GameManager.Instance.RegisterPlayer(playerId);
             hasExecuted = true;
         }
     }
