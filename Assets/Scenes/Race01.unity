@@ -2924,6 +2924,7 @@ MonoBehaviour:
     type: 3}
   otherPlayerTcpTemplate: {fileID: -5677562895014742263, guid: a04f14caee451cb44bca10c142cca05e,
     type: 3}
+  LobbyPlayerPos: {x: 0, y: 0, z: 0}
 --- !u!4 &1019137394
 Transform:
   m_ObjectHideFlags: 0
