@@ -280,6 +280,6 @@ public class PlayerMovement : MonoBehaviour
         isFinished = true;
         
         //다음 경기 로드
-        SceneChanger.Instance.SelectRace(); 
+        SceneChanger.Instance.PlayRace(); 
     }
 }
