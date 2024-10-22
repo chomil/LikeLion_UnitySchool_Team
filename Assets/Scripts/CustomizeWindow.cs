@@ -94,9 +94,7 @@ public class CustomizeWindow : MonoBehaviour
         }
         selectedItemButton.SetSelect(false);
         selectedItemText.text = clickButton.itemData.itemName;
-        GameManager.Instance.gameData.playerInfo.playerItems[clickButton.itemData.itemType] =
-            clickButton.itemData.itemName;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCostume>().ChangeCostume();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCostume>().ChangeCostume(clickButton.itemData);
         selectedItemButton = clickButton;
     }
 }

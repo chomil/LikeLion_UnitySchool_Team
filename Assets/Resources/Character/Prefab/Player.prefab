@@ -2426,6 +2426,7 @@ MonoBehaviour:
   stepCollider: {fileID: 4880137705928406429}
   curAnimState: 0
   nextAnimState: 0
+  canControl: 1
   moveSounds:
     _serializedList:
     - Key: Jump
@@ -2559,10 +2560,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTop: {fileID: 82281367904379075}
   playerBottom: {fileID: 3997826871624437960}
-  costumeTop: {fileID: 919132149155446097, guid: 8ec75a174f707ca47b39a5ba1a1f3807,
-    type: 3}
-  costumeBottom: {fileID: 919132149155446097, guid: d93d605c6a18f6e4e9eb479df7190038,
-    type: 3}
+  costumeTop: {fileID: 0}
+  costumeBottom: {fileID: 0}
   rootBone: {fileID: 2917096810898100935}
 --- !u!114 &1086217147956779351
 MonoBehaviour:

@@ -49,6 +49,12 @@ message RaceFinishMessage {
   int64 finishTime = 2;
 }
 
+message CostumeMessage {
+  string playerId = 1;
+  int32 playerCostumeType = 2;
+  string playerCostumeName = 3;
+}
+
 message GameMessage {
   oneof message {
     PlayerPosition player_position = 1;
@@ -59,6 +65,7 @@ message GameMessage {
     SpawnPlayer spawnExistingPlayer = 6;
     LogoutMessage logout = 7;
     RaceFinishMessage race_finish = 8;
+    CostumeMessage player_costume = 9;
   }
 }
 
