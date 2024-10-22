@@ -150,6 +150,10 @@ public class PlayerController : MonoBehaviour
         otherPlayerTcp.OtherRot = new Vector3(serverPlayer.Rx, serverPlayer.Ry, serverPlayer.Rz);
         
         _otherPlayers.TryAdd(serverPlayer.PlayerId, otherPlayerTcp);
+        
+        GameData data = GameManager.Instance.gameData;
+        TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Upper,data.playerInfo.playerItems[ItemType.Upper]);
+        TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Lower,data.playerInfo.playerItems[ItemType.Lower]);
     }
 
 
@@ -193,6 +197,14 @@ public class PlayerController : MonoBehaviour
         if (_otherPlayers.TryGetValue(targetPlayerId, out OtherPlayerTCP targetPlayer))
         {
             targetPlayer.GetComponent<SpectatorCamera>().SetCamera();
+        }
+    }
+
+    public void OnOtherPlayerCostumeUpdate(CostumeMessage costumeMessage)
+    {
+        if (_otherPlayers.TryGetValue(costumeMessage.PlayerId, out OtherPlayerTCP otherPlayer))
+        {      
+            otherPlayer.GetComponent<PlayerCostume>()?.ChangeCostume((ItemType)costumeMessage.PlayerCostumeType,costumeMessage.PlayerCostumeName);
         }
     }
 }

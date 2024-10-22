@@ -66,6 +66,7 @@ public class OtherPlayerTCP : MonoBehaviour
     public void AnimTrigger(PlayerAnimation pa)
     {
         if (hasFinished) return; // 레이스 완료시 애니메이션 업데이트 안함
+        if ( !_animator) return;
         
         otherAnimState = (AnimState)Enum.Parse(typeof(AnimState), pa.PlayerAnimState);
 
