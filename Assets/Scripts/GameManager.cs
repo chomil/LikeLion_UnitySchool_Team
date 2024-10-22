@@ -38,8 +38,12 @@ public class GameManager : MonoBehaviour
     public void InitializeData()
     {
         gameData.playerInfo.playerItems = new Dictionary<ItemType, string>();
-        gameData.playerInfo.playerItems.Add(ItemType.Upper,"없음");
-        gameData.playerInfo.playerItems.Add(ItemType.Lower,"없음");
+        //gameData.playerInfo.playerItems.Add(ItemType.Upper,"없음");
+        //gameData.playerInfo.playerItems.Add(ItemType.Lower,"없음");
+        //임시로 랜덤 코스튬
+        gameData.playerInfo.playerItems[ItemType.Upper] = gameData.allItemDatas[ItemType.Upper][Random.Range(0,6)].itemName;
+        gameData.playerInfo.playerItems[ItemType.Lower] = gameData.allItemDatas[ItemType.Lower][Random.Range(0,6)].itemName;
+        //
     }
     
     private void OnApplicationQuit()
@@ -66,6 +70,11 @@ public class GameManager : MonoBehaviour
             if (msg.MessageCase == GameMessage.MessageOneofCase.PlayerAnimState)
             {
                 PlayerController.Instance.OnOtherPlayerAnimationStateUpdate(msg.PlayerAnimState);
+            }
+
+            if (msg.MessageCase == GameMessage.MessageOneofCase.PlayerCostume)
+            {
+                PlayerController.Instance.OnOtherPlayerCostumeUpdate(msg.PlayerCostume);
             }
 
             if (msg.MessageCase == GameMessage.MessageOneofCase.SpawnPlayer)

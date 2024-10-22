@@ -115,6 +115,21 @@ public class TcpProtobufClient : MonoBehaviour
         SendMessage(message);
     }
 
+    public void SendPlayerCostume(string playerId, int cosType, string cosName)
+    {
+        var costume = new CostumeMessage
+        {
+             PlayerId = playerId,
+             PlayerCostumeType = cosType,
+             PlayerCostumeName = cosName
+        };
+        var message = new GameMessage
+        {
+            PlayerCostume = costume
+        };
+        SendMessage(message);
+    }
+
     public void SendChatMessage(string sender, string content)
     {
         var chat = new ChatMessage

@@ -7,55 +7,77 @@ public class PlayerCostume : MonoBehaviour
 {
     [SerializeField] private GameObject playerTop;
     [SerializeField] private GameObject playerBottom;
-    [SerializeField] private GameObject costumeTop;
-    [SerializeField] private GameObject costumeBottom;
+    private GameObject costumeTop = null;
+    private GameObject costumeBottom = null;
 
     private SkinnedMeshRenderer targetSkin;
     [SerializeField] private Transform rootBone;
     private void Start()
     {
-        ChangeCostume();
+        GameData data = GameManager.Instance.gameData;
+        if (gameObject.CompareTag("Player"))
+        {
+            ChangeCostume(data.GetItemByName(data.playerInfo.playerItems[ItemType.Upper], ItemType.Upper));
+            ChangeCostume(data.GetItemByName(data.playerInfo.playerItems[ItemType.Lower], ItemType.Lower));
+            TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Upper,data.playerInfo.playerItems[ItemType.Upper]);
+            TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Lower,data.playerInfo.playerItems[ItemType.Lower]);
+        }
     }
 
-    public void ChangeCostume()
+    public void ChangeCostume(ItemType itemType, string itemName)
     {
-        GameData data = GameManager.Instance.gameData;
-        GameObject newTop = data.GetItemByName(data.playerInfo.playerItems[ItemType.Upper], ItemType.Upper).itemObject;
-        GameObject newBottom = data.GetItemByName(data.playerInfo.playerItems[ItemType.Lower], ItemType.Lower).itemObject;
-        if (costumeTop != newTop)
+        ChangeCostume(GameManager.Instance.gameData.GetItemByName(itemName, itemType));
+    }
+
+    public void ChangeCostume(ItemData itemData)
+    {
+        if (itemData.itemType == ItemType.Upper)
         {
-            //기존 코스튬 삭제
-            foreach (Transform child in playerTop.transform)
+            GameObject newTop = itemData.itemObject;
+            if (costumeTop != newTop)
             {
-                Destroy(child.gameObject);
+                //기존 코스튬 삭제
+                foreach (Transform child in playerTop.transform)
+                {
+                    Destroy(child.gameObject);
+                }
+                //새 코스튬 장착
+                if (newTop)
+                {
+                    GameObject top = Instantiate(newTop, playerTop.transform);
+                    targetSkin = top.GetComponentInChildren<SkinnedMeshRenderer>();
+                    TransferBones();
+                }
+                costumeTop = newTop;
             }
-            //새 코스튬 장착
-            if (newTop)
-            {
-                GameObject top = Instantiate(newTop, playerTop.transform);
-                targetSkin = top.GetComponentInChildren<SkinnedMeshRenderer>();
-                TransferBones();
-            }
-            costumeTop = newTop;
         }
-        if (costumeBottom != newBottom)
+        else if (itemData.itemType == ItemType.Lower)
         {            
-            //기존 코스튬 삭제
-            foreach (Transform child in playerBottom.transform)
-            {
-                Destroy(child.gameObject);
+            GameObject newBottom = itemData.itemObject;
+            if (costumeBottom != newBottom)
+            {            
+                //기존 코스튬 삭제
+                foreach (Transform child in playerBottom.transform)
+                {
+                    Destroy(child.gameObject);
+                }
+                //새 코스튬 장착
+                if (newBottom)
+                {
+                    GameObject bottom = Instantiate(newBottom, playerBottom.transform);
+                    targetSkin = bottom.GetComponentInChildren<SkinnedMeshRenderer>();
+                    TransferBones();
+                }
+                costumeBottom = newBottom;
             }
-            //새 코스튬 장착
-            if (newBottom)
-            {
-                GameObject bottom = Instantiate(newBottom, playerBottom.transform);
-                targetSkin = bottom.GetComponentInChildren<SkinnedMeshRenderer>();
-                TransferBones();
-            }
-            costumeBottom = newBottom;
         }
-        
-        gameObject.GetComponent<Outline>().Refresh();
+
+        if (gameObject.CompareTag("Player"))
+        {
+            GameManager.Instance.gameData.playerInfo.playerItems[itemData.itemType] = itemData.itemName;
+        }
+
+        gameObject.GetComponent<Outline>()?.Refresh();
     }
     
     public void TransferBones()

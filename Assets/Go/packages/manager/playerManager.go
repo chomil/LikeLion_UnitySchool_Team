@@ -151,6 +151,36 @@ func (pm *PlayerManager) SendExistingPlayersToNewPlayer(newPlayer Player) {
 	}
 }
 
+func (pm *PlayerManager) SendPlayerCostume(name string, cosType int32, cosName string) {
+	gameMessage := &pb.GameMessage{
+		Message: &pb.GameMessage_PlayerCostume{
+			PlayerCostume: &pb.CostumeMessage{
+				PlayerId:          name,
+				PlayerCostumeType: cosType,
+				PlayerCostumeName: cosName,
+			},
+		},
+	}
+	response, err := proto.Marshal(gameMessage)
+	if err != nil {
+		log.Printf("Failed to marshal response: %v", err)
+		return
+	}
+
+	// 다른 플레이어들에게 전송
+	for _, player := range pm.players {
+		if player.Name == name {
+			continue // 자신에게는 전송하지 않음
+		}
+
+		lengthBuf := make([]byte, 4)
+		binary.LittleEndian.PutUint32(lengthBuf, uint32(len(response)))
+
+		lengthBuf = append(lengthBuf, response...)
+		(*player.Conn).Write(lengthBuf)
+	}
+}
+
 func (pm *PlayerManager) SendPlayerAnimation(name string, animation string, speedF float32, speedR float32) {
 	// GameMessage에 PlayerAnimation 타입 추가
 	gameMessage := &pb.GameMessage{

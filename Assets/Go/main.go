@@ -94,6 +94,10 @@ func processMessage(message *pb.GameMessage, conn *net.Conn) {
 		fmt.Printf("Player %s finished the race at time %d\n", finish.PlayerId, finish.FinishTime)
 		// 여기에 레이스 완주 처리 로직 추가
 		mg.GetPlayerManager().PlayerFinishedRace(finish.PlayerId, finish.FinishTime)
+	case *pb.GameMessage_PlayerCostume:
+		costume := msg.PlayerCostume
+		fmt.Printf("Player %s , %d, %s\n", costume.PlayerId, costume.PlayerCostumeType, costume.PlayerCostumeName)
+		mg.GetPlayerManager().SendPlayerCostume(costume.PlayerId, costume.PlayerCostumeType, costume.PlayerCostumeName)
 	default:
 		panic(fmt.Sprintf("unexpected messages.isGameMessage_Message: %#v", msg))
 	}
