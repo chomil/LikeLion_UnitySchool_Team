@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     
     private PlayerTCP myPlayerTcp;
     private Dictionary<string, OtherPlayerTCP> _otherPlayers = new();
-    private GameObject myPlayer;
+    public GameObject myPlayer { get; private set; }
     private int finishedPlayersCount = 0;
     private int totalPlayersCount;
     
@@ -131,8 +131,7 @@ public class PlayerController : MonoBehaviour
     private void EndRace()
     {
         Debug.Log("All players have finished the race!");
-        GameManager.Instance.EndRace();
-        
+        GameManager.Instance.EndRaceWithMaxQualified();
     }
     
     public void OnRaceFinishMessageReceived(RaceFinishMessage finishMessage)
@@ -174,6 +173,32 @@ public class PlayerController : MonoBehaviour
             _otherPlayers.Remove(playerId);
         }
     }
+    
+    // 관전 시스템
+    public void SetPlayerToSpectatorMode(string playerId)
+    {
+        if (playerId == TCPManager.playerId)
+        {
+            // 로컬 플레이어를 관전 모드로 설정
+            myPlayerTcp.GetComponent<PlayerMovement>().EnterSpectatorMode();
+        }
+        // 서버에 플레이어의 상태 변경을 알림
+        TcpProtobufClient.Instance.SendPlayerStateUpdate(playerId, "Spectating");
+    }
+
+    public void SwitchSpectatorTarget(string targetPlayerId)
+    {
+        foreach (var otherPlayerTcp in _otherPlayers)
+        {
+            otherPlayerTcp.Value.GetComponent<SpectatorCamera>().ClearCamera();
+        }
+
+        if (_otherPlayers.TryGetValue(targetPlayerId, out OtherPlayerTCP targetPlayer))
+        {
+            targetPlayer.GetComponent<SpectatorCamera>().SetCamera();
+        }
+    }
+
     public void OnOtherPlayerCostumeUpdate(CostumeMessage costumeMessage)
     {
         if (_otherPlayers.TryGetValue(costumeMessage.PlayerId, out OtherPlayerTCP otherPlayer))

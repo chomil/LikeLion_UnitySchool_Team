@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     
-    private Dictionary<string, float> playerFinishTimes = new Dictionary<string, float>();
     private float raceStartTime;
     private bool isRaceActive = false;
     private const int MaxPlayers = 60;
@@ -18,6 +17,14 @@ public class GameManager : MonoBehaviour
     public SerializedDictionary<string, AudioClip> bgms;
 
     public GameData gameData;
+    
+    // 통과 시스템
+    [SerializeField] private int maxQualifiedPlayers = 10; // 첫 번째 맵의 통과 인원 (인스펙터에서 조정 가능)
+    private int currentQualifiedCount = 0;
+    private List<string> qualifiedPlayers = new List<string>();
+    private bool isRaceEnded = false;
+    private bool isFinalRace = false; // 현재 맵이 마지막 맵인지 여부
+    private HashSet<string> activePlayersForNextRound = new HashSet<string>();
     
     
     private void Awake()
@@ -32,6 +39,29 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+    
+    private void Start()
+    {
+        // // 우승자 테스트용 코드
+        // isFinalRace = true;  // 테스트를 위해 강제로 최종 라운드 설정
+        // maxQualifiedPlayers = 1;  // 우승자 1명
+        // Debug.Log("Test Mode: Final Race - Only one player can win!");
+        
+        // finalList에 있는 맵인지 확인하여 최종 레이스 여부 판단
+        isFinalRace = SceneChanger.Instance.finalList.Contains(SceneChanger.Instance.GetCurrentScene());
+        
+        // 마지막 맵이면 통과 인원을 1명으로 설정
+        if (isFinalRace)
+        {
+            maxQualifiedPlayers = 1;
+            Debug.Log("Final Race: Only one player can win!");
+        }
+        else
+        {
+            maxQualifiedPlayers = 10; // 일반 레이스의 통과 인원
+            Debug.Log($"Regular Race: {maxQualifiedPlayers} players can qualify");
         }
     }
 
@@ -96,11 +126,22 @@ public class GameManager : MonoBehaviour
     
     public void StartRace()
     {
-        raceStartTime = Time.time;
-        isRaceActive = true;
-        playerFinishTimes.Clear();
-        activePlayers.Clear();
-        Debug.Log($"Race Started! Max players: {MaxPlayers}");
+        if (activePlayersForNextRound.Count > 0)
+        {
+            activePlayers = new HashSet<string>(activePlayersForNextRound);
+            activePlayersForNextRound.Clear();
+        }
+        
+        isRaceEnded = false;
+        currentQualifiedCount = 0;
+        qualifiedPlayers.Clear();
+        
+        // UI 초기화
+        RaceUI.Instance.ShowRaceUI();
+        RaceUI.Instance.UpdateQualifiedCount(0, maxQualifiedPlayers);
+        RaceUI.Instance.HideStatusMessage();
+
+        Debug.Log($"Race Started! Max players to qualify: {maxQualifiedPlayers}");
         PlayerController.Instance?.SetTotalPlayersCount(activePlayers.Count);
     }
     
@@ -119,58 +160,137 @@ public class GameManager : MonoBehaviour
     
     public void PlayerFinished(string playerId)
     {
-        if (playerFinishTimes.ContainsKey(playerId))
+        // 이미 통과했거나 레이스가 끝났으면 무시
+        if (qualifiedPlayers.Contains(playerId) || isRaceEnded)
             return;
 
-        float finishTime = Time.time - raceStartTime;
-        playerFinishTimes.Add(playerId, finishTime);
-        Debug.Log($"Player {playerId} finished in {finishTime:F2} seconds!");
-
-        PlayerController.Instance.OnPlayerFinished(playerId);
-
-        if (playerFinishTimes.Count == activePlayers.Count)
+        // 최대 통과 인원 체크
+        if (currentQualifiedCount >= maxQualifiedPlayers)
         {
-            EndRace();
+            // 통과 실패 처리
+            HandlePlayerElimination(playerId);
+            return;
         }
+
+        // 통과 처리
+        currentQualifiedCount++;
+        qualifiedPlayers.Add(playerId);
+        activePlayersForNextRound.Add(playerId);  // 다음 라운드 진출자 목록에 추가
+        Debug.Log($"Player {playerId} qualified! ({currentQualifiedCount}/{maxQualifiedPlayers})");
+
+        // UI 업데이트
+        UpdateQualificationUI();
         
-    }
-    
-    public void EndRace()
-    {
-        isRaceActive = false;
-        Debug.Log("Race Ended! Final Results:");
-    
-        List<KeyValuePair<string, float>> sortedResults = new List<KeyValuePair<string, float>>(playerFinishTimes);
-        sortedResults.Sort((pair1, pair2) => pair1.Value.CompareTo(pair2.Value));
-
-        for (int i = 0; i < sortedResults.Count; i++)
+        if (playerId == TCPManager.playerId)
         {
-            Debug.Log($"{i + 1}. Player {sortedResults[i].Key}: {sortedResults[i].Value:F2} seconds");
+            RaceUI.Instance.ShowStatusMessage("통과!");
+            PlayerMovement playerMovement = PlayerController.Instance.myPlayer.GetComponent<PlayerMovement>();
+            if (playerMovement != null)
+            {
+                playerMovement.SetIdleState();
+            }
+        }
+
+        // 최대 인원 도달 시 레이스 종료
+        if (currentQualifiedCount >= maxQualifiedPlayers)
+        {
+            EndRaceWithMaxQualified();
         }
     }
     
-    private int GetTotalPlayerCount()
+    private void HandlePlayerElimination(string playerId)
     {
-        // 실제 플레이어 수를 반환하는 로직을 구현
-        // 연결된 클라이언트 수나 고정된 플레이어 수를 반환
-        return 2; // 임시로 2명
+        Debug.Log($"Player {playerId} eliminated - maximum qualified players reached!");
+    
+        if (playerId == TCPManager.playerId)
+        {
+            RaceUI.Instance.ShowStatusMessage("탈락!");  // 탈락 메시지
+            PlayerMovement playerMovement = PlayerController.Instance.myPlayer.GetComponent<PlayerMovement>();
+            if (playerMovement != null)
+            {
+                playerMovement.SetIdleState();
+                StartCoroutine(EnterSpectatorModeAfterDelay(playerId));
+            }
+        }
+    }
+    
+    public void EndRace() 
+    {
+        EndRaceWithMaxQualified(); 
+    }
+    
+    public void EndRaceWithMaxQualified()
+    {
+        isRaceEnded = true;
+        Debug.Log($"Race ended - Maximum qualified players reached!");
+
+        // 아직 도착하지 않은 모든 플레이어 탈락 처리
+        foreach (string activePlayer in activePlayers)
+        {
+            if (!qualifiedPlayers.Contains(activePlayer))
+            {
+                HandlePlayerElimination(activePlayer);
+            }
+        }
+
+        // 현재 맵이 마지막 맵인지 확인
+        if (SceneChanger.Instance.GetCurrentScene() == SceneChanger.Instance.finalList[0]) // 최종 맵 체크
+        {
+            // 우승자 처리
+            HandleGameWin(qualifiedPlayers[0]);
+        }
+        else
+        {
+            // 다음 맵으로 이동
+            StartCoroutine(LoadNextMap());
+        }
+
+        TcpProtobufClient.Instance.SendRaceEnd();
+    }
+    
+    private IEnumerator LoadNextMap()
+    {
+        yield return new WaitForSeconds(5f); // 5초 대기
+        SceneChanger.Instance.PlayRace(); // 다음 맵 로드
+    }
+    
+    private IEnumerator EnterSpectatorModeAfterDelay(string playerId)
+    {
+        yield return new WaitForSeconds(2f);
+        SpectatorManager.Instance.EnterSpectatorMode(playerId);
+    }
+    
+    private void HandleGameWin(string winnerId)
+    {
+        Debug.Log($"Player {winnerId} won the game!");
+        // 우승 처리 (UI 표시, 효과음 등)
+        if (winnerId == TCPManager.playerId)
+        {
+            RaceUI.Instance.ShowStatusMessage("우승!", true);  // isVictory = true로 설정
+        }
     }
 
-    public void StartNewRace()
+    private void UpdateQualificationUI()
     {
-        playerFinishTimes.Clear();
-        isRaceActive = false;
-        // 플레이어 위치 초기화 등 새 레이스 시작 준비
-        ResetPlayerPositions();
-        StartRace();
+        RaceUI.Instance.UpdateQualifiedCount(currentQualifiedCount, maxQualifiedPlayers);
+    
+        if (isFinalRace)
+        {
+            if (currentQualifiedCount > 0)
+            {
+                RaceUI.Instance.ShowStatusMessage("우승!", true);  // isVictory = true
+            }
+        }
+        else if (currentQualifiedCount >= maxQualifiedPlayers)
+        {
+            RaceUI.Instance.ShowStatusMessage("통과!");  // 일반 통과
+        }
     }
-    private void ResetPlayerPositions()
+
+    public void ResetRace()
     {
-        // 모든 플레이어의 위치를 시작 지점으로 초기화하는 로직
-        // foreach (var player in allPlayers)
-        // {
-        //      player.transform.position = startPosition;
-        //      player.ResetState();
-        // }
+        currentQualifiedCount = 0;
+        qualifiedPlayers.Clear();
+        isRaceEnded = false;
     }
 }

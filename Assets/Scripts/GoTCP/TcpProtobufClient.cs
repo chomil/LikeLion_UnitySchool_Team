@@ -222,4 +222,34 @@ public class TcpProtobufClient : MonoBehaviour
         if (stream != null) stream.Close();
         if (tcpClient != null) tcpClient.Close();
     }
+    
+    public void SendPlayerStateUpdate(string playerId, string state)
+    {
+        // // 여기에 서버로 플레이어 상태를 전송하는 로직을 구현합니다.
+        // var stateUpdate = new PlayerStateUpdate
+        // {
+        //     PlayerId = playerId,
+        //     State = state
+        // };
+        // var message = new GameMessage
+        // {
+        //     PlayerStateUpdate = stateUpdate
+        // };
+        // SendMessage(message);
+    }
+    
+    public void SendRaceEnd()  // 추가된 부분
+    {
+        var raceEndMsg = new RaceEndMessage
+        {
+            // 필요한 정보 추가
+            PlayerId = TCPManager.playerId
+        };
+        var message = new GameMessage
+        {
+            RaceEnd = raceEndMsg
+        };
+        SendMessage(message);
+        Debug.Log($"Race end message sent from player {TCPManager.playerId}");
+    }
 }
