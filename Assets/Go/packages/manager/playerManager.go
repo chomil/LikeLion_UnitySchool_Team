@@ -372,3 +372,19 @@ func (pm *PlayerManager) PlayerFinishedRace(playerId string, finishTime int64) {
 
 	pm.BroadcastMessage(finishMessage)
 }
+
+func (pm *PlayerManager) HandleRaceEnd(playerId string) {
+	// 레이스 종료 메시지를 브로드캐스트
+	raceEndMessage := &pb.GameMessage{
+		Message: &pb.GameMessage_RaceEnd{
+			RaceEnd: &pb.RaceEndMessage{
+				PlayerId: playerId,
+			},
+		},
+	}
+
+	// BroadcastMessage 사용하여 모든 플레이어에게 전송
+	pm.BroadcastMessage(raceEndMessage)
+
+	log.Printf("Race ended by player: %s", playerId)
+}

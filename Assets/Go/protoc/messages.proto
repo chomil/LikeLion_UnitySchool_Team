@@ -55,6 +55,10 @@ message CostumeMessage {
   string playerCostumeName = 3;
 }
 
+message RaceEndMessage {
+  string playerId = 1;
+}
+
 message GameMessage {
   oneof message {
     PlayerPosition player_position = 1;
@@ -66,6 +70,7 @@ message GameMessage {
     LogoutMessage logout = 7;
     RaceFinishMessage race_finish = 8;
     CostumeMessage player_costume = 9;
+    RaceEndMessage race_end = 10;
   }
 }
 

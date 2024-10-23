@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class SpectatorUI : MonoBehaviour
 {
     public static SpectatorUI Instance { get; private set; }
-
+    
+    [Header("Spectator UI")]
     public GameObject spectatorPanel;
     public Text spectatingPlayerText;
     public Text controlsInfoText;
-
+    
     private void Awake()
     {
         if (Instance == null)
@@ -66,4 +67,5 @@ public class SpectatorUI : MonoBehaviour
     {
         controlsInfoText.text = "Page Up: 다음 플레이어 | Page Down: 이전 플레이어";
     }
+    
 }

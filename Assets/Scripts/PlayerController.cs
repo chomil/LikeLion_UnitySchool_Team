@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     
     private PlayerTCP myPlayerTcp;
     private Dictionary<string, OtherPlayerTCP> _otherPlayers = new();
-    private GameObject myPlayer;
+    public GameObject myPlayer { get; private set; }
     private int finishedPlayersCount = 0;
     private int totalPlayersCount;
     
@@ -131,8 +131,7 @@ public class PlayerController : MonoBehaviour
     private void EndRace()
     {
         Debug.Log("All players have finished the race!");
-        GameManager.Instance.EndRace();
-        
+        GameManager.Instance.EndRaceWithMaxQualified();
     }
     
     public void OnRaceFinishMessageReceived(RaceFinishMessage finishMessage)

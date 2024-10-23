@@ -237,4 +237,19 @@ public class TcpProtobufClient : MonoBehaviour
         // };
         // SendMessage(message);
     }
+    
+    public void SendRaceEnd()  // 추가된 부분
+    {
+        var raceEndMsg = new RaceEndMessage
+        {
+            // 필요한 정보 추가
+            PlayerId = TCPManager.playerId
+        };
+        var message = new GameMessage
+        {
+            RaceEnd = raceEndMsg
+        };
+        SendMessage(message);
+        Debug.Log($"Race end message sent from player {TCPManager.playerId}");
+    }
 }

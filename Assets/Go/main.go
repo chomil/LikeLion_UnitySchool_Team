@@ -98,6 +98,12 @@ func processMessage(message *pb.GameMessage, conn *net.Conn) {
 		costume := msg.PlayerCostume
 		fmt.Printf("Player %s , %d, %s\n", costume.PlayerId, costume.PlayerCostumeType, costume.PlayerCostumeName)
 		mg.GetPlayerManager().SendPlayerCostume(costume.PlayerId, costume.PlayerCostumeType, costume.PlayerCostumeName)
+
+	case *pb.GameMessage_RaceEnd:
+		raceEnd := msg.RaceEnd
+		fmt.Printf("Race ended by player %s\n", raceEnd.PlayerId)
+		mg.GetPlayerManager().HandleRaceEnd(raceEnd.PlayerId)
+
 	default:
 		panic(fmt.Sprintf("unexpected messages.isGameMessage_Message: %#v", msg))
 	}
