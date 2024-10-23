@@ -31,16 +31,20 @@ type Player struct {
 
 // PlayerManager manages a list of players
 type PlayerManager struct {
-	players map[int]*Player
-	nextID  int
+	players                   map[int]*Player
+	nextID                    int
+	activePlayersForNextRound map[string]bool
+	maxQualifiedPlayers       int
 }
 
 // NewPlayerManager creates a new PlayerManager
 func GetPlayerManager() *PlayerManager {
 	if playerManager == nil {
 		playerManager = &PlayerManager{
-			players: make(map[int]*Player),
-			nextID:  1,
+			players:                   make(map[int]*Player),
+			nextID:                    1,
+			activePlayersForNextRound: make(map[string]bool),
+			maxQualifiedPlayers:       10,
 		}
 	}
 
@@ -358,9 +362,12 @@ func (pm *PlayerManager) PlayerFinishedRace(playerId string, finishTime int64) {
 		return
 	}
 
+	if len(pm.activePlayersForNextRound) < pm.maxQualifiedPlayers {
+		pm.activePlayersForNextRound[playerId] = true
+	}
+
 	player.FinishTime = finishTime
 
-	// 모든 플레이어에게 완주 정보 브로드캐스트
 	finishMessage := &pb.GameMessage{
 		Message: &pb.GameMessage_RaceFinish{
 			RaceFinish: &pb.RaceFinishMessage{
@@ -374,7 +381,28 @@ func (pm *PlayerManager) PlayerFinishedRace(playerId string, finishTime int64) {
 }
 
 func (pm *PlayerManager) HandleRaceEnd(playerId string) {
-	// 레이스 종료 메시지를 브로드캐스트
+	// 현재 라운드가 끝나면 다음 라운드를 위한 플레이어 설정
+	if len(pm.activePlayersForNextRound) > 0 {
+		// 새로운 플레이어 맵 생성
+		newPlayers := make(map[int]*Player)
+		newID := 1
+
+		// 통과한 플레이어만 새로운 맵에 추가
+		for _, player := range pm.players {
+			if pm.activePlayersForNextRound[player.Name] {
+				player.ID = newID // ID 재할당
+				newPlayers[newID] = player
+				newID++
+			}
+		}
+
+		// 플레이어 목록 업데이트
+		pm.players = newPlayers
+		pm.nextID = newID
+		pm.activePlayersForNextRound = make(map[string]bool) // 초기화
+	}
+
+	// 레이스 종료 메시지 브로드캐스트
 	raceEndMessage := &pb.GameMessage{
 		Message: &pb.GameMessage_RaceEnd{
 			RaceEnd: &pb.RaceEndMessage{
@@ -383,8 +411,6 @@ func (pm *PlayerManager) HandleRaceEnd(playerId string) {
 		},
 	}
 
-	// BroadcastMessage 사용하여 모든 플레이어에게 전송
 	pm.BroadcastMessage(raceEndMessage)
-
-	log.Printf("Race ended by player: %s", playerId)
+	log.Printf("Race ended by player: %s, Players remaining: %d", playerId, len(pm.players))
 }
