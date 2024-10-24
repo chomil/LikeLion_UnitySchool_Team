@@ -7,6 +7,7 @@ import (
 	"net"
 
 	pb "golangtcp/messages" //golangtcp는 go.mod에 있는 모듈의 이름
+	co "golangtcp/packages/constants"
 
 	"google.golang.org/protobuf/proto"
 
@@ -44,24 +45,45 @@ func handleConnection(conn net.Conn) {
 		}
 		length := binary.LittleEndian.Uint32(lengthBuf)
 
+		// 메시지 타입을 먼저 읽습니다 (1바이트)
+		typeBuf := make([]byte, 1)
+		_, err = conn.Read(typeBuf)
+		if err != nil {
+			log.Printf("Failed to read message type: %v", err)
+			return
+		}
+		messageType := typeBuf[0]
+
 		// 메시지 본문을 읽습니다
-		messageBuf := make([]byte, length)
+		messageBuf := make([]byte, length-1) // 타입 바이트 제외
 		_, err = conn.Read(messageBuf)
 		if err != nil {
 			log.Printf("Failed to read message body: %v", err)
 			return
 		}
 
-		// Protocol Buffers 메시지를 파싱합니다
-		message := &pb.GameMessage{}
-		err = proto.Unmarshal(messageBuf, message)
-		if err != nil {
-			log.Printf("Failed to unmarshal message: %v", err)
-			continue
+		// 메시지 처리
+		switch messageType {
+		case co.GameMessageType:
+			gameMessage := &pb.GameMessage{}
+			err = proto.Unmarshal(messageBuf, gameMessage)
+			if err != nil {
+				log.Printf("Failed to unmarshal GameMessage: %v", err)
+				continue
+			}
+			processMessage(gameMessage, &conn)
+		case co.MatchingMessageType:
+			matchingMessage := &pb.MatchingMessage{}
+			err = proto.Unmarshal(messageBuf, matchingMessage)
+			if err != nil {
+				log.Printf("Failed to unmarshal MatchingMessage: %v", err)
+				continue
+			}
+			processMatchingMessage(matchingMessage, &conn)
+		default:
+			log.Printf("Unknown message type: %v", messageType)
 		}
 
-		// 메시지 처리
-		processMessage(message, &conn)
 	}
 }
 
@@ -106,5 +128,29 @@ func processMessage(message *pb.GameMessage, conn *net.Conn) {
 
 	default:
 		panic(fmt.Sprintf("unexpected messages.isGameMessage_Message: %#v", msg))
+	}
+}
+
+func processMatchingMessage(message *pb.MatchingMessage, conn *net.Conn) {
+	if message.Matching == nil {
+		log.Printf("Received a MatchingMessage with nil Matching field")
+		return // 패닉을 방지하고 함수 종료
+	}
+	switch msg := message.Matching.(type) {
+	case *pb.MatchingMessage_MatchingRequest:
+		playerID := msg.MatchingRequest.PlayerId
+		if msg.MatchingRequest.Waiting {
+			mg.GetMatchingManager().AddPlayer(playerID, *conn)
+			fmt.Println("Matching Game", playerID)
+		} else {
+			mg.GetMatchingManager().RemovePlayer(playerID)
+			fmt.Println("Leave Matching", playerID)
+		}
+	case *pb.MatchingMessage_MatchingResponse:
+		// 매칭 응답 처리 로직
+	case *pb.MatchingMessage_MatchingUpdate:
+		// 매칭 업데이트 처리 로직
+	default:
+		panic(fmt.Sprintf("unexpected messages.isMatchingMessage_Message: %#v", msg))
 	}
 }

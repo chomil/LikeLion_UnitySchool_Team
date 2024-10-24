@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,6 +22,7 @@ public class SceneChanger : MonoBehaviour
     
 
     private List<string> raceToPlay; //여기서 맵을 랜덤하게 뽑아서 경기
+    private int raceToPlayIdx = 0;
     private List<string> teamToPlay; 
     private List<string> finalToPlay;
     private bool isRacing = false; //플레이하는 중이 아니라면 플레이어의 입력을 못 받도록 하는 변수
@@ -42,7 +44,7 @@ public class SceneChanger : MonoBehaviour
     private void OnEnable()
     {
         //플레이 할 맵 초기화
-        raceToPlay = RaceList;
+        //raceToPlay = RaceList;
     }
 
     private void OnDisable()
@@ -61,7 +63,8 @@ public class SceneChanger : MonoBehaviour
 
     public void MatchingGame()
     {
-        //서버에서 매칭시켜주기
+        SceneManager.LoadScene("Matching");
+        TcpProtobufClient.Instance.SendMatchingRequest(TCPManager.playerId,true);
     }
 
     public string GetCurrentScene()
@@ -87,6 +90,12 @@ public class SceneChanger : MonoBehaviour
         }
         buttonActions.Clear();
     }
+
+    public void SetRaceMaps(MatchingResponse mr)
+    {
+        raceToPlay = new List<string>(mr.MapName);
+        PlayRace();
+    }
     
     //Start Button Event
     public void PlayRace()
@@ -96,13 +105,14 @@ public class SceneChanger : MonoBehaviour
 
         isRacing = true;
         
-        int randIdx = Random.Range(0, raceToPlay.Count);
+        /*int randIdx = Random.Range(0, raceToPlay.Count);
         string nextRace = raceToPlay[randIdx];
 
         //사용된 레이스는 삭제
-        raceToPlay.RemoveAt(randIdx);
+        raceToPlay.RemoveAt(randIdx);*/
         //씬 로딩
-        Loading.LoadScene(nextRace);
+        Loading.LoadScene(raceToPlay[raceToPlayIdx]);
+        raceToPlayIdx++;
     }
 
     //Customize Button Event
