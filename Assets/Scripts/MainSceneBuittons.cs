@@ -18,7 +18,8 @@ public class MainSceneBuittons : MonoBehaviour
 
     private void PlayRace()
     {
-        SceneChanger.Instance.PlayRace();
+        SceneChanger.Instance.MatchingGame();
+        //SceneChanger.Instance.PlayRace();
     }
 
     private void GoCustomizeScene()

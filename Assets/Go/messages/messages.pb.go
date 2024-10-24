@@ -788,6 +788,274 @@ func (*GameMessage_PlayerCostume) isGameMessage_Message() {}
 
 func (*GameMessage_RaceEnd) isGameMessage_Message() {}
 
+type MatchingRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	PlayerId string `protobuf:"bytes,1,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
+	Waiting  bool   `protobuf:"varint,2,opt,name=waiting,proto3" json:"waiting,omitempty"`
+}
+
+func (x *MatchingRequest) Reset() {
+	*x = MatchingRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_messages_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MatchingRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MatchingRequest) ProtoMessage() {}
+
+func (x *MatchingRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_messages_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MatchingRequest.ProtoReflect.Descriptor instead.
+func (*MatchingRequest) Descriptor() ([]byte, []int) {
+	return file_messages_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *MatchingRequest) GetPlayerId() string {
+	if x != nil {
+		return x.PlayerId
+	}
+	return ""
+}
+
+func (x *MatchingRequest) GetWaiting() bool {
+	if x != nil {
+		return x.Waiting
+	}
+	return false
+}
+
+type MatchingResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	GameServerAddress string   `protobuf:"bytes,1,opt,name=game_server_address,json=gameServerAddress,proto3" json:"game_server_address,omitempty"`
+	Success           bool     `protobuf:"varint,2,opt,name=success,proto3" json:"success,omitempty"`
+	MapName           []string `protobuf:"bytes,3,rep,name=map_name,json=mapName,proto3" json:"map_name,omitempty"`
+}
+
+func (x *MatchingResponse) Reset() {
+	*x = MatchingResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_messages_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MatchingResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MatchingResponse) ProtoMessage() {}
+
+func (x *MatchingResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_messages_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MatchingResponse.ProtoReflect.Descriptor instead.
+func (*MatchingResponse) Descriptor() ([]byte, []int) {
+	return file_messages_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *MatchingResponse) GetGameServerAddress() string {
+	if x != nil {
+		return x.GameServerAddress
+	}
+	return ""
+}
+
+func (x *MatchingResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *MatchingResponse) GetMapName() []string {
+	if x != nil {
+		return x.MapName
+	}
+	return nil
+}
+
+type MatchingUpdate struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CurrentPlayers  int32 `protobuf:"varint,1,opt,name=current_players,json=currentPlayers,proto3" json:"current_players,omitempty"`
+	RequiredPlayers int32 `protobuf:"varint,2,opt,name=required_players,json=requiredPlayers,proto3" json:"required_players,omitempty"`
+}
+
+func (x *MatchingUpdate) Reset() {
+	*x = MatchingUpdate{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_messages_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MatchingUpdate) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MatchingUpdate) ProtoMessage() {}
+
+func (x *MatchingUpdate) ProtoReflect() protoreflect.Message {
+	mi := &file_messages_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MatchingUpdate.ProtoReflect.Descriptor instead.
+func (*MatchingUpdate) Descriptor() ([]byte, []int) {
+	return file_messages_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *MatchingUpdate) GetCurrentPlayers() int32 {
+	if x != nil {
+		return x.CurrentPlayers
+	}
+	return 0
+}
+
+func (x *MatchingUpdate) GetRequiredPlayers() int32 {
+	if x != nil {
+		return x.RequiredPlayers
+	}
+	return 0
+}
+
+type MatchingMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Types that are assignable to Matching:
+	//
+	//	*MatchingMessage_MatchingRequest
+	//	*MatchingMessage_MatchingResponse
+	//	*MatchingMessage_MatchingUpdate
+	Matching isMatchingMessage_Matching `protobuf_oneof:"matching"`
+}
+
+func (x *MatchingMessage) Reset() {
+	*x = MatchingMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_messages_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MatchingMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MatchingMessage) ProtoMessage() {}
+
+func (x *MatchingMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_messages_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MatchingMessage.ProtoReflect.Descriptor instead.
+func (*MatchingMessage) Descriptor() ([]byte, []int) {
+	return file_messages_proto_rawDescGZIP(), []int{13}
+}
+
+func (m *MatchingMessage) GetMatching() isMatchingMessage_Matching {
+	if m != nil {
+		return m.Matching
+	}
+	return nil
+}
+
+func (x *MatchingMessage) GetMatchingRequest() *MatchingRequest {
+	if x, ok := x.GetMatching().(*MatchingMessage_MatchingRequest); ok {
+		return x.MatchingRequest
+	}
+	return nil
+}
+
+func (x *MatchingMessage) GetMatchingResponse() *MatchingResponse {
+	if x, ok := x.GetMatching().(*MatchingMessage_MatchingResponse); ok {
+		return x.MatchingResponse
+	}
+	return nil
+}
+
+func (x *MatchingMessage) GetMatchingUpdate() *MatchingUpdate {
+	if x, ok := x.GetMatching().(*MatchingMessage_MatchingUpdate); ok {
+		return x.MatchingUpdate
+	}
+	return nil
+}
+
+type isMatchingMessage_Matching interface {
+	isMatchingMessage_Matching()
+}
+
+type MatchingMessage_MatchingRequest struct {
+	MatchingRequest *MatchingRequest `protobuf:"bytes,1,opt,name=matching_request,json=matchingRequest,proto3,oneof"` // 매칭 요청 추가, 클라 -> 서버
+}
+
+type MatchingMessage_MatchingResponse struct {
+	MatchingResponse *MatchingResponse `protobuf:"bytes,2,opt,name=matching_response,json=matchingResponse,proto3,oneof"` // 매칭 응답 추가, 서버 -> 클라
+}
+
+type MatchingMessage_MatchingUpdate struct {
+	MatchingUpdate *MatchingUpdate `protobuf:"bytes,3,opt,name=matching_update,json=matchingUpdate,proto3,oneof"` // 매칭 상태 업데이트 추가
+}
+
+func (*MatchingMessage_MatchingRequest) isMatchingMessage_Matching() {}
+
+func (*MatchingMessage_MatchingResponse) isMatchingMessage_Matching() {}
+
+func (*MatchingMessage_MatchingUpdate) isMatchingMessage_Matching() {}
+
 var File_messages_proto protoreflect.FileDescriptor
 
 var file_messages_proto_rawDesc = []byte{
@@ -882,9 +1150,42 @@ var file_messages_proto_rawDesc = []byte{
 	0x0a, 0x08, 0x72, 0x61, 0x63, 0x65, 0x5f, 0x65, 0x6e, 0x64, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x0b,
 	0x32, 0x14, 0x2e, 0x67, 0x61, 0x6d, 0x65, 0x2e, 0x52, 0x61, 0x63, 0x65, 0x45, 0x6e, 0x64, 0x4d,
 	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x48, 0x00, 0x52, 0x07, 0x72, 0x61, 0x63, 0x65, 0x45, 0x6e,
-	0x64, 0x42, 0x09, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x42, 0x0d, 0x5a, 0x0b,
-	0x47, 0x6f, 0x2f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x64, 0x42, 0x09, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x48, 0x0a, 0x0f,
+	0x4d, 0x61, 0x74, 0x63, 0x68, 0x69, 0x6e, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x1b, 0x0a, 0x09, 0x70, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x08, 0x70, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x49, 0x64, 0x12, 0x18, 0x0a, 0x07,
+	0x77, 0x61, 0x69, 0x74, 0x69, 0x6e, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x77,
+	0x61, 0x69, 0x74, 0x69, 0x6e, 0x67, 0x22, 0x77, 0x0a, 0x10, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x69,
+	0x6e, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x13, 0x67, 0x61,
+	0x6d, 0x65, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73,
+	0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x11, 0x67, 0x61, 0x6d, 0x65, 0x53, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x18, 0x0a, 0x07, 0x73, 0x75,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x73, 0x75, 0x63,
+	0x63, 0x65, 0x73, 0x73, 0x12, 0x19, 0x0a, 0x08, 0x6d, 0x61, 0x70, 0x5f, 0x6e, 0x61, 0x6d, 0x65,
+	0x18, 0x03, 0x20, 0x03, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x61, 0x70, 0x4e, 0x61, 0x6d, 0x65, 0x22,
+	0x64, 0x0a, 0x0e, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x69, 0x6e, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x12, 0x27, 0x0a, 0x0f, 0x63, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x5f, 0x70, 0x6c, 0x61,
+	0x79, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0e, 0x63, 0x75, 0x72, 0x72,
+	0x65, 0x6e, 0x74, 0x50, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x73, 0x12, 0x29, 0x0a, 0x10, 0x72, 0x65,
+	0x71, 0x75, 0x69, 0x72, 0x65, 0x64, 0x5f, 0x70, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x73, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x05, 0x52, 0x0f, 0x72, 0x65, 0x71, 0x75, 0x69, 0x72, 0x65, 0x64, 0x50, 0x6c,
+	0x61, 0x79, 0x65, 0x72, 0x73, 0x22, 0xe9, 0x01, 0x0a, 0x0f, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x69,
+	0x6e, 0x67, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x42, 0x0a, 0x10, 0x6d, 0x61, 0x74,
+	0x63, 0x68, 0x69, 0x6e, 0x67, 0x5f, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x67, 0x61, 0x6d, 0x65, 0x2e, 0x4d, 0x61, 0x74, 0x63, 0x68,
+	0x69, 0x6e, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x48, 0x00, 0x52, 0x0f, 0x6d, 0x61,
+	0x74, 0x63, 0x68, 0x69, 0x6e, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x45, 0x0a,
+	0x11, 0x6d, 0x61, 0x74, 0x63, 0x68, 0x69, 0x6e, 0x67, 0x5f, 0x72, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x67, 0x61, 0x6d, 0x65, 0x2e,
+	0x4d, 0x61, 0x74, 0x63, 0x68, 0x69, 0x6e, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x48, 0x00, 0x52, 0x10, 0x6d, 0x61, 0x74, 0x63, 0x68, 0x69, 0x6e, 0x67, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3f, 0x0a, 0x0f, 0x6d, 0x61, 0x74, 0x63, 0x68, 0x69, 0x6e, 0x67,
+	0x5f, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e,
+	0x67, 0x61, 0x6d, 0x65, 0x2e, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x69, 0x6e, 0x67, 0x55, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x48, 0x00, 0x52, 0x0e, 0x6d, 0x61, 0x74, 0x63, 0x68, 0x69, 0x6e, 0x67, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x42, 0x0a, 0x0a, 0x08, 0x6d, 0x61, 0x74, 0x63, 0x68, 0x69, 0x6e,
+	0x67, 0x42, 0x0d, 0x5a, 0x0b, 0x47, 0x6f, 0x2f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -899,7 +1200,7 @@ func file_messages_proto_rawDescGZIP() []byte {
 	return file_messages_proto_rawDescData
 }
 
-var file_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_messages_proto_goTypes = []any{
 	(*PlayerPosition)(nil),    // 0: game.PlayerPosition
 	(*ChatMessage)(nil),       // 1: game.ChatMessage
@@ -911,6 +1212,10 @@ var file_messages_proto_goTypes = []any{
 	(*CostumeMessage)(nil),    // 7: game.CostumeMessage
 	(*RaceEndMessage)(nil),    // 8: game.RaceEndMessage
 	(*GameMessage)(nil),       // 9: game.GameMessage
+	(*MatchingRequest)(nil),   // 10: game.MatchingRequest
+	(*MatchingResponse)(nil),  // 11: game.MatchingResponse
+	(*MatchingUpdate)(nil),    // 12: game.MatchingUpdate
+	(*MatchingMessage)(nil),   // 13: game.MatchingMessage
 }
 var file_messages_proto_depIdxs = []int32{
 	0,  // 0: game.GameMessage.player_position:type_name -> game.PlayerPosition
@@ -923,11 +1228,14 @@ var file_messages_proto_depIdxs = []int32{
 	6,  // 7: game.GameMessage.race_finish:type_name -> game.RaceFinishMessage
 	7,  // 8: game.GameMessage.player_costume:type_name -> game.CostumeMessage
 	8,  // 9: game.GameMessage.race_end:type_name -> game.RaceEndMessage
-	10, // [10:10] is the sub-list for method output_type
-	10, // [10:10] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	10, // 10: game.MatchingMessage.matching_request:type_name -> game.MatchingRequest
+	11, // 11: game.MatchingMessage.matching_response:type_name -> game.MatchingResponse
+	12, // 12: game.MatchingMessage.matching_update:type_name -> game.MatchingUpdate
+	13, // [13:13] is the sub-list for method output_type
+	13, // [13:13] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_messages_proto_init() }
@@ -1056,6 +1364,54 @@ func file_messages_proto_init() {
 				return nil
 			}
 		}
+		file_messages_proto_msgTypes[10].Exporter = func(v any, i int) any {
+			switch v := v.(*MatchingRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_messages_proto_msgTypes[11].Exporter = func(v any, i int) any {
+			switch v := v.(*MatchingResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_messages_proto_msgTypes[12].Exporter = func(v any, i int) any {
+			switch v := v.(*MatchingUpdate); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_messages_proto_msgTypes[13].Exporter = func(v any, i int) any {
+			switch v := v.(*MatchingMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	file_messages_proto_msgTypes[9].OneofWrappers = []any{
 		(*GameMessage_PlayerPosition)(nil),
@@ -1069,13 +1425,18 @@ func file_messages_proto_init() {
 		(*GameMessage_PlayerCostume)(nil),
 		(*GameMessage_RaceEnd)(nil),
 	}
+	file_messages_proto_msgTypes[13].OneofWrappers = []any{
+		(*MatchingMessage_MatchingRequest)(nil),
+		(*MatchingMessage_MatchingResponse)(nil),
+		(*MatchingMessage_MatchingUpdate)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_messages_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

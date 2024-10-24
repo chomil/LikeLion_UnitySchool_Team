@@ -6,6 +6,7 @@ import (
 	"log"
 
 	pb "golangtcp/messages"
+	co "golangtcp/packages/constants"
 
 	"net"
 
@@ -30,6 +31,7 @@ type Player struct {
 }
 
 // PlayerManager manages a list of players
+
 type PlayerManager struct {
 	players                   map[int]*Player
 	nextID                    int
@@ -38,6 +40,7 @@ type PlayerManager struct {
 }
 
 // NewPlayerManager creates a new PlayerManager
+
 func GetPlayerManager() *PlayerManager {
 	if playerManager == nil {
 		playerManager = &PlayerManager{
@@ -47,7 +50,6 @@ func GetPlayerManager() *PlayerManager {
 			maxQualifiedPlayers:       10,
 		}
 	}
-
 	return playerManager
 }
 
@@ -104,8 +106,10 @@ func (pm *PlayerManager) SpawnNewPlayerInfo(newPlayer Player) {
 			continue // 자신에게는 전송하지 않음
 		}
 
-		lengthBuf := make([]byte, 4)
-		binary.LittleEndian.PutUint32(lengthBuf, uint32(len(response)))
+		lengthBuf := make([]byte, 5)      // 메시지 길이와 타입을 포함하기 위해 5바이트로 설정
+		lengthBuf[0] = co.GameMessageType // 메시지 타입 설정
+		len := uint32(len(response))
+		binary.LittleEndian.PutUint32(lengthBuf[1:], len)
 
 		// 메시지 길이 정보와 메시지 데이터를 결합하여 전송
 		lengthBuf = append(lengthBuf, response...)
@@ -141,17 +145,15 @@ func (pm *PlayerManager) SendExistingPlayersToNewPlayer(newPlayer Player) {
 			return
 		}
 
-		// 새로운 플레이어에게 기존 플레이어 정보 전송
+		// // 새로운 플레이어에게 기존 플레이어 정보 전송
 		length := uint32(len(response))
-		lengthBuf := make([]byte, 4)
+		lengthBuf := make([]byte, 5)
+		lengthBuf[0] = co.GameMessageType
 
-		binary.LittleEndian.PutUint32(lengthBuf, length)
+		binary.LittleEndian.PutUint32(lengthBuf[1:], length)
 		if _, err := (*newPlayer.Conn).Write(append(lengthBuf, response...)); err != nil {
 			log.Printf("Failed to send player data to new player: %v", err)
 		}
-		//binary.LittleEndian.PutUint32(lengthBuf, uint32(len(response)))
-		//lengthBuf = append(lengthBuf, response...)
-		//(*newPlayer.Conn).Write(response)
 	}
 }
 
@@ -177,11 +179,10 @@ func (pm *PlayerManager) SendPlayerCostume(name string, cosType int32, cosName s
 			continue // 자신에게는 전송하지 않음
 		}
 
-		lengthBuf := make([]byte, 4)
-		binary.LittleEndian.PutUint32(lengthBuf, uint32(len(response)))
-
-		lengthBuf = append(lengthBuf, response...)
-		(*player.Conn).Write(lengthBuf)
+		lengthBuf := make([]byte, 5)      // 메시지 길이와 타입을 포함하기 위해 5바이트로 설정
+		lengthBuf[0] = co.GameMessageType // 메시지 타입 설정
+		binary.LittleEndian.PutUint32(lengthBuf[1:], uint32(len(response)))
+		(*player.Conn).Write(append(lengthBuf, response...))
 	}
 }
 
@@ -211,10 +212,9 @@ func (pm *PlayerManager) SendPlayerAnimation(name string, animation string, spee
 			continue // 자신에게는 전송하지 않음
 		}
 
-		lengthBuf := make([]byte, 4)
-		binary.LittleEndian.PutUint32(lengthBuf, uint32(len(response)))
-
-		// 메시지 길이 정보와 메시지 데이터를 결합하여 전송
+		lengthBuf := make([]byte, 5)      // 메시지 길이와 타입을 포함하기 위해 5바이트로 설정
+		lengthBuf[0] = co.GameMessageType // 메시지 타입 설정
+		binary.LittleEndian.PutUint32(lengthBuf[1:], uint32(len(response)))
 		lengthBuf = append(lengthBuf, response...)
 		(*player.Conn).Write(lengthBuf)
 	}
@@ -260,10 +260,10 @@ func (pm *PlayerManager) MovePlayer(name string, x float32, y float32, z float32
 			continue
 		}
 
-		lengthBuf := make([]byte, 4)
-		binary.LittleEndian.PutUint32(lengthBuf, uint32(len(response)))
-		lengthBuf = append(lengthBuf, response...)
-		(*player.Conn).Write(lengthBuf)
+		lengthBuf := make([]byte, 5)      // 메시지 길이와 타입을 포함하기 위해 5바이트로 설정
+		lengthBuf[0] = co.GameMessageType // 메시지 타입 설정
+		binary.LittleEndian.PutUint32(lengthBuf[1:], uint32(len(response)))
+		(*player.Conn).Write(append(lengthBuf, response...))
 	}
 }
 
@@ -304,10 +304,9 @@ func (pm *PlayerManager) RemovePlayer(id string) error {
 			continue // 자신에게는 전송하지 않음
 		}
 
-		lengthBuf := make([]byte, 4)
-		binary.LittleEndian.PutUint32(lengthBuf, uint32(len(response)))
-
-		// 메시지 길이 정보와 메시지 데이터를 결합하여 전송
+		lengthBuf := make([]byte, 5)      // 메시지 길이와 타입을 포함하기 위해 5바이트로 설정
+		lengthBuf[0] = co.GameMessageType // 메시지 타입 설정
+		binary.LittleEndian.PutUint32(lengthBuf[1:], uint32(len(response)))
 		lengthBuf = append(lengthBuf, response...)
 		(*player.Conn).Write(lengthBuf)
 	}
@@ -346,10 +345,9 @@ func (pm *PlayerManager) BroadcastMessage(message *pb.GameMessage) {
 	}
 
 	for _, player := range pm.players {
-		lengthBuf := make([]byte, 4)
-		binary.LittleEndian.PutUint32(lengthBuf, uint32(len(response)))
-
-		// 메시지 길이 정보와 메시지 데이터를 결합하여 전송
+		lengthBuf := make([]byte, 5)      // 메시지 길이와 타입을 포함하기 위해 5바이트로 설정
+		lengthBuf[0] = co.GameMessageType // 메시지 타입 설정
+		binary.LittleEndian.PutUint32(lengthBuf[1:], uint32(len(response)))
 		lengthBuf = append(lengthBuf, response...)
 		(*player.Conn).Write(lengthBuf)
 	}
@@ -368,6 +366,7 @@ func (pm *PlayerManager) PlayerFinishedRace(playerId string, finishTime int64) {
 
 	player.FinishTime = finishTime
 
+	// 모든 플레이어에게 완주 정보 브로드캐스트
 	finishMessage := &pb.GameMessage{
 		Message: &pb.GameMessage_RaceFinish{
 			RaceFinish: &pb.RaceFinishMessage{
@@ -381,13 +380,17 @@ func (pm *PlayerManager) PlayerFinishedRace(playerId string, finishTime int64) {
 }
 
 func (pm *PlayerManager) HandleRaceEnd(playerId string) {
+
 	// 현재 라운드가 끝나면 다음 라운드를 위한 플레이어 설정
+
 	if len(pm.activePlayersForNextRound) > 0 {
 		// 새로운 플레이어 맵 생성
+
 		newPlayers := make(map[int]*Player)
 		newID := 1
 
 		// 통과한 플레이어만 새로운 맵에 추가
+
 		for _, player := range pm.players {
 			if pm.activePlayersForNextRound[player.Name] {
 				player.ID = newID // ID 재할당
@@ -400,9 +403,11 @@ func (pm *PlayerManager) HandleRaceEnd(playerId string) {
 		pm.players = newPlayers
 		pm.nextID = newID
 		pm.activePlayersForNextRound = make(map[string]bool) // 초기화
+
 	}
 
 	// 레이스 종료 메시지 브로드캐스트
+
 	raceEndMessage := &pb.GameMessage{
 		Message: &pb.GameMessage_RaceEnd{
 			RaceEnd: &pb.RaceEndMessage{
@@ -412,5 +417,7 @@ func (pm *PlayerManager) HandleRaceEnd(playerId string) {
 	}
 
 	pm.BroadcastMessage(raceEndMessage)
+
 	log.Printf("Race ended by player: %s, Players remaining: %d", playerId, len(pm.players))
+
 }
