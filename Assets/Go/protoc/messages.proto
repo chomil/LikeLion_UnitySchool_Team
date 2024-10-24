@@ -74,3 +74,27 @@ message GameMessage {
   }
 }
 
+message MatchingRequest {
+  string player_id = 1;
+  bool waiting = 2;
+}
+
+message MatchingResponse {
+  string game_server_address = 1;
+  bool success = 2;
+  repeated string map_name = 3;
+}
+
+message MatchingUpdate {
+  int32 current_players = 1;
+  int32 required_players = 2;
+}
+
+message MatchingMessage {
+  oneof matching {
+    MatchingRequest matching_request = 1;       // 매칭 요청 추가, 클라 -> 서버
+    MatchingResponse matching_response = 2;      // 매칭 응답 추가, 서버 -> 클라
+    MatchingUpdate matching_update = 3;          // 매칭 상태 업데이트 추가
+  }
+}
+

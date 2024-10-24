@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using Game;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -86,6 +88,7 @@ public class GameManager : MonoBehaviour
     {
         while (UnityMainThreadDispatcher.Instance?.ExecutionQueue.Count > 0)
         {
+            //var data = UnityMainThreadDispatcher.Instance.ExecutionQueue.Dequeue();
             GameMessage msg = UnityMainThreadDispatcher.Instance.ExecutionQueue.Dequeue();
             /*if (msg.MessageCase == GameMessage.MessageOneofCase.Chat)
             {
@@ -122,8 +125,24 @@ public class GameManager : MonoBehaviour
                 PlayerController.Instance.DespawnOtherPlayer(msg.Logout.PlayerId);
             }
         }
+
+        while (UnityMainThreadDispatcher.Instance?.ExecutionMatchingQueue.Count > 0)
+        {
+            MatchingMessage msg = UnityMainThreadDispatcher.Instance.ExecutionMatchingQueue.Dequeue();
+
+            if (msg.MatchingCase == MatchingMessage.MatchingOneofCase.MatchingResponse)
+            {
+                SceneChanger.Instance.SetRaceMaps(msg.MatchingResponse);
+                //Debug.Log(msg.MatchingResponse.MapName);
+            }
+        }
     }
-    
+
+    private void OnRenderImage(RenderTexture source, RenderTexture destination)
+    {
+        throw new NotImplementedException();
+    }
+
     public void StartRace()
     {
         if (activePlayersForNextRound.Count > 0)

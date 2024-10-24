@@ -6,6 +6,7 @@ using Game;
 public class UnityMainThreadDispatcher : MonoBehaviour
 {
     public readonly Queue<GameMessage> ExecutionQueue = new Queue<GameMessage>();
+    public readonly Queue<MatchingMessage> ExecutionMatchingQueue = new Queue<MatchingMessage>();
     
     public static UnityMainThreadDispatcher Instance { get; private set; }
 
@@ -21,10 +22,14 @@ public class UnityMainThreadDispatcher : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-
+    
     public void Enqueue(GameMessage msg)
     {
         ExecutionQueue.Enqueue(msg);
+    }
+
+    public void Enqueue(MatchingMessage msg)
+    {
+        ExecutionMatchingQueue.Enqueue(msg);
     }
 }
