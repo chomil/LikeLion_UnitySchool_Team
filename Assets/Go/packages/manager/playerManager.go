@@ -3,6 +3,7 @@ package manager
 import (
 	"encoding/binary"
 	"errors"
+	"fmt"
 	"log"
 
 	pb "golangtcp/messages"
@@ -37,6 +38,8 @@ type PlayerManager struct {
 	nextID                    int
 	activePlayersForNextRound map[string]bool
 	maxQualifiedPlayers       int
+	matchedPlayers            map[int]*Player
+	matchID                   int
 }
 
 // NewPlayerManager creates a new PlayerManager
@@ -48,6 +51,8 @@ func GetPlayerManager() *PlayerManager {
 			nextID:                    1,
 			activePlayersForNextRound: make(map[string]bool),
 			maxQualifiedPlayers:       10,
+			matchedPlayers:            make(map[int]*Player),
+			matchID:                   1,
 		}
 	}
 	return playerManager
@@ -71,13 +76,27 @@ func (pm *PlayerManager) AddPlayer(name string, age int, conn *net.Conn) Player 
 	pm.players[pm.nextID] = &player
 	pm.nextID++
 
-	pm.SpawnNewPlayerInfo(player)
-	pm.SendExistingPlayersToNewPlayer(player)
+	//pm.SpawnNewPlayerInfo(player)
+	//pm.SendExistingPlayersToNewPlayer(player)
 
 	return player
 }
 
+func (pm *PlayerManager) AddMatchedPlayer(name string) {
+	player, exists := pm.FindPlayerByName(name)
+	if !exists {
+		fmt.Println("Not found player")
+	}
+
+	pm.matchedPlayers[pm.matchID] = player
+	pm.matchID++
+
+	//pm.SpawnNewPlayerInfo(*player)
+	//pm.SendExistingPlayersToNewPlayer(*player)
+}
+
 // 로그인 시 내 정보를 다른 플레이어들에게 전송해서 나를 스폰하도록 한다.
+// func (pm *PlayerManager) SpawnNewPlayerInfo(newPlayer Player) {
 func (pm *PlayerManager) SpawnNewPlayerInfo(newPlayer Player) {
 	gameMessage := &pb.GameMessage{
 		Message: &pb.GameMessage_SpawnPlayer{
@@ -101,7 +120,7 @@ func (pm *PlayerManager) SpawnNewPlayerInfo(newPlayer Player) {
 	}
 
 	// 다른 플레이어들에게 전송
-	for _, player := range pm.players {
+	for _, player := range pm.matchedPlayers {
 		if player.Name == newPlayer.Name {
 			continue // 자신에게는 전송하지 않음
 		}
@@ -113,12 +132,13 @@ func (pm *PlayerManager) SpawnNewPlayerInfo(newPlayer Player) {
 
 		// 메시지 길이 정보와 메시지 데이터를 결합하여 전송
 		lengthBuf = append(lengthBuf, response...)
+		fmt.Println("spawn ", player.Name, lengthBuf)
 		(*player.Conn).Write(lengthBuf)
 	}
 }
 
 func (pm *PlayerManager) SendExistingPlayersToNewPlayer(newPlayer Player) {
-	for _, existingPlayer := range pm.players {
+	for _, existingPlayer := range pm.matchedPlayers {
 		if existingPlayer.Name == newPlayer.Name {
 			// 자신은 제외
 			continue
@@ -151,6 +171,7 @@ func (pm *PlayerManager) SendExistingPlayersToNewPlayer(newPlayer Player) {
 		lengthBuf[0] = co.GameMessageType
 
 		binary.LittleEndian.PutUint32(lengthBuf[1:], length)
+		//fmt.Println("spawn ", existingPlayer.Name, lengthBuf)
 		if _, err := (*newPlayer.Conn).Write(append(lengthBuf, response...)); err != nil {
 			log.Printf("Failed to send player data to new player: %v", err)
 		}
@@ -174,7 +195,8 @@ func (pm *PlayerManager) SendPlayerCostume(name string, cosType int32, cosName s
 	}
 
 	// 다른 플레이어들에게 전송
-	for _, player := range pm.players {
+	//	for _, player := range pm.players {
+	for _, player := range pm.matchedPlayers {
 		if player.Name == name {
 			continue // 자신에게는 전송하지 않음
 		}
@@ -207,7 +229,8 @@ func (pm *PlayerManager) SendPlayerAnimation(name string, animation string, spee
 	}
 
 	// 다른 플레이어들에게 전송
-	for _, player := range pm.players {
+	//for _, player := range pm.players {
+	for _, player := range pm.matchedPlayers {
 		if player.Name == name {
 			continue // 자신에게는 전송하지 않음
 		}
@@ -255,7 +278,8 @@ func (pm *PlayerManager) MovePlayer(name string, x float32, y float32, z float32
 		return
 	}
 
-	for _, player := range pm.players {
+	for _, player := range pm.matchedPlayers {
+		//for _, player := range pm.players {
 		if player.Name == name {
 			continue
 		}
@@ -344,7 +368,8 @@ func (pm *PlayerManager) BroadcastMessage(message *pb.GameMessage) {
 		return
 	}
 
-	for _, player := range pm.players {
+	//for _, player := range pm.players {
+	for _, player := range pm.matchedPlayers {
 		lengthBuf := make([]byte, 5)      // 메시지 길이와 타입을 포함하기 위해 5바이트로 설정
 		lengthBuf[0] = co.GameMessageType // 메시지 타입 설정
 		binary.LittleEndian.PutUint32(lengthBuf[1:], uint32(len(response)))
@@ -391,7 +416,8 @@ func (pm *PlayerManager) HandleRaceEnd(playerId string) {
 
 		// 통과한 플레이어만 새로운 맵에 추가
 
-		for _, player := range pm.players {
+		//for _, player := range pm.players {
+		for _, player := range pm.matchedPlayers {
 			if pm.activePlayersForNextRound[player.Name] {
 				player.ID = newID // ID 재할당
 				newPlayers[newID] = player

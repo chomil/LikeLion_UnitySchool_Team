@@ -19,13 +19,12 @@ public class SceneChanger : MonoBehaviour
     public List<string> RaceList = new(); //일반 레이스
     public List<string> TeamList; //팀전
     public List<string> finalList; //결승전
-    
+    public bool isRacing = false; //플레이하는 중이 아니라면 플레이어의 입력을 못 받도록 하는 변수
 
     private List<string> raceToPlay; //여기서 맵을 랜덤하게 뽑아서 경기
     private int raceToPlayIdx = 0;
     private List<string> teamToPlay; 
     private List<string> finalToPlay;
-    private bool isRacing = false; //플레이하는 중이 아니라면 플레이어의 입력을 못 받도록 하는 변수
     private Dictionary<Button, Action> buttonActions = new ();
     
     private void Awake()
@@ -103,14 +102,8 @@ public class SceneChanger : MonoBehaviour
         //null 방지
         if (raceToPlay.Count == 0) return;
 
-        isRacing = true;
+        //isRacing = true;
         
-        /*int randIdx = Random.Range(0, raceToPlay.Count);
-        string nextRace = raceToPlay[randIdx];
-
-        //사용된 레이스는 삭제
-        raceToPlay.RemoveAt(randIdx);*/
-        //씬 로딩
         Loading.LoadScene(raceToPlay[raceToPlayIdx]);
         raceToPlayIdx++;
     }

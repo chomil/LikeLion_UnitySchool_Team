@@ -119,9 +119,10 @@ func (m *MatchingManager) StartMatch() {
 	var GameMaps []string
 	GameMaps = append(GameMaps, RaceMaps[rand.Intn(len(RaceMaps))])
 	GameMaps = append(GameMaps, RaceMaps[rand.Intn(len(RaceMaps))])
-	GameMaps = append(GameMaps, TeamMaps[rand.Intn(len(TeamMaps))])
+	GameMaps = append(GameMaps, RaceMaps[rand.Intn(len(RaceMaps))])
 	GameMaps = append(GameMaps, FinalsMaps[rand.Intn(len(FinalsMaps))])
-	//MapIdx := rand.Intn(len(RaceMaps))
+	playerManager := GetPlayerManager()
+	playerManager.matchedPlayers = make(map[int]*Player)
 
 	// 매칭 시작 로직 구현
 	for _, player := range m.Players {
@@ -157,6 +158,8 @@ func (m *MatchingManager) StartMatch() {
 		} else {
 			log.Printf("Successfully sent MatchingResponse to player %s", player.ID)
 		}
+
+		playerManager.AddMatchedPlayer(player.ID)
 	}
 
 	//대기열 초기화
