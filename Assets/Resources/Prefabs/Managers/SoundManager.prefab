@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1220202215517062090}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -48,6 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxAudioSource: {fileID: 2324765778232798815}
   bgmAudioSource: {fileID: 1519245259993888677}
+  qualifySound: {fileID: 8300000, guid: 34b116c4b9c14bc45af08a51c39d5638, type: 3}
+  eliminateSound: {fileID: 8300000, guid: 802756f790ff9374f8152558fc5083f3, type: 3}
+  victorySound: {fileID: 8300000, guid: 3436c1082f23d8946ab4005f5583ae99, type: 3}
 --- !u!1 &5513120050410142381
 GameObject:
   m_ObjectHideFlags: 0

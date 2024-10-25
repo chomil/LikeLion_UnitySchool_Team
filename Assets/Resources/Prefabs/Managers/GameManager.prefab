@@ -51,3 +51,4 @@ MonoBehaviour:
     - Key: Race
       Value: {fileID: 8300000, guid: a26430373bf743a40aa18a207b7d96dd, type: 3}
   gameData: {fileID: 11400000, guid: d3c06685aa5ee71478e32b7a20b6ec55, type: 2}
+  maxQualifiedPlayers: 10

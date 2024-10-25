@@ -41,13 +41,18 @@ public class RaceUI : MonoBehaviour
     {
         if (statusImage != null) statusImage.gameObject.SetActive(false);
         if (victoryImage != null) victoryImage.gameObject.SetActive(false);
+        
+        // 시작할 때 UI 표시
+        ShowRaceUI();
+        UpdateQualifiedCount(0, GameManager.Instance.maxQualifiedPlayers);
     }
 
     public void UpdateQualifiedCount(int current, int max)
     {
         if (scoreText != null)
         {
-            scoreText.text = $"{current}/{max}";
+            scoreText.text = $"성공\n{current}/{max}"; 
+            Debug.Log($"Updating score text: {current}/{max}");  // 디버그 추가
         }
     }
 
@@ -86,6 +91,8 @@ public class RaceUI : MonoBehaviour
         if (scoreImage != null)
         {
             scoreImage.gameObject.SetActive(true);
+            // UI가 보이는지 디버그로 확인
+            Debug.Log("Race UI is shown");
         }
     }
 
