@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public GameData gameData;
     
     // 통과 시스템
-    [SerializeField] private int maxQualifiedPlayers = 10; // 첫 번째 맵의 통과 인원 (인스펙터에서 조정 가능)
+    [SerializeField] public int maxQualifiedPlayers = 10; // 첫 번째 맵의 통과 인원 (인스펙터에서 조정 가능)
     private int currentQualifiedCount = 0;
     private List<string> qualifiedPlayers = new List<string>();
     private bool isRaceEnded = false;
@@ -65,6 +65,8 @@ public class GameManager : MonoBehaviour
             maxQualifiedPlayers = 10; // 일반 레이스의 통과 인원
             Debug.Log($"Regular Race: {maxQualifiedPlayers} players can qualify");
         }
+        RaceUI.Instance.UpdateQualifiedCount(0, maxQualifiedPlayers);
+        StartRace();
     }
 
     public void InitializeData()
@@ -161,7 +163,7 @@ public class GameManager : MonoBehaviour
         RaceUI.Instance.ShowRaceUI();
         RaceUI.Instance.UpdateQualifiedCount(0, maxQualifiedPlayers);
         RaceUI.Instance.HideStatusMessage();
-
+        
         Debug.Log($"Race Started! Max players to qualify: {maxQualifiedPlayers}");
         PlayerController.Instance?.SetTotalPlayersCount(activePlayers.Count);
     }
@@ -205,6 +207,7 @@ public class GameManager : MonoBehaviour
         if (playerId == TCPManager.playerId)
         {
             RaceUI.Instance.ShowStatusMessage("통과!");
+            SoundManager.Instance.PlayQualifySound();  // 통과 소리
             PlayerMovement playerMovement = PlayerController.Instance.myPlayer.GetComponent<PlayerMovement>();
             if (playerMovement != null)
             {
@@ -226,6 +229,8 @@ public class GameManager : MonoBehaviour
         if (playerId == TCPManager.playerId)
         {
             RaceUI.Instance.ShowStatusMessage("탈락!");  // 탈락 메시지
+            SoundManager.Instance.PlayEliminateSound();
+            
             PlayerMovement playerMovement = PlayerController.Instance.myPlayer.GetComponent<PlayerMovement>();
             if (playerMovement != null)
             {
@@ -300,6 +305,7 @@ public class GameManager : MonoBehaviour
             if (currentQualifiedCount > 0)
             {
                 RaceUI.Instance.ShowStatusMessage("우승!", true);  // isVictory = true
+                SoundManager.Instance.PlayVictorySound();  // 우승 소리
             }
         }
         else if (currentQualifiedCount >= maxQualifiedPlayers)

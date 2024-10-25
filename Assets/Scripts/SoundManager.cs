@@ -10,7 +10,12 @@ public class SoundManager : MonoBehaviour
     
     public AudioSource sfxAudioSource; 
     public AudioSource bgmAudioSource;
-
+    
+    [Header("Race Sound Effects")]
+    [SerializeField] private AudioClip qualifySound;    // 통과 사운드
+    [SerializeField] private AudioClip eliminateSound;  // 탈락 사운드
+    [SerializeField] private AudioClip victorySound;    // 우승 사운드
+    
     private void Awake()
     {
         if (Instance == null)
@@ -96,5 +101,21 @@ public class SoundManager : MonoBehaviour
     public void SetBgmVolume(float volume)
     {
         bgmAudioSource.volume = volume;
+    }
+    
+    // 우승 탈락 통과
+    public void PlayQualifySound()
+    {
+        PlaySfx(qualifySound, 1f);
+    }
+
+    public void PlayEliminateSound()
+    {
+        PlaySfx(eliminateSound, 1f);
+    }
+
+    public void PlayVictorySound()
+    {
+        PlaySfx(victorySound, 1f);
     }
 }
