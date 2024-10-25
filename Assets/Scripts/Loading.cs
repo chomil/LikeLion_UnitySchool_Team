@@ -116,6 +116,7 @@ public class Loading : MonoBehaviour
                 if (progressRate >= 1f)
                 {
                     asyncOperation.allowSceneActivation = true;
+                    SceneChanger.Instance.isRacing = true;
                     yield break;
                 }
             }

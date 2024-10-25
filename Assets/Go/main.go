@@ -91,8 +91,8 @@ func processMessage(message *pb.GameMessage, conn *net.Conn) {
 	switch msg := message.Message.(type) {
 	case *pb.GameMessage_PlayerPosition:
 		pos := msg.PlayerPosition
-		//fmt.Println("Position : ", pos.X, pos.Y, pos.Z)    //확인용 로그
-		//fmt.Println("Rotation : ", pos.Rx, pos.Ry, pos.Rz) //확인용 로그
+		//fmt.Println("Position : ", pos.X, pos.Y, pos.Z, msg.PlayerPosition.PlayerId) //확인용 로그
+		//fmt.Println("Rotation : ", pos.Rx, pos.Ry, pos.Rz)                           //확인용 로그
 		mg.GetPlayerManager().MovePlayer(pos.PlayerId, pos.X, pos.Y, pos.Z, pos.Rx, pos.Ry, pos.Rz)
 	case *pb.GameMessage_Chat:
 		chat := msg.Chat
@@ -120,11 +120,17 @@ func processMessage(message *pb.GameMessage, conn *net.Conn) {
 		costume := msg.PlayerCostume
 		fmt.Printf("Player %s , %d, %s\n", costume.PlayerId, costume.PlayerCostumeType, costume.PlayerCostumeName)
 		mg.GetPlayerManager().SendPlayerCostume(costume.PlayerId, costume.PlayerCostumeType, costume.PlayerCostumeName)
-
 	case *pb.GameMessage_RaceEnd:
 		raceEnd := msg.RaceEnd
 		fmt.Printf("Race ended by player %s\n", raceEnd.PlayerId)
 		mg.GetPlayerManager().HandleRaceEnd(raceEnd.PlayerId)
+	case *pb.GameMessage_SpawnExistingPlayer:
+		playerId := msg.SpawnExistingPlayer.PlayerId
+		newPlayer, exists := mg.GetPlayerManager().FindPlayerByName(playerId)
+		if !exists {
+			fmt.Println("Not found player", playerId)
+		}
+		mg.GetPlayerManager().SendExistingPlayersToNewPlayer(*newPlayer)
 
 	default:
 		panic(fmt.Sprintf("unexpected messages.isGameMessage_Message: %#v", msg))

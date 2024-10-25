@@ -112,11 +112,13 @@ public class GameManager : MonoBehaviour
 
             if (msg.MessageCase == GameMessage.MessageOneofCase.SpawnPlayer)
             {
+                //PlayerController.Instance.InputOtherPlayersInfo(msg.SpawnPlayer);
                 PlayerController.Instance.SpawnOtherPlayer(msg.SpawnPlayer);
             }
 
             if (msg.MessageCase == GameMessage.MessageOneofCase.SpawnExistingPlayer)
             {
+                //PlayerController.Instance.InputOtherPlayersInfo(msg.SpawnExistingPlayer);
                 PlayerController.Instance.SpawnOtherPlayer(msg.SpawnExistingPlayer);
             }
 

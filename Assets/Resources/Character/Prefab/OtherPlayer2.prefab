@@ -2058,7 +2058,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8876833316519866506
 Transform:
   m_ObjectHideFlags: 0
@@ -2521,8 +2521,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTop: {fileID: 3520102498391187044}
   playerBottom: {fileID: 7754058472484106608}
-  costumeTop: {fileID: 0}
-  costumeBottom: {fileID: 0}
   rootBone: {fileID: 2917096810898100935}
 --- !u!1 &8025491020598444925
 GameObject:

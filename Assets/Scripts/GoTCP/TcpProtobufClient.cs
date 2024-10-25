@@ -116,16 +116,13 @@ public class TcpProtobufClient : MonoBehaviour
                 // Protobuf 파싱
                 GameMessage gameMessage = GameMessage.Parser.ParseFrom(actualMessageBytes);
                 UnityMainThreadDispatcher.Instance.Enqueue(gameMessage);
-                Debug.Log("Received GameMessage");
             }
             else if (messageType == MessageTypes.MatchingMessageType)
             {
                 MatchingMessage matchingMessage = MatchingMessage.Parser.ParseFrom(actualMessageBytes);
                 UnityMainThreadDispatcher.Instance.Enqueue(matchingMessage);
-                Debug.Log("Received MatchingMessage");
             }
-
-            Debug.Log($"Received message type: {messageType}, length: {bytesRead}");
+            
 
             /*// Protobuf 파싱
             GameMessage gameMessage = GameMessage.Parser.ParseFrom(actualMessageBytes);
@@ -253,6 +250,19 @@ public class TcpProtobufClient : MonoBehaviour
             Logout = msg
         };
         //SendMessage(message);
+        SendGameMessage(message);
+    }
+
+    public void SendSpawnExistingPlayer(string playerId)
+    {
+        var msg = new SpawnPlayer()
+        {
+            PlayerId = playerId,
+        };
+        var message = new GameMessage
+        {
+            SpawnExistingPlayer = msg
+        };
         SendGameMessage(message);
     }
     

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Game;
 using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -60,6 +61,12 @@ public class PlayerController : MonoBehaviour
             //로비에서 플레이어 카메라, 움직임 못하게 하기
             myPlayer.GetComponent<PlayerMovement>().cameraArm.SetActive(false);
             myPlayer.GetComponent<PlayerMovement>().enabled = false;
+        }
+
+        if (SceneChanger.Instance.isRacing)
+        {
+            TcpProtobufClient.Instance.SendSpawnExistingPlayer(TCPManager.playerId);
+            //SpawnOtherPlayers();
         }
     }
 
@@ -142,8 +149,8 @@ public class PlayerController : MonoBehaviour
 
     public void SpawnOtherPlayer(SpawnPlayer serverPlayer)
     {
-        GameObject SpawnPlayer = GameObject.Instantiate(otherPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
-        OtherPlayerTCP otherPlayerTcp = SpawnPlayer.GetComponent<OtherPlayerTCP>();
+        GameObject tempPlayer = GameObject.Instantiate(otherPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
+        OtherPlayerTCP otherPlayerTcp = tempPlayer.GetComponent<OtherPlayerTCP>();
         
         otherPlayerTcp.destination = new Vector3(serverPlayer.X, serverPlayer.Y, serverPlayer.Z);
         otherPlayerTcp.OtherRot = new Vector3(serverPlayer.Rx, serverPlayer.Ry, serverPlayer.Rz);
