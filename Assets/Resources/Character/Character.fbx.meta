@@ -3,7 +3,17 @@ guid: 0438a7a739856cf468b77797b4ef8108
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CH_FallGuy_MAT
+    second: {fileID: 2100000, guid: dcaa84b89348ed84ea4bf244c3f8415d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PRP_TailTag_MAT
+    second: {fileID: 2100000, guid: 4c7fac849829346409f8bda3110e98b8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

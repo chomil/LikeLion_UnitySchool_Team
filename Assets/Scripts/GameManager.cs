@@ -75,8 +75,8 @@ public class GameManager : MonoBehaviour
         //gameData.playerInfo.playerItems.Add(ItemType.Upper,"없음");
         //gameData.playerInfo.playerItems.Add(ItemType.Lower,"없음");
         //임시로 랜덤 코스튬
-        gameData.playerInfo.playerItems[ItemType.Upper] = gameData.allItemDatas[ItemType.Upper][Random.Range(0,6)].itemName;
-        gameData.playerInfo.playerItems[ItemType.Lower] = gameData.allItemDatas[ItemType.Lower][Random.Range(0,6)].itemName;
+        gameData.playerInfo.playerItems[ItemType.Upper] = gameData.allItemDatas[ItemType.Upper][Random.Range(1,gameData.allItemDatas[ItemType.Upper].Count)].itemName;
+        gameData.playerInfo.playerItems[ItemType.Lower] = gameData.allItemDatas[ItemType.Lower][Random.Range(1,gameData.allItemDatas[ItemType.Lower].Count)].itemName;
         //
     }
     
