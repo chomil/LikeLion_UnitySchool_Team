@@ -20,6 +20,7 @@ public class SceneChanger : MonoBehaviour
     public List<string> TeamList; //팀전
     public List<string> finalList; //결승전
     public bool isRacing = false; //플레이하는 중이 아니라면 플레이어의 입력을 못 받도록 하는 변수
+    public int matchingSeed = 0; //게임마다 플레이어들에게 같은 랜덤 시드를 주기 위해 서버로부터 받아서 사용
 
     private List<string> raceToPlay; //여기서 맵을 랜덤하게 뽑아서 경기
     private int raceToPlayIdx = 0;
@@ -93,6 +94,7 @@ public class SceneChanger : MonoBehaviour
     public void SetRaceMaps(MatchingResponse mr)
     {
         raceToPlay = new List<string>(mr.MapName);
+        matchingSeed = mr.MatchingSeed;
         PlayRace();
     }
     

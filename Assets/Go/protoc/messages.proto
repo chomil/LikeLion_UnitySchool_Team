@@ -83,6 +83,7 @@ message MatchingResponse {
   string game_server_address = 1;
   bool success = 2;
   repeated string map_name = 3;
+  int32 matching_seed = 4;
 }
 
 message MatchingUpdate {

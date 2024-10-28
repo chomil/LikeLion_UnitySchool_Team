@@ -22,16 +22,19 @@ const (
 var RaceMaps = []string{
 	"Race01",
 	"Race02",
+	"Race03",
 }
 
 var TeamMaps = []string{
 	"Race01",
 	"Race02",
+	"Race03",
 }
 
 var FinalsMaps = []string{
 	"Race01",
 	"Race02",
+	"Race03",
 }
 
 var matchingManager *MatchingManager
@@ -123,6 +126,7 @@ func (m *MatchingManager) StartMatch() {
 	GameMaps = append(GameMaps, FinalsMaps[rand.Intn(len(FinalsMaps))])
 	playerManager := GetPlayerManager()
 	playerManager.matchedPlayers = make(map[int]*Player)
+	matchingSeed := rand.Int31()
 
 	// 매칭 시작 로직 구현
 	for _, player := range m.Players {
@@ -132,6 +136,7 @@ func (m *MatchingManager) StartMatch() {
 					GameServerAddress: "",
 					Success:           true,
 					MapName:           GameMaps,
+					MatchingSeed:      matchingSeed,
 				},
 			},
 		}

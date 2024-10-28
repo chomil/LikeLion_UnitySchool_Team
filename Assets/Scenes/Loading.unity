@@ -3618,6 +3618,31 @@ PrefabInstance:
       objectReference: {fileID: 122752503}
     - target: {fileID: 9061868893675653354, guid: dcf59ee03ac53b94dbd29e8e513d2895,
         type: 3}
+      propertyPath: LoadingSceneData._serializedList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061868893675653354, guid: dcf59ee03ac53b94dbd29e8e513d2895,
+        type: 3}
+      propertyPath: LoadingSceneData._serializedList.Array.data[1].Key
+      value: Race02
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061868893675653354, guid: dcf59ee03ac53b94dbd29e8e513d2895,
+        type: 3}
+      propertyPath: LoadingSceneData._serializedList.Array.data[2].Key
+      value: Race03
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061868893675653354, guid: dcf59ee03ac53b94dbd29e8e513d2895,
+        type: 3}
+      propertyPath: LoadingSceneData._serializedList.Array.data[1].Value.mapTitle
+      value: "\uC815\uAE00 \uBC14\uC6B4\uC2A4"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061868893675653354, guid: dcf59ee03ac53b94dbd29e8e513d2895,
+        type: 3}
+      propertyPath: LoadingSceneData._serializedList.Array.data[2].Value.mapTitle
+      value: "\uC5B4\uC9C8\uC5B4\uC9C8 \uC7A5\uC560\uBB3C \uCF54\uC2A4"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061868893675653354, guid: dcf59ee03ac53b94dbd29e8e513d2895,
+        type: 3}
       propertyPath: LoadingSceneData._serializedList.Array.data[0].Value.iconImage
       value: 
       objectReference: {fileID: 21300000, guid: 8af7d269971e5cf4796c6dc3ce5ff236,
@@ -3630,12 +3655,47 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 9061868893675653354, guid: dcf59ee03ac53b94dbd29e8e513d2895,
         type: 3}
+      propertyPath: LoadingSceneData._serializedList.Array.data[2].Value.iconImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 8af7d269971e5cf4796c6dc3ce5ff236,
+        type: 3}
+    - target: {fileID: 9061868893675653354, guid: dcf59ee03ac53b94dbd29e8e513d2895,
+        type: 3}
+      propertyPath: LoadingSceneData._serializedList.Array.data[1].Value.description
+      value: "\uB4DC\uB7FC\uC744 \uD0C0\uACE0 \uB6F0\uC5B4\uC62C\uB77C \uACB0\uC2B9\uC120\uC5D0
+        \uB3C4\uB2EC\uD558\uC138\uC694!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061868893675653354, guid: dcf59ee03ac53b94dbd29e8e513d2895,
+        type: 3}
+      propertyPath: LoadingSceneData._serializedList.Array.data[2].Value.description
+      value: "\uC7A5\uC560\uBB3C\uC744 \uD1B5\uACFC\uD558\uACE0 \uACB0\uC2B9\uC120\uC5D0
+        \uB3C4\uB2EC\uD558\uC138\uC694!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061868893675653354, guid: dcf59ee03ac53b94dbd29e8e513d2895,
+        type: 3}
+      propertyPath: LoadingSceneData._serializedList.Array.data[1].Value.loadingImage
+      value: 
+      objectReference: {fileID: 21300000, guid: b0d5930437b2f884c9b349f67b7998a3,
+        type: 3}
+    - target: {fileID: 9061868893675653354, guid: dcf59ee03ac53b94dbd29e8e513d2895,
+        type: 3}
+      propertyPath: LoadingSceneData._serializedList.Array.data[2].Value.loadingImage
+      value: 
+      objectReference: {fileID: 21300000, guid: e22c1a67fcd4cf94d928292e612b8cb0,
+        type: 3}
+    - target: {fileID: 9061868893675653354, guid: dcf59ee03ac53b94dbd29e8e513d2895,
+        type: 3}
       propertyPath: LoadingSceneData._serializedList.Array.data[0].Value.goldMedalText
       value: "1\uC704 \uCC28\uC9C0"
       objectReference: {fileID: 0}
     - target: {fileID: 9061868893675653354, guid: dcf59ee03ac53b94dbd29e8e513d2895,
         type: 3}
       propertyPath: LoadingSceneData._serializedList.Array.data[1].Value.goldMedalText
+      value: "1\uC704 \uCC28\uC9C0"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061868893675653354, guid: dcf59ee03ac53b94dbd29e8e513d2895,
+        type: 3}
+      propertyPath: LoadingSceneData._serializedList.Array.data[2].Value.goldMedalText
       value: "1\uC704 \uCC28\uC9C0"
       objectReference: {fileID: 0}
     - target: {fileID: 9061868893675653354, guid: dcf59ee03ac53b94dbd29e8e513d2895,
@@ -3656,6 +3716,16 @@ PrefabInstance:
     - target: {fileID: 9061868893675653354, guid: dcf59ee03ac53b94dbd29e8e513d2895,
         type: 3}
       propertyPath: LoadingSceneData._serializedList.Array.data[1].Value.silverMedalText
+      value: "\uC21C\uC704 \uC0C1\uC704 20%"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061868893675653354, guid: dcf59ee03ac53b94dbd29e8e513d2895,
+        type: 3}
+      propertyPath: LoadingSceneData._serializedList.Array.data[2].Value.bronzeMedalText
+      value: "\uC21C\uC704 \uC0C1\uC704 50%"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061868893675653354, guid: dcf59ee03ac53b94dbd29e8e513d2895,
+        type: 3}
+      propertyPath: LoadingSceneData._serializedList.Array.data[2].Value.silverMedalText
       value: "\uC21C\uC704 \uC0C1\uC704 20%"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
