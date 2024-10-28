@@ -49,15 +49,16 @@ namespace Game {
             "Y2VGaW5pc2hNZXNzYWdlSAASLgoOcGxheWVyX2Nvc3R1bWUYCSABKAsyFC5n",
             "YW1lLkNvc3R1bWVNZXNzYWdlSAASKAoIcmFjZV9lbmQYCiABKAsyFC5nYW1l",
             "LlJhY2VFbmRNZXNzYWdlSABCCQoHbWVzc2FnZSI1Cg9NYXRjaGluZ1JlcXVl",
-            "c3QSEQoJcGxheWVyX2lkGAEgASgJEg8KB3dhaXRpbmcYAiABKAgiUgoQTWF0",
+            "c3QSEQoJcGxheWVyX2lkGAEgASgJEg8KB3dhaXRpbmcYAiABKAgiaQoQTWF0",
             "Y2hpbmdSZXNwb25zZRIbChNnYW1lX3NlcnZlcl9hZGRyZXNzGAEgASgJEg8K",
-            "B3N1Y2Nlc3MYAiABKAgSEAoIbWFwX25hbWUYAyADKAkiQwoOTWF0Y2hpbmdV",
-            "cGRhdGUSFwoPY3VycmVudF9wbGF5ZXJzGAEgASgFEhgKEHJlcXVpcmVkX3Bs",
-            "YXllcnMYAiABKAUitgEKD01hdGNoaW5nTWVzc2FnZRIxChBtYXRjaGluZ19y",
-            "ZXF1ZXN0GAEgASgLMhUuZ2FtZS5NYXRjaGluZ1JlcXVlc3RIABIzChFtYXRj",
-            "aGluZ19yZXNwb25zZRgCIAEoCzIWLmdhbWUuTWF0Y2hpbmdSZXNwb25zZUgA",
-            "Ei8KD21hdGNoaW5nX3VwZGF0ZRgDIAEoCzIULmdhbWUuTWF0Y2hpbmdVcGRh",
-            "dGVIAEIKCghtYXRjaGluZ0INWgtHby9tZXNzYWdlc2IGcHJvdG8z"));
+            "B3N1Y2Nlc3MYAiABKAgSEAoIbWFwX25hbWUYAyADKAkSFQoNbWF0Y2hpbmdf",
+            "c2VlZBgEIAEoBSJDCg5NYXRjaGluZ1VwZGF0ZRIXCg9jdXJyZW50X3BsYXll",
+            "cnMYASABKAUSGAoQcmVxdWlyZWRfcGxheWVycxgCIAEoBSK2AQoPTWF0Y2hp",
+            "bmdNZXNzYWdlEjEKEG1hdGNoaW5nX3JlcXVlc3QYASABKAsyFS5nYW1lLk1h",
+            "dGNoaW5nUmVxdWVzdEgAEjMKEW1hdGNoaW5nX3Jlc3BvbnNlGAIgASgLMhYu",
+            "Z2FtZS5NYXRjaGluZ1Jlc3BvbnNlSAASLwoPbWF0Y2hpbmdfdXBkYXRlGAMg",
+            "ASgLMhQuZ2FtZS5NYXRjaGluZ1VwZGF0ZUgAQgoKCG1hdGNoaW5nQg1aC0dv",
+            "L21lc3NhZ2VzYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -72,7 +73,7 @@ namespace Game {
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.RaceEndMessage), global::Game.RaceEndMessage.Parser, new[]{ "PlayerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.GameMessage), global::Game.GameMessage.Parser, new[]{ "PlayerPosition", "Chat", "Login", "PlayerAnimState", "SpawnPlayer", "SpawnExistingPlayer", "Logout", "RaceFinish", "PlayerCostume", "RaceEnd" }, new[]{ "Message" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.MatchingRequest), global::Game.MatchingRequest.Parser, new[]{ "PlayerId", "Waiting" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Game.MatchingResponse), global::Game.MatchingResponse.Parser, new[]{ "GameServerAddress", "Success", "MapName" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Game.MatchingResponse), global::Game.MatchingResponse.Parser, new[]{ "GameServerAddress", "Success", "MapName", "MatchingSeed" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.MatchingUpdate), global::Game.MatchingUpdate.Parser, new[]{ "CurrentPlayers", "RequiredPlayers" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.MatchingMessage), global::Game.MatchingMessage.Parser, new[]{ "MatchingRequest", "MatchingResponse", "MatchingUpdate" }, new[]{ "Matching" }, null, null, null)
           }));
@@ -3560,6 +3561,7 @@ namespace Game {
       gameServerAddress_ = other.gameServerAddress_;
       success_ = other.success_;
       mapName_ = other.mapName_.Clone();
+      matchingSeed_ = other.matchingSeed_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3604,6 +3606,18 @@ namespace Game {
       get { return mapName_; }
     }
 
+    /// <summary>Field number for the "matching_seed" field.</summary>
+    public const int MatchingSeedFieldNumber = 4;
+    private int matchingSeed_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int MatchingSeed {
+      get { return matchingSeed_; }
+      set {
+        matchingSeed_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -3622,6 +3636,7 @@ namespace Game {
       if (GameServerAddress != other.GameServerAddress) return false;
       if (Success != other.Success) return false;
       if(!mapName_.Equals(other.mapName_)) return false;
+      if (MatchingSeed != other.MatchingSeed) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3632,6 +3647,7 @@ namespace Game {
       if (GameServerAddress.Length != 0) hash ^= GameServerAddress.GetHashCode();
       if (Success != false) hash ^= Success.GetHashCode();
       hash ^= mapName_.GetHashCode();
+      if (MatchingSeed != 0) hash ^= MatchingSeed.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3659,6 +3675,10 @@ namespace Game {
         output.WriteBool(Success);
       }
       mapName_.WriteTo(output, _repeated_mapName_codec);
+      if (MatchingSeed != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(MatchingSeed);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -3678,6 +3698,10 @@ namespace Game {
         output.WriteBool(Success);
       }
       mapName_.WriteTo(ref output, _repeated_mapName_codec);
+      if (MatchingSeed != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(MatchingSeed);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -3695,6 +3719,9 @@ namespace Game {
         size += 1 + 1;
       }
       size += mapName_.CalculateSize(_repeated_mapName_codec);
+      if (MatchingSeed != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MatchingSeed);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -3714,6 +3741,9 @@ namespace Game {
         Success = other.Success;
       }
       mapName_.Add(other.mapName_);
+      if (other.MatchingSeed != 0) {
+        MatchingSeed = other.MatchingSeed;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -3745,6 +3775,10 @@ namespace Game {
             mapName_.AddEntriesFrom(input, _repeated_mapName_codec);
             break;
           }
+          case 32: {
+            MatchingSeed = input.ReadInt32();
+            break;
+          }
         }
       }
     #endif
@@ -3774,6 +3808,10 @@ namespace Game {
           }
           case 26: {
             mapName_.AddEntriesFrom(ref input, _repeated_mapName_codec);
+            break;
+          }
+          case 32: {
+            MatchingSeed = input.ReadInt32();
             break;
           }
         }
