@@ -46,11 +46,36 @@ MonoBehaviour:
         itemObject: {fileID: 919132149155446097, guid: 6a62c3ad3ac67954b856ad92dea02cd8,
           type: 3}
         itemIcon: {fileID: 21300000, guid: b2a944c5f6f39194295ae7cc34f3bf1a, type: 3}
+      - itemName: "\uB4DC\uC6CC\uD504"
+        itemType: 3
+        itemObject: {fileID: 919132149155446097, guid: 926b00457f6b7174095f2303bada9d02,
+          type: 3}
+        itemIcon: {fileID: 21300000, guid: c0cc79ced38447743814eee51e196795, type: 3}
+      - itemName: "\uB2EC\uAC40 \uAECD\uB370\uAE30"
+        itemType: 3
+        itemObject: {fileID: 919132149155446097, guid: d004c87ef46396249bcc2ad75eac390c,
+          type: 3}
+        itemIcon: {fileID: 21300000, guid: 54e03523ec5348d4c854e04b018680ba, type: 3}
+      - itemName: "\uC694\uC815"
+        itemType: 3
+        itemObject: {fileID: 919132149155446097, guid: ba28b87b7fb6ab04a9fbbdeb8ec14f7a,
+          type: 3}
+        itemIcon: {fileID: 21300000, guid: fd7a90d3786d7994aa8c86e0c308a093, type: 3}
+      - itemName: "\uAC10\uC790\uD280\uAE40"
+        itemType: 3
+        itemObject: {fileID: 919132149155446097, guid: effb5a8e648e0ee4090eb7e8517bdbb3,
+          type: 3}
+        itemIcon: {fileID: 21300000, guid: 09c2037cb78feeb4e9c02c27e8a1c063, type: 3}
       - itemName: "\uC9C0\uB2C8"
         itemType: 3
         itemObject: {fileID: 919132149155446097, guid: 2d98a4827396eb742be67dbd95223129,
           type: 3}
         itemIcon: {fileID: 21300000, guid: ae745c5e5fe56a741aca16206b70e12d, type: 3}
+      - itemName: "\uD56B\uB3C4\uADF8"
+        itemType: 3
+        itemObject: {fileID: 919132149155446097, guid: 21afa9eae84c27b4887945eb017ca3de,
+          type: 3}
+        itemIcon: {fileID: 21300000, guid: fb0a269941822204388f1344c3454908, type: 3}
     - Key: 4
       Value:
       - itemName: "\uC5C6\uC74C"
@@ -77,11 +102,35 @@ MonoBehaviour:
         itemObject: {fileID: 919132149155446097, guid: 260eefc652bd9d04394d7ba09eab139f,
           type: 3}
         itemIcon: {fileID: 21300000, guid: 8d523423106497143afff406d876760f, type: 3}
+      - itemName: "\uB4DC\uC6CC\uD504"
+        itemType: 4
+        itemObject: {fileID: 919132149155446097, guid: c22ee6453e1b32d4ea6723aa22e4bc36,
+          type: 3}
+        itemIcon: {fileID: 21300000, guid: e159e58d6c570f4449301f88d53d898f, type: 3}
+      - itemName: "\uB2EC\uAC40 \uAECD\uB370\uAE30"
+        itemType: 4
+        itemObject: {fileID: 919132149155446097, guid: 593310f57aa57fa44a14c7661561fdb5,
+          type: 3}
+        itemIcon: {fileID: 21300000, guid: 99ccf6110f02461488aae71d2e201293, type: 3}
+      - itemName: "\uC694\uC815"
+        itemType: 4
+        itemObject: {fileID: 919132149155446097, guid: fb239e669fc81da4684adfa148a70195,
+          type: 3}
+        itemIcon: {fileID: 21300000, guid: 8213113df6e74134eb4f5175c59e8b89, type: 3}
+      - itemName: "\uAC10\uC790\uD280\uAE40"
+        itemType: 4
+        itemObject: {fileID: 919132149155446097, guid: faba192b35c03374eacc7bcc080612dc,
+          type: 3}
+        itemIcon: {fileID: 21300000, guid: be377c63777bb4c4d84e827ab9dbd664, type: 3}
       - itemName: "\uC9C0\uB2C8"
         itemType: 4
         itemObject: {fileID: 919132149155446097, guid: 880bf5c4bdccf5444a70e394e9c6c16f,
           type: 3}
         itemIcon: {fileID: 21300000, guid: 5a69bd2c65a694f4daf7f22c06338e11, type: 3}
+      - itemName: "\uD56B\uB3C4\uADF8"
+        itemType: 4
+        itemObject: {fileID: 919132149155446097, guid: eab82975ceb534f42a292f4ee6af900f,
+          type: 3}
+        itemIcon: {fileID: 21300000, guid: 03ce53a264667ac49aa7467ed8806e96, type: 3}
   playerInfo:
     playerName: 
-    playerItemNames: []
