@@ -144,7 +144,8 @@ public class PlayerController : MonoBehaviour
     public void OnRaceFinishMessageReceived(RaceFinishMessage finishMessage)
     {
         Debug.Log($"Race finish message received for player: {finishMessage.PlayerId}");
-        OnPlayerFinished(finishMessage.PlayerId);
+        GameManager.Instance.PlayerFinished(finishMessage.PlayerId);
+        GameManager.Instance.CheckRaceEndCondition(); // 레이스 종료 조건 체크
     }
 
     public void SpawnOtherPlayer(SpawnPlayer serverPlayer)

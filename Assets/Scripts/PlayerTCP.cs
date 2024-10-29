@@ -66,8 +66,7 @@ public class PlayerTCP : MonoBehaviour
         {
             hasFinished = true;
             GameManager.Instance.PlayerFinished(PlayerId);
-            TcpProtobufClient.Instance.SendRaceFinish(PlayerId);
-            Debug.Log($"Player {PlayerId} finished the race and sent finish message to server.");
+            Debug.Log($"Player {PlayerId} finished the race.");
         
             // PlayerMovement의 SetIdleState 호출
             PlayerMovement playerMovement = GetComponent<PlayerMovement>();

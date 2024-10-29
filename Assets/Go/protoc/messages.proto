@@ -71,6 +71,7 @@ message GameMessage {
     RaceFinishMessage race_finish = 8;
     CostumeMessage player_costume = 9;
     RaceEndMessage race_end = 10;
+    SpectatorStateMessage spectator_state = 11;
   }
 }
 
@@ -97,5 +98,11 @@ message MatchingMessage {
     MatchingResponse matching_response = 2;      // 매칭 응답 추가, 서버 -> 클라
     MatchingUpdate matching_update = 3;          // 매칭 상태 업데이트 추가
   }
+}
+
+message SpectatorStateMessage {
+  string player_id = 1;          // 관전자 ID
+  bool is_spectating = 2;        // 관전 모드 여부
+  string target_player_id = 3;   // 관전 대상 플레이어 ID
 }
 
