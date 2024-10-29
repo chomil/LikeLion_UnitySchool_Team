@@ -38,7 +38,7 @@ namespace Game {
             "CgpmaW5pc2hUaW1lGAIgASgDIlgKDkNvc3R1bWVNZXNzYWdlEhAKCHBsYXll",
             "cklkGAEgASgJEhkKEXBsYXllckNvc3R1bWVUeXBlGAIgASgFEhkKEXBsYXll",
             "ckNvc3R1bWVOYW1lGAMgASgJIiIKDlJhY2VFbmRNZXNzYWdlEhAKCHBsYXll",
-            "cklkGAEgASgJItIDCgtHYW1lTWVzc2FnZRIvCg9wbGF5ZXJfcG9zaXRpb24Y",
+            "cklkGAEgASgJIooECgtHYW1lTWVzc2FnZRIvCg9wbGF5ZXJfcG9zaXRpb24Y",
             "ASABKAsyFC5nYW1lLlBsYXllclBvc2l0aW9uSAASIQoEY2hhdBgCIAEoCzIR",
             "LmdhbWUuQ2hhdE1lc3NhZ2VIABIjCgVsb2dpbhgDIAEoCzISLmdhbWUuTG9n",
             "aW5NZXNzYWdlSAASMgoRcGxheWVyX2FuaW1fc3RhdGUYBCABKAsyFS5nYW1l",
@@ -48,17 +48,20 @@ namespace Game {
             "b2dvdXRNZXNzYWdlSAASLgoLcmFjZV9maW5pc2gYCCABKAsyFy5nYW1lLlJh",
             "Y2VGaW5pc2hNZXNzYWdlSAASLgoOcGxheWVyX2Nvc3R1bWUYCSABKAsyFC5n",
             "YW1lLkNvc3R1bWVNZXNzYWdlSAASKAoIcmFjZV9lbmQYCiABKAsyFC5nYW1l",
-            "LlJhY2VFbmRNZXNzYWdlSABCCQoHbWVzc2FnZSI1Cg9NYXRjaGluZ1JlcXVl",
-            "c3QSEQoJcGxheWVyX2lkGAEgASgJEg8KB3dhaXRpbmcYAiABKAgiaQoQTWF0",
-            "Y2hpbmdSZXNwb25zZRIbChNnYW1lX3NlcnZlcl9hZGRyZXNzGAEgASgJEg8K",
-            "B3N1Y2Nlc3MYAiABKAgSEAoIbWFwX25hbWUYAyADKAkSFQoNbWF0Y2hpbmdf",
-            "c2VlZBgEIAEoBSJDCg5NYXRjaGluZ1VwZGF0ZRIXCg9jdXJyZW50X3BsYXll",
-            "cnMYASABKAUSGAoQcmVxdWlyZWRfcGxheWVycxgCIAEoBSK2AQoPTWF0Y2hp",
-            "bmdNZXNzYWdlEjEKEG1hdGNoaW5nX3JlcXVlc3QYASABKAsyFS5nYW1lLk1h",
-            "dGNoaW5nUmVxdWVzdEgAEjMKEW1hdGNoaW5nX3Jlc3BvbnNlGAIgASgLMhYu",
-            "Z2FtZS5NYXRjaGluZ1Jlc3BvbnNlSAASLwoPbWF0Y2hpbmdfdXBkYXRlGAMg",
-            "ASgLMhQuZ2FtZS5NYXRjaGluZ1VwZGF0ZUgAQgoKCG1hdGNoaW5nQg1aC0dv",
-            "L21lc3NhZ2VzYgZwcm90bzM="));
+            "LlJhY2VFbmRNZXNzYWdlSAASNgoPc3BlY3RhdG9yX3N0YXRlGAsgASgLMhsu",
+            "Z2FtZS5TcGVjdGF0b3JTdGF0ZU1lc3NhZ2VIAEIJCgdtZXNzYWdlIjUKD01h",
+            "dGNoaW5nUmVxdWVzdBIRCglwbGF5ZXJfaWQYASABKAkSDwoHd2FpdGluZxgC",
+            "IAEoCCJpChBNYXRjaGluZ1Jlc3BvbnNlEhsKE2dhbWVfc2VydmVyX2FkZHJl",
+            "c3MYASABKAkSDwoHc3VjY2VzcxgCIAEoCBIQCghtYXBfbmFtZRgDIAMoCRIV",
+            "Cg1tYXRjaGluZ19zZWVkGAQgASgFIkMKDk1hdGNoaW5nVXBkYXRlEhcKD2N1",
+            "cnJlbnRfcGxheWVycxgBIAEoBRIYChByZXF1aXJlZF9wbGF5ZXJzGAIgASgF",
+            "IrYBCg9NYXRjaGluZ01lc3NhZ2USMQoQbWF0Y2hpbmdfcmVxdWVzdBgBIAEo",
+            "CzIVLmdhbWUuTWF0Y2hpbmdSZXF1ZXN0SAASMwoRbWF0Y2hpbmdfcmVzcG9u",
+            "c2UYAiABKAsyFi5nYW1lLk1hdGNoaW5nUmVzcG9uc2VIABIvCg9tYXRjaGlu",
+            "Z191cGRhdGUYAyABKAsyFC5nYW1lLk1hdGNoaW5nVXBkYXRlSABCCgoIbWF0",
+            "Y2hpbmciWwoVU3BlY3RhdG9yU3RhdGVNZXNzYWdlEhEKCXBsYXllcl9pZBgB",
+            "IAEoCRIVCg1pc19zcGVjdGF0aW5nGAIgASgIEhgKEHRhcmdldF9wbGF5ZXJf",
+            "aWQYAyABKAlCDVoLR28vbWVzc2FnZXNiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -71,11 +74,12 @@ namespace Game {
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.RaceFinishMessage), global::Game.RaceFinishMessage.Parser, new[]{ "PlayerId", "FinishTime" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.CostumeMessage), global::Game.CostumeMessage.Parser, new[]{ "PlayerId", "PlayerCostumeType", "PlayerCostumeName" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.RaceEndMessage), global::Game.RaceEndMessage.Parser, new[]{ "PlayerId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Game.GameMessage), global::Game.GameMessage.Parser, new[]{ "PlayerPosition", "Chat", "Login", "PlayerAnimState", "SpawnPlayer", "SpawnExistingPlayer", "Logout", "RaceFinish", "PlayerCostume", "RaceEnd" }, new[]{ "Message" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Game.GameMessage), global::Game.GameMessage.Parser, new[]{ "PlayerPosition", "Chat", "Login", "PlayerAnimState", "SpawnPlayer", "SpawnExistingPlayer", "Logout", "RaceFinish", "PlayerCostume", "RaceEnd", "SpectatorState" }, new[]{ "Message" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.MatchingRequest), global::Game.MatchingRequest.Parser, new[]{ "PlayerId", "Waiting" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.MatchingResponse), global::Game.MatchingResponse.Parser, new[]{ "GameServerAddress", "Success", "MapName", "MatchingSeed" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.MatchingUpdate), global::Game.MatchingUpdate.Parser, new[]{ "CurrentPlayers", "RequiredPlayers" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Game.MatchingMessage), global::Game.MatchingMessage.Parser, new[]{ "MatchingRequest", "MatchingResponse", "MatchingUpdate" }, new[]{ "Matching" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Game.MatchingMessage), global::Game.MatchingMessage.Parser, new[]{ "MatchingRequest", "MatchingResponse", "MatchingUpdate" }, new[]{ "Matching" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Game.SpectatorStateMessage), global::Game.SpectatorStateMessage.Parser, new[]{ "PlayerId", "IsSpectating", "TargetPlayerId" }, null, null, null, null)
           }));
     }
     #endregion
@@ -2636,6 +2640,9 @@ namespace Game {
         case MessageOneofCase.RaceEnd:
           RaceEnd = other.RaceEnd.Clone();
           break;
+        case MessageOneofCase.SpectatorState:
+          SpectatorState = other.SpectatorState.Clone();
+          break;
       }
 
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -2767,6 +2774,18 @@ namespace Game {
       }
     }
 
+    /// <summary>Field number for the "spectator_state" field.</summary>
+    public const int SpectatorStateFieldNumber = 11;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Game.SpectatorStateMessage SpectatorState {
+      get { return messageCase_ == MessageOneofCase.SpectatorState ? (global::Game.SpectatorStateMessage) message_ : null; }
+      set {
+        message_ = value;
+        messageCase_ = value == null ? MessageOneofCase.None : MessageOneofCase.SpectatorState;
+      }
+    }
+
     private object message_;
     /// <summary>Enum of possible cases for the "message" oneof.</summary>
     public enum MessageOneofCase {
@@ -2781,6 +2800,7 @@ namespace Game {
       RaceFinish = 8,
       PlayerCostume = 9,
       RaceEnd = 10,
+      SpectatorState = 11,
     }
     private MessageOneofCase messageCase_ = MessageOneofCase.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2821,6 +2841,7 @@ namespace Game {
       if (!object.Equals(RaceFinish, other.RaceFinish)) return false;
       if (!object.Equals(PlayerCostume, other.PlayerCostume)) return false;
       if (!object.Equals(RaceEnd, other.RaceEnd)) return false;
+      if (!object.Equals(SpectatorState, other.SpectatorState)) return false;
       if (MessageCase != other.MessageCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -2839,6 +2860,7 @@ namespace Game {
       if (messageCase_ == MessageOneofCase.RaceFinish) hash ^= RaceFinish.GetHashCode();
       if (messageCase_ == MessageOneofCase.PlayerCostume) hash ^= PlayerCostume.GetHashCode();
       if (messageCase_ == MessageOneofCase.RaceEnd) hash ^= RaceEnd.GetHashCode();
+      if (messageCase_ == MessageOneofCase.SpectatorState) hash ^= SpectatorState.GetHashCode();
       hash ^= (int) messageCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -2898,6 +2920,10 @@ namespace Game {
         output.WriteRawTag(82);
         output.WriteMessage(RaceEnd);
       }
+      if (messageCase_ == MessageOneofCase.SpectatorState) {
+        output.WriteRawTag(90);
+        output.WriteMessage(SpectatorState);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2948,6 +2974,10 @@ namespace Game {
         output.WriteRawTag(82);
         output.WriteMessage(RaceEnd);
       }
+      if (messageCase_ == MessageOneofCase.SpectatorState) {
+        output.WriteRawTag(90);
+        output.WriteMessage(SpectatorState);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2987,6 +3017,9 @@ namespace Game {
       }
       if (messageCase_ == MessageOneofCase.RaceEnd) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(RaceEnd);
+      }
+      if (messageCase_ == MessageOneofCase.SpectatorState) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SpectatorState);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3060,6 +3093,12 @@ namespace Game {
             RaceEnd = new global::Game.RaceEndMessage();
           }
           RaceEnd.MergeFrom(other.RaceEnd);
+          break;
+        case MessageOneofCase.SpectatorState:
+          if (SpectatorState == null) {
+            SpectatorState = new global::Game.SpectatorStateMessage();
+          }
+          SpectatorState.MergeFrom(other.SpectatorState);
           break;
       }
 
@@ -3172,6 +3211,15 @@ namespace Game {
             RaceEnd = subBuilder;
             break;
           }
+          case 90: {
+            global::Game.SpectatorStateMessage subBuilder = new global::Game.SpectatorStateMessage();
+            if (messageCase_ == MessageOneofCase.SpectatorState) {
+              subBuilder.MergeFrom(SpectatorState);
+            }
+            input.ReadMessage(subBuilder);
+            SpectatorState = subBuilder;
+            break;
+          }
         }
       }
     #endif
@@ -3279,6 +3327,15 @@ namespace Game {
             }
             input.ReadMessage(subBuilder);
             RaceEnd = subBuilder;
+            break;
+          }
+          case 90: {
+            global::Game.SpectatorStateMessage subBuilder = new global::Game.SpectatorStateMessage();
+            if (messageCase_ == MessageOneofCase.SpectatorState) {
+              subBuilder.MergeFrom(SpectatorState);
+            }
+            input.ReadMessage(subBuilder);
+            SpectatorState = subBuilder;
             break;
           }
         }
@@ -4403,6 +4460,287 @@ namespace Game {
             }
             input.ReadMessage(subBuilder);
             MatchingUpdate = subBuilder;
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class SpectatorStateMessage : pb::IMessage<SpectatorStateMessage>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<SpectatorStateMessage> _parser = new pb::MessageParser<SpectatorStateMessage>(() => new SpectatorStateMessage());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<SpectatorStateMessage> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Game.MessagesReflection.Descriptor.MessageTypes[14]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SpectatorStateMessage() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SpectatorStateMessage(SpectatorStateMessage other) : this() {
+      playerId_ = other.playerId_;
+      isSpectating_ = other.isSpectating_;
+      targetPlayerId_ = other.targetPlayerId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SpectatorStateMessage Clone() {
+      return new SpectatorStateMessage(this);
+    }
+
+    /// <summary>Field number for the "player_id" field.</summary>
+    public const int PlayerIdFieldNumber = 1;
+    private string playerId_ = "";
+    /// <summary>
+    /// 관전자 ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string PlayerId {
+      get { return playerId_; }
+      set {
+        playerId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "is_spectating" field.</summary>
+    public const int IsSpectatingFieldNumber = 2;
+    private bool isSpectating_;
+    /// <summary>
+    /// 관전 모드 여부
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool IsSpectating {
+      get { return isSpectating_; }
+      set {
+        isSpectating_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "target_player_id" field.</summary>
+    public const int TargetPlayerIdFieldNumber = 3;
+    private string targetPlayerId_ = "";
+    /// <summary>
+    /// 관전 대상 플레이어 ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string TargetPlayerId {
+      get { return targetPlayerId_; }
+      set {
+        targetPlayerId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as SpectatorStateMessage);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(SpectatorStateMessage other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (PlayerId != other.PlayerId) return false;
+      if (IsSpectating != other.IsSpectating) return false;
+      if (TargetPlayerId != other.TargetPlayerId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (PlayerId.Length != 0) hash ^= PlayerId.GetHashCode();
+      if (IsSpectating != false) hash ^= IsSpectating.GetHashCode();
+      if (TargetPlayerId.Length != 0) hash ^= TargetPlayerId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (PlayerId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(PlayerId);
+      }
+      if (IsSpectating != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(IsSpectating);
+      }
+      if (TargetPlayerId.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(TargetPlayerId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (PlayerId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(PlayerId);
+      }
+      if (IsSpectating != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(IsSpectating);
+      }
+      if (TargetPlayerId.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(TargetPlayerId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (PlayerId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(PlayerId);
+      }
+      if (IsSpectating != false) {
+        size += 1 + 1;
+      }
+      if (TargetPlayerId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(TargetPlayerId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(SpectatorStateMessage other) {
+      if (other == null) {
+        return;
+      }
+      if (other.PlayerId.Length != 0) {
+        PlayerId = other.PlayerId;
+      }
+      if (other.IsSpectating != false) {
+        IsSpectating = other.IsSpectating;
+      }
+      if (other.TargetPlayerId.Length != 0) {
+        TargetPlayerId = other.TargetPlayerId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            PlayerId = input.ReadString();
+            break;
+          }
+          case 16: {
+            IsSpectating = input.ReadBool();
+            break;
+          }
+          case 26: {
+            TargetPlayerId = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            PlayerId = input.ReadString();
+            break;
+          }
+          case 16: {
+            IsSpectating = input.ReadBool();
+            break;
+          }
+          case 26: {
+            TargetPlayerId = input.ReadString();
             break;
           }
         }
