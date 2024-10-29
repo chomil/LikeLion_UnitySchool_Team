@@ -10,6 +10,6 @@ public struct ItemData
 {
     public string itemName;
     public ItemType itemType;
-    public GameObject itemObject;
+    public Object itemObject;
     public Sprite itemIcon;
 }
