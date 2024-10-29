@@ -197,6 +197,9 @@ public class GameManager : MonoBehaviour
             HandlePlayerElimination(playerId);
             return;
         }
+        
+        // 서버에 완주 메시지 전송
+        TcpProtobufClient.Instance.SendRaceFinish(playerId);
 
         // 통과 처리
         currentQualifiedCount++;
@@ -248,8 +251,25 @@ public class GameManager : MonoBehaviour
         EndRaceWithMaxQualified(); 
     }
     
+    private bool IsAllPlayersFinished()
+    {
+        return activePlayers.Count > 0 && 
+               (currentQualifiedCount >= maxQualifiedPlayers || 
+                currentQualifiedCount >= activePlayers.Count);
+    }
+
+    public void CheckRaceEndCondition()
+    {
+        if (!isRaceEnded && IsAllPlayersFinished())
+        {
+            EndRaceWithMaxQualified();
+        }
+    }
+    
     public void EndRaceWithMaxQualified()
     {
+        if (isRaceEnded) return;  // 이미 종료된 경우 중복 처리 방지
+        
         isRaceEnded = true;
         Debug.Log($"Race ended - Maximum qualified players reached!");
 

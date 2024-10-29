@@ -696,6 +696,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eee3b733e7ebb2449b55b56a8c6fc3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraOffset: {x: 0, y: 2, z: -5}
+  smoothSpeed: 5
 --- !u!1 &2341025039739565306
 GameObject:
   m_ObjectHideFlags: 0
@@ -2058,7 +2060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8876833316519866506
 Transform:
   m_ObjectHideFlags: 0

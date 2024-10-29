@@ -124,6 +124,17 @@ func processMessage(message *pb.GameMessage, conn *net.Conn) {
 		raceEnd := msg.RaceEnd
 		fmt.Printf("Race ended by player %s\n", raceEnd.PlayerId)
 		mg.GetPlayerManager().HandleRaceEnd(raceEnd.PlayerId)
+	case *pb.GameMessage_SpectatorState:
+		spectatorState := msg.SpectatorState
+		mg.GetPlayerManager().SetPlayerSpectating(
+			spectatorState.PlayerId,
+			spectatorState.TargetPlayerId,
+		)
+		fmt.Printf(
+			"Player %s is now spectating player %s\n",
+			spectatorState.PlayerId,
+			spectatorState.TargetPlayerId,
+		)
 	case *pb.GameMessage_SpawnExistingPlayer:
 		playerId := msg.SpawnExistingPlayer.PlayerId
 		newPlayer, exists := mg.GetPlayerManager().FindPlayerByName(playerId)

@@ -18,17 +18,19 @@ var playerManager *PlayerManager
 
 // Player represents a single player with some attributes
 type Player struct {
-	ID         int
-	Name       string
-	Age        int
-	Conn       *net.Conn
-	X          float32
-	Y          float32
-	Z          float32
-	Rx         float32
-	Ry         float32
-	Rz         float32
-	FinishTime int64
+	ID               int
+	Name             string
+	Age              int
+	Conn             *net.Conn
+	X                float32
+	Y                float32
+	Z                float32
+	Rx               float32
+	Ry               float32
+	Rz               float32
+	FinishTime       int64
+	IsSpectating     bool
+	SpectatingTarget string
 }
 
 // PlayerManager manages a list of players
@@ -320,7 +322,7 @@ func (pm *PlayerManager) RemovePlayer(id string) error {
 	response, err := proto.Marshal(logoutPacket)
 	if err != nil {
 		log.Printf("Failed to marshal response: %v", err)
-		return errors.New("Fail to send logout packet")
+		return errors.New("fail to send logout packet")
 	}
 
 	for _, player := range pm.players {
@@ -385,6 +387,12 @@ func (pm *PlayerManager) PlayerFinishedRace(playerId string, finishTime int64) {
 		return
 	}
 
+	// 이미 완주한 플레이어인지 체크
+	if player.FinishTime > 0 {
+		log.Printf("Player %s already finished", playerId)
+		return
+	}
+
 	if len(pm.activePlayersForNextRound) < pm.maxQualifiedPlayers {
 		pm.activePlayersForNextRound[playerId] = true
 	}
@@ -402,11 +410,28 @@ func (pm *PlayerManager) PlayerFinishedRace(playerId string, finishTime int64) {
 	}
 
 	pm.BroadcastMessage(finishMessage)
+
+	// 모든 플레이어가 완주했거나 최대 통과 인원에 도달했는지 체크
+	finishedCount := 0
+	totalPlayers := len(pm.matchedPlayers)
+	for _, p := range pm.matchedPlayers {
+		if p.FinishTime > 0 {
+			finishedCount++
+		}
+	}
+
+	if finishedCount >= totalPlayers || len(pm.activePlayersForNextRound) >= pm.maxQualifiedPlayers {
+		pm.HandleRaceEnd(playerId)
+	}
 }
 
 func (pm *PlayerManager) HandleRaceEnd(playerId string) {
 
-	// 현재 라운드가 끝나면 다음 라운드를 위한 플레이어 설정
+	// 이미 다음 라운드 처리가 진행 중인지 체크
+	if len(pm.activePlayersForNextRound) == 0 {
+		log.Printf("Race end already handled")
+		return
+	}
 
 	if len(pm.activePlayersForNextRound) > 0 {
 		// 새로운 플레이어 맵 생성
@@ -428,6 +453,19 @@ func (pm *PlayerManager) HandleRaceEnd(playerId string) {
 		// 플레이어 목록 업데이트
 		pm.players = newPlayers
 		pm.nextID = newID
+
+		// 레이스 종료 메시지 브로드캐스트
+		raceEndMessage := &pb.GameMessage{
+			Message: &pb.GameMessage_RaceEnd{
+				RaceEnd: &pb.RaceEndMessage{
+					PlayerId: playerId,
+				},
+			},
+		}
+
+		pm.BroadcastMessage(raceEndMessage)
+		log.Printf("Race ended by player: %s, Qualified players: %d", playerId, len(newPlayers))
+
 		pm.activePlayersForNextRound = make(map[string]bool) // 초기화
 
 	}
@@ -446,4 +484,85 @@ func (pm *PlayerManager) HandleRaceEnd(playerId string) {
 
 	log.Printf("Race ended by player: %s, Players remaining: %d", playerId, len(pm.players))
 
+}
+
+// 관전 Spectating
+func (pm *PlayerManager) SetPlayerSpectating(playerId string, targetPlayerId string) {
+	player, exists := pm.FindPlayerByName(playerId)
+	if !exists {
+		log.Printf("Player not found: %s", playerId)
+		return
+	}
+
+	player.IsSpectating = true
+	player.SpectatingTarget = targetPlayerId
+
+	// 관전 상태 변경을 다른 플레이어들에게 알림
+	spectatorMessage := &pb.GameMessage{
+		Message: &pb.GameMessage_SpectatorState{
+			SpectatorState: &pb.SpectatorStateMessage{
+				PlayerId:       playerId,
+				IsSpectating:   true,
+				TargetPlayerId: targetPlayerId,
+			},
+		},
+	}
+
+	// 메시지 전송
+	response, err := proto.Marshal(spectatorMessage)
+	if err != nil {
+		log.Printf("Failed to marshal spectator message: %v", err)
+		return
+	}
+
+	// 모든 플레이어에게 브로드캐스트
+	for _, player := range pm.matchedPlayers {
+		lengthBuf := make([]byte, 5)
+		lengthBuf[0] = co.GameMessageType
+		binary.LittleEndian.PutUint32(lengthBuf[1:], uint32(len(response)))
+		(*player.Conn).Write(append(lengthBuf, response...))
+	}
+}
+
+// 관전 가능한 플레이어 목록 반환
+func (pm *PlayerManager) GetSpectateablePlayers() []string {
+	var players []string
+	for _, player := range pm.matchedPlayers {
+		if !player.IsSpectating { // 관전자가 아닌 플레이어만 포함
+			players = append(players, player.Name)
+		}
+	}
+	return players
+}
+
+func (pm *PlayerManager) ChangeSpectatorTarget(spectatorId string, newTargetId string) {
+	player, exists := pm.FindPlayerByName(spectatorId)
+	if !exists {
+		return
+	}
+
+	player.SpectatingTarget = newTargetId
+
+	// 관전 대상 변경을 알림
+	spectatorMessage := &pb.GameMessage{
+		Message: &pb.GameMessage_SpectatorState{
+			SpectatorState: &pb.SpectatorStateMessage{
+				PlayerId:       spectatorId,
+				IsSpectating:   true,
+				TargetPlayerId: newTargetId,
+			},
+		},
+	}
+
+	response, err := proto.Marshal(spectatorMessage)
+	if err != nil {
+		log.Printf("Failed to marshal spectator target change message: %v", err)
+		return
+	}
+
+	// 관전자에게만 전송
+	lengthBuf := make([]byte, 5)
+	lengthBuf[0] = co.GameMessageType
+	binary.LittleEndian.PutUint32(lengthBuf[1:], uint32(len(response)))
+	(*player.Conn).Write(append(lengthBuf, response...))
 }
