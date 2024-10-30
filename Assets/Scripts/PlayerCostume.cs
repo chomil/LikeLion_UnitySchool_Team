@@ -12,13 +12,26 @@ public class PlayerCostume : MonoBehaviour
 
     private SkinnedMeshRenderer targetSkin;
     [SerializeField] private Transform rootBone;
+
+    public Material mat;
+    
     private void Start()
     {
+        mat = GetComponentInChildren<SkinnedMeshRenderer>().material;
+        SkinnedMeshRenderer[] meshRenderers= GetComponentsInChildren<SkinnedMeshRenderer>();
+        foreach (SkinnedMeshRenderer meshRenderer in meshRenderers)
+        {
+            meshRenderer.material = mat;
+        }
+        
         GameData data = GameManager.Instance.gameData;
         if (gameObject.CompareTag("Player"))
         {
             ChangeCostume(data.GetItemByName(data.playerInfo.playerItems[ItemType.Upper], ItemType.Upper));
             ChangeCostume(data.GetItemByName(data.playerInfo.playerItems[ItemType.Lower], ItemType.Lower));
+            ChangeCostume(data.GetItemByName(data.playerInfo.playerItems[ItemType.Pattern], ItemType.Pattern));
+            ChangeCostume(data.GetItemByName(data.playerInfo.playerItems[ItemType.Color], ItemType.Color));
+            ChangeCostume(data.GetItemByName(data.playerInfo.playerItems[ItemType.Face], ItemType.Face));
             TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Upper,data.playerInfo.playerItems[ItemType.Upper]);
             TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Lower,data.playerInfo.playerItems[ItemType.Lower]);
         }
@@ -33,7 +46,7 @@ public class PlayerCostume : MonoBehaviour
     {
         if (itemData.itemType == ItemType.Upper)
         {
-            GameObject newTop = itemData.itemObject;
+            GameObject newTop = itemData.itemObject as GameObject;
             if (costumeTop != newTop)
             {
                 //기존 코스튬 삭제
@@ -53,7 +66,7 @@ public class PlayerCostume : MonoBehaviour
         }
         else if (itemData.itemType == ItemType.Lower)
         {            
-            GameObject newBottom = itemData.itemObject;
+            GameObject newBottom = itemData.itemObject as GameObject;
             if (costumeBottom != newBottom)
             {            
                 //기존 코스튬 삭제
@@ -71,13 +84,42 @@ public class PlayerCostume : MonoBehaviour
                 costumeBottom = newBottom;
             }
         }
+        else if (itemData.itemType == ItemType.Pattern)
+        {
+            Texture2D newTex = itemData.itemObject as Texture2D;
+            if (newTex)
+            {
+                mat.SetTexture("_Pattern", newTex);
+            }
+        }
+        else if (itemData.itemType == ItemType.Color)
+        {
+            ColorPreset newColorPreset = itemData.itemObject as ColorPreset;
+            if (newColorPreset)
+            {
+                mat.SetColor("_BodyColor1", newColorPreset.color1);
+                mat.SetColor("_BodyColor2", newColorPreset.color2);
+            }
+        }
+        else if (itemData.itemType == ItemType.Face)
+        {
+            ColorPreset newColorPreset = itemData.itemObject as ColorPreset;
+            if (newColorPreset)
+            {
+                mat.SetColor("_EyeColor", newColorPreset.color1);
+                mat.SetColor("_FaceColor", newColorPreset.color2);
+            }
+        }
 
         if (gameObject.CompareTag("Player"))
         {
             GameManager.Instance.gameData.playerInfo.playerItems[itemData.itemType] = itemData.itemName;
         }
 
-        gameObject.GetComponent<Outline>()?.Refresh();
+        if (itemData.itemType == ItemType.Upper || itemData.itemType == ItemType.Lower)
+        {
+            gameObject.GetComponent<Outline>()?.Refresh();
+        }
     }
     
     public void TransferBones()
