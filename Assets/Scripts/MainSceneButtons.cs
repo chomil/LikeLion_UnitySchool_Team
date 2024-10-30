@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //Main Scene 전담 버튼 관리자
-public class MainSceneBuittons : MonoBehaviour
+public class MainSceneButtons : MonoBehaviour
 {
     public Button StartButton;
     public Button CustomizeButton;
