@@ -27,12 +27,1200 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'FG_Idle_A' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Pelvis_C_jnt' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Hip_R_jnt' has translation animation
+      that will be discarded.\n\nClip 'FG_Emote_Chicken_A' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Chest_C_jnt' has translation animation
+      that will be discarded.\n\t'Head_C_jnt01' has translation animation that will
+      be discarded.\n\t'Head_C_jnt01' has scale animation that will be discarded.\n\t'Eye_L_jnt'
+      has scale animation that will be discarded.\n\t'Eye_R_jnt' has scale animation
+      that will be discarded.\n\t'Shoulder_L_jnt' has translation animation that
+      will be discarded.\n\t'Shoulder_R_jnt1' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' has translation animation that will be discarded.\n\t'Pelvis_C_jnt'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Emote_Wave_A' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Shoulder_L_jnt' has translation animation
+      that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation that
+      will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will be
+      discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Emote_Neener_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Eye_L_jnt' has scale animation that will be discarded.\n\t'Eye_R_jnt'
+      has scale animation that will be discarded.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Emote_ThumbsUp_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Eye_L_jnt' has scale animation that will be discarded.\n\t'Eye_R_jnt'
+      has scale animation that will be discarded.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Emote_WaveOverHead_A' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Shoulder_L_jnt' has translation animation
+      that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation that
+      will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will be
+      discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Emote_PirateDance_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Eye_L_jnt' has scale animation that will be discarded.\n\t'Eye_R_jnt'
+      has scale animation that will be discarded.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Emote_slowclap_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Eye_L_jnt' has scale animation that will
+      be discarded.\n\t'Eye_R_jnt' has scale animation that will be discarded.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Finger01_R_jnt_04' has translation
+      animation that will be discarded.\n\t'Finger02_R_jnt_04' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\nClip 'FG_Emote_RobotDance_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Shoulder_L_jnt' has translation animation
+      that will be discarded.\n\t'Finger02_L_jnt_02' has translation animation that
+      will be discarded.\n\t'Shoulder_R_jnt1' has translation animation that will
+      be discarded.\n\t'Finger01_R_jnt_04' has translation animation that will be
+      discarded.\n\t'Pelvis_C_jnt' has translation animation that will be discarded.\n\t'Pelvis_C_jnt'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'CH_Fallguy_FG_Emote_Mexwave' has import animation warnings that might lower
+      retargeting quality:\nNote: Activate translation DOF on avatar to improve retargeting
+      quality.\n\t'Chest_C_jnt' has translation animation that will be discarded.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'CH_Fallguy_FG_emote_HappyClap'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has scale
+      animation that will be discarded.\n\t'Eye_L_jnt' has scale animation that will
+      be discarded.\n\t'Eye_R_jnt' has scale animation that will be discarded.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Finger02_R_jnt_04' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Beefcake_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Eye_L_jnt' has scale
+      animation that will be discarded.\n\t'Eye_R_jnt' has scale animation that will
+      be discarded.\n\t'Shoulder_L_jnt' has translation animation that will be discarded.\n\t'Shoulder_R_jnt1'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Emote_Zsnap_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Head_C_jnt01'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Emote_Armthrow_A' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Eye_L_jnt' has scale animation that will
+      be discarded.\n\t'Eye_R_jnt' has scale animation that will be discarded.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Emote_Pattycake_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Eye_L_jnt' has scale animation that will
+      be discarded.\n\t'Eye_R_jnt' has scale animation that will be discarded.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_emote_boxing_01_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Eye_L_jnt' has scale
+      animation that will be discarded.\n\t'Eye_R_jnt' has scale animation that will
+      be discarded.\n\t'Shoulder_L_jnt' has translation animation that will be discarded.\n\t'Shoulder_R_jnt1'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_emote_ChestBump_01_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Shoulder_L_jnt' has translation animation
+      that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation that
+      will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will be
+      discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_emote_Salute_01_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Eye_L_jnt' has scale animation that will
+      be discarded.\n\t'Eye_R_jnt' has scale animation that will be discarded.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\nClip 'FG_emote_horsey_A' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has translation animation
+      that will be discarded.\n\t'Head_C_jnt01' has scale animation that will be
+      discarded.\n\t'Shoulder_L_jnt' has translation animation that will be discarded.\n\t'Shoulder_R_jnt1'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_emote_Jester_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Shoulder_L_jnt' has translation animation that will
+      be discarded.\n\t'Shoulder_R_jnt1' has translation animation that will be discarded.\n\t'Pelvis_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_emote_Curtsy_A' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Eye_L_jnt' has scale animation that will be discarded.\n\t'Eye_R_jnt'
+      has scale animation that will be discarded.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Hip_R_jnt' has translation animation that will
+      be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\nClip 'FG_emote_Bow_A' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has translation animation
+      that will be discarded.\n\t'Shoulder_L_jnt' has translation animation that
+      will be discarded.\n\t'Shoulder_R_jnt1' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' has translation animation that will be discarded.\n\t'Pelvis_C_jnt'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_emote_comeon_01_A' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Shoulder_L_jnt' has translation animation
+      that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation that
+      will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will be
+      discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_emote_HONK_01_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Eye_L_jnt' has scale animation that will be discarded.\n\t'Eye_R_jnt'
+      has scale animation that will be discarded.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_emote_Comehere_01_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Head_C_jnt01'
+      has translation animation that will be discarded.\n\t'Eye_L_jnt' has scale
+      animation that will be discarded.\n\t'Eye_R_jnt' has scale animation that will
+      be discarded.\n\t'Shoulder_L_jnt' has translation animation that will be discarded.\n\t'Pelvis_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_emote_Cold_01_A' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Eye_L_jnt' has scale animation that will be discarded.\n\t'Eye_R_jnt'
+      has scale animation that will be discarded.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_emote_Ski_01_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Shoulder_L_jnt' has translation animation that will
+      be discarded.\n\t'Shoulder_R_jnt1' has translation animation that will be discarded.\n\t'Pelvis_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_emote_waddle_01_A' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Head_C_jnt01'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has scale
+      animation that will be discarded.\n\t'Shoulder_L_jnt' has translation animation
+      that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation that
+      will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will be
+      discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Rubber_Hose_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Shoulder_L_jnt' has translation animation
+      that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation that
+      will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will be
+      discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Drummerboy_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Shoulder_R_jnt1'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Hip_R_jnt' has translation animation
+      that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\nClip 'FG_Guitar_A' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Eye_L_jnt' has scale animation
+      that will be discarded.\n\t'Eye_R_jnt' has scale animation that will be discarded.\n\t'Pelvis_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Piano_A' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Shoulder_L_jnt' has translation animation that will
+      be discarded.\n\t'Shoulder_R_jnt1' has translation animation that will be discarded.\n\t'Pelvis_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Glitch_A' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Eye_L_jnt' has scale animation that will be discarded.\n\t'Eye_R_jnt'
+      has scale animation that will be discarded.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_laugh_A' has
+      import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Eye_L_jnt' has scale animation that will
+      be discarded.\n\t'Eye_R_jnt' has scale animation that will be discarded.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Hip_R_jnt' has translation animation
+      that will be discarded.\n\nClip 'FG_Jazz_A 2' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Chest_C_jnt' has translation animation
+      that will be discarded.\n\t'Head_C_jnt01' has translation animation that will
+      be discarded.\n\t'Head_C_jnt01' has scale animation that will be discarded.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_airplanearms_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Pelvis_C_jnt'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\nClip 'FG_OnGuard_A' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_BowArrow_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Eye_R_jnt' has scale
+      animation that will be discarded.\n\t'Shoulder_L_jnt' has translation animation
+      that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation that
+      will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will be
+      discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_pretendtelescope_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Eye_L_jnt' has scale animation that will
+      be discarded.\n\t'Eye_R_jnt' has scale animation that will be discarded.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_T-ree_pose_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Eye_L_jnt'
+      has scale animation that will be discarded.\n\t'Eye_R_jnt' has scale animation
+      that will be discarded.\n\t'Shoulder_L_jnt' has translation animation that
+      will be discarded.\n\t'Shoulder_R_jnt1' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' has translation animation that will be discarded.\n\t'Pelvis_C_jnt'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_ballet_A 1'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Head_C_jnt01'
+      has scale animation that will be discarded.\n\t'Eye_L_jnt' has scale animation
+      that will be discarded.\n\t'Eye_R_jnt' has scale animation that will be discarded.\n\t'Shoulder_R_jnt1'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_swimming_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Hip_R_jnt' has translation animation that will
+      be discarded.\n\nClip 'FG_mummywalk_A' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'Hip_L_jnt' has translation animation that will be
+      discarded.\n\t'Hip_R_jnt' has translation animation that will be discarded.\n\nClip
+      'FG_dove_06_A' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Eye_L_jnt' has scale
+      animation that will be discarded.\n\t'Eye_R_jnt' has scale animation that will
+      be discarded.\n\t'Shoulder_L_jnt' has translation animation that will be discarded.\n\t'Shoulder_R_jnt1'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_dove_06_laugh_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Eye_L_jnt' has scale animation that will
+      be discarded.\n\t'Eye_R_jnt' has scale animation that will be discarded.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Hip_R_jnt' has translation animation
+      that will be discarded.\n\nClip 'FG_ToucanDance_A' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Chest_C_jnt' has translation animation
+      that will be discarded.\n\t'Head_C_jnt01' has translation animation that will
+      be discarded.\n\t'Eye_L_jnt' has scale animation that will be discarded.\n\t'Eye_R_jnt'
+      has scale animation that will be discarded.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Idle_Joggingonspot'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Eye_L_jnt'
+      has scale animation that will be discarded.\n\t'Eye_R_jnt' has scale animation
+      that will be discarded.\n\t'Shoulder_L_jnt' has translation animation that
+      will be discarded.\n\t'Shoulder_R_jnt1' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' has translation animation that will be discarded.\n\t'Pelvis_C_jnt'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Idle_TouchingToes' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Hip_R_jnt' has translation animation
+      that will be discarded.\n\nClip 'FG_Idle_JumpingJacks_A' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Idle_TwistingStreches_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Idle_Qualification06_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Shoulder_L_jnt' has translation animation
+      that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation that
+      will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will be
+      discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Hip_R_jnt' has translation animation that will
+      be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\nClip 'FG_Idle_Qualification05_A' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Eye_L_jnt' has scale animation that will be discarded.\n\t'Eye_R_jnt'
+      has scale animation that will be discarded.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Idle_Qualification04_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Shoulder_L_jnt' has translation animation that will
+      be discarded.\n\t'Shoulder_R_jnt1' has translation animation that will be discarded.\n\t'Pelvis_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\nClip 'FG_Idle_Qualification03_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Shoulder_L_jnt' has translation animation
+      that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation that
+      will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will be
+      discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Hip_R_jnt' has translation animation that will
+      be discarded.\n\nClip 'FG_Idle_Qualification02_A' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Chest_C_jnt' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\nClip 'FG_Idle_Qualification01_A' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Shoulder_R_jnt1' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Ball_R_jnt'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Walk_A' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Pelvis_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Walk_Decline_A' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Pelvis_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Walk_Incline_A' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Pelvis_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Run_Decline_A' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Run_A' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Run_Incline_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_StrafeLeft_Walk_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Pelvis_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_StrafeLeft_Run_A' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_StrafeRight_Run_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_StrafeRight_Walk_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Pelvis_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Walk_Backwards_A' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Pelvis_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Jump_MidAir_A' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\nClip 'FG_Jump_Start_A' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Shoulder_R_jnt1' has translation animation that will
+      be discarded.\n\t'Hip_L_jnt' has translation animation that will be discarded.\n\t'Ball_L_jnt'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Landing_A' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Shoulder_L_jnt' has translation animation that will
+      be discarded.\n\t'Shoulder_R_jnt1' has translation animation that will be discarded.\n\t'Pelvis_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Fall_A' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Hang_Start_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Hang_Loop_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Pelvis_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Ball_L_jnt'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\nClip 'FG_Mantle_A' has
+      import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Eye_L_jnt' has scale animation that will be discarded.\n\t'Eye_R_jnt'
+      has scale animation that will be discarded.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation
+      that will be discarded.\n\t'Finger01_R_jnt_04' has translation animation that
+      will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will be
+      discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Dive_GetUp'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Ragdoll_A' has
+      import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'Pelvis_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\nClip 'FG_Dive_RollOver' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Dive_Start'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Dive_Land' has
+      import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Shoulder_L_jnt' has translation animation
+      that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation that
+      will be discarded.\n\t'Finger01_R_jnt_04' has translation animation that will
+      be discarded.\n\t'Finger02_R_jnt_04' has translation animation that will be
+      discarded.\n\t'Pelvis_C_jnt' has translation animation that will be discarded.\n\t'Pelvis_C_jnt'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Dive_Loop' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Victory_JackInBox' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Eye_L_jnt' has scale animation that will be discarded.\n\t'Eye_R_jnt'
+      has scale animation that will be discarded.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Thumb_L_jnt_02' has translation animation
+      that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation that
+      will be discarded.\n\t'Finger02_R_jnt_04' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' has translation animation that will be discarded.\n\t'Pelvis_C_jnt'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Victory_DefaultGuy' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Shoulder_L_jnt' has translation animation that will
+      be discarded.\n\t'Finger01_L_jnt_02' has translation animation that will be
+      discarded.\n\t'Finger02_L_jnt_02' has translation animation that will be discarded.\n\t'Thumb_L_jnt_02'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Finger02_R_jnt_04' has translation
+      animation that will be discarded.\n\t'Thumb_R_jnt_04' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Victory_DanceGuy'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Eye_L_jnt' has scale animation that will
+      be discarded.\n\t'Eye_R_jnt' has scale animation that will be discarded.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Finger02_L_jnt_02' has
+      translation animation that will be discarded.\n\t'Thumb_L_jnt_02' has translation
+      animation that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation
+      that will be discarded.\n\t'Finger01_R_jnt_04' has translation animation that
+      will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will be
+      discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Victory_StumbleGuy'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Eye_L_jnt' has scale animation that will
+      be discarded.\n\t'Eye_R_jnt' has scale animation that will be discarded.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Victory_SuperGuy'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Eye_L_jnt' has scale animation that will be discarded.\n\t'Eye_R_jnt'
+      has scale animation that will be discarded.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Victory_ThisSucks'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Eye_L_jnt' has scale animation that will be discarded.\n\t'Eye_R_jnt'
+      has scale animation that will be discarded.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Victory_ZSnapGuy'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Eye_L_jnt' has scale animation that will
+      be discarded.\n\t'Eye_R_jnt' has scale animation that will be discarded.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Victory_FallingGuy'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Shoulder_L_jnt' has translation animation that will
+      be discarded.\n\t'Finger01_L_jnt_02' has translation animation that will be
+      discarded.\n\t'Finger02_L_jnt_02' has translation animation that will be discarded.\n\t'Thumb_L_jnt_02'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Victory_HangingGuy'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Eye_L_jnt'
+      has scale animation that will be discarded.\n\t'Eye_R_jnt' has scale animation
+      that will be discarded.\n\t'Shoulder_L_jnt' has translation animation that
+      will be discarded.\n\t'Shoulder_R_jnt1' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' has translation animation that will be discarded.\n\t'Pelvis_C_jnt'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Victory_StrongGuy' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Eye_L_jnt' has scale animation that will
+      be discarded.\n\t'Eye_R_jnt' has scale animation that will be discarded.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Victory_WizardGuy'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Eye_L_jnt' has scale animation that will
+      be discarded.\n\t'Eye_R_jnt' has scale animation that will be discarded.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Victory_PenguinGuy'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Eye_L_jnt' has scale animation that will
+      be discarded.\n\t'Eye_R_jnt' has scale animation that will be discarded.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Hip_R_jnt' has translation animation
+      that will be discarded.\n\nClip 'FG_Victory_Gasp' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Chest_C_jnt' has translation animation
+      that will be discarded.\n\t'Head_C_jnt01' has translation animation that will
+      be discarded.\n\t'Eye_L_jnt' has scale animation that will be discarded.\n\t'Eye_R_jnt'
+      has scale animation that will be discarded.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Victory_CossackGuy'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Eye_L_jnt' has scale animation that will be discarded.\n\t'Eye_R_jnt'
+      has scale animation that will be discarded.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Victory_ChestOpenGuy'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest_C_jnt'
+      has translation animation that will be discarded.\n\t'Head_C_jnt01' has translation
+      animation that will be discarded.\n\t'Head_C_jnt01' has scale animation that
+      will be discarded.\n\t'Eye_L_jnt' has scale animation that will be discarded.\n\t'Eye_R_jnt'
+      has scale animation that will be discarded.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Walk_Decline_Left_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Pelvis_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Walk_Left_A' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Pelvis_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Walk_Incline_Left_A' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Pelvis_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Walk_Decline_Right_A' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Pelvis_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Walk_Right_A' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Shoulder_R_jnt1'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Walk_Incline_Right_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Pelvis_C_jnt'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Run_Decline_Left_A' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Run_Left_Variant01_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Run_Incline_left_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Run_Decline_Right_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Run_Right_Variant01_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Run_Incline_right_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Pushing_TEST_01'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Pelvis_C_jnt'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_L_jnt'
+      has translation animation that will be discarded.\n\t'Ball_L_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Hip_R_jnt'
+      has translation animation that will be discarded.\n\t'Ball_R_jnt' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'FG_Attempting_Grab_Run_A' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Shoulder_L_jnt'
+      has translation animation that will be discarded.\n\t'Shoulder_R_jnt1' has
+      translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Idle_Attempting_Grab_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Thumb_L_jnt_02'
+      has translation animation that will be discarded.\n\t'Thumb_R_jnt_04' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Hip_R_jnt' has translation animation
+      that will be discarded.\n\nClip 'FG_Carrying_Small_A' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Shoulder_L_jnt' has translation
+      animation that will be discarded.\n\t'Shoulder_R_jnt1' has translation animation
+      that will be discarded.\n\t'Pelvis_C_jnt' has translation animation that will
+      be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip_L_jnt' has translation animation
+      that will be discarded.\n\t'Ball_L_jnt' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Hip_R_jnt' has translation
+      animation that will be discarded.\n\t'Ball_R_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'FG_Carrying_Idle_Small_A'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Shoulder_R_jnt1'
+      has translation animation that will be discarded.\n\t'Pelvis_C_jnt' has translation
+      animation that will be discarded.\n\t'Pelvis_C_jnt' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip_L_jnt' has translation
+      animation that will be discarded.\n\t'Hip_R_jnt' has translation animation
+      that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -3401,7 +4589,297 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: Character(Clone)
+      parentName: 
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: FallGuy
+      parentName: Character(Clone)
+      position: {x: 0.07104077, y: 0.132, z: -0.035044517}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Character
+      parentName: FallGuy
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: SKELETON
+      parentName: Character
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Root
+      parentName: SKELETON
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Torso_C_jnt_NoStrechSquash
+      parentName: Root
+      position: {x: -0.07104077, y: -0.12541105, z: 0.03510386}
+      rotation: {x: -7.2759576e-10, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: PB_TailTag
+      parentName: Torso_C_jnt_NoStrechSquash
+      position: {x: -0, y: -0.0068439124, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PRP_TagTail_MO
+      parentName: PB_TailTag
+      position: {x: 0.000010860625, y: 0.005856783, z: -0.003925728}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest_C_jnt
+      parentName: Torso_C_jnt_NoStrechSquash
+      position: {x: -0, y: 0.002873458, z: 4.440892e-20}
+      rotation: {x: -7.2759576e-10, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: Carry
+      parentName: Chest_C_jnt
+      position: {x: -0, y: -0.00971737, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Prefab_VFX_Infected_V02
+      parentName: Chest_C_jnt
+      position: {x: -0, y: -0.0075, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: More_Infected_VFX
+      parentName: Prefab_VFX_Infected_V02
+      position: {x: -0, y: 0.0083, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Symbols
+      parentName: More_Infected_VFX
+      position: {x: -0, y: -0.0041, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: waistRing (1)
+      parentName: More_Infected_VFX
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: SmokeTrailing
+      parentName: Prefab_VFX_Infected_V02
+      position: {x: -0, y: 0.0056999996, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: SmokeLocal
+      parentName: Prefab_VFX_Infected_V02
+      position: {x: -0, y: 0.0047, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head_C_jnt01
+      parentName: Chest_C_jnt
+      position: {x: -0, y: 0.0011034847, z: 0.0006017438}
+      rotation: {x: -0.0076968223, y: -0, z: -0, w: 0.9999704}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head_C_nub
+      parentName: Head_C_jnt01
+      position: {x: -1.1995455e-19, y: 0.00844702, z: -0.00080750644}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 0.99999917, z: 0.99999917}
+    - name: Eye_R_jnt
+      parentName: Head_C_jnt01
+      position: {x: 0.0012008231, y: 0.002327971, z: 0.0038215597}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 0.99999917, z: 0.99999917}
+    - name: Eye_L_jnt
+      parentName: Head_C_jnt01
+      position: {x: -0.0012008231, y: 0.002327971, z: 0.0038215597}
+      rotation: {x: 0.0076968237, y: -0, z: -0, w: 0.9999704}
+      scale: {x: 1, y: 0.99999946, z: 0.99999946}
+    - name: Shoulder_L_jnt
+      parentName: Chest_C_jnt
+      position: {x: -0.0048735673, y: 0.0016163024, z: 0.00078606745}
+      rotation: {x: -0.50433123, y: 0.49563095, z: 0.5151203, w: 0.48440796}
+      scale: {x: 1.0000001, y: 1.0000008, z: 1.0000006}
+    - name: Elbow_L_jnt
+      parentName: Shoulder_L_jnt
+      position: {x: -1.5645578e-19, y: 0.0034572145, z: -1.4022116e-17}
+      rotation: {x: 0.014470799, y: 0.0013076364, z: 0.026006188, w: 0.9995562}
+      scale: {x: 1.0000002, y: 1.0000005, z: 0.9999997}
+    - name: Wrist_L_jnt
+      parentName: Elbow_L_jnt
+      position: {x: -1.9539925e-18, y: 0.0027322515, z: -4.263256e-18}
+      rotation: {x: -0.026796924, y: 0.0060079573, z: -0.02722763, w: 0.99925196}
+      scale: {x: 1.0000019, y: 1.0000008, z: 1.000001}
+    - name: Thumb_L_jnt_01
+      parentName: Wrist_L_jnt
+      position: {x: -0.00160848, y: 0.0015103541, z: -0.0002490368}
+      rotation: {x: 0.0057097026, y: -0.120883726, z: 0.42236724, w: 0.89830977}
+      scale: {x: 1.0000014, y: 1.0000017, z: 1.0000011}
+    - name: Thumb_L_jnt_02
+      parentName: Thumb_L_jnt_01
+      position: {x: -3.9968027e-18, y: 0.00062855077, z: 7.105427e-18}
+      rotation: {x: -0.082881495, y: -0.012693927, z: 0.020064563, w: 0.99627656}
+      scale: {x: 1.0000019, y: 1.0000017, z: 1.0000001}
+    - name: Finger01_L_jnt_01
+      parentName: Wrist_L_jnt
+      position: {x: -0.00080422894, y: 0.0026761496, z: 0.0002751955}
+      rotation: {x: -0.0067343786, y: -0.032673467, z: 0.060506757, w: 0.99761015}
+      scale: {x: 1.0000006, y: 1.0000015, z: 1.000001}
+    - name: Finger01_L_jnt_02
+      parentName: Finger01_L_jnt_01
+      position: {x: -6.0396133e-18, y: 0.0006452214, z: 8.526512e-18}
+      rotation: {x: -0.07319085, y: 0.027330242, z: -0.009454698, w: 0.99689865}
+      scale: {x: 1.000002, y: 1.0000011, z: 1.0000011}
+    - name: Finger02_L_jnt_01
+      parentName: Wrist_L_jnt
+      position: {x: 0.0009785807, y: 0.002411365, z: 0.00006262777}
+      rotation: {x: 0.014917102, y: -0.08989462, z: 0.07079506, w: -0.99332}
+      scale: {x: 1.0000007, y: 1.000002, z: 1.000002}
+    - name: Finger02_L_jnt_02
+      parentName: Finger02_L_jnt_01
+      position: {x: -2.131628e-18, y: 0.0005325808, z: 4.263256e-18}
+      rotation: {x: -0.05349247, y: -0.001718357, z: -0.004067127, w: 0.9985585}
+      scale: {x: 1.0000001, y: 1.0000012, z: 1.0000005}
+    - name: Shoulder_R_jnt1
+      parentName: Chest_C_jnt
+      position: {x: 0.0048735696, y: 0.0016163297, z: 0.000786068}
+      rotation: {x: 0.48440793, y: -0.5151204, z: 0.49563092, w: 0.5043313}
+      scale: {x: 1.000001, y: 1.0000008, z: 1.0000012}
+    - name: Elbow_R_jnt1
+      parentName: Shoulder_R_jnt1
+      position: {x: -8.07965e-10, y: -0.0034572124, z: -0.0000000069665425}
+      rotation: {x: -0.014480485, y: -0.0013064592, z: -0.026005637, w: -0.99955606}
+      scale: {x: 1.0000014, y: 1.0000005, z: 1.0000007}
+    - name: Wrist_R_jnt1
+      parentName: Elbow_R_jnt1
+      position: {x: 7.830005e-11, y: -0.0027322485, z: 0.00000005963333}
+      rotation: {x: -0.026796827, y: 0.0060079014, z: -0.027227731, w: 0.999252}
+      scale: {x: 1.0000006, y: 1.0000006, z: 1.000001}
+    - name: Thumb_R_jnt_03
+      parentName: Wrist_R_jnt1
+      position: {x: 0.0016084808, y: -0.0015103526, z: 0.00024901534}
+      rotation: {x: 0.005705532, y: -0.12088515, z: 0.42236653, w: 0.89830995}
+      scale: {x: 1.0000032, y: 1.0000018, z: 1.0000018}
+    - name: Thumb_R_jnt_04
+      parentName: Thumb_R_jnt_03
+      position: {x: 0.000000004426118, y: -0.0006285387, z: -0.00000002128943}
+      rotation: {x: -0.082881436, y: -0.0126939025, z: 0.020064706, w: 0.99627656}
+      scale: {x: 1.0000018, y: 1.0000002, z: 1.0000015}
+    - name: Finger01_R_jnt_03
+      parentName: Wrist_R_jnt1
+      position: {x: 0.00080423977, y: -0.0026761135, z: -0.00027520664}
+      rotation: {x: -0.00676103, y: -0.03267374, z: 0.060537957, w: 0.99760807}
+      scale: {x: 1.0000029, y: 1.0000025, z: 1.0000023}
+    - name: Finger01_R_jnt_04
+      parentName: Finger01_R_jnt_03
+      position: {x: -0.000000027349817, y: -0.0006452605, z: -0.000000042056303}
+      rotation: {x: -0.073190875, y: 0.027330205, z: -0.0094545735, w: 0.99689865}
+      scale: {x: 1.000002, y: 1.0000005, z: 1.0000007}
+    - name: Finger02_R_jnt_03
+      parentName: Wrist_R_jnt1
+      position: {x: -0.0009785763, y: -0.0024113585, z: -0.000062691484}
+      rotation: {x: 0.014882576, y: -0.08989707, z: 0.070775166, w: -0.99332166}
+      scale: {x: 1.0000026, y: 1.000002, z: 1.0000021}
+    - name: Finger02_R_jnt_04
+      parentName: Finger02_R_jnt_03
+      position: {x: -0.000000007471469, y: -0.0005326164, z: 0.000000047865974}
+      rotation: {x: -0.05349254, y: -0.0017182673, z: -0.0040672594, w: 0.99855846}
+      scale: {x: 1, y: 0.9999997, z: 0.99999934}
+    - name: Torso_C_jnt
+      parentName: Torso_C_jnt_NoStrechSquash
+      position: {x: -0, y: 0.000059680136, z: 0.0000034962359}
+      rotation: {x: 0.0000000036379788, y: -0, z: -0, w: 1}
+      scale: {x: 1.0540926, y: 0.9000003, z: 1.0540926}
+    - name: Pelvis_C_jnt
+      parentName: Torso_C_jnt_NoStrechSquash
+      position: {x: -0, y: -0.0035323831, z: -0.00020693726}
+      rotation: {x: -0.0000000021827873, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hip_R_jnt
+      parentName: Pelvis_C_jnt
+      position: {x: 0.0015711199, y: -0.0008045701, z: 0.000147594}
+      rotation: {x: -0.013998989, y: 0.9930336, z: -0.11693616, w: -0.0037799007}
+      scale: {x: 0.9999999, y: 0.99999976, z: 0.99999976}
+    - name: Knee_R_jnt
+      parentName: Hip_R_jnt
+      position: {x: 1.7763568e-19, y: -0.0007908633, z: -4.3956408e-10}
+      rotation: {x: -0.3396083, y: -0.004395572, z: -0.006720951, w: 0.94053274}
+      scale: {x: 1.0000005, y: 1.0000004, z: 1.0000005}
+    - name: Ankle_R_jnt
+      parentName: Knee_R_jnt
+      position: {x: -1.7763568e-19, y: -0.00070822163, z: -0.000000004617374}
+      rotation: {x: 0.62776214, y: 0.004024951, z: 0.01923217, w: 0.7781572}
+      scale: {x: 1.0000007, y: 1.0000011, z: 1.0000007}
+    - name: Ball_R_jnt
+      parentName: Ankle_R_jnt
+      position: {x: -0, y: -0.0012350678, z: -0.0000000049942486}
+      rotation: {x: 0.32602802, y: -7.4446255e-24, z: -1.9852335e-23, w: 0.9453602}
+      scale: {x: 1.0000019, y: 1.0000008, z: 1.0000008}
+    - name: Toe_R_jnt
+      parentName: Ball_R_jnt
+      position: {x: 3.5527136e-19, y: -0.0018297447, z: 2.5782626e-10}
+      rotation: {x: -0, y: -0, z: 3.944304e-31, w: 1}
+      scale: {x: 1.0000019, y: 1.0000008, z: 1.000001}
+    - name: Hip_L_jnt
+      parentName: Pelvis_C_jnt
+      position: {x: -0.0015711162, y: -0.0008045729, z: 0.000147594}
+      rotation: {x: -0.0037799017, y: 0.11693612, z: 0.99303365, w: 0.013998989}
+      scale: {x: 1.0000018, y: 1.0000007, z: 0.9999999}
+    - name: Knee_L_jnt
+      parentName: Hip_L_jnt
+      position: {x: 1.9539925e-18, y: 0.0007908641, z: -3.5527136e-19}
+      rotation: {x: -0.33960155, y: -0.004395758, z: -0.0067208167, w: 0.9405351}
+      scale: {x: 1.0000021, y: 1.0000027, z: 1.0000007}
+    - name: Ankle_L_jnt
+      parentName: Knee_L_jnt
+      position: {x: -3.8279753e-12, y: 0.00070821523, z: 0}
+      rotation: {x: 0.6277565, y: 0.004025185, z: 0.019231996, w: 0.7781617}
+      scale: {x: 1.0000005, y: 0.99999994, z: 0.9999998}
+    - name: Ball_L_jnt
+      parentName: Ankle_L_jnt
+      position: {x: 1.7074685e-11, y: 0.0012350683, z: -1.7763568e-19}
+      rotation: {x: 0.32602808, y: -9.703708e-17, z: -3.4307127e-17, w: 0.94536006}
+      scale: {x: 0.9999996, y: 1.000001, z: 0.9999986}
+    - name: Toe_L_jnt
+      parentName: Ball_L_jnt
+      position: {x: 3.902115e-11, y: 0.0018297434, z: 1.6875389e-18}
+      rotation: {x: -0.000000029802319, y: -0, z: 3.308722e-24, w: 1}
+      scale: {x: 1.0000024, y: 1.0000011, z: 1.000001}
+    - name: GEO
+      parentName: Character
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Body_LOD0
+      parentName: GEO
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Body_LOD1
+      parentName: GEO
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Body_LOD2
+      parentName: GEO
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Body_LOD3
+      parentName: GEO
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Body_LOD4
+      parentName: GEO
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LeftPoleTarget
+      parentName: Character
+      position: {x: -0.0064, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RightRoleTarget
+      parentName: Character
+      position: {x: 0.0064, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -3418,7 +4896,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

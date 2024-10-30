@@ -65,7 +65,8 @@ public class GameManager : MonoBehaviour
             maxQualifiedPlayers = 10; // 일반 레이스의 통과 인원
             Debug.Log($"Regular Race: {maxQualifiedPlayers} players can qualify");
         }
-        RaceUI.Instance.UpdateQualifiedCount(0, maxQualifiedPlayers);
+        RaceUI.Instance.UpdateQualifiedCount(0, maxQualifiedPlayers); 
+        
         StartRace();
     }
 
@@ -90,7 +91,6 @@ public class GameManager : MonoBehaviour
     {
         while (UnityMainThreadDispatcher.Instance?.ExecutionQueue.Count > 0)
         {
-            //var data = UnityMainThreadDispatcher.Instance.ExecutionQueue.Dequeue();
             GameMessage msg = UnityMainThreadDispatcher.Instance.ExecutionQueue.Dequeue();
             /*if (msg.MessageCase == GameMessage.MessageOneofCase.Chat)
             {
@@ -114,13 +114,11 @@ public class GameManager : MonoBehaviour
 
             if (msg.MessageCase == GameMessage.MessageOneofCase.SpawnPlayer)
             {
-                //PlayerController.Instance.InputOtherPlayersInfo(msg.SpawnPlayer);
                 PlayerController.Instance.SpawnOtherPlayer(msg.SpawnPlayer);
             }
 
             if (msg.MessageCase == GameMessage.MessageOneofCase.SpawnExistingPlayer)
             {
-                //PlayerController.Instance.InputOtherPlayersInfo(msg.SpawnExistingPlayer);
                 PlayerController.Instance.SpawnOtherPlayer(msg.SpawnExistingPlayer);
             }
 
@@ -137,7 +135,6 @@ public class GameManager : MonoBehaviour
             if (msg.MatchingCase == MatchingMessage.MatchingOneofCase.MatchingResponse)
             {
                 SceneChanger.Instance.SetRaceMaps(msg.MatchingResponse);
-                //Debug.Log(msg.MatchingResponse.MapName);
             }
         }
     }
