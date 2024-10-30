@@ -19,59 +19,59 @@ MonoBehaviour:
       - itemName: "\uD551\uD06C \uBE48"
         itemType: 0
         itemObject: {fileID: 11400000, guid: 35490ca690e32fa4b9eda319dfff267b, type: 2}
-        itemIcon: {fileID: 0}
+        itemIcon: {fileID: 21300000, guid: e81209fad5c706f44b3d0f92caf989f4, type: 3}
       - itemName: "\uBBFC\uD2B8 \uCD08\uCF54"
         itemType: 0
         itemObject: {fileID: 11400000, guid: 7016edc60578b94488475ed84a54d8ed, type: 2}
-        itemIcon: {fileID: 0}
+        itemIcon: {fileID: 21300000, guid: e81209fad5c706f44b3d0f92caf989f4, type: 3}
       - itemName: "\uD0DC\uADF9"
         itemType: 0
         itemObject: {fileID: 11400000, guid: 9e1cc1a73bc40ef45a557e78a5ea9bda, type: 2}
-        itemIcon: {fileID: 0}
+        itemIcon: {fileID: 21300000, guid: e81209fad5c706f44b3d0f92caf989f4, type: 3}
       - itemName: "\uD751\uBC31"
         itemType: 0
         itemObject: {fileID: 11400000, guid: 3b53ba19c6f16f54590a00800d544681, type: 2}
-        itemIcon: {fileID: 0}
+        itemIcon: {fileID: 21300000, guid: e81209fad5c706f44b3d0f92caf989f4, type: 3}
     - Key: 1
       Value:
       - itemName: "\uD480 \uBC14\uB514"
         itemType: 1
         itemObject: {fileID: 2800000, guid: 8ec89d3045fbe3348a6d9573fea690c1, type: 3}
-        itemIcon: {fileID: 0}
+        itemIcon: {fileID: 21300000, guid: a6872b8dadc6a0541a6567cfaa14d2c2, type: 3}
       - itemName: "\uC544\uC774\uC2A4\uD06C\uB9BC"
         itemType: 1
         itemObject: {fileID: 2800000, guid: 9c1297cbc00db4541874fb1d848df83c, type: 3}
-        itemIcon: {fileID: 0}
+        itemIcon: {fileID: 21300000, guid: b63c99707d10cc248bb95506df878866, type: 3}
       - itemName: "\uBC88\uAC1C"
         itemType: 1
         itemObject: {fileID: 2800000, guid: 0e8d8997959248045979a93074e40d4e, type: 3}
-        itemIcon: {fileID: 0}
+        itemIcon: {fileID: 21300000, guid: 09a468b4bba8f894e8cf0275c95a93e6, type: 3}
       - itemName: "\uC9C1\uC18C \uD37C\uC990"
         itemType: 1
         itemObject: {fileID: 2800000, guid: 022118acce951c445b42a9c10836c4e5, type: 3}
-        itemIcon: {fileID: 0}
+        itemIcon: {fileID: 21300000, guid: 563b054567d85474c82a67a1c200d659, type: 3}
       - itemName: "\uC5B8\uB354\uC6E8\uC5B4"
         itemType: 1
         itemObject: {fileID: 2800000, guid: 7d255570915c22c4399743a8f98e2057, type: 3}
-        itemIcon: {fileID: 0}
+        itemIcon: {fileID: 21300000, guid: 5b9844e884283e041996924b92e63bfc, type: 3}
       - itemName: "\uC218\uBC15"
         itemType: 1
         itemObject: {fileID: 2800000, guid: a7150ac4c9bc80a4199dd2fef78e283a, type: 3}
-        itemIcon: {fileID: 0}
+        itemIcon: {fileID: 21300000, guid: 7fcd10e1d87a78a44ab2c8bbe89023d6, type: 3}
     - Key: 2
       Value:
       - itemName: "\uAE30\uBCF8"
         itemType: 2
         itemObject: {fileID: 11400000, guid: d105d87a8fcd74e46b82c63486760dec, type: 2}
-        itemIcon: {fileID: 0}
+        itemIcon: {fileID: 21300000, guid: dae7eed45012824468e3368846b95e9b, type: 3}
       - itemName: "\uD329\uB9E8"
         itemType: 2
         itemObject: {fileID: 11400000, guid: 4269de2abacf6b34cab6d51183dea9f6, type: 2}
-        itemIcon: {fileID: 0}
+        itemIcon: {fileID: 21300000, guid: dae7eed45012824468e3368846b95e9b, type: 3}
       - itemName: "\uD1A0\uB07C"
         itemType: 2
         itemObject: {fileID: 11400000, guid: 8623792faae5afd4a8707d81ef12f51e, type: 2}
-        itemIcon: {fileID: 0}
+        itemIcon: {fileID: 21300000, guid: dae7eed45012824468e3368846b95e9b, type: 3}
     - Key: 3
       Value:
       - itemName: "\uC5C6\uC74C"
