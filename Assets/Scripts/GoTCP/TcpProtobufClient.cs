@@ -177,13 +177,14 @@ public class TcpProtobufClient : MonoBehaviour
         SendGameMessage(message);
     }
 
-    public void SendPlayerCostume(string playerId, int cosType, string cosName)
+    public void SendPlayerCostume(string playerId, int cosType, string cosName, string otherId)
     {
         var costume = new CostumeMessage
         {
-             PlayerId = playerId,
-             PlayerCostumeType = cosType,
-             PlayerCostumeName = cosName
+            PlayerId = playerId,
+            PlayerCostumeType = cosType,
+            PlayerCostumeName = cosName,
+            OtherPlayerId = otherId
         };
         var message = new GameMessage
         {

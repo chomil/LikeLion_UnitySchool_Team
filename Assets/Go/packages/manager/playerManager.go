@@ -180,13 +180,14 @@ func (pm *PlayerManager) SendExistingPlayersToNewPlayer(newPlayer Player) {
 	}
 }
 
-func (pm *PlayerManager) SendPlayerCostume(name string, cosType int32, cosName string) {
+func (pm *PlayerManager) SendPlayerCostume(name string, cosType int32, cosName string, otherName string) {
 	gameMessage := &pb.GameMessage{
 		Message: &pb.GameMessage_PlayerCostume{
 			PlayerCostume: &pb.CostumeMessage{
 				PlayerId:          name,
 				PlayerCostumeType: cosType,
 				PlayerCostumeName: cosName,
+				OtherPlayerId:     otherName,
 			},
 		},
 	}
@@ -196,17 +197,29 @@ func (pm *PlayerManager) SendPlayerCostume(name string, cosType int32, cosName s
 		return
 	}
 
-	// 다른 플레이어들에게 전송
-	//	for _, player := range pm.players {
-	for _, player := range pm.matchedPlayers {
-		if player.Name == name {
-			continue // 자신에게는 전송하지 않음
-		}
+	if otherName == "" {
+		// 다른 플레이어들에게 전송
+		for _, player := range pm.matchedPlayers {
+			if player.Name == name {
+				continue // 자신에게는 전송하지 않음
+			}
 
-		lengthBuf := make([]byte, 5)      // 메시지 길이와 타입을 포함하기 위해 5바이트로 설정
-		lengthBuf[0] = co.GameMessageType // 메시지 타입 설정
-		binary.LittleEndian.PutUint32(lengthBuf[1:], uint32(len(response)))
-		(*player.Conn).Write(append(lengthBuf, response...))
+			lengthBuf := make([]byte, 5)      // 메시지 길이와 타입을 포함하기 위해 5바이트로 설정
+			lengthBuf[0] = co.GameMessageType // 메시지 타입 설정
+			binary.LittleEndian.PutUint32(lengthBuf[1:], uint32(len(response)))
+			(*player.Conn).Write(append(lengthBuf, response...))
+		}
+	} else {
+		// 특정 플레이어(otherName)에게만 전송
+		for _, player := range pm.matchedPlayers {
+			if player.Name == otherName {
+				lengthBuf := make([]byte, 5)
+				lengthBuf[0] = co.GameMessageType
+				binary.LittleEndian.PutUint32(lengthBuf[1:], uint32(len(response)))
+				(*player.Conn).Write(append(lengthBuf, response...))
+				break
+			}
+		}
 	}
 }
 
