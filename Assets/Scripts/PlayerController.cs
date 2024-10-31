@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     
     private PlayerTCP myPlayerTcp;
     private Dictionary<string, OtherPlayerTCP> _otherPlayers = new();
+    private Dictionary<string, Dictionary<int, string>> _otherCostumeMessages = new();
     public GameObject myPlayer { get; private set; }
     private int finishedPlayersCount = 0;
     private int totalPlayersCount;
@@ -66,10 +67,19 @@ public class PlayerController : MonoBehaviour
         if (SceneChanger.Instance.isRacing)
         {
             TcpProtobufClient.Instance.SendSpawnExistingPlayer(TCPManager.playerId);
+            SendPlayerAllCostumes(gameObject.GetComponent<OtherPlayerTCP>()?.PlayerId);
             //SpawnOtherPlayers();
         }
     }
-
+    public void SendPlayerAllCostumes(string otherName=" ")
+    {
+        GameData data = GameManager.Instance.gameData;
+        TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Upper,data.playerInfo.playerItems[ItemType.Upper],otherName);
+        TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Lower,data.playerInfo.playerItems[ItemType.Lower],otherName);
+        TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Pattern,data.playerInfo.playerItems[ItemType.Pattern],otherName);
+        TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Color,data.playerInfo.playerItems[ItemType.Color],otherName);
+        TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Face,data.playerInfo.playerItems[ItemType.Face],otherName);
+    }
     private void InitMainScene()
     {
         string temp = SceneChanger.Instance?.GetCurrentScene();
@@ -98,7 +108,10 @@ public class PlayerController : MonoBehaviour
         while (UnityMainThreadDispatcher.Instance.ExecutionQueue.Count > 0)
         {
             GameMessage msg = UnityMainThreadDispatcher.Instance.ExecutionQueue.Dequeue();
-        
+            if (msg == null)
+            {
+                continue;
+            }
             if (msg.MessageCase == GameMessage.MessageOneofCase.RaceFinish)
             {
                 OnRaceFinishMessageReceived(msg.RaceFinish);
@@ -155,12 +168,18 @@ public class PlayerController : MonoBehaviour
         
         otherPlayerTcp.destination = new Vector3(serverPlayer.X, serverPlayer.Y, serverPlayer.Z);
         otherPlayerTcp.OtherRot = new Vector3(serverPlayer.Rx, serverPlayer.Ry, serverPlayer.Rz);
-        
+        otherPlayerTcp.PlayerId = serverPlayer.PlayerId;
         _otherPlayers.TryAdd(serverPlayer.PlayerId, otherPlayerTcp);
         
-        GameData data = GameManager.Instance.gameData;
-        TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Upper,data.playerInfo.playerItems[ItemType.Upper]);
-        TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Lower,data.playerInfo.playerItems[ItemType.Lower]);
+        
+        //코스튬 로드
+        if (_otherCostumeMessages.TryGetValue(serverPlayer.PlayerId, out Dictionary<int, string> otherCostumeMessage))
+        {
+            foreach (var pair in otherCostumeMessage)
+            {
+                tempPlayer.GetComponent<PlayerCostume>()?.ChangeCostume((ItemType)pair.Key,pair.Value);
+            }
+        }
     }
 
 
@@ -209,9 +228,24 @@ public class PlayerController : MonoBehaviour
 
     public void OnOtherPlayerCostumeUpdate(CostumeMessage costumeMessage)
     {
+        //다른 플레이어가 이미 있으면 업데이트, 없으면 메시지 저장해놓기
         if (_otherPlayers.TryGetValue(costumeMessage.PlayerId, out OtherPlayerTCP otherPlayer))
-        {      
-            otherPlayer.GetComponent<PlayerCostume>()?.ChangeCostume((ItemType)costumeMessage.PlayerCostumeType,costumeMessage.PlayerCostumeName);
+        {
+            otherPlayer.GetComponent<PlayerCostume>()?.ChangeCostume((ItemType)costumeMessage.PlayerCostumeType,
+                costumeMessage.PlayerCostumeName);
         }
+        else
+        {
+            if (_otherCostumeMessages.TryGetValue(costumeMessage.PlayerId, out Dictionary<int,string> otherCostumeMessages))
+            {
+                otherCostumeMessages.TryAdd(costumeMessage.PlayerCostumeType, costumeMessage.PlayerCostumeName);
+            }
+            else
+            {
+                _otherCostumeMessages.Add(costumeMessage.PlayerId, new Dictionary<int, string>());
+                _otherCostumeMessages[costumeMessage.PlayerId].TryAdd(costumeMessage.PlayerCostumeType, costumeMessage.PlayerCostumeName);
+            }
+        }
+
     }
 }

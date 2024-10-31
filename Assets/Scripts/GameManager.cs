@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
             maxQualifiedPlayers = 10; // 일반 레이스의 통과 인원
             Debug.Log($"Regular Race: {maxQualifiedPlayers} players can qualify");
         }
-        RaceUI.Instance.UpdateQualifiedCount(0, maxQualifiedPlayers); 
+        RaceUI.Instance?.UpdateQualifiedCount(0, maxQualifiedPlayers); 
         
         StartRace();
     }
@@ -99,6 +99,10 @@ public class GameManager : MonoBehaviour
             {
                 PlayerController.Instance.OnRecevieChatMsg(msg.Chat);
             }*/
+            if (msg == null)
+            {
+                continue;
+            }
 
             if (msg.MessageCase == GameMessage.MessageOneofCase.PlayerPosition)
             {
@@ -110,11 +114,6 @@ public class GameManager : MonoBehaviour
                 PlayerController.Instance.OnOtherPlayerAnimationStateUpdate(msg.PlayerAnimState);
             }
 
-            if (msg.MessageCase == GameMessage.MessageOneofCase.PlayerCostume)
-            {
-                PlayerController.Instance.OnOtherPlayerCostumeUpdate(msg.PlayerCostume);
-            }
-
             if (msg.MessageCase == GameMessage.MessageOneofCase.SpawnPlayer)
             {
                 PlayerController.Instance.SpawnOtherPlayer(msg.SpawnPlayer);
@@ -123,6 +122,11 @@ public class GameManager : MonoBehaviour
             if (msg.MessageCase == GameMessage.MessageOneofCase.SpawnExistingPlayer)
             {
                 PlayerController.Instance.SpawnOtherPlayer(msg.SpawnExistingPlayer);
+            }
+            
+            if (msg.MessageCase == GameMessage.MessageOneofCase.PlayerCostume)
+            {
+                PlayerController.Instance.OnOtherPlayerCostumeUpdate(msg.PlayerCostume);
             }
 
             if (msg.MessageCase == GameMessage.MessageOneofCase.Logout)
@@ -160,9 +164,9 @@ public class GameManager : MonoBehaviour
         qualifiedPlayers.Clear();
         
         // UI 초기화
-        RaceUI.Instance.ShowRaceUI();
-        RaceUI.Instance.UpdateQualifiedCount(0, maxQualifiedPlayers);
-        RaceUI.Instance.HideStatusMessage();
+        RaceUI.Instance?.ShowRaceUI();
+        RaceUI.Instance?.UpdateQualifiedCount(0, maxQualifiedPlayers);
+        RaceUI.Instance?.HideStatusMessage();
         
         Debug.Log($"Race Started! Max players to qualify: {maxQualifiedPlayers}");
         PlayerController.Instance?.SetTotalPlayersCount(activePlayers.Count);

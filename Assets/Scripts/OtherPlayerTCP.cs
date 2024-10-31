@@ -19,7 +19,7 @@ public class OtherPlayerTCP : MonoBehaviour
     private Renderer _renderer;
     private bool hasFinished = false;
     
-    public string PlayerId { get; private set; }
+    public string PlayerId { get;  set; }
 
     void Start()
     {
