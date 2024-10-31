@@ -53,6 +53,7 @@ message CostumeMessage {
   string playerId = 1;
   int32 playerCostumeType = 2;
   string playerCostumeName = 3;
+  string otherPlayerId = 4;
 }
 
 message RaceEndMessage {

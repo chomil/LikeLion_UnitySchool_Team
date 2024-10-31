@@ -35,33 +35,34 @@ namespace Game {
             "AhIJCgF5GAMgASgCEgkKAXoYBCABKAISCgoCcngYBSABKAISCgoCcnkYBiAB",
             "KAISCgoCcnoYByABKAIiIQoNTG9nb3V0TWVzc2FnZRIQCghwbGF5ZXJJZBgB",
             "IAEoCSI5ChFSYWNlRmluaXNoTWVzc2FnZRIQCghwbGF5ZXJJZBgBIAEoCRIS",
-            "CgpmaW5pc2hUaW1lGAIgASgDIlgKDkNvc3R1bWVNZXNzYWdlEhAKCHBsYXll",
+            "CgpmaW5pc2hUaW1lGAIgASgDIm8KDkNvc3R1bWVNZXNzYWdlEhAKCHBsYXll",
             "cklkGAEgASgJEhkKEXBsYXllckNvc3R1bWVUeXBlGAIgASgFEhkKEXBsYXll",
-            "ckNvc3R1bWVOYW1lGAMgASgJIiIKDlJhY2VFbmRNZXNzYWdlEhAKCHBsYXll",
-            "cklkGAEgASgJIooECgtHYW1lTWVzc2FnZRIvCg9wbGF5ZXJfcG9zaXRpb24Y",
-            "ASABKAsyFC5nYW1lLlBsYXllclBvc2l0aW9uSAASIQoEY2hhdBgCIAEoCzIR",
-            "LmdhbWUuQ2hhdE1lc3NhZ2VIABIjCgVsb2dpbhgDIAEoCzISLmdhbWUuTG9n",
-            "aW5NZXNzYWdlSAASMgoRcGxheWVyX2FuaW1fc3RhdGUYBCABKAsyFS5nYW1l",
-            "LlBsYXllckFuaW1hdGlvbkgAEigKC3NwYXduUGxheWVyGAUgASgLMhEuZ2Ft",
-            "ZS5TcGF3blBsYXllckgAEjAKE3NwYXduRXhpc3RpbmdQbGF5ZXIYBiABKAsy",
-            "ES5nYW1lLlNwYXduUGxheWVySAASJQoGbG9nb3V0GAcgASgLMhMuZ2FtZS5M",
-            "b2dvdXRNZXNzYWdlSAASLgoLcmFjZV9maW5pc2gYCCABKAsyFy5nYW1lLlJh",
-            "Y2VGaW5pc2hNZXNzYWdlSAASLgoOcGxheWVyX2Nvc3R1bWUYCSABKAsyFC5n",
-            "YW1lLkNvc3R1bWVNZXNzYWdlSAASKAoIcmFjZV9lbmQYCiABKAsyFC5nYW1l",
-            "LlJhY2VFbmRNZXNzYWdlSAASNgoPc3BlY3RhdG9yX3N0YXRlGAsgASgLMhsu",
-            "Z2FtZS5TcGVjdGF0b3JTdGF0ZU1lc3NhZ2VIAEIJCgdtZXNzYWdlIjUKD01h",
-            "dGNoaW5nUmVxdWVzdBIRCglwbGF5ZXJfaWQYASABKAkSDwoHd2FpdGluZxgC",
-            "IAEoCCJpChBNYXRjaGluZ1Jlc3BvbnNlEhsKE2dhbWVfc2VydmVyX2FkZHJl",
-            "c3MYASABKAkSDwoHc3VjY2VzcxgCIAEoCBIQCghtYXBfbmFtZRgDIAMoCRIV",
-            "Cg1tYXRjaGluZ19zZWVkGAQgASgFIkMKDk1hdGNoaW5nVXBkYXRlEhcKD2N1",
-            "cnJlbnRfcGxheWVycxgBIAEoBRIYChByZXF1aXJlZF9wbGF5ZXJzGAIgASgF",
-            "IrYBCg9NYXRjaGluZ01lc3NhZ2USMQoQbWF0Y2hpbmdfcmVxdWVzdBgBIAEo",
-            "CzIVLmdhbWUuTWF0Y2hpbmdSZXF1ZXN0SAASMwoRbWF0Y2hpbmdfcmVzcG9u",
-            "c2UYAiABKAsyFi5nYW1lLk1hdGNoaW5nUmVzcG9uc2VIABIvCg9tYXRjaGlu",
-            "Z191cGRhdGUYAyABKAsyFC5nYW1lLk1hdGNoaW5nVXBkYXRlSABCCgoIbWF0",
-            "Y2hpbmciWwoVU3BlY3RhdG9yU3RhdGVNZXNzYWdlEhEKCXBsYXllcl9pZBgB",
-            "IAEoCRIVCg1pc19zcGVjdGF0aW5nGAIgASgIEhgKEHRhcmdldF9wbGF5ZXJf",
-            "aWQYAyABKAlCDVoLR28vbWVzc2FnZXNiBnByb3RvMw=="));
+            "ckNvc3R1bWVOYW1lGAMgASgJEhUKDW90aGVyUGxheWVySWQYBCABKAkiIgoO",
+            "UmFjZUVuZE1lc3NhZ2USEAoIcGxheWVySWQYASABKAkiigQKC0dhbWVNZXNz",
+            "YWdlEi8KD3BsYXllcl9wb3NpdGlvbhgBIAEoCzIULmdhbWUuUGxheWVyUG9z",
+            "aXRpb25IABIhCgRjaGF0GAIgASgLMhEuZ2FtZS5DaGF0TWVzc2FnZUgAEiMK",
+            "BWxvZ2luGAMgASgLMhIuZ2FtZS5Mb2dpbk1lc3NhZ2VIABIyChFwbGF5ZXJf",
+            "YW5pbV9zdGF0ZRgEIAEoCzIVLmdhbWUuUGxheWVyQW5pbWF0aW9uSAASKAoL",
+            "c3Bhd25QbGF5ZXIYBSABKAsyES5nYW1lLlNwYXduUGxheWVySAASMAoTc3Bh",
+            "d25FeGlzdGluZ1BsYXllchgGIAEoCzIRLmdhbWUuU3Bhd25QbGF5ZXJIABIl",
+            "CgZsb2dvdXQYByABKAsyEy5nYW1lLkxvZ291dE1lc3NhZ2VIABIuCgtyYWNl",
+            "X2ZpbmlzaBgIIAEoCzIXLmdhbWUuUmFjZUZpbmlzaE1lc3NhZ2VIABIuCg5w",
+            "bGF5ZXJfY29zdHVtZRgJIAEoCzIULmdhbWUuQ29zdHVtZU1lc3NhZ2VIABIo",
+            "CghyYWNlX2VuZBgKIAEoCzIULmdhbWUuUmFjZUVuZE1lc3NhZ2VIABI2Cg9z",
+            "cGVjdGF0b3Jfc3RhdGUYCyABKAsyGy5nYW1lLlNwZWN0YXRvclN0YXRlTWVz",
+            "c2FnZUgAQgkKB21lc3NhZ2UiNQoPTWF0Y2hpbmdSZXF1ZXN0EhEKCXBsYXll",
+            "cl9pZBgBIAEoCRIPCgd3YWl0aW5nGAIgASgIImkKEE1hdGNoaW5nUmVzcG9u",
+            "c2USGwoTZ2FtZV9zZXJ2ZXJfYWRkcmVzcxgBIAEoCRIPCgdzdWNjZXNzGAIg",
+            "ASgIEhAKCG1hcF9uYW1lGAMgAygJEhUKDW1hdGNoaW5nX3NlZWQYBCABKAUi",
+            "QwoOTWF0Y2hpbmdVcGRhdGUSFwoPY3VycmVudF9wbGF5ZXJzGAEgASgFEhgK",
+            "EHJlcXVpcmVkX3BsYXllcnMYAiABKAUitgEKD01hdGNoaW5nTWVzc2FnZRIx",
+            "ChBtYXRjaGluZ19yZXF1ZXN0GAEgASgLMhUuZ2FtZS5NYXRjaGluZ1JlcXVl",
+            "c3RIABIzChFtYXRjaGluZ19yZXNwb25zZRgCIAEoCzIWLmdhbWUuTWF0Y2hp",
+            "bmdSZXNwb25zZUgAEi8KD21hdGNoaW5nX3VwZGF0ZRgDIAEoCzIULmdhbWUu",
+            "TWF0Y2hpbmdVcGRhdGVIAEIKCghtYXRjaGluZyJbChVTcGVjdGF0b3JTdGF0",
+            "ZU1lc3NhZ2USEQoJcGxheWVyX2lkGAEgASgJEhUKDWlzX3NwZWN0YXRpbmcY",
+            "AiABKAgSGAoQdGFyZ2V0X3BsYXllcl9pZBgDIAEoCUINWgtHby9tZXNzYWdl",
+            "c2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -72,7 +73,7 @@ namespace Game {
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.SpawnPlayer), global::Game.SpawnPlayer.Parser, new[]{ "PlayerId", "X", "Y", "Z", "Rx", "Ry", "Rz" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.LogoutMessage), global::Game.LogoutMessage.Parser, new[]{ "PlayerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.RaceFinishMessage), global::Game.RaceFinishMessage.Parser, new[]{ "PlayerId", "FinishTime" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Game.CostumeMessage), global::Game.CostumeMessage.Parser, new[]{ "PlayerId", "PlayerCostumeType", "PlayerCostumeName" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Game.CostumeMessage), global::Game.CostumeMessage.Parser, new[]{ "PlayerId", "PlayerCostumeType", "PlayerCostumeName", "OtherPlayerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.RaceEndMessage), global::Game.RaceEndMessage.Parser, new[]{ "PlayerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.GameMessage), global::Game.GameMessage.Parser, new[]{ "PlayerPosition", "Chat", "Login", "PlayerAnimState", "SpawnPlayer", "SpawnExistingPlayer", "Logout", "RaceFinish", "PlayerCostume", "RaceEnd", "SpectatorState" }, new[]{ "Message" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.MatchingRequest), global::Game.MatchingRequest.Parser, new[]{ "PlayerId", "Waiting" }, null, null, null, null),
@@ -2142,6 +2143,7 @@ namespace Game {
       playerId_ = other.playerId_;
       playerCostumeType_ = other.playerCostumeType_;
       playerCostumeName_ = other.playerCostumeName_;
+      otherPlayerId_ = other.otherPlayerId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2187,6 +2189,18 @@ namespace Game {
       }
     }
 
+    /// <summary>Field number for the "otherPlayerId" field.</summary>
+    public const int OtherPlayerIdFieldNumber = 4;
+    private string otherPlayerId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string OtherPlayerId {
+      get { return otherPlayerId_; }
+      set {
+        otherPlayerId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -2205,6 +2219,7 @@ namespace Game {
       if (PlayerId != other.PlayerId) return false;
       if (PlayerCostumeType != other.PlayerCostumeType) return false;
       if (PlayerCostumeName != other.PlayerCostumeName) return false;
+      if (OtherPlayerId != other.OtherPlayerId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2215,6 +2230,7 @@ namespace Game {
       if (PlayerId.Length != 0) hash ^= PlayerId.GetHashCode();
       if (PlayerCostumeType != 0) hash ^= PlayerCostumeType.GetHashCode();
       if (PlayerCostumeName.Length != 0) hash ^= PlayerCostumeName.GetHashCode();
+      if (OtherPlayerId.Length != 0) hash ^= OtherPlayerId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2245,6 +2261,10 @@ namespace Game {
         output.WriteRawTag(26);
         output.WriteString(PlayerCostumeName);
       }
+      if (OtherPlayerId.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(OtherPlayerId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2267,6 +2287,10 @@ namespace Game {
         output.WriteRawTag(26);
         output.WriteString(PlayerCostumeName);
       }
+      if (OtherPlayerId.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(OtherPlayerId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2285,6 +2309,9 @@ namespace Game {
       }
       if (PlayerCostumeName.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(PlayerCostumeName);
+      }
+      if (OtherPlayerId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(OtherPlayerId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2306,6 +2333,9 @@ namespace Game {
       }
       if (other.PlayerCostumeName.Length != 0) {
         PlayerCostumeName = other.PlayerCostumeName;
+      }
+      if (other.OtherPlayerId.Length != 0) {
+        OtherPlayerId = other.OtherPlayerId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2338,6 +2368,10 @@ namespace Game {
             PlayerCostumeName = input.ReadString();
             break;
           }
+          case 34: {
+            OtherPlayerId = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -2367,6 +2401,10 @@ namespace Game {
           }
           case 26: {
             PlayerCostumeName = input.ReadString();
+            break;
+          }
+          case 34: {
+            OtherPlayerId = input.ReadString();
             break;
           }
         }

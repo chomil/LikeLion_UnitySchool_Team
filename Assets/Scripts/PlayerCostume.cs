@@ -13,17 +13,14 @@ public class PlayerCostume : MonoBehaviour
     private SkinnedMeshRenderer targetSkin;
     [SerializeField] private Transform rootBone;
 
-    public Material mat;
+    private Material mat;
     
     private void Start()
     {
-        mat = GetComponentInChildren<SkinnedMeshRenderer>().material;
-        SkinnedMeshRenderer[] meshRenderers= GetComponentsInChildren<SkinnedMeshRenderer>();
-        foreach (SkinnedMeshRenderer meshRenderer in meshRenderers)
+        if (mat == null)
         {
-            meshRenderer.material = mat;
+            InitMat();
         }
-        
         GameData data = GameManager.Instance.gameData;
         if (gameObject.CompareTag("Player"))
         {
@@ -32,9 +29,32 @@ public class PlayerCostume : MonoBehaviour
             ChangeCostume(data.GetItemByName(data.playerInfo.playerItems[ItemType.Pattern], ItemType.Pattern));
             ChangeCostume(data.GetItemByName(data.playerInfo.playerItems[ItemType.Color], ItemType.Color));
             ChangeCostume(data.GetItemByName(data.playerInfo.playerItems[ItemType.Face], ItemType.Face));
-            TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Upper,data.playerInfo.playerItems[ItemType.Upper]);
-            TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Lower,data.playerInfo.playerItems[ItemType.Lower]);
+            SendPlayerAllCostumes();
         }
+        else
+        {
+            SendPlayerAllCostumes(gameObject.GetComponent<OtherPlayerTCP>()?.PlayerId);
+        }
+    }
+
+    private void InitMat()
+    {
+        mat = GetComponentInChildren<SkinnedMeshRenderer>().material;
+        SkinnedMeshRenderer[] meshRenderers= GetComponentsInChildren<SkinnedMeshRenderer>();
+        foreach (SkinnedMeshRenderer meshRenderer in meshRenderers)
+        {
+            meshRenderer.material = mat;
+        }
+    }
+
+    public void SendPlayerAllCostumes(string otherName="")
+    {
+        GameData data = GameManager.Instance.gameData;
+        TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Upper,data.playerInfo.playerItems[ItemType.Upper],otherName);
+        TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Lower,data.playerInfo.playerItems[ItemType.Lower],otherName);
+        TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Pattern,data.playerInfo.playerItems[ItemType.Pattern],otherName);
+        TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Color,data.playerInfo.playerItems[ItemType.Color],otherName);
+        TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Face,data.playerInfo.playerItems[ItemType.Face],otherName);
     }
 
     public void ChangeCostume(ItemType itemType, string itemName)
@@ -44,6 +64,11 @@ public class PlayerCostume : MonoBehaviour
 
     public void ChangeCostume(ItemData itemData)
     {
+        if (mat == null)
+        {
+            InitMat();
+        }
+        
         if (itemData.itemType == ItemType.Upper)
         {
             GameObject newTop = itemData.itemObject as GameObject;
