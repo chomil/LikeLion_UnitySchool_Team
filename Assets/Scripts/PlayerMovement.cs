@@ -279,8 +279,6 @@ public class PlayerMovement : MonoBehaviour
         // 모든 입력 비활성화를 위한 플래그 설정
         isFinished = true;
         
-        //다음 경기 로드
-        SceneChanger.Instance.PlayRace(); 
     }
     // 관전 시스템
     public void EnterSpectatorMode()
