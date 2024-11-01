@@ -110,6 +110,7 @@ func processMessage(message *pb.GameMessage, conn *net.Conn) {
 		playerId := msg.Logout.PlayerId
 		playerManager := mg.GetPlayerManager()
 		playerManager.RemovePlayer(playerId)
+		mg.GetMatchingManager().RemovePlayer(playerId) //매칭 대기열에서도 제거
 		fmt.Println("Logout ", playerId)
 	case *pb.GameMessage_RaceFinish:
 		finish := msg.RaceFinish
@@ -166,7 +167,7 @@ func processMatchingMessage(message *pb.MatchingMessage, conn *net.Conn) {
 	case *pb.MatchingMessage_MatchingResponse:
 		// 매칭 응답 처리 로직
 	case *pb.MatchingMessage_MatchingUpdate:
-		// 매칭 업데이트 처리 로직
+		//mg.GetMatchingManager().SendMatchingStatus()
 	default:
 		panic(fmt.Sprintf("unexpected messages.isMatchingMessage_Message: %#v", msg))
 	}

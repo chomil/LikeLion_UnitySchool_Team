@@ -74,21 +74,9 @@ public class TcpProtobufClient : MonoBehaviour
             byte[] lengthBuffer = (byte[])ar.AsyncState;
             byte messageType = lengthBuffer[0]; // 첫 번째 바이트는 메시지 타입
             uint length = BitConverter.ToUInt32(lengthBuffer, 1); // 나머지 4바이트로 메시지 길이
-
-            //Debug.Log($"OnLengthReceived - Message Type: {messageType}, Length: {length}");
-
             byte[] messageBuffer = new byte[length];
+            
             stream.BeginRead(messageBuffer, 0, (int)length, OnMessageReceived, new Tuple<byte, byte[]>(messageType, messageBuffer));
-            /*int bytesRead = stream.EndRead(ar);
-            if (bytesRead == 0) return; // 연결 종료
-
-            byte[] lengthBuffer = (byte[])ar.AsyncState;
-
-            int length = BitConverter.ToInt32(lengthBuffer, 0);
-            Debug.Log("OnLengthReceived "+ lengthBuffer[0] + "length : " + length);
-
-            byte[] messageBuffer = new byte[length];
-            stream.BeginRead(messageBuffer, 0, length, OnMessageReceived, messageBuffer);*/
         }
         catch (Exception e)
         {
@@ -123,33 +111,7 @@ public class TcpProtobufClient : MonoBehaviour
                 UnityMainThreadDispatcher.Instance.Enqueue(matchingMessage);
             }
             
-
-            /*// Protobuf 파싱
-            GameMessage gameMessage = GameMessage.Parser.ParseFrom(actualMessageBytes);
-            UnityMainThreadDispatcher.Instance.Enqueue(gameMessage);*/
-            
             StartReceiving(); // 다음 메시지 수신 대기
-            /*int bytesRead = stream.EndRead(ar);
-            if (bytesRead == 0) return; // 연결 종료
-
-            byte[] messageBuffer = (byte[])ar.AsyncState;
-
-            byte messageType = messageBuffer[0];
-            int messageLength = bytesRead - 1; // 1은 타입 바이트 제외
-            byte[] actualMessageBytes = new byte[messageLength];
-            Array.Copy(messageBuffer, 1, actualMessageBytes, 0, messageLength); // 타입 바이트 제외
-            
-            if(messageType == MessageTypes.GameMessageType)
-                Debug.Log("game");
-            else if(messageType == MessageTypes.MatchingMessageType)
-                Debug.Log("matching");
-
-            //Debug.Log($"Received message type: {messageType}, length: {messageLength}");
-            
-            GameMessage gameMessage = GameMessage.Parser.ParseFrom(messageBuffer);
-            UnityMainThreadDispatcher.Instance.Enqueue(gameMessage);
-            
-            StartReceiving(); // 다음 메시지 수신 대기*/
         }
         catch (Exception e)
         {
@@ -279,38 +241,8 @@ public class TcpProtobufClient : MonoBehaviour
             MatchingRequest = msg
         };
         SendMatchingMessage(message);
-        //SendMessage(message);
     }
-
-    //Message Type -> GameMessage
-    /*private void SendMessage(GameMessage message)
-    {
-        if (tcpClient != null && tcpClient.Connected)
-        {
-            byte[] messageBytes = message.ToByteArray();
-            byte[] lengthBytes = BitConverter.GetBytes(messageBytes.Length);
-
-            // 메시지 길이를 먼저 보냅니다
-            stream.Write(lengthBytes, 0, 4);
-            // 메시지 본문을 보냅니다
-            stream.Write(messageBytes, 0, messageBytes.Length);
-        }
-    }*/
     
-    //Message Type -> MatchingMessage
-    /*private void SendMessage(MatchingMessage message)
-    {
-        if (tcpClient != null && tcpClient.Connected)
-        {
-            byte[] messageBytes = message.ToByteArray();
-            byte[] lengthBytes = BitConverter.GetBytes(messageBytes.Length);
-
-            // 메시지 길이를 먼저 보냅니다
-            stream.Write(lengthBytes, 0, 4);
-            // 메시지 본문을 보냅니다
-            stream.Write(messageBytes, 0, messageBytes.Length);
-        }
-    }*/
     //메시지 전송 함수(GameMessage)
     private void SendGameMessage(GameMessage message)
     {

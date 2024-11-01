@@ -27,6 +27,7 @@ public class SceneChanger : MonoBehaviour
     private List<string> teamToPlay; 
     private List<string> finalToPlay;
     private Dictionary<Button, Action> buttonActions = new ();
+    private Tuple<int, int> matchingStatus; 
     
     private void Awake()
     {
@@ -57,6 +58,10 @@ public class SceneChanger : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && GetCurrentScene() != "Main" && !isRacing)
         {
+            if (GetCurrentScene() == "Matching")
+            {
+                TcpProtobufClient.Instance.SendMatchingRequest(TCPManager.playerId, false);       
+            }
             SceneManager.LoadScene("Main");
         }
     }
@@ -114,5 +119,15 @@ public class SceneChanger : MonoBehaviour
     public void GoCustomizeScene()
     {
         SceneManager.LoadScene("Customize");
+    }
+
+    public void SetMatchingStatus(MatchingUpdate mu)
+    {
+        matchingStatus = new Tuple<int, int>(mu.CurrentPlayers, mu.RequiredPlayers);
+    }
+    
+    public Tuple<int,int> GetMatchingStatus()
+    {
+        return matchingStatus;
     }
 }
