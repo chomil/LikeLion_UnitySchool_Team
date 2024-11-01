@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	playersPerRace = 3 //레이스에 참여하는 최대 인원 수
+	playersPerRace = 4 //레이스에 참여하는 최대 인원 수
 )
 
 var RaceMaps = []string{
