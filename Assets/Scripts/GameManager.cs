@@ -143,6 +143,11 @@ public class GameManager : MonoBehaviour
             {
                 SceneChanger.Instance.SetRaceMaps(msg.MatchingResponse);
             }
+            
+            if (msg.MatchingCase == MatchingMessage.MatchingOneofCase.MatchingUpdate)
+            {
+                SceneChanger.Instance.SetMatchingStatus(msg.MatchingUpdate);
+            }
         }
     }
 

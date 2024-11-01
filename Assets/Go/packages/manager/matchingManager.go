@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	playersPerRace = 2 //레이스에 참여하는 최대 인원 수
+	playersPerRace = 3 //레이스에 참여하는 최대 인원 수
 )
 
 var RaceMaps = []string{
@@ -80,6 +80,7 @@ func (m *MatchingManager) AddPlayer(id string, conn net.Conn) {
 		//Ready: false,
 	}
 	log.Printf("Player added to matching: %s", id)
+	m.SendMatchingStatus() // 플레이어들에게 현재 매칭현황 전송
 
 	if len(m.Players) >= 1 && !m.starting {
 		m.StartCountdown()
@@ -95,35 +96,45 @@ func (m *MatchingManager) RemovePlayer(id string) {
 		delete(m.Players, id)
 		log.Printf("Player removed from matching: %s", id)
 	}
+	m.SendMatchingStatus()
 }
 
 func (m *MatchingManager) StartCountdown() {
 	m.starting = true
 	go func() {
-		time.Sleep(10 * time.Second) // 30초 동안 기다림
+		ticker := time.NewTicker(500 * time.Millisecond) // 0.5초마다 체크
+		defer ticker.Stop()
+		timeout := time.After(30 * time.Second) // 30초 타임아웃 설정
 
-		if len(m.Players) >= playersPerRace { //playPerRace는 원할한 테스트를 위해 3으로 설정
-			//게임 시작
-			m.StartMatch()
-		} else {
-			//매칭 실패
-			for _, player := range m.Players {
-				fmt.Printf("Not enough players to start the game for player %s\n", player.ID)
+		for {
+			select {
+			case <-ticker.C:
+				if len(m.Players) >= playersPerRace { // 필요한 플레이어 수가 채워졌을 때
+					m.StartMatch()
+					return // goroutine 종료
+				}
+			case <-timeout:
+				if len(m.Players) >= playersPerRace {
+					// 시간이 만료됐지만 플레이어 수가 충분할 경우
+					m.StartMatch()
+				} else {
+					// 시간이 만료되고 플레이어가 충분하지 않을 경우
+					for _, player := range m.Players {
+						fmt.Printf("Not enough players to start the game for player %s\n", player.ID)
+					}
+					// 대기열 초기화
+					m.Players = make(map[string]*MatchingPlayer)
+					m.starting = false
+				}
+				return // goroutine 종료
 			}
-			// 대기열 초기화
-			m.Players = make(map[string]*MatchingPlayer)
-			m.starting = false
 		}
 	}()
 }
 
 // StartMatch는 매칭이 성공적으로 이루어졌을 때 호출됩니다.
 func (m *MatchingManager) StartMatch() {
-	var GameMaps []string
-	GameMaps = append(GameMaps, RaceMaps[rand.Intn(len(RaceMaps))])
-	GameMaps = append(GameMaps, RaceMaps[rand.Intn(len(RaceMaps))])
-	GameMaps = append(GameMaps, RaceMaps[rand.Intn(len(RaceMaps))])
-	GameMaps = append(GameMaps, FinalsMaps[rand.Intn(len(FinalsMaps))])
+	var GameMaps = SetRaceMaps() //레이스할 맵 세팅
 	playerManager := GetPlayerManager()
 	playerManager.matchedPlayers = make(map[int]*Player)
 	matchingSeed := rand.Int31()
@@ -170,4 +181,61 @@ func (m *MatchingManager) StartMatch() {
 	//대기열 초기화
 	m.Players = make(map[string]*MatchingPlayer)
 	m.starting = false
+}
+
+func SetRaceMaps() []string {
+	temp := make(map[int]string)
+
+	//레이스 맵 중복없이 뽑기
+	for len(temp) < 3 {
+		idx := rand.Intn(len(RaceMaps))
+		temp[idx] = RaceMaps[idx]
+	}
+
+	var res []string
+
+	//string 배열에 할당
+	for idx := range temp {
+		res = append(res, RaceMaps[idx])
+	}
+	//결승전 맵 선정
+	res = append(res, FinalsMaps[rand.Intn(len(FinalsMaps))])
+
+	return res
+}
+
+func (m *MatchingManager) SendMatchingStatus() {
+	for _, player := range m.Players {
+		message := &pb.MatchingMessage{
+			Matching: &pb.MatchingMessage_MatchingUpdate{
+				MatchingUpdate: &pb.MatchingUpdate{
+					CurrentPlayers:  int32(len(m.Players)),
+					RequiredPlayers: playersPerRace,
+				},
+			},
+		}
+
+		data, err := proto.Marshal(message)
+		if err != nil {
+			log.Printf("Error marshaling MatchingResponse: %v", err)
+			continue
+		}
+
+		lengthBuf := make([]byte, 5)                                    // 메시지 길이와 타입을 포함하기 위해 5바이트로 설정
+		lengthBuf[0] = co.MatchingMessageType                           // 메시지 타입 설정
+		binary.LittleEndian.PutUint32(lengthBuf[1:], uint32(len(data))) // 길이 설정
+
+		log.Printf("Sending MatchingResponse to player %s: Type: %d, Length: %d", player.ID, lengthBuf[0], binary.LittleEndian.Uint32(lengthBuf[1:]))
+
+		// 메시지 길이 정보와 메시지 데이터를 결합하여 전송
+		lengthBuf = append(lengthBuf, data...) // 전체 메시지 생성
+
+		// 연결된 플레이어에게 전송
+		_, err = player.Conn.Write(lengthBuf)
+		if err != nil {
+			log.Printf("Error sending MatchingResponse to %s: %v", player.ID, err)
+		} else {
+			log.Printf("Successfully sent MatchingResponse to player %s", player.ID)
+		}
+	}
 }
