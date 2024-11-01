@@ -42,6 +42,10 @@ type PlayerManager struct {
 	maxQualifiedPlayers       int
 	matchedPlayers            map[int]*Player
 	matchID                   int
+	currentAlive              int32
+	totalPlayers              int32
+	currentRound              int
+	qualifyLimits             []int
 }
 
 // NewPlayerManager creates a new PlayerManager
@@ -55,6 +59,13 @@ func GetPlayerManager() *PlayerManager {
 			maxQualifiedPlayers:       10,
 			matchedPlayers:            make(map[int]*Player),
 			matchID:                   1,
+			currentAlive:              0,
+			totalPlayers:              0,
+			// 추가
+			currentRound: 0,
+			// qualifyLimits: []int{60, 30, 15, 8, 1},
+			// 테스트용 코드
+			qualifyLimits: []int{3, 2, 1},
 		}
 	}
 	return playerManager
@@ -95,6 +106,8 @@ func (pm *PlayerManager) AddMatchedPlayer(name string) {
 
 	//pm.SpawnNewPlayerInfo(*player)
 	//pm.SendExistingPlayersToNewPlayer(*player)
+	// 플레이어 카운트 업데이트
+	pm.BroadcastPlayerCount()
 }
 
 // 로그인 시 내 정보를 다른 플레이어들에게 전송해서 나를 스폰하도록 한다.
@@ -324,6 +337,9 @@ func (pm *PlayerManager) RemovePlayer(id string) error {
 	}
 	delete(pm.players, player.ID)
 
+	// 플레이어 카운트 업데이트
+	pm.BroadcastPlayerCount()
+
 	logoutPacket := &pb.GameMessage{
 		Message: &pb.GameMessage_Logout{
 			Logout: &pb.LogoutMessage{
@@ -389,7 +405,12 @@ func (pm *PlayerManager) BroadcastMessage(message *pb.GameMessage) {
 		lengthBuf[0] = co.GameMessageType // 메시지 타입 설정
 		binary.LittleEndian.PutUint32(lengthBuf[1:], uint32(len(response)))
 		lengthBuf = append(lengthBuf, response...)
-		(*player.Conn).Write(lengthBuf)
+		_, err := (*player.Conn).Write(lengthBuf) // Write 한 번만 호출
+		if err != nil {
+			log.Printf("Failed to send message to player %s: %v", player.Name, err)
+		} else {
+			log.Printf("Successfully sent message to player %s", player.Name)
+		}
 	}
 }
 
@@ -406,7 +427,9 @@ func (pm *PlayerManager) PlayerFinishedRace(playerId string, finishTime int64) {
 		return
 	}
 
-	if len(pm.activePlayersForNextRound) < pm.maxQualifiedPlayers {
+	// 현재 라운드의 통과 제한 인원 체크
+	maxQualified := pm.qualifyLimits[pm.currentRound]
+	if len(pm.activePlayersForNextRound) < maxQualified {
 		pm.activePlayersForNextRound[playerId] = true
 	}
 
@@ -423,6 +446,10 @@ func (pm *PlayerManager) PlayerFinishedRace(playerId string, finishTime int64) {
 	}
 
 	pm.BroadcastMessage(finishMessage)
+
+	// 플레이어가 완주하면 생존자 수 감소
+	pm.currentAlive--
+	pm.BroadcastPlayerCount()
 
 	// 모든 플레이어가 완주했거나 최대 통과 인원에 도달했는지 체크
 	finishedCount := 0
@@ -467,6 +494,12 @@ func (pm *PlayerManager) HandleRaceEnd(playerId string) {
 		pm.players = newPlayers
 		pm.nextID = newID
 
+		// 다음 라운드로 진행
+		pm.currentRound++
+		if pm.currentRound < len(pm.qualifyLimits) {
+			pm.maxQualifiedPlayers = pm.qualifyLimits[pm.currentRound]
+		}
+
 		// 레이스 종료 메시지 브로드캐스트
 		raceEndMessage := &pb.GameMessage{
 			Message: &pb.GameMessage_RaceEnd{
@@ -478,25 +511,8 @@ func (pm *PlayerManager) HandleRaceEnd(playerId string) {
 
 		pm.BroadcastMessage(raceEndMessage)
 		log.Printf("Race ended by player: %s, Qualified players: %d", playerId, len(newPlayers))
-
 		pm.activePlayersForNextRound = make(map[string]bool) // 초기화
-
 	}
-
-	// 레이스 종료 메시지 브로드캐스트
-
-	raceEndMessage := &pb.GameMessage{
-		Message: &pb.GameMessage_RaceEnd{
-			RaceEnd: &pb.RaceEndMessage{
-				PlayerId: playerId,
-			},
-		},
-	}
-
-	pm.BroadcastMessage(raceEndMessage)
-
-	log.Printf("Race ended by player: %s, Players remaining: %d", playerId, len(pm.players))
-
 }
 
 // 관전 Spectating
@@ -578,4 +594,46 @@ func (pm *PlayerManager) ChangeSpectatorTarget(spectatorId string, newTargetId s
 	lengthBuf[0] = co.GameMessageType
 	binary.LittleEndian.PutUint32(lengthBuf[1:], uint32(len(response)))
 	(*player.Conn).Write(append(lengthBuf, response...))
+}
+
+// 플레이어 카운트 업데이트 및 브로드캐스트하는 새로운 메서드
+func (pm *PlayerManager) UpdatePlayerCount() {
+	// 실제 플레이어 수 계산
+	pm.totalPlayers = int32(len(pm.matchedPlayers))
+
+	// 생존 플레이어 수 계산 (완주하지 않은 플레이어)
+	alive := 0
+	for _, player := range pm.matchedPlayers {
+		if player.FinishTime == 0 {
+			alive++
+		}
+	}
+	pm.currentAlive = int32(alive)
+}
+
+func (pm *PlayerManager) BroadcastPlayerCount() {
+	pm.UpdatePlayerCount()
+
+	countMessage := &pb.GameMessage{
+		Message: &pb.GameMessage_PlayerCount{
+			PlayerCount: &pb.PlayerCountUpdate{
+				CurrentAlive: pm.currentAlive,
+				TotalPlayers: pm.totalPlayers,
+			},
+		},
+	}
+
+	response, err := proto.Marshal(countMessage)
+	if err != nil {
+		log.Printf("Failed to marshal player count message: %v", err)
+		return
+	}
+
+	// 모든 플레이어에게 전송
+	for _, player := range pm.matchedPlayers {
+		lengthBuf := make([]byte, 5)
+		lengthBuf[0] = co.GameMessageType
+		binary.LittleEndian.PutUint32(lengthBuf[1:], uint32(len(response)))
+		(*player.Conn).Write(append(lengthBuf, response...))
+	}
 }
