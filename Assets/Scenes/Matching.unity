@@ -1375,6 +1375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerObj: {fileID: 1512437242}
+  MatchingPlayerText: {fileID: 276028343}
 --- !u!4 &2060578663
 Transform:
   m_ObjectHideFlags: 0
@@ -1916,4 +1917,3 @@ SceneRoots:
   - {fileID: 2060578663}
   - {fileID: 996471854}
   - {fileID: 8512674589386379607}
-  - {fileID: 1694967129}
