@@ -73,6 +73,8 @@ message GameMessage {
     CostumeMessage player_costume = 9;
     RaceEndMessage race_end = 10;
     SpectatorStateMessage spectator_state = 11;
+    PlayerCountUpdate player_count = 12;
+    PlayerIndexMessage playerIndex = 13;
   }
 }
 
@@ -107,3 +109,18 @@ message SpectatorStateMessage {
   string target_player_id = 3;   // 관전 대상 플레이어 ID
 }
 
+message PlayerCountUpdate {
+  int32 current_alive = 1;    // 현재 생존 플레이어 수
+  int32 total_players = 2;    // 총 플레이어 수
+}
+
+message RoundStateMessage {
+  int32 current_round = 1;
+  int32 players_required = 2;
+  repeated string qualified_players = 3;
+}
+
+
+message PlayerIndexMessage {
+  int32 player_index = 1;    // 몇 번째 플레이어인지
+}

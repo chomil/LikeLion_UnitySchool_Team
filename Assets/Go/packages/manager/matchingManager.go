@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	playersPerRace = 3 //레이스에 참여하는 최대 인원 수
+	playersPerRace = 4 //레이스에 참여하는 최대 인원 수
 )
 
 var RaceMaps = []string{
@@ -32,9 +32,7 @@ var TeamMaps = []string{
 }
 
 var FinalsMaps = []string{
-	"Race01",
-	"Race02",
-	"Race03",
+	"Final01",
 }
 
 var matchingManager *MatchingManager

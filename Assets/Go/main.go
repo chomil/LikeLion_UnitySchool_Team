@@ -125,6 +125,10 @@ func processMessage(message *pb.GameMessage, conn *net.Conn) {
 		raceEnd := msg.RaceEnd
 		fmt.Printf("Race ended by player %s\n", raceEnd.PlayerId)
 		mg.GetPlayerManager().HandleRaceEnd(raceEnd.PlayerId)
+	case *pb.GameMessage_PlayerCount:
+		// 클라이언트로부터 플레이어 카운트 요청이 올 경우 처리
+		playerManager := mg.GetPlayerManager()
+		playerManager.BroadcastPlayerCount()
 	case *pb.GameMessage_SpectatorState:
 		spectatorState := msg.SpectatorState
 		mg.GetPlayerManager().SetPlayerSpectating(
@@ -141,8 +145,9 @@ func processMessage(message *pb.GameMessage, conn *net.Conn) {
 		newPlayer, exists := mg.GetPlayerManager().FindPlayerByName(playerId)
 		if !exists {
 			fmt.Println("Not found player", playerId)
+		} else {
+			mg.GetPlayerManager().SendExistingPlayersToNewPlayer(*newPlayer)
 		}
-		mg.GetPlayerManager().SendExistingPlayersToNewPlayer(*newPlayer)
 
 	default:
 		panic(fmt.Sprintf("unexpected messages.isGameMessage_Message: %#v", msg))
@@ -163,6 +168,8 @@ func processMatchingMessage(message *pb.MatchingMessage, conn *net.Conn) {
 		} else {
 			mg.GetMatchingManager().RemovePlayer(playerID)
 			fmt.Println("Leave Matching", playerID)
+			// 매칭 취소할 때 플레이어 카운트 업데이트
+			mg.GetPlayerManager().BroadcastPlayerCount()
 		}
 	case *pb.MatchingMessage_MatchingResponse:
 		// 매칭 응답 처리 로직

@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using GameObject = UnityEngine.GameObject;
 
 public class PlayerController : MonoBehaviour
 {
@@ -44,7 +45,8 @@ public class PlayerController : MonoBehaviour
         SceneManager.sceneLoaded += OnMainLoaded;
     }
     
-    private void OnDisable() {
+    private void OnDisable() 
+    {
         SceneManager.sceneLoaded -= OnMainLoaded;
     }
 
@@ -55,6 +57,7 @@ public class PlayerController : MonoBehaviour
             if (myPlayer == null)
             {
                 myPlayer = Instantiate(myPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
+                myPlayerTcp = myPlayer.GetComponent<PlayerTCP>();
             }
             //로비에서 플레이어 위치
             myPlayer.transform.position = LobbyPlayerPos;
@@ -63,14 +66,39 @@ public class PlayerController : MonoBehaviour
             myPlayer.GetComponent<PlayerMovement>().cameraArm.SetActive(false);
             myPlayer.GetComponent<PlayerMovement>().enabled = false;
         }
-
+        
         if (SceneChanger.Instance.isRacing)
         {
+            //모든 플레이어가 씬 로딩하기 전까지 멈추기
+            Time.timeScale = 0f;
+            myPlayer = Instantiate(myPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
+            myPlayerTcp = myPlayer.GetComponent<PlayerTCP>();
+            
             TcpProtobufClient.Instance.SendSpawnExistingPlayer(TCPManager.playerId);
             SendPlayerAllCostumes(gameObject.GetComponent<OtherPlayerTCP>()?.PlayerId);
             //SpawnOtherPlayers();
         }
     }
+
+    public void InitPosInRace(int playerIndex)
+    {
+        Debug.Log(playerIndex + "번째 플레이어 준비완료");
+        if (SceneChanger.Instance.isRacing)
+        {
+            GameObject[] startsObj = GameObject.FindGameObjectsWithTag("PlayerStart");
+            foreach (GameObject startObj in startsObj)
+            {
+                PlayerStart start = startObj.GetComponent<PlayerStart>();
+                if (start && start.index==playerIndex)
+                {
+                    start.InitPlayerPosToThis(myPlayer);
+                    //모든 플레이어가 씬 로딩 되면 시작되게
+                    Time.timeScale = 1f;
+                }
+            }
+        }
+    }
+    
     public void SendPlayerAllCostumes(string otherName=" ")
     {
         GameData data = GameManager.Instance.gameData;
@@ -88,21 +116,16 @@ public class PlayerController : MonoBehaviour
         
         if (temp == "Loading")
         {
-            myPlayer.SetActive(false);
+            //myPlayer.SetActive(false);
         }
         else
         {
-            myPlayer = Instantiate(myPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
+            //myPlayer = Instantiate(myPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
         }
 
-        myPlayerTcp = myPlayer.GetComponent<PlayerTCP>();
+        //myPlayerTcp = myPlayer.GetComponent<PlayerTCP>();
     }
 
-    /*public void OnRecevieChatMsg(ChatMessage chatmsg) //유저 간의 채팅 기능
-    {
-        UIManager.Instance.OnRecevieChatMsg(chatmsg);
-    }*/
-    
     void Update()
     {
         while (UnityMainThreadDispatcher.Instance.ExecutionQueue.Count > 0)
