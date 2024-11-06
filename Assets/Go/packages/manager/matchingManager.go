@@ -89,7 +89,6 @@ func (m *MatchingManager) AddPlayer(id string, conn net.Conn) {
 func (m *MatchingManager) RemovePlayer(id string) {
 	m.mutex.Lock()
 	defer m.mutex.Unlock()
-
 	if _, ok := m.Players[id]; ok {
 		delete(m.Players, id)
 		log.Printf("Player removed from matching: %s", id)
