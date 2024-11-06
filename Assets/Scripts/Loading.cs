@@ -99,21 +99,22 @@ public class Loading : MonoBehaviour
 
     IEnumerator LoadScene()
     {
-        // 이전코드
         yield return null;
+        
         //게임 씬에 맞는 이미지와 텍스트 채워넣기
         
         AsyncOperation asyncOperation;
         asyncOperation = SceneManager.LoadSceneAsync(nextSceneName);
         asyncOperation.allowSceneActivation = false;
-        
+
         float timer = 0f;
-        
+        float delayTimer = 0f;
+
         while (!asyncOperation.isDone)
         {
             yield return null;
             timer += Time.deltaTime;
-        
+            delayTimer += Time.deltaTime;
             if (asyncOperation.progress < 0.9f)
             {
                 float progressRate = Mathf.Lerp(0, asyncOperation.progress, timer);
@@ -125,6 +126,7 @@ public class Loading : MonoBehaviour
                 float progressRate = Mathf.Lerp(0, 1f, timer);
                 if (progressRate >= 1f)
                 {
+                    yield return new WaitForSeconds(delay - delayTimer);
                     asyncOperation.allowSceneActivation = true;
                     SceneChanger.Instance.isRacing = true;
                     yield break;
@@ -132,24 +134,6 @@ public class Loading : MonoBehaviour
             }
           
         }
-        // Debug.Log("LoadScene coroutine started");
-        // AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(nextSceneName);
-        // asyncOperation.allowSceneActivation = false;
-        //
-        // while (asyncOperation.progress < 0.9f)
-        // {
-        //     Debug.Log($"Loading progress: {asyncOperation.progress}");
-        //     yield return null;
-        // }
-        //
-        // Debug.Log("Loading nearly complete, waiting for minimum time");
-        // yield return new WaitForSeconds(1f);
-        //
-        // Debug.Log("Activating scene");
-        // asyncOperation.allowSceneActivation = true;
-        // SceneChanger.Instance.isRacing = true;
-        //
-        // Debug.Log("Scene loading completed");
         
     }
 }
