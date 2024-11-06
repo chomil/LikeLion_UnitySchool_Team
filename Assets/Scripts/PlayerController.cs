@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    public void SendPlayerAllCostumes(string otherName=" ")
+    public void SendPlayerAllCostumes(string otherName= "")
     {
         GameData data = GameManager.Instance.gameData;
         TcpProtobufClient.Instance?.SendPlayerCostume(TCPManager.playerId, (int)ItemType.Upper,data.playerInfo.playerItems[ItemType.Upper],otherName);
@@ -145,13 +145,33 @@ public class PlayerController : MonoBehaviour
     
     public void OnOtherPlayerPositionUpdate(PlayerPosition playerPosition)
     {
-        if (_otherPlayers.TryGetValue(
-                playerPosition.PlayerId, out OtherPlayerTCP otherPlayer))
+        // 이전코드
+        // if (_otherPlayers.TryGetValue(
+        //         playerPosition.PlayerId, out OtherPlayerTCP otherPlayer))
+        // {
+        //     otherPlayer.destination = new Vector3(playerPosition.X, playerPosition.Y, playerPosition.Z);
+        //     otherPlayer.OtherRot = new Vector3(playerPosition.Rx, playerPosition.Ry, playerPosition.Rz);
+        //     return;
+        //     
+        // }
+        
+        if (playerPosition == null || string.IsNullOrEmpty(playerPosition.PlayerId))
         {
-            otherPlayer.destination = new Vector3(playerPosition.X, playerPosition.Y, playerPosition.Z);
-            otherPlayer.OtherRot = new Vector3(playerPosition.Rx, playerPosition.Ry, playerPosition.Rz);
+            Debug.LogError("Received null position update");
             return;
-            
+        }
+
+        if (_otherPlayers.TryGetValue(playerPosition.PlayerId, out OtherPlayerTCP otherPlayer))
+        {
+            if (otherPlayer != null)  // null 체크 추가
+            {
+                otherPlayer.destination = new Vector3(playerPosition.X, playerPosition.Y, playerPosition.Z);
+                otherPlayer.OtherRot = new Vector3(playerPosition.Rx, playerPosition.Ry, playerPosition.Rz);
+            }
+            else
+            {
+                _otherPlayers.Remove(playerPosition.PlayerId);  // 잘못된 참조 제거
+            }
         }
     }
     
@@ -217,9 +237,25 @@ public class PlayerController : MonoBehaviour
 
     public void DespawnOtherPlayer(string playerId)
     {
+        // 이전 코드
+        // if (_otherPlayers.TryGetValue(playerId, out OtherPlayerTCP otherPlayer))
+        // {
+        //     Destroy(otherPlayer.gameObject);
+        //     _otherPlayers.Remove(playerId);
+        // }
+        
+        if (string.IsNullOrEmpty(playerId))
+        {
+            Debug.LogError("Attempted to despawn player with null/empty ID");
+            return;
+        }
+
         if (_otherPlayers.TryGetValue(playerId, out OtherPlayerTCP otherPlayer))
         {
-            Destroy(otherPlayer.gameObject);
+            if (otherPlayer != null)
+            {
+                Destroy(otherPlayer.gameObject);
+            }
             _otherPlayers.Remove(playerId);
         }
     }
@@ -251,11 +287,48 @@ public class PlayerController : MonoBehaviour
 
     public void OnOtherPlayerCostumeUpdate(CostumeMessage costumeMessage)
     {
+    //     //다른 플레이어가 이미 있으면 업데이트, 없으면 메시지 저장해놓기
+    //     if (_otherPlayers.TryGetValue(costumeMessage.PlayerId, out OtherPlayerTCP otherPlayer))
+    //     {
+    //         otherPlayer.GetComponent<PlayerCostume>()?.ChangeCostume((ItemType)costumeMessage.PlayerCostumeType,
+    //             costumeMessage.PlayerCostumeName);
+    //     }
+    //     else
+    //     {
+    //         if (_otherCostumeMessages.TryGetValue(costumeMessage.PlayerId, out Dictionary<int,string> otherCostumeMessages))
+    //         {
+    //             otherCostumeMessages.TryAdd(costumeMessage.PlayerCostumeType, costumeMessage.PlayerCostumeName);
+    //         }
+    //         else
+    //         {
+    //             _otherCostumeMessages.Add(costumeMessage.PlayerId, new Dictionary<int, string>());
+    //             _otherCostumeMessages[costumeMessage.PlayerId].TryAdd(costumeMessage.PlayerCostumeType, costumeMessage.PlayerCostumeName);
+    //         }
+    //     }
+    //
+        if (costumeMessage == null || string.IsNullOrEmpty(costumeMessage.PlayerId))
+        {
+            Debug.LogError("Received null or invalid costume message");
+            return;
+        }
+
         //다른 플레이어가 이미 있으면 업데이트, 없으면 메시지 저장해놓기
         if (_otherPlayers.TryGetValue(costumeMessage.PlayerId, out OtherPlayerTCP otherPlayer))
         {
-            otherPlayer.GetComponent<PlayerCostume>()?.ChangeCostume((ItemType)costumeMessage.PlayerCostumeType,
-                costumeMessage.PlayerCostumeName);
+            if (otherPlayer != null && otherPlayer.gameObject != null)  // null 체크 추가
+            {
+                var playerCostume = otherPlayer.GetComponent<PlayerCostume>();
+                if (playerCostume != null)
+                {
+                    playerCostume.ChangeCostume((ItemType)costumeMessage.PlayerCostumeType,
+                        costumeMessage.PlayerCostumeName);
+                }
+            }
+            else
+            {
+                // 파괴된 오브젝트의 참조 제거
+                _otherPlayers.Remove(costumeMessage.PlayerId);
+            }
         }
         else
         {
@@ -269,6 +342,5 @@ public class PlayerController : MonoBehaviour
                 _otherCostumeMessages[costumeMessage.PlayerId].TryAdd(costumeMessage.PlayerCostumeType, costumeMessage.PlayerCostumeName);
             }
         }
-
     }
 }

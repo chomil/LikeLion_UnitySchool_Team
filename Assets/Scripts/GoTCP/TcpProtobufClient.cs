@@ -141,6 +141,8 @@ public class TcpProtobufClient : MonoBehaviour
 
     public void SendPlayerCostume(string playerId, int cosType, string cosName, string otherId)
     {
+        otherId = otherId ?? "";
+        
         var costume = new CostumeMessage
         {
             PlayerId = playerId,
