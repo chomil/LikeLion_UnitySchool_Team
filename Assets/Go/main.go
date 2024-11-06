@@ -145,8 +145,9 @@ func processMessage(message *pb.GameMessage, conn *net.Conn) {
 		newPlayer, exists := mg.GetPlayerManager().FindPlayerByName(playerId)
 		if !exists {
 			fmt.Println("Not found player", playerId)
+		} else {
+			mg.GetPlayerManager().SendExistingPlayersToNewPlayer(*newPlayer)
 		}
-		mg.GetPlayerManager().SendExistingPlayersToNewPlayer(*newPlayer)
 
 	default:
 		panic(fmt.Sprintf("unexpected messages.isGameMessage_Message: %#v", msg))

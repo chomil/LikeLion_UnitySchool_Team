@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour
         
         if (SceneChanger.Instance.isRacing)
         {
+            //모든 플레이어가 씬 로딩하기 전까지 멈추기
             Time.timeScale = 0f;
             myPlayer = Instantiate(myPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
             myPlayerTcp = myPlayer.GetComponent<PlayerTCP>();
@@ -91,6 +92,7 @@ public class PlayerController : MonoBehaviour
                 if (start && start.index==playerIndex)
                 {
                     start.InitPlayerPosToThis(myPlayer);
+                    //모든 플레이어가 씬 로딩 되면 시작되게
                     Time.timeScale = 1f;
                 }
             }
