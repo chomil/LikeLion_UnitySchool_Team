@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private float speed = 3.5f;
     private float jumpPower = 6f;
     private float slidePower = 5f;
+    private float originSpeed;
     private bool isGrounded = false;
     private bool isJumping = false;
     private bool isSliding = false;
@@ -65,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         Physics.gravity = new Vector3(0f,-12f,0f);
         stepCollider.OnStepEvent += OnStep; // 이벤트 바인딩
         curAnimState = AnimState.Idle; //초기화
+        originSpeed = speed;
     }
 
     void Update()
@@ -295,5 +297,21 @@ public class PlayerMovement : MonoBehaviour
     
         // 플레이어 카메라 비활성화
         GetComponentInChildren<Camera>().gameObject.SetActive(false);
+    }
+
+    //가속 발판 밟았을 때
+    public void StartBoostSpeed(float mulSpeed)
+    {
+        speed = originSpeed * mulSpeed;
+    }
+    
+    public void EndBoostSpeed()
+    {
+        speed = originSpeed;
+    }
+
+    public Vector3 GetMoveVector()
+    {
+        return moveVector;
     }
 }
