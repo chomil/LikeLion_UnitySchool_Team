@@ -153,6 +153,12 @@ public class GameManager : MonoBehaviour
             {
                 HandleRaceEndMessage(msg.RaceEnd);
             }
+
+            //몇번째 플레이어인지
+            if (msg.MessageCase == GameMessage.MessageOneofCase.PlayerIndex)
+            {
+                PlayerController.Instance.InitPosInRace(msg.PlayerIndex.PlayerIndex);
+            }
         }
 
         while (UnityMainThreadDispatcher.Instance?.ExecutionMatchingQueue.Count > 0)

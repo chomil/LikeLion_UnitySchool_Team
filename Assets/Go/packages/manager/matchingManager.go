@@ -32,9 +32,7 @@ var TeamMaps = []string{
 }
 
 var FinalsMaps = []string{
-	"Race01",
-	"Race02",
-	"Race03",
+	"Final01",
 }
 
 var matchingManager *MatchingManager

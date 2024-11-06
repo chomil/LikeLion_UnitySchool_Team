@@ -46,6 +46,7 @@ type PlayerManager struct {
 	totalPlayers              int32
 	currentRound              int
 	qualifyLimits             []int
+	readyPlayerCount          int32
 }
 
 // NewPlayerManager creates a new PlayerManager
@@ -66,6 +67,8 @@ func GetPlayerManager() *PlayerManager {
 			// qualifyLimits: []int{60, 30, 15, 8, 1},
 			// 테스트용 코드
 			qualifyLimits: []int{3, 2, 1},
+			//맵 로딩이 완료된 플레이어 수
+			readyPlayerCount: 0,
 		}
 	}
 	return playerManager
@@ -190,6 +193,38 @@ func (pm *PlayerManager) SendExistingPlayersToNewPlayer(newPlayer Player) {
 		if _, err := (*newPlayer.Conn).Write(append(lengthBuf, response...)); err != nil {
 			log.Printf("Failed to send player data to new player: %v", err)
 		}
+	}
+
+	//씬 로딩 완료한 캐릭터 카운트
+	pm.readyPlayerCount++
+	if pm.readyPlayerCount == pm.currentAlive {
+		//log.Printf("%d명 로딩 완료", pm.readyPlayerCount)
+		pm.readyPlayerCount = 0
+		cnt := (int32)(0)
+		for _, existingPlayer := range pm.matchedPlayers {
+
+			cnt++
+			gameMessage := &pb.GameMessage{
+				Message: &pb.GameMessage_PlayerIndex{
+					PlayerIndex: &pb.PlayerIndexMessage{
+						PlayerIndex: cnt,
+					},
+				},
+			}
+
+			response, err := proto.Marshal(gameMessage)
+			if err != nil {
+				log.Printf("Failed to marshal response: %v", err)
+				return
+			}
+
+			lengthBuf := make([]byte, 5)
+			lengthBuf[0] = co.GameMessageType
+			binary.LittleEndian.PutUint32(lengthBuf[1:], uint32(len(response)))
+			(*existingPlayer.Conn).Write(append(lengthBuf, response...))
+			//log.Printf("%d번째 플레이어 초기화", cnt)
+		}
+
 	}
 }
 

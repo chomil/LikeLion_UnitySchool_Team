@@ -32,8 +32,12 @@ public class OtherPlayerTCP : MonoBehaviour
     {
         if (!hasFinished)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(OtherRot), Time.deltaTime * 10f);
-            transform.position = Vector3.Lerp(transform.position, destination, Time.deltaTime * 10f);
+            //예측값-실제값 간 보간으로 수정 권장
+            transform.rotation = Quaternion.Euler(OtherRot);
+            transform.position = destination;
+            
+            //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(OtherRot), Time.deltaTime * 10f);
+            //transform.position = Vector3.Lerp(transform.position, destination, Time.deltaTime * 10f);
         }
     }
     

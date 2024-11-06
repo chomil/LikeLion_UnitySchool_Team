@@ -30,6 +30,12 @@ public class PlayerRespawn : MonoBehaviour
         }
     }
 
+    public void InitRespawnPos(Vector3 pos)
+    {
+        defaultRespawnPosition = pos;
+        lastCheckpointPosition = pos;
+    }
+
     void Update()
     {
         if (!isRespawning)
