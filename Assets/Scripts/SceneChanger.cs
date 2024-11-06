@@ -22,8 +22,8 @@ public class SceneChanger : MonoBehaviour
     public bool isRacing = false; //플레이하는 중이 아니라면 플레이어의 입력을 못 받도록 하는 변수
     public int matchingSeed = 0; //게임마다 플레이어들에게 같은 랜덤 시드를 주기 위해 서버로부터 받아서 사용
 
-    private List<string> raceToPlay; //여기서 맵을 랜덤하게 뽑아서 경기
-    private int raceToPlayIdx = 0;
+    public List<string> raceToPlay; //여기서 맵을 랜덤하게 뽑아서 경기
+    public int raceToPlayIdx = 0;
     private List<string> teamToPlay; 
     private List<string> finalToPlay;
     private Dictionary<Button, Action> buttonActions = new ();
@@ -98,20 +98,35 @@ public class SceneChanger : MonoBehaviour
 
     public void SetRaceMaps(MatchingResponse mr)
     {
+        Debug.Log($"Setting race maps. Count: {mr.MapName.Count}");
         raceToPlay = new List<string>(mr.MapName);
         matchingSeed = mr.MatchingSeed;
+        raceToPlayIdx = 0; // 인덱스 초기화 추가
         PlayRace();
     }
     
     //Start Button Event
     public void PlayRace()
     {
-        //null 방지
-        if (raceToPlay.Count == 0) return;
+        Debug.Log($"PlayRace called. Current index: {raceToPlayIdx}, Total maps: {raceToPlay?.Count}");
+    
+        if (raceToPlay == null || raceToPlay.Count == 0)
+        {
+            Debug.LogError("No race maps available!");
+            return;
+        }
 
-        //isRacing = true;
-        
-        Loading.LoadScene(raceToPlay[raceToPlayIdx]);
+        if (raceToPlayIdx >= raceToPlay.Count)
+        {
+            Debug.LogError($"Race index out of range: {raceToPlayIdx} / {raceToPlay.Count}");
+            return;
+        }
+
+        string mapToLoad = raceToPlay[raceToPlayIdx];
+        Debug.Log($"Loading map: {mapToLoad}");
+    
+        isRacing = false;  // 로딩 시작 전에 false로 설정
+        Loading.LoadScene(mapToLoad);
         raceToPlayIdx++;
     }
 
@@ -130,4 +145,5 @@ public class SceneChanger : MonoBehaviour
     {
         return matchingStatus;
     }
+    
 }

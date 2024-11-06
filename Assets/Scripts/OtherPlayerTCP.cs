@@ -36,8 +36,6 @@ public class OtherPlayerTCP : MonoBehaviour
             transform.rotation = Quaternion.Euler(OtherRot);
             transform.position = destination;
             
-            //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(OtherRot), Time.deltaTime * 10f);
-            //transform.position = Vector3.Lerp(transform.position, destination, Time.deltaTime * 10f);
         }
     }
     
