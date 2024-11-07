@@ -50,33 +50,7 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
-        // maxQualifiedPlayers를 현재 라운드의 제한 인원으로 설정
-        maxQualifiedPlayers = QUALIFY_LIMITS[currentRound];
-
-        // 마지막 라운드 여부 확인 (finalList 체크 대신 currentRound로 판단)
-        isFinalRace = (currentRound == QUALIFY_LIMITS.Length - 1);
-
-        // 디버그 로그
-        if (isFinalRace)
-        {
-            Debug.Log("Final Race: Only one player can win!");
-        }
-        else
-        {
-            Debug.Log($"Round {currentRound + 1}: Players to qualify: {maxQualifiedPlayers}");
-        }
-
-        // RaceUI null 체크 추가
-        if (RaceUI.Instance != null)
-        {
-            RaceUI.Instance.UpdateQualifiedCount(0, maxQualifiedPlayers);
-        }
-        else
-        {
-            Debug.LogWarning("RaceUI.Instance is null in GameManager Start()");
-        }
-    
-        StartRace();
+        InitRace();
     }
 
     public void InitializeData()
@@ -182,8 +156,24 @@ public class GameManager : MonoBehaviour
         throw new NotImplementedException();
     }
 
-    public void StartRace()
+    public void InitRace()
     {
+        // maxQualifiedPlayers를 현재 라운드의 제한 인원으로 설정
+        maxQualifiedPlayers = QUALIFY_LIMITS[currentRound];
+
+        // 마지막 라운드 여부 확인 (finalList 체크 대신 currentRound로 판단)
+        isFinalRace = (currentRound == QUALIFY_LIMITS.Length - 1);
+
+        // 디버그 로그
+        if (isFinalRace)
+        {
+            Debug.Log("Final Race: Only one player can win!");
+        }
+        else
+        {
+            Debug.Log($"Round {currentRound + 1}: Players to qualify: {maxQualifiedPlayers}");
+        }
+
         if (activePlayersForNextRound.Count > 0)
         {
             activePlayers = new HashSet<string>(activePlayersForNextRound);

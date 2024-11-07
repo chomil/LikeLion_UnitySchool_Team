@@ -68,7 +68,12 @@ public class PlayerController : MonoBehaviour
         }
         
         if (SceneChanger.Instance.isRacing)
-        {
+        {            
+            GameManager.Instance.InitRace();
+            
+            //모든 플레이어가 씬 로딩하기 전까지 멈추기
+            Time.timeScale = 0f;
+
             // 기존 플레이어 오브젝트가 있다면 제거
             if (myPlayer != null)
             {
