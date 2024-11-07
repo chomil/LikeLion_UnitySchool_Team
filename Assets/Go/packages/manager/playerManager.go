@@ -309,7 +309,7 @@ func (pm *PlayerManager) SendPlayerAnimation(name string, animation string, spee
 func (pm *PlayerManager) MovePlayer(name string, x float32, y float32, z float32, rx float32, ry float32, rz float32) {
 	player, exists := pm.FindPlayerByName(name)
 	if !exists {
-		log.Printf("Player not found: %s", name)
+		//log.Printf("Player not found: %s", name)
 		return
 	}
 
@@ -419,11 +419,20 @@ func (pm *PlayerManager) ListPlayers() []*Player {
 }
 
 func (pm *PlayerManager) FindPlayerByName(name string) (*Player, bool) {
+	// matchedPlayers에서 먼저 찾기
+	for _, player := range pm.matchedPlayers {
+		if player.Name == name {
+			return player, true
+		}
+	}
+
+	// players에서도 찾기
 	for _, player := range pm.players {
 		if player.Name == name {
 			return player, true // 포인터를 반환합니다.
 		}
 	}
+	//log.Printf("Player not found: %s", name)
 	return nil, false // 찾지 못한 경우 nil과 false를 반환합니다.
 }
 
@@ -452,7 +461,7 @@ func (pm *PlayerManager) BroadcastMessage(message *pb.GameMessage) {
 func (pm *PlayerManager) PlayerFinishedRace(playerId string, finishTime int64) {
 	player, exists := pm.FindPlayerByName(playerId)
 	if !exists {
-		log.Printf("Player not found: %s", playerId)
+		//log.Printf("Player not found: %s", playerId)
 		return
 	}
 
@@ -501,60 +510,84 @@ func (pm *PlayerManager) PlayerFinishedRace(playerId string, finishTime int64) {
 }
 
 func (pm *PlayerManager) HandleRaceEnd(playerId string) {
+	log.Printf("=== Round End Debug Info ===")
+	log.Printf("Current Round: %d", pm.currentRound)
+	log.Printf("Active Players for Next Round: %v", pm.activePlayersForNextRound)
+	log.Printf("Current MatchedPlayers count: %d", len(pm.matchedPlayers))
+	log.Printf("Current Players count: %d", len(pm.players))
 
-	// 이미 다음 라운드 처리가 진행 중인지 체크
-	if len(pm.activePlayersForNextRound) == 0 {
+	// activePlayersForNextRound가 비어있는 경우에 대한 체크 수정
+	if len(pm.activePlayersForNextRound) == 0 && pm.currentRound > 0 {
 		log.Printf("Race end already handled")
 		return
 	}
 
-	if len(pm.activePlayersForNextRound) > 0 {
-		// 새로운 플레이어 맵 생성
+	// 새로운 플레이어 목록 생성 전에 초기화
+	newPlayers := make(map[int]*Player)
+	newMatchedPlayers := make(map[int]*Player)
+	newID := 1
 
-		newPlayers := make(map[int]*Player)
-		newID := 1
+	// 현재 라운드의 통과 플레이어 처리
+	for _, player := range pm.matchedPlayers {
+		if pm.activePlayersForNextRound[player.Name] {
+			player.ID = newID
+			player.FinishTime = 0 // 완주 시간 초기화
 
-		// 통과한 플레이어만 새로운 맵에 추가
-
-		//for _, player := range pm.players {
-		for _, player := range pm.matchedPlayers {
-			if pm.activePlayersForNextRound[player.Name] {
-				player.ID = newID // ID 재할당
-				newPlayers[newID] = player
-				newID++
-			}
+			newPlayers[newID] = player
+			newMatchedPlayers[newID] = player
+			newID++
 		}
-
-		// 플레이어 목록 업데이트
-		pm.players = newPlayers
-		pm.nextID = newID
-
-		// 다음 라운드로 진행
-		pm.currentRound++
-		if pm.currentRound < len(pm.qualifyLimits) {
-			pm.maxQualifiedPlayers = pm.qualifyLimits[pm.currentRound]
-		}
-
-		// 레이스 종료 메시지 브로드캐스트
-		raceEndMessage := &pb.GameMessage{
-			Message: &pb.GameMessage_RaceEnd{
-				RaceEnd: &pb.RaceEndMessage{
-					PlayerId: playerId,
-				},
-			},
-		}
-
-		pm.BroadcastMessage(raceEndMessage)
-		log.Printf("Race ended by player: %s, Qualified players: %d", playerId, len(newPlayers))
-		pm.activePlayersForNextRound = make(map[string]bool) // 초기화
 	}
+
+	// 플레이어 목록 업데이트
+	pm.players = newPlayers
+	pm.matchedPlayers = newMatchedPlayers
+	pm.nextID = newID
+
+	// 라운드 정보 업데이트
+	pm.currentRound++
+	if pm.currentRound < len(pm.qualifyLimits) {
+		pm.maxQualifiedPlayers = pm.qualifyLimits[pm.currentRound]
+	}
+
+	// 상태 업데이트
+	pm.currentAlive = int32(len(newPlayers))
+	pm.totalPlayers = int32(len(newPlayers))
+
+	// 브로드캐스트
+	raceEndMessage := &pb.GameMessage{
+		Message: &pb.GameMessage_RaceEnd{
+			RaceEnd: &pb.RaceEndMessage{
+				PlayerId: playerId,
+			},
+		},
+	}
+	pm.BroadcastMessage(raceEndMessage)
+
+	log.Printf("=== New Round Start Debug Info ===")
+	log.Printf("New Round: %d", pm.currentRound)
+	log.Printf("New MatchedPlayers count: %d", len(pm.matchedPlayers))
+	log.Printf("New Players count: %d", len(pm.players))
+	log.Printf("New Player IDs: %v", getPlayerIDs(pm.players))
+
+	// activePlayersForNextRound 초기화는 맨 마지막에
+	pm.activePlayersForNextRound = make(map[string]bool)
+}
+
+// 로그 출력 위한 함수
+func getPlayerIDs(players map[int]*Player) []string {
+	ids := make([]string, 0, len(players))
+	for _, p := range players {
+		ids = append(ids, p.Name)
+	}
+	return ids
 }
 
 // 관전 Spectating
 func (pm *PlayerManager) SetPlayerSpectating(playerId string, targetPlayerId string) {
 	player, exists := pm.FindPlayerByName(playerId)
 	if !exists {
-		log.Printf("Player not found: %s", playerId)
+		//log.Printf("Player not found: %s", playerId)
 		return
 	}
 

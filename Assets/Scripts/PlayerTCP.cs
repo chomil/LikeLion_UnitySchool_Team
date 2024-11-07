@@ -56,6 +56,7 @@ public class PlayerTCP : MonoBehaviour
     {
         if (other.CompareTag("FinishLine") && !hasFinished)
         {
+            Debug.Log($"Player {PlayerId} entered finish line");
             FinishRace();
         }
     }
@@ -65,15 +66,8 @@ public class PlayerTCP : MonoBehaviour
         if (!hasFinished)
         {
             hasFinished = true;
-            GameManager.Instance.PlayerFinished(PlayerId);
-            Debug.Log($"Player {PlayerId} finished the race.");
-        
-            // PlayerMovement의 SetIdleState 호출
-            PlayerMovement playerMovement = GetComponent<PlayerMovement>();
-            if (playerMovement != null)
-            {
-                playerMovement.SetIdleState();
-            }
+            Debug.Log($"Sending finish race message for player {PlayerId}");
+            TcpProtobufClient.Instance?.SendRaceFinish(PlayerId);
         }
     }
     public bool HasFinished()

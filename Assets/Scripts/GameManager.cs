@@ -229,6 +229,9 @@ public class GameManager : MonoBehaviour
     {
         string finishedPlayerId = finishMsg.PlayerId;
     
+        // 디버그 로그 추가
+        Debug.Log($"Handling race finish for player {finishedPlayerId}. Current qualified: {currentQualifiedCount}, Max: {maxQualifiedPlayers}");
+
         // 이미 최대 인원이 통과했는지 먼저 체크
         if (currentQualifiedCount >= maxQualifiedPlayers)
         {
@@ -236,20 +239,23 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // 통과 처리
-        currentQualifiedCount++;
-        qualifiedPlayers.Add(finishedPlayerId);
-        activePlayersForNextRound.Add(finishedPlayerId);
-    
-        Debug.Log($"Player {finishedPlayerId} finished. Qualified: {currentQualifiedCount}/{maxQualifiedPlayers}");
-    
+        // 동기화를 위한 lock 추가 고려
+        lock(this) {
+            // 통과 처리
+            currentQualifiedCount++;
+            qualifiedPlayers.Add(finishedPlayerId);
+            activePlayersForNextRound.Add(finishedPlayerId);
+        }
+
+        Debug.Log($"Player {finishedPlayerId} qualified. Current count: {currentQualifiedCount}/{maxQualifiedPlayers}");
+
         // UI 업데이트
-        RaceUI.Instance.UpdateQualifiedCount(currentQualifiedCount, maxQualifiedPlayers);
-    
+        RaceUI.Instance?.UpdateQualifiedCount(currentQualifiedCount, maxQualifiedPlayers);
+
         if (finishedPlayerId == TCPManager.playerId)
         {
-            RaceUI.Instance.ShowStatusMessage("통과!");
-            SoundManager.Instance.PlayQualifySound();
+            RaceUI.Instance?.ShowStatusMessage("통과!");
+            SoundManager.Instance?.PlayQualifySound();
         }
 
         // 최대 인원 도달 시 나머지 플레이어 탈락 처리
@@ -287,21 +293,18 @@ public class GameManager : MonoBehaviour
     
     private void HandlePlayerElimination(string playerId)
     {
-        Debug.Log($"Player {playerId} eliminated - maximum qualified players reached!");
+        Debug.Log($"Eliminating player {playerId}");
 
         if (playerId == TCPManager.playerId)
         {
-            RaceUI.Instance.ShowStatusMessage("탈락!");
-            SoundManager.Instance.PlayEliminateSound();
+            // 로컬 플레이어 탈락 처리
+            RaceUI.Instance?.ShowStatusMessage("탈락!");
+            SoundManager.Instance?.PlayEliminateSound();
         
-            PlayerMovement playerMovement = PlayerController.Instance.myPlayer.GetComponent<PlayerMovement>();
+            PlayerMovement playerMovement = PlayerController.Instance?.myPlayer?.GetComponent<PlayerMovement>();
             if (playerMovement != null)
             {
                 playerMovement.SetIdleState();
-                // 탈락한 플레이어는 관전 모드로 전환
-                // StartCoroutine(EnterSpectatorModeAfterDelay(playerId));
-            
-                // 탈락한 플레이어는 다음 라운드로 넘어가지 않도록 처리
                 SceneChanger.Instance.isRacing = false;
             }
         }
