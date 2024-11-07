@@ -100,19 +100,21 @@ public class Loading : MonoBehaviour
     IEnumerator LoadScene()
     {
         yield return null;
+        
         //게임 씬에 맞는 이미지와 텍스트 채워넣기
         
         AsyncOperation asyncOperation;
         asyncOperation = SceneManager.LoadSceneAsync(nextSceneName);
         asyncOperation.allowSceneActivation = false;
-        
+
         float timer = 0f;
-        
+        float delayTimer = 0f;
+
         while (!asyncOperation.isDone)
         {
             yield return null;
             timer += Time.deltaTime;
-        
+            delayTimer += Time.deltaTime;
             if (asyncOperation.progress < 0.9f)
             {
                 float progressRate = Mathf.Lerp(0, asyncOperation.progress, timer);
@@ -124,6 +126,7 @@ public class Loading : MonoBehaviour
                 float progressRate = Mathf.Lerp(0, 1f, timer);
                 if (progressRate >= 1f)
                 {
+                    yield return new WaitForSeconds(delay - delayTimer);
                     asyncOperation.allowSceneActivation = true;
                     SceneChanger.Instance.isRacing = true;
                     yield break;
@@ -131,5 +134,6 @@ public class Loading : MonoBehaviour
             }
           
         }
+        
     }
 }

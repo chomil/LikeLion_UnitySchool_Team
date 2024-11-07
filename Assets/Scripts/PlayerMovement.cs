@@ -223,11 +223,6 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(Ragdoll());
     }
 
-    public void PlayFootstep()
-    {
-        SoundManager.Instance.PlaySfx(moveSounds["Run"], 0.5f);
-    }
-
     private IEnumerator Ragdoll()
     {
         nextAnimState = AnimState.Ragdoll;

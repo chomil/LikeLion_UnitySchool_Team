@@ -115,13 +115,17 @@ MonoBehaviour:
   sounds:
     _serializedList:
     - Key: 3
-      Value: {fileID: 8300000, guid: 58f3b5790e99e364db3bc022a703eb27, type: 3}
+      Value:
+      - {fileID: 8300000, guid: 58f3b5790e99e364db3bc022a703eb27, type: 3}
     - Key: 2
-      Value: {fileID: 8300000, guid: 55207ce0113e85345b0cd2a902bd08bd, type: 3}
+      Value:
+      - {fileID: 8300000, guid: 55207ce0113e85345b0cd2a902bd08bd, type: 3}
     - Key: 1
-      Value: {fileID: 8300000, guid: 026c3f8fcd54bb34e9499510ea53c06e, type: 3}
+      Value:
+      - {fileID: 8300000, guid: 026c3f8fcd54bb34e9499510ea53c06e, type: 3}
     - Key: Go
-      Value: {fileID: 8300000, guid: a21e5b1e15687b9498d1b91cb8b39771, type: 3}
+      Value:
+      - {fileID: 8300000, guid: a21e5b1e15687b9498d1b91cb8b39771, type: 3}
 --- !u!1 &7635742976526638042
 GameObject:
   m_ObjectHideFlags: 0
