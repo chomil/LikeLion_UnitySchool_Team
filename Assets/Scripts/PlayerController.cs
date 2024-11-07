@@ -69,14 +69,29 @@ public class PlayerController : MonoBehaviour
         
         if (SceneChanger.Instance.isRacing)
         {
-            //모든 플레이어가 씬 로딩하기 전까지 멈추기
-            Time.timeScale = 0f;
+            // 기존 플레이어 오브젝트가 있다면 제거
+            if (myPlayer != null)
+            {
+                Destroy(myPlayer);
+            }
+        
+            // 다른 플레이어들도 모두 제거
+            foreach (var otherPlayer in _otherPlayers.Values)
+            {
+                if (otherPlayer != null)
+                {
+                    Destroy(otherPlayer.gameObject);
+                }
+            }
+            _otherPlayers.Clear();
+
+            // 새로운 라운드 시작 시 플레이어 위치 초기화
             myPlayer = Instantiate(myPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
             myPlayerTcp = myPlayer.GetComponent<PlayerTCP>();
-            
+        
+            // 서버에 새 라운드 시작을 알림
             TcpProtobufClient.Instance.SendSpawnExistingPlayer(TCPManager.playerId);
-            SendPlayerAllCostumes(gameObject.GetComponent<OtherPlayerTCP>()?.PlayerId);
-            //SpawnOtherPlayers();
+            SendPlayerAllCostumes();
         }
     }
 
