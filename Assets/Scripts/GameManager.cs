@@ -229,7 +229,6 @@ public class GameManager : MonoBehaviour
     {
         string finishedPlayerId = finishMsg.PlayerId;
     
-        // 디버그 로그 추가
         Debug.Log($"Handling race finish for player {finishedPlayerId}. Current qualified: {currentQualifiedCount}, Max: {maxQualifiedPlayers}");
 
         // 이미 최대 인원이 통과했는지 먼저 체크
@@ -239,13 +238,10 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // 동기화를 위한 lock 추가 고려
-        lock(this) {
-            // 통과 처리
-            currentQualifiedCount++;
-            qualifiedPlayers.Add(finishedPlayerId);
-            activePlayersForNextRound.Add(finishedPlayerId);
-        }
+        // 통과 처리
+        currentQualifiedCount++;
+        qualifiedPlayers.Add(finishedPlayerId);
+        activePlayersForNextRound.Add(finishedPlayerId);
 
         Debug.Log($"Player {finishedPlayerId} qualified. Current count: {currentQualifiedCount}/{maxQualifiedPlayers}");
 
@@ -258,7 +254,7 @@ public class GameManager : MonoBehaviour
             SoundManager.Instance?.PlayQualifySound();
         }
 
-        // 최대 인원 도달 시 나머지 플레이어 탈락 처리
+        // 최대 인원 도달 시 나머지 플레이어 탈락 처리 및 다음 라운드 진행
         if (currentQualifiedCount >= maxQualifiedPlayers)
         {
             StartCoroutine(DelayedEliminationAndNextRound());
@@ -267,27 +263,35 @@ public class GameManager : MonoBehaviour
     
     private IEnumerator DelayedEliminationAndNextRound()
     {
-        yield return new WaitForSeconds(1f); // 약간의 딜레이 추가
+        Debug.Log("Starting delayed elimination and next round");
+        yield return new WaitForSeconds(1f);
 
         foreach (string activePlayer in activePlayers)
         {
             if (!qualifiedPlayers.Contains(activePlayer))
             {
                 HandlePlayerElimination(activePlayer);
+                Debug.Log($"Player {activePlayer} eliminated in delayed elimination");
             }
         }
 
-        yield return new WaitForSeconds(2f); // 탈락 처리 후 딜레이
+        yield return new WaitForSeconds(2f);
         EndRaceWithMaxQualified();
     }
     
     
-    private void HandleRaceEndMessage(RaceEndMessage raceEndMsg)
+    private void HandleRaceEndMessage(RaceEndMessage raceEnd)
     {
+        Debug.Log($"Received race end message for player: {raceEnd.PlayerId}");
+    
         if (!isRaceEnded)
         {
-            Debug.Log($"Received race end message from server");
-            EndRaceWithMaxQualified();
+            Debug.Log("Race ending process starting");
+            EndRaceWithMaxQualified(raceEnd.PlayerId);
+        }
+        else
+        {
+            Debug.Log("Race already ended, ignoring end message");
         }
     }
     
@@ -325,34 +329,20 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    public void EndRaceWithMaxQualified()
+    public void EndRaceWithMaxQualified(string finishedPlayerId = "")
     {
         if (isRaceEnded) return;
    
         isRaceEnded = true;
         Debug.Log($"Race ended - Maximum qualified players reached!");
 
-        // null 체크 추가
-        if (qualifiedPlayers == null || TCPManager.playerId == null)
-        {
-            Debug.LogError("Required references are null in EndRaceWithMaxQualified");
-            return;
-        }
-
         bool isLocalPlayerQualified = qualifiedPlayers.Contains(TCPManager.playerId);
         Debug.Log($"Local player qualified: {isLocalPlayerQualified}");
 
-        // 유효성 체크 추가
-        if (activePlayers == null)
+        // 모든 플레이어 상태 처리
+        foreach (string activePlayer in activePlayers)
         {
-            Debug.LogError("activePlayers is null");
-            return;
-        }
-
-        List<string> activePlayersList = new List<string>(activePlayers);  // 복사본 생성
-        foreach (string activePlayer in activePlayersList)
-        {
-            if (activePlayer != null && !qualifiedPlayers.Contains(activePlayer))
+            if (!qualifiedPlayers.Contains(activePlayer))
             {
                 HandlePlayerElimination(activePlayer);
             }
@@ -362,16 +352,24 @@ public class GameManager : MonoBehaviour
         if (!isLocalPlayerQualified)
         {
             Debug.Log("Local player eliminated - stopping game progression");
-            SceneChanger.Instance.isRacing = false;  // 레이싱 상태 false로 변경
-            return;  // 여기서 함수 종료
+            SceneChanger.Instance.isRacing = false;
+            return;
         }
 
-        // 통과한 플레이어만 다음 라운드로 진행
+        // 통과한 플레이어는 다음 라운드 준비
         Debug.Log("Qualified player - proceeding to next round");
         currentRound++;
+
+        // RaceUI 초기화
+        RaceUI.Instance?.HideStatusMessage();
+    
         if (currentRound < QUALIFY_LIMITS.Length)
         {
             maxQualifiedPlayers = QUALIFY_LIMITS[currentRound];
+            Debug.Log($"Loading next round: {currentRound}, Max qualified: {maxQualifiedPlayers}");
+        
+            // 모든 통과 플레이어가 동시에 다음 맵으로 이동하도록 함
+            SceneChanger.Instance.isRacing = true;  // 이 부분 추가
             StartCoroutine(LoadNextMapWithDelay());
         }
         else
@@ -379,23 +377,27 @@ public class GameManager : MonoBehaviour
             HandleGameWin(qualifiedPlayers[0]);
         }
 
-        TcpProtobufClient.Instance.SendRaceEnd();
+        // 서버에 라운드 종료 알림
+        if (TCPManager.playerId == finishedPlayerId)  // 첫 번째로 완주한 플레이어만 전송
+        {
+            TcpProtobufClient.Instance.SendRaceEnd();
+        }
     }
     
     
     private IEnumerator LoadNextMapWithDelay()
     {
-        yield return new WaitForSeconds(3f);  // 3초 대기
-        
-        if (currentRound >= QUALIFY_LIMITS.Length - 1)
+        Debug.Log("Starting map load delay");
+        yield return new WaitForSeconds(3f);
+    
+        if (SceneChanger.Instance != null && SceneChanger.Instance.isRacing)
         {
-            // 우승자 처리
-            HandleGameWin(qualifiedPlayers[0]);
+            Debug.Log("Loading next map");
+            SceneChanger.Instance.PlayRace();
         }
         else
         {
-            // 다음 맵으로 이동
-            SceneChanger.Instance.PlayRace();
+            Debug.LogWarning("Scene change cancelled - racing flag is false");
         }
     }
     
