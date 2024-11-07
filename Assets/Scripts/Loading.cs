@@ -99,7 +99,6 @@ public class Loading : MonoBehaviour
 
     IEnumerator LoadScene()
     {
-        // 이전코드
         yield return null;
         //게임 씬에 맞는 이미지와 텍스트 채워넣기
         
@@ -132,24 +131,5 @@ public class Loading : MonoBehaviour
             }
           
         }
-        // Debug.Log("LoadScene coroutine started");
-        // AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(nextSceneName);
-        // asyncOperation.allowSceneActivation = false;
-        //
-        // while (asyncOperation.progress < 0.9f)
-        // {
-        //     Debug.Log($"Loading progress: {asyncOperation.progress}");
-        //     yield return null;
-        // }
-        //
-        // Debug.Log("Loading nearly complete, waiting for minimum time");
-        // yield return new WaitForSeconds(1f);
-        //
-        // Debug.Log("Activating scene");
-        // asyncOperation.allowSceneActivation = true;
-        // SceneChanger.Instance.isRacing = true;
-        //
-        // Debug.Log("Scene loading completed");
-        
     }
 }

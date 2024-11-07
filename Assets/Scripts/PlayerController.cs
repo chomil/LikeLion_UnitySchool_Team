@@ -287,25 +287,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnOtherPlayerCostumeUpdate(CostumeMessage costumeMessage)
     {
-    //     //다른 플레이어가 이미 있으면 업데이트, 없으면 메시지 저장해놓기
-    //     if (_otherPlayers.TryGetValue(costumeMessage.PlayerId, out OtherPlayerTCP otherPlayer))
-    //     {
-    //         otherPlayer.GetComponent<PlayerCostume>()?.ChangeCostume((ItemType)costumeMessage.PlayerCostumeType,
-    //             costumeMessage.PlayerCostumeName);
-    //     }
-    //     else
-    //     {
-    //         if (_otherCostumeMessages.TryGetValue(costumeMessage.PlayerId, out Dictionary<int,string> otherCostumeMessages))
-    //         {
-    //             otherCostumeMessages.TryAdd(costumeMessage.PlayerCostumeType, costumeMessage.PlayerCostumeName);
-    //         }
-    //         else
-    //         {
-    //             _otherCostumeMessages.Add(costumeMessage.PlayerId, new Dictionary<int, string>());
-    //             _otherCostumeMessages[costumeMessage.PlayerId].TryAdd(costumeMessage.PlayerCostumeType, costumeMessage.PlayerCostumeName);
-    //         }
-    //     }
-    //
         if (costumeMessage == null || string.IsNullOrEmpty(costumeMessage.PlayerId))
         {
             Debug.LogError("Received null or invalid costume message");
