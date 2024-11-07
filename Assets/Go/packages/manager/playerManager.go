@@ -57,7 +57,7 @@ func GetPlayerManager() *PlayerManager {
 			players:                   make(map[int]*Player),
 			nextID:                    1,
 			activePlayersForNextRound: make(map[string]bool),
-			maxQualifiedPlayers:       10,
+			maxQualifiedPlayers:       3, //qualifyLimits의 첫번째로 초기화 해줘야됨
 			matchedPlayers:            make(map[int]*Player),
 			matchID:                   1,
 			currentAlive:              0,
@@ -66,7 +66,7 @@ func GetPlayerManager() *PlayerManager {
 			currentRound: 0,
 			// qualifyLimits: []int{60, 30, 15, 8, 1},
 			// 테스트용 코드
-			qualifyLimits: []int{1, 1, 1},
+			qualifyLimits: []int{3, 2, 1},
 			//맵 로딩이 완료된 플레이어 수
 			readyPlayerCount: 0,
 		}
