@@ -44,19 +44,10 @@ public class OtherPlayerTCP : MonoBehaviour
         if (!hasFinished)
         {
             hasFinished = true;
-        
-            // 플레이어 움직임 멈춤
-            _rb.isKinematic = true;
-        
-            // Idle 애니메이션으로 전환
-            _animator.SetBool("isLanded", true);
-            _animator.SetFloat("SpeedForward", 0);
-            _animator.SetFloat("SpeedRight", 0);
-        
-            // Idle 트리거가 있다면 사용
-            _animator.SetTrigger("IdleTrigger");
-        
-            Debug.Log($"Other player finished the race: {gameObject.name}");
+            // 완주 시 마지막 위치 정확히 적용
+            transform.position = destination;
+            transform.rotation = Quaternion.Euler(OtherRot);
+            Debug.Log($"Other player {PlayerId} finished race");
         }
     }
 

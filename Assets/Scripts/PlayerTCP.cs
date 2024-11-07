@@ -66,8 +66,18 @@ public class PlayerTCP : MonoBehaviour
         if (!hasFinished)
         {
             hasFinished = true;
-            Debug.Log($"Sending finish race message for player {PlayerId}");
+        
+            // 완주 상태를 서버에 전송
             TcpProtobufClient.Instance?.SendRaceFinish(PlayerId);
+        
+            // 완주 후 애니메이션/위치 동기화를 위한 마지막 상태 전송
+            Vector3 myRotation = transform.GetChild(0).transform.eulerAngles;
+            TcpProtobufClient.Instance?.SendPlayerPosition(
+                TCPManager.playerId,
+                transform.position.x, transform.position.y, transform.position.z,
+                myRotation.x, myRotation.y, myRotation.z,
+                "Idle"  // 완주 시 Idle 상태로 변경
+            );
         }
     }
     public bool HasFinished()

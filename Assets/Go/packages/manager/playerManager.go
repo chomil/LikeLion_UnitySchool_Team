@@ -532,6 +532,13 @@ func (pm *PlayerManager) HandleRaceEnd(playerId string) {
 		if pm.activePlayersForNextRound[player.Name] {
 			player.ID = newID
 			player.FinishTime = 0 // 완주 시간 초기화
+			// 새 라운드 시작 시 플레이어 위치 초기화
+			player.X = 0
+			player.Y = 0
+			player.Z = 0
+			player.Rx = 0
+			player.Ry = 0
+			player.Rz = 0
 
 			newPlayers[newID] = player
 			newMatchedPlayers[newID] = player
