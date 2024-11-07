@@ -119,7 +119,7 @@ func processMessage(message *pb.GameMessage, conn *net.Conn) {
 		mg.GetPlayerManager().PlayerFinishedRace(finish.PlayerId, finish.FinishTime)
 	case *pb.GameMessage_PlayerCostume:
 		costume := msg.PlayerCostume
-		fmt.Printf("Player %s , %d, %s, %s\n", costume.PlayerId, costume.PlayerCostumeType, costume.PlayerCostumeName, costume.OtherPlayerId)
+		//fmt.Printf("Player %s , %d, %s, %s\n", costume.PlayerId, costume.PlayerCostumeType, costume.PlayerCostumeName, costume.OtherPlayerId)
 		mg.GetPlayerManager().SendPlayerCostume(costume.PlayerId, costume.PlayerCostumeType, costume.PlayerCostumeName, costume.OtherPlayerId)
 	case *pb.GameMessage_RaceEnd:
 		raceEnd := msg.RaceEnd
