@@ -1117,6 +1117,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1106929313480422172, guid: 30e66c41a7c36f74496a74ad33e3b762,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1875619396753668523, guid: 30e66c41a7c36f74496a74ad33e3b762,
         type: 3}
       propertyPath: canControl
