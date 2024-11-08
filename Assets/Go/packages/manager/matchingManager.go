@@ -23,12 +23,14 @@ var RaceMaps = []string{
 	"Race01",
 	"Race02",
 	"Race03",
+	"Race04",
 }
 
 var TeamMaps = []string{
 	"Race01",
 	"Race02",
 	"Race03",
+	"Race04",
 }
 
 var FinalsMaps = []string{
