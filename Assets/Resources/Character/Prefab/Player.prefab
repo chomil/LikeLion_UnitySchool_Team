@@ -2406,7 +2406,7 @@ MonoBehaviour:
   stepCollider: {fileID: 4880137705928406429}
   curAnimState: 0
   nextAnimState: 0
-  canControl: 1
+  canControl: 0
   moveSounds:
     _serializedList:
     - Key: Jump

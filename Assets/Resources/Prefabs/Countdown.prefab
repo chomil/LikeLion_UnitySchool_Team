@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7533614058838064322}
   - component: {fileID: 8551517787572625703}
   - component: {fileID: 4359938765576338955}
+  - component: {fileID: 6200533851370995182}
   m_Layer: 5
   m_Name: Countdown
   m_TagString: Untagged
@@ -126,6 +127,18 @@ MonoBehaviour:
     - Key: Go
       Value:
       - {fileID: 8300000, guid: a21e5b1e15687b9498d1b91cb8b39771, type: 3}
+--- !u!114 &6200533851370995182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3663346489306842504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64cdb003ecb579a43a96ef0ca7646768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7635742976526638042
 GameObject:
   m_ObjectHideFlags: 0

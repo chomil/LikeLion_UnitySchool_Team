@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     
     private bool isFinished = false;
 
-    public bool canControl = true;
+    [SerializeField] private bool canControl = true;
 
     [SerializedDictionary("Name","Audio List")]
     public SerializedDictionary<string, List<AudioClip>> moveSounds;
@@ -57,21 +57,34 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        if (canControl == false)
-        {
-            rigid.isKinematic = true;
-            return;
-        }
-        Cursor.lockState = CursorLockMode.Locked;
+        SetControl(canControl);
         Physics.gravity = new Vector3(0f,-12f,0f);
         stepCollider.OnStepEvent += OnStep; // 이벤트 바인딩
         curAnimState = AnimState.Idle; //초기화
         originSpeed = speed;
     }
+    public void SetControl(bool _canControl)
+    {
+        canControl = _canControl;
+    }
 
     void Update()
     {
-        if (isFinished || canControl == false)
+        if (isFinished)
+        {
+            return;
+        }
+
+
+        //마우스 이동에 따른 카메라 공전
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
+        camYawAngle += mouseX;
+        camPitchAngle -= mouseY;
+        camPitchAngle = Mathf.Clamp(camPitchAngle, 0f, 80f);
+        cameraArm.transform.rotation = Quaternion.Euler(camPitchAngle, camYawAngle, 0);
+        
+        if (canControl == false)
         {
             return;
         }
@@ -104,15 +117,7 @@ public class PlayerMovement : MonoBehaviour
         // 입력 받기
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
 
-
-        //마우스 이동에 따른 카메라 공전
-        camYawAngle += mouseX;
-        camPitchAngle -= mouseY;
-        camPitchAngle = Mathf.Clamp(camPitchAngle, 0f, 80f);
-        cameraArm.transform.rotation = Quaternion.Euler(camPitchAngle, camYawAngle, 0);
 
         // 카메라의 방향에 따라 이동 방향 결정
         Vector3 forward = cameraArm.transform.forward;

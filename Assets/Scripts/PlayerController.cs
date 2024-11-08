@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public GameObject myPlayer { get; private set; }
     private int finishedPlayersCount = 0;
     private int totalPlayersCount;
+    public bool canControlPlayers = false;
     
     private void Awake()
     {
@@ -36,7 +37,10 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+    }
+
+    private void Start()
+    {
         InitMainScene();   
     }
 
@@ -50,10 +54,14 @@ public class PlayerController : MonoBehaviour
         SceneManager.sceneLoaded -= OnMainLoaded;
     }
 
-    void OnMainLoaded(Scene scene, LoadSceneMode mode)
+    void OnMainLoaded(Scene scene, LoadSceneMode mode) //클라이언트의 씬이 로드되고 호출됨
     {
+        canControlPlayers = false;
+        
         if (scene.name == "Main")
         {
+            Cursor.lockState = CursorLockMode.None;
+            
             if (myPlayer == null)
             {
                 myPlayer = Instantiate(myPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
@@ -67,8 +75,9 @@ public class PlayerController : MonoBehaviour
             myPlayer.GetComponent<PlayerMovement>().enabled = false;
         }
         
-        if (SceneChanger.Instance.isRacing)
+        if (SceneChanger.Instance && SceneChanger.Instance.isRacing)
         {            
+            Cursor.lockState = CursorLockMode.Locked;
             GameManager.Instance.InitRace();
             
             //모든 플레이어가 씬 로딩하기 전까지 멈추기
@@ -100,10 +109,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void InitPosInRace(int playerIndex)
+    public void InitPosInRace(int playerIndex) //모든 플레이어의 씬 로드가 끝나면 호출됨
     {
         Debug.Log(playerIndex + "번째 플레이어 준비완료");
-        if (SceneChanger.Instance.isRacing)
+        if (SceneChanger.Instance && SceneChanger.Instance.isRacing)
         {
             GameObject[] startsObj = GameObject.FindGameObjectsWithTag("PlayerStart");
             foreach (GameObject startObj in startsObj)
@@ -116,6 +125,15 @@ public class PlayerController : MonoBehaviour
                     Time.timeScale = 1f;
                 }
             }
+        }
+
+        
+        //맵 테스트용 플레이어 스타트 지점 설정 코드입니다
+        if (playerIndex == -1)
+        {
+            GameObject startObj = GameObject.FindGameObjectWithTag("PlayerStart");
+            PlayerStart start = startObj.GetComponent<PlayerStart>();
+            start.InitPlayerPosToThis(myPlayer);
         }
     }
     
@@ -136,14 +154,17 @@ public class PlayerController : MonoBehaviour
         
         if (temp == "Loading")
         {
-            //myPlayer.SetActive(false);
         }
         else
         {
-            //myPlayer = Instantiate(myPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
+            //매칭 없이 에디터에서 레이스 맵 테스트만 할 때 캐릭터 생성
+            if (!myPlayer)
+            {
+                myPlayer = Instantiate(myPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
+                myPlayerTcp = myPlayer.GetComponent<PlayerTCP>();
+                InitPosInRace(-1);
+            }
         }
-
-        //myPlayerTcp = myPlayer.GetComponent<PlayerTCP>();
     }
 
     void Update()
@@ -165,16 +186,6 @@ public class PlayerController : MonoBehaviour
     
     public void OnOtherPlayerPositionUpdate(PlayerPosition playerPosition)
     {
-        // 이전코드
-        // if (_otherPlayers.TryGetValue(
-        //         playerPosition.PlayerId, out OtherPlayerTCP otherPlayer))
-        // {
-        //     otherPlayer.destination = new Vector3(playerPosition.X, playerPosition.Y, playerPosition.Z);
-        //     otherPlayer.OtherRot = new Vector3(playerPosition.Rx, playerPosition.Ry, playerPosition.Rz);
-        //     return;
-        //     
-        // }
-        
         if (playerPosition == null || string.IsNullOrEmpty(playerPosition.PlayerId))
         {
             Debug.LogError("Received null position update");
@@ -192,6 +203,16 @@ public class PlayerController : MonoBehaviour
             {
                 _otherPlayers.Remove(playerPosition.PlayerId);  // 잘못된 참조 제거
             }
+        }
+    }
+
+    public void PlayersSetControl(bool canControl) //시작 카운트 후 애니메이션 이벤트로 호출됨
+    {
+        Debug.Log("레이스 시작 " + canControl);
+        canControlPlayers = canControl;
+        if (myPlayer)
+        {
+            myPlayer.GetComponent<PlayerMovement>().SetControl(canControl);
         }
     }
     
@@ -257,13 +278,6 @@ public class PlayerController : MonoBehaviour
 
     public void DespawnOtherPlayer(string playerId)
     {
-        // 이전 코드
-        // if (_otherPlayers.TryGetValue(playerId, out OtherPlayerTCP otherPlayer))
-        // {
-        //     Destroy(otherPlayer.gameObject);
-        //     _otherPlayers.Remove(playerId);
-        // }
-        
         if (string.IsNullOrEmpty(playerId))
         {
             Debug.LogError("Attempted to despawn player with null/empty ID");
