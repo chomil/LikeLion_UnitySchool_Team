@@ -242,6 +242,13 @@ public class GameManager : MonoBehaviour
         {
             RaceUI.Instance?.ShowStatusMessage("통과!");
             SoundManager.Instance?.PlayQualifySound();
+            
+            // 통과한 플레이어 관전 모드 전환
+            Debug.Log($"[GameManager] Starting spectator mode for qualified player {finishedPlayerId}");
+            StartCoroutine(EnterSpectatorModeAfterDelay(finishedPlayerId));
+            
+            // 통과 메시지를 잠시 후 숨김
+            StartCoroutine(HideStatusMessageAfterDelay());
         }
 
         // 최대 인원 도달 시 나머지 플레이어 탈락 처리 및 다음 라운드 진행
@@ -269,6 +276,11 @@ public class GameManager : MonoBehaviour
         EndRaceWithMaxQualified();
     }
     
+    private IEnumerator HideStatusMessageAfterDelay()
+    {
+        yield return new WaitForSeconds(2f); // 통과 메시지를 2초간 보여줌
+        RaceUI.Instance?.HideStatusMessage();
+    }
     
     private void HandleRaceEndMessage(RaceEndMessage raceEnd)
     {
@@ -391,13 +403,6 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    
-    // private IEnumerator EnterSpectatorModeAfterDelay(string playerId)
-    // {
-    //     yield return new WaitForSeconds(2f);
-    //     SpectatorManager.Instance.EnterSpectatorMode(playerId);
-    // }
-    
     private void HandleGameWin(string winnerId)
     {
         Debug.Log($"Player {winnerId} won the game!");
@@ -413,5 +418,29 @@ public class GameManager : MonoBehaviour
         currentQualifiedCount = 0;
         qualifiedPlayers.Clear();
         isRaceEnded = false;
+    }
+    
+    // 관전 추가 코드 
+    // 레이스 상태 확인을 위한 메서드 추가
+    public bool IsRaceActive()
+    {
+        return !isRaceEnded;
+    }
+    
+    // 관전 모드 전환을 위한 코루틴 추가
+    private IEnumerator EnterSpectatorModeAfterDelay(string playerId)
+    {
+        Debug.Log($"[GameManager] Waiting before spectator mode transition...");
+        yield return new WaitForSeconds(2f);
+    
+        if (SpectatorManager.Instance != null)
+        {
+            Debug.Log($"[GameManager] Activating spectator mode for player {playerId}");
+            SpectatorManager.Instance.EnterSpectatorMode(playerId);
+        }
+        else
+        {
+            Debug.LogError("[GameManager] SpectatorManager.Instance is null!");
+        }
     }
 }
