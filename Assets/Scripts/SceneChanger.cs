@@ -46,13 +46,16 @@ public class SceneChanger : MonoBehaviour
     {
         //플레이 할 맵 초기화
         //raceToPlay = RaceList;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
         //버튼 이벤트 해제
         ClearAllButtons();
     }
+    
 
     private void Update()
     {
@@ -126,6 +129,7 @@ public class SceneChanger : MonoBehaviour
         Debug.Log($"Loading map: {mapToLoad}");
     
         isRacing = false;  // 로딩 시작 전에 false로 설정
+        
         Loading.LoadScene(mapToLoad);
         raceToPlayIdx++;
     }
@@ -146,4 +150,17 @@ public class SceneChanger : MonoBehaviour
         return matchingStatus;
     }
     
+    // 관전 코드 추가
+    // 씬 전환 시 관전 모드 리셋
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // SpectatorManager 참조 에러 방지
+        if (scene.name == "Main") return; // 메인 씬에서는 체크하지 않음
+        
+        var spectatorManager = FindObjectOfType<SpectatorManager>();
+        if (spectatorManager != null)
+        {
+            spectatorManager.OnSceneLoaded();
+        }
+    }
 }
