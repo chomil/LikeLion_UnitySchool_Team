@@ -83,6 +83,12 @@ public class OtherPlayerTCP : MonoBehaviour
                 _animator.SetBool("isLanded", false);
                 _animator.SetTrigger("RagdollTrigger");
                 break;
+            case AnimState.GrabOn:
+                _animator.SetBool("IsGrabbing", true) ;
+                break;
+            case AnimState.GrabOff:
+                _animator.SetBool("IsGrabbing", false) ;
+                break;
         }
     }
 }

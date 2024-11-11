@@ -10,7 +10,9 @@ public enum AnimState{ //서버에 애니메이션 정보를 전송하기 위한
     Move,
     Jump,
     Slide,
-    Ragdoll
+    Ragdoll,
+    GrabOn, //잡기 키를 누르고 있을 떄
+    GrabOff //잡기 키를 땠을 떄
 }
 
 public class PlayerMovement : MonoBehaviour
@@ -37,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isJumping = false;
     private bool isSliding = false;
     private bool isRagdoll = false;
+    private bool isGrabbing = false;
 
     private float camPitchAngle = 0f;
     private float camYawAngle = 0f;
@@ -114,6 +117,18 @@ public class PlayerMovement : MonoBehaviour
                 nextAnimState = AnimState.Slide;
                 SoundManager.Instance.PlaySfx(moveSounds["Slide"], 0.5f);
             }
+
+            // 잡기
+            if (Input.GetKey(KeyCode.F) && isGrounded)
+            { 
+                Grab();
+            }
+            else
+            {
+                //isGrabbing = false;
+                anim.SetBool("IsGrabbing", false);
+                curAnimState = AnimState.GrabOff;
+            }
         }
         
 
@@ -190,6 +205,18 @@ public class PlayerMovement : MonoBehaviour
 
     public void StateChange()
     {
+        //그랩 서버 처리를 어떻게 해야할지 생각 필요
+        if (curAnimState == AnimState.GrabOn)
+        {
+            anim.SetBool("IsGrabbing", true);
+            TcpProtobufClient.Instance?.SendPlayerAnimation(curAnimState.ToString(), TCPManager.playerId,0,0);
+        }
+
+        if (curAnimState == AnimState.GrabOff)
+        {
+            TcpProtobufClient.Instance?.SendPlayerAnimation(curAnimState.ToString(), TCPManager.playerId,0,0);
+        }
+        
         if (curAnimState != nextAnimState) //트리거 처리
         {
             curAnimState = nextAnimState;
@@ -211,7 +238,6 @@ public class PlayerMovement : MonoBehaviour
             
             TcpProtobufClient.Instance?.SendPlayerAnimation(curAnimState.ToString(), TCPManager.playerId,0,0);
         }
-
         
         if (curAnimState == AnimState.Idle || curAnimState == AnimState.Move)
         {
@@ -248,6 +274,12 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = false;
         isJumping = true;
         nextAnimState = AnimState.Jump;
+    }
+
+    public void Grab()
+    {
+        //isGrabbing = true;
+        curAnimState = AnimState.GrabOn;
     }
     
     private void OnStep(Collider other)
@@ -307,14 +339,12 @@ public class PlayerMovement : MonoBehaviour
     //가속 발판 밟았을 때
     public void StartBoostSpeed(float mulSpeed)
     {
-        speed = originSpeed * mulSpeed;
+        if (mulSpeed != 0)
+            speed = originSpeed * mulSpeed;
+        else
+            speed = originSpeed;
     }
     
-    public void EndBoostSpeed()
-    {
-        speed = originSpeed;
-    }
-
     public Vector3 GetMoveVector()
     {
         return moveVector;
