@@ -54,8 +54,10 @@ public class PlayerController : MonoBehaviour
 
     void OnMainLoaded(Scene scene, LoadSceneMode mode) //클라이언트의 씬이 로드되고 호출됨
     {
+
         canControlPlayers = false;
         
+        Debug.Log("Loading Main Scene - Initializing Player");
         if (scene.name == "Main")
         {
             Cursor.lockState = CursorLockMode.None;
@@ -265,23 +267,30 @@ public class PlayerController : MonoBehaviour
     {
         if (playerId == TCPManager.playerId)
         {
-            // 로컬 플레이어를 관전 모드로 설정
-            myPlayerTcp.GetComponent<PlayerMovement>().EnterSpectatorMode();
+            // 로컬 플레이어의 카메라와 움직임 비활성화
+            if (myPlayer != null)
+            {
+                var playerMovement = myPlayer.GetComponent<PlayerMovement>();
+                if (playerMovement != null)
+                {
+                    playerMovement.enabled = false;
+                }
+
+                // 메인 카메라 비활성화
+                var playerCamera = myPlayer.GetComponentInChildren<Camera>();
+                if (playerCamera != null)
+                {
+                    playerCamera.gameObject.SetActive(false);
+                }
+            }
         }
-        // 서버에 플레이어의 상태 변경을 알림
-        TcpProtobufClient.Instance.SendPlayerStateUpdate(playerId, "Spectating");
     }
 
     public void SwitchSpectatorTarget(string targetPlayerId)
     {
-        foreach (var otherPlayerTcp in _otherPlayers)
-        {
-            otherPlayerTcp.Value.GetComponent<SpectatorCamera>().ClearCamera();
-        }
-
         if (_otherPlayers.TryGetValue(targetPlayerId, out OtherPlayerTCP targetPlayer))
         {
-            targetPlayer.GetComponent<SpectatorCamera>().SetCamera();
+            SpectatorCamera.Instance.SetTarget(targetPlayer.transform);
         }
     }
 
