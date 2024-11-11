@@ -66,6 +66,10 @@ public class PlayerMovement : MonoBehaviour
     public void SetControl(bool _canControl)
     {
         canControl = _canControl;
+        if (canControl == false)
+        {
+            SetIdleState();
+        }
     }
 
     void Update()
@@ -277,11 +281,14 @@ public class PlayerMovement : MonoBehaviour
         
         // 서버에 Idle 상태 전송
         TcpProtobufClient.Instance.SendPlayerAnimation(curAnimState.ToString(), TCPManager.playerId, 0, 0);
-
-        // 모든 입력 비활성화를 위한 플래그 설정
-        isFinished = true;
-        
     }
+
+    public void SetFinished(bool _isFinished)
+    {
+        // 모든 입력 비활성화를 위한 플래그 설정
+        isFinished = _isFinished;
+    }
+    
     // 관전 시스템
     public void EnterSpectatorMode()
     {
