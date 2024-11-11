@@ -628,6 +628,9 @@ MonoBehaviour:
   statusText: {fileID: 1969927972557035692}
   victoryImage: {fileID: 1685837561088812191}
   victoryText: {fileID: 1171490723616048901}
+  roundOver: {fileID: 6487097144640638614}
+  roundQualified: {fileID: 8138310026818866704}
+  roundEliminated: {fileID: 2115407109004317602}
 --- !u!1 &7229297561139736834
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,6 +897,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1865473743644099994}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8138310026818866704 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7571232283184614282, guid: 28db7d0a9a9b82d4b885deb9e3d7e77e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1865473743644099994}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3224265579334207492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1020,6 +1029,12 @@ PrefabInstance:
 --- !u!224 &4859085439637181601 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8056961725198818469, guid: c608ef2af89e8df42b338ac164fa444b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3224265579334207492}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6487097144640638614 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8554631530712762002, guid: c608ef2af89e8df42b338ac164fa444b,
     type: 3}
   m_PrefabInstance: {fileID: 3224265579334207492}
   m_PrefabAsset: {fileID: 0}
@@ -1214,6 +1229,12 @@ PrefabInstance:
 --- !u!224 &302677422549010837 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9086094017310052290, guid: e2bdf76bc3243cf42932d9bfb8360657,
+    type: 3}
+  m_PrefabInstance: {fileID: 8803158334761977431}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2115407109004317602 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7453587484342490613, guid: e2bdf76bc3243cf42932d9bfb8360657,
     type: 3}
   m_PrefabInstance: {fileID: 8803158334761977431}
   m_PrefabAsset: {fileID: 0}

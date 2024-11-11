@@ -112,6 +112,7 @@ message SpectatorStateMessage {
 message PlayerCountUpdate {
   int32 current_alive = 1;    // 현재 생존 플레이어 수
   int32 total_players = 2;    // 총 플레이어 수
+  int32 qualify_limit = 3;    // 통과할 플레이어 수
 }
 
 message RoundStateMessage {

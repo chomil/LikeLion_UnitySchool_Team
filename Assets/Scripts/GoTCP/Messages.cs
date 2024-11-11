@@ -63,12 +63,13 @@ namespace Game {
             "ZS5NYXRjaGluZ1Jlc3BvbnNlSAASLwoPbWF0Y2hpbmdfdXBkYXRlGAMgASgL",
             "MhQuZ2FtZS5NYXRjaGluZ1VwZGF0ZUgAQgoKCG1hdGNoaW5nIlsKFVNwZWN0",
             "YXRvclN0YXRlTWVzc2FnZRIRCglwbGF5ZXJfaWQYASABKAkSFQoNaXNfc3Bl",
-            "Y3RhdGluZxgCIAEoCBIYChB0YXJnZXRfcGxheWVyX2lkGAMgASgJIkEKEVBs",
+            "Y3RhdGluZxgCIAEoCBIYChB0YXJnZXRfcGxheWVyX2lkGAMgASgJIlgKEVBs",
             "YXllckNvdW50VXBkYXRlEhUKDWN1cnJlbnRfYWxpdmUYASABKAUSFQoNdG90",
-            "YWxfcGxheWVycxgCIAEoBSJfChFSb3VuZFN0YXRlTWVzc2FnZRIVCg1jdXJy",
-            "ZW50X3JvdW5kGAEgASgFEhgKEHBsYXllcnNfcmVxdWlyZWQYAiABKAUSGQoR",
-            "cXVhbGlmaWVkX3BsYXllcnMYAyADKAkiKgoSUGxheWVySW5kZXhNZXNzYWdl",
-            "EhQKDHBsYXllcl9pbmRleBgBIAEoBUINWgtHby9tZXNzYWdlc2IGcHJvdG8z"));
+            "YWxfcGxheWVycxgCIAEoBRIVCg1xdWFsaWZ5X2xpbWl0GAMgASgFIl8KEVJv",
+            "dW5kU3RhdGVNZXNzYWdlEhUKDWN1cnJlbnRfcm91bmQYASABKAUSGAoQcGxh",
+            "eWVyc19yZXF1aXJlZBgCIAEoBRIZChFxdWFsaWZpZWRfcGxheWVycxgDIAMo",
+            "CSIqChJQbGF5ZXJJbmRleE1lc3NhZ2USFAoMcGxheWVyX2luZGV4GAEgASgF",
+            "Qg1aC0dvL21lc3NhZ2VzYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -87,7 +88,7 @@ namespace Game {
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.MatchingUpdate), global::Game.MatchingUpdate.Parser, new[]{ "CurrentPlayers", "RequiredPlayers" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.MatchingMessage), global::Game.MatchingMessage.Parser, new[]{ "MatchingRequest", "MatchingResponse", "MatchingUpdate" }, new[]{ "Matching" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.SpectatorStateMessage), global::Game.SpectatorStateMessage.Parser, new[]{ "PlayerId", "IsSpectating", "TargetPlayerId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Game.PlayerCountUpdate), global::Game.PlayerCountUpdate.Parser, new[]{ "CurrentAlive", "TotalPlayers" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Game.PlayerCountUpdate), global::Game.PlayerCountUpdate.Parser, new[]{ "CurrentAlive", "TotalPlayers", "QualifyLimit" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.RoundStateMessage), global::Game.RoundStateMessage.Parser, new[]{ "CurrentRound", "PlayersRequired", "QualifiedPlayers" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.PlayerIndexMessage), global::Game.PlayerIndexMessage.Parser, new[]{ "PlayerIndex" }, null, null, null, null)
           }));
@@ -4940,6 +4941,7 @@ namespace Game {
     public PlayerCountUpdate(PlayerCountUpdate other) : this() {
       currentAlive_ = other.currentAlive_;
       totalPlayers_ = other.totalPlayers_;
+      qualifyLimit_ = other.qualifyLimit_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -4979,6 +4981,21 @@ namespace Game {
       }
     }
 
+    /// <summary>Field number for the "qualify_limit" field.</summary>
+    public const int QualifyLimitFieldNumber = 3;
+    private int qualifyLimit_;
+    /// <summary>
+    /// 통과할 플레이어 수
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int QualifyLimit {
+      get { return qualifyLimit_; }
+      set {
+        qualifyLimit_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -4996,6 +5013,7 @@ namespace Game {
       }
       if (CurrentAlive != other.CurrentAlive) return false;
       if (TotalPlayers != other.TotalPlayers) return false;
+      if (QualifyLimit != other.QualifyLimit) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -5005,6 +5023,7 @@ namespace Game {
       int hash = 1;
       if (CurrentAlive != 0) hash ^= CurrentAlive.GetHashCode();
       if (TotalPlayers != 0) hash ^= TotalPlayers.GetHashCode();
+      if (QualifyLimit != 0) hash ^= QualifyLimit.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -5031,6 +5050,10 @@ namespace Game {
         output.WriteRawTag(16);
         output.WriteInt32(TotalPlayers);
       }
+      if (QualifyLimit != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(QualifyLimit);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -5049,6 +5072,10 @@ namespace Game {
         output.WriteRawTag(16);
         output.WriteInt32(TotalPlayers);
       }
+      if (QualifyLimit != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(QualifyLimit);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -5064,6 +5091,9 @@ namespace Game {
       }
       if (TotalPlayers != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(TotalPlayers);
+      }
+      if (QualifyLimit != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(QualifyLimit);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -5082,6 +5112,9 @@ namespace Game {
       }
       if (other.TotalPlayers != 0) {
         TotalPlayers = other.TotalPlayers;
+      }
+      if (other.QualifyLimit != 0) {
+        QualifyLimit = other.QualifyLimit;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -5110,6 +5143,10 @@ namespace Game {
             TotalPlayers = input.ReadInt32();
             break;
           }
+          case 24: {
+            QualifyLimit = input.ReadInt32();
+            break;
+          }
         }
       }
     #endif
@@ -5135,6 +5172,10 @@ namespace Game {
           }
           case 16: {
             TotalPlayers = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            QualifyLimit = input.ReadInt32();
             break;
           }
         }

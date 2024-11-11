@@ -57,16 +57,13 @@ func GetPlayerManager() *PlayerManager {
 			players:                   make(map[int]*Player),
 			nextID:                    1,
 			activePlayersForNextRound: make(map[string]bool),
-			maxQualifiedPlayers:       3, //qualifyLimits의 첫번째로 초기화 해줘야됨
+			maxQualifiedPlayers:       1, //qualifyLimits의 첫번째로 초기화 해줘야됨
 			matchedPlayers:            make(map[int]*Player),
 			matchID:                   1,
 			currentAlive:              0,
 			totalPlayers:              0,
-			// 추가
-			currentRound: 0,
-			// qualifyLimits: []int{60, 30, 15, 8, 1},
-			// 테스트용 코드
-			qualifyLimits: []int{3, 2, 1},
+			currentRound:              0,                 //0~3라운드
+			qualifyLimits:             []int{1, 1, 1, 1}, //총 네 라운드로 픽스
 			//맵 로딩이 완료된 플레이어 수
 			readyPlayerCount: 0,
 		}
@@ -156,6 +153,10 @@ func (pm *PlayerManager) SpawnNewPlayerInfo(newPlayer Player) {
 }
 
 func (pm *PlayerManager) SendExistingPlayersToNewPlayer(newPlayer Player) {
+
+	//현재 라운드의 플레이어 카운트 초기화
+	pm.BroadcastPlayerCount()
+
 	for _, existingPlayer := range pm.matchedPlayers {
 		if existingPlayer.Name == newPlayer.Name {
 			// 자신은 제외
@@ -475,9 +476,9 @@ func (pm *PlayerManager) PlayerFinishedRace(playerId string, finishTime int64) {
 	maxQualified := pm.qualifyLimits[pm.currentRound]
 	if len(pm.activePlayersForNextRound) < maxQualified {
 		pm.activePlayersForNextRound[playerId] = true
+		player.FinishTime = finishTime
 	}
-
-	player.FinishTime = finishTime
+	log.Printf("%d라운드 제한인원 %d, 들어온 인원 %d", pm.currentRound, maxQualified, len(pm.activePlayersForNextRound))
 
 	// 모든 플레이어에게 완주 정보 브로드캐스트
 	finishMessage := &pb.GameMessage{
@@ -489,11 +490,13 @@ func (pm *PlayerManager) PlayerFinishedRace(playerId string, finishTime int64) {
 		},
 	}
 
-	pm.BroadcastMessage(finishMessage)
-
-	// 플레이어가 완주하면 생존자 수 감소
-	pm.currentAlive--
-	pm.BroadcastPlayerCount()
+	//지금 들어온 플레이어가 인원제한내에 들어온 플레이어라면
+	if pm.activePlayersForNextRound[playerId] {
+		// 플레이어가 완주하면 생존자 수 감소
+		pm.BroadcastMessage(finishMessage)
+		pm.currentAlive--
+		pm.BroadcastPlayerCount()
+	}
 
 	// 모든 플레이어가 완주했거나 최대 통과 인원에 도달했는지 체크
 	finishedCount := 0
@@ -504,12 +507,24 @@ func (pm *PlayerManager) PlayerFinishedRace(playerId string, finishTime int64) {
 		}
 	}
 
+	log.Printf("%d, %d,%d,%d", finishedCount, totalPlayers, len(pm.activePlayersForNextRound), pm.maxQualifiedPlayers)
 	if finishedCount >= totalPlayers || len(pm.activePlayersForNextRound) >= pm.maxQualifiedPlayers {
 		pm.HandleRaceEnd(playerId)
 	}
 }
 
 func (pm *PlayerManager) HandleRaceEnd(playerId string) {
+
+	// 브로드캐스트 (레이스 끝 메시지는 전부에게 보냄)
+	raceEndMessage := &pb.GameMessage{
+		Message: &pb.GameMessage_RaceEnd{
+			RaceEnd: &pb.RaceEndMessage{
+				PlayerId: playerId,
+			},
+		},
+	}
+	pm.BroadcastMessage(raceEndMessage)
+
 	log.Printf("=== Round End Debug Info ===")
 	log.Printf("Current Round: %d", pm.currentRound)
 	log.Printf("Active Players for Next Round: %v", pm.activePlayersForNextRound)
@@ -554,22 +569,23 @@ func (pm *PlayerManager) HandleRaceEnd(playerId string) {
 	// 라운드 정보 업데이트
 	pm.currentRound++
 	if pm.currentRound < len(pm.qualifyLimits) {
+		//매칭 플레이어 수에 따라 플레이어 매니저 통과인원 초기화
+		percent := 0.7 //70%씩 통과
+		if len(pm.matchedPlayers) <= 5 {
+			percent = 0.8 //5명 이하로 남으면 80% 통과
+		}
+		pm.qualifyLimits[pm.currentRound] = int(float64(len(pm.matchedPlayers)) * percent) //남은 매칭 인원의 일정 퍼센트 통과
+		pm.maxQualifiedPlayers = pm.qualifyLimits[pm.currentRound]
+	}
+	if pm.currentRound == 3 {
+		//결승전(4라운드)이면 무조건 1로 초기화
+		pm.qualifyLimits[pm.currentRound] = 1
 		pm.maxQualifiedPlayers = pm.qualifyLimits[pm.currentRound]
 	}
 
 	// 상태 업데이트
 	pm.currentAlive = int32(len(newPlayers))
 	pm.totalPlayers = int32(len(newPlayers))
-
-	// 브로드캐스트
-	raceEndMessage := &pb.GameMessage{
-		Message: &pb.GameMessage_RaceEnd{
-			RaceEnd: &pb.RaceEndMessage{
-				PlayerId: playerId,
-			},
-		},
-	}
-	pm.BroadcastMessage(raceEndMessage)
 
 	log.Printf("=== New Round Start Debug Info ===")
 	log.Printf("New Round: %d", pm.currentRound)
@@ -694,6 +710,7 @@ func (pm *PlayerManager) BroadcastPlayerCount() {
 			PlayerCount: &pb.PlayerCountUpdate{
 				CurrentAlive: pm.currentAlive,
 				TotalPlayers: pm.totalPlayers,
+				QualifyLimit: int32(pm.maxQualifiedPlayers),
 			},
 		},
 	}
