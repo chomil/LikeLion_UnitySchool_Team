@@ -6,6 +6,12 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Serialization;
 
+
+public enum RaceState
+{
+    None, Over, Qualify, Eliminate, Win
+}
+
 public class RaceUI : MonoBehaviour
 {
     public static RaceUI Instance { get; private set; }
@@ -24,6 +30,11 @@ public class RaceUI : MonoBehaviour
     private Image victoryImage; // 우승 이미지
 
     [SerializeField] private TextMeshProUGUI victoryText;
+
+    private bool isMessageOpen = false;
+    [SerializeField] private GameObject roundOver;
+    [SerializeField] private GameObject roundQualified;
+    [SerializeField] private GameObject roundEliminated;
 
     private void Awake()
     {
@@ -44,7 +55,6 @@ public class RaceUI : MonoBehaviour
         
         // 시작할 때 UI 표시
         ShowRaceUI();
-        UpdateQualifiedCount(0, GameManager.Instance.maxQualifiedPlayers);
     }
 
     public void UpdateQualifiedCount(int current, int max)
@@ -56,34 +66,47 @@ public class RaceUI : MonoBehaviour
         }
     }
 
-    public void ShowStatusMessage(string message, bool isVictory = false)
+    public void ShowStateWindow(RaceState state)
     {
-        if (isVictory)
+        switch (state)
         {
-            // 우승 메시지 표시
-            if (victoryImage != null && victoryText != null)
-            {
-                victoryImage.gameObject.SetActive(true);
-                victoryText.text = message;
-                victoryText.gameObject.SetActive(true);
-            }
+            case RaceState.Over:
+                StartCoroutine(StateWindowCoroutine(roundOver));
+                break;
+            case RaceState.Qualify:
+                StartCoroutine(StateWindowCoroutine(roundQualified));
+                break;
+            case RaceState.Eliminate:
+                StartCoroutine(StateWindowCoroutine(roundEliminated));
+                break;
+            case RaceState.Win:
+                //임시
+                StartCoroutine(StateWindowCoroutine(roundQualified));
+                break;
+            default:
+                break;
         }
-        else
+    }
+
+    private IEnumerator StateWindowCoroutine(GameObject window)
+    {    
+        while (isMessageOpen)
         {
-            // 일반 통과/탈락 메시지 표시
-            if (statusImage != null && statusText != null)
-            {
-                statusImage.gameObject.SetActive(true);
-                statusText.text = message;
-                statusText.gameObject.SetActive(true);
-            }
+            yield return null;
         }
+        isMessageOpen = true;
+        window.SetActive(true);
+        yield return new WaitForSeconds(3.0f);
+        window.SetActive(false);
+        isMessageOpen = false;
     }
 
     public void HideStatusMessage()
     {
-        if (statusImage != null) statusImage.gameObject.SetActive(false);
-        if (victoryImage != null) victoryImage.gameObject.SetActive(false);
+        roundOver.SetActive(false);
+        roundQualified.SetActive(false);
+        roundEliminated.SetActive(false);
+        isMessageOpen = false;
     }
 
     public void ShowRaceUI()

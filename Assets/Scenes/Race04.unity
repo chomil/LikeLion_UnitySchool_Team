@@ -393,7 +393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &30282663
 Transform:
   m_ObjectHideFlags: 0
@@ -12900,7 +12900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &932982125
 Transform:
   m_ObjectHideFlags: 0
@@ -14306,6 +14306,7 @@ MonoBehaviour:
   otherPlayerTcpTemplate: {fileID: -5677562895014742263, guid: a04f14caee451cb44bca10c142cca05e,
     type: 3}
   LobbyPlayerPos: {x: 0, y: 0, z: 0}
+  canControlPlayers: 0
 --- !u!4 &1019137394
 Transform:
   m_ObjectHideFlags: 0

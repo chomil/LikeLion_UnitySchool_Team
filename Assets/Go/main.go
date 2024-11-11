@@ -124,7 +124,8 @@ func processMessage(message *pb.GameMessage, conn *net.Conn) {
 	case *pb.GameMessage_RaceEnd:
 		raceEnd := msg.RaceEnd
 		fmt.Printf("Race ended by player %s\n", raceEnd.PlayerId)
-		mg.GetPlayerManager().HandleRaceEnd(raceEnd.PlayerId)
+		//레이스 엔드 메시지는 클라에서 받아오지 말고 서버에서 클라로 보내줘야함
+		//mg.GetPlayerManager().HandleRaceEnd(raceEnd.PlayerId)
 	case *pb.GameMessage_PlayerCount:
 		// 클라이언트로부터 플레이어 카운트 요청이 올 경우 처리
 		playerManager := mg.GetPlayerManager()

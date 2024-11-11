@@ -16,7 +16,8 @@ import (
 )
 
 const (
-	playersPerRace = 4 //레이스에 참여하는 최대 인원 수
+	minPlayersPerRace = 4  //레이스에 참여하는 최소 인원 수
+	maxPlayersPerRace = 30 //레이스에 참여하는 최대 인원 수
 )
 
 var RaceMaps = []string{
@@ -103,17 +104,17 @@ func (m *MatchingManager) StartCountdown() {
 	go func() {
 		ticker := time.NewTicker(500 * time.Millisecond) // 0.5초마다 체크
 		defer ticker.Stop()
-		timeout := time.After(30 * time.Second) // 30초 타임아웃 설정
+		timeout := time.After(10 * time.Second) // 10초 타임아웃 설정
 
 		for {
 			select {
 			case <-ticker.C:
-				if len(m.Players) >= playersPerRace { // 필요한 플레이어 수가 채워졌을 때
+				if len(m.Players) >= maxPlayersPerRace { // 필요한 플레이어 수가 채워졌을 때
 					m.StartMatch()
 					return // goroutine 종료
 				}
 			case <-timeout:
-				if len(m.Players) >= playersPerRace {
+				if len(m.Players) >= minPlayersPerRace {
 					// 시간이 만료됐지만 플레이어 수가 충분할 경우
 					m.StartMatch()
 				} else {
@@ -134,8 +135,11 @@ func (m *MatchingManager) StartCountdown() {
 // StartMatch는 매칭이 성공적으로 이루어졌을 때 호출됩니다.
 func (m *MatchingManager) StartMatch() {
 	var GameMaps = SetRaceMaps() //레이스할 맵 세팅
+
+	//초기화필요
 	playerManager := GetPlayerManager()
 	playerManager.matchedPlayers = make(map[int]*Player)
+	playerManager.currentRound = 0
 	matchingSeed := rand.Int31()
 
 	// 매칭 시작 로직 구현
@@ -177,6 +181,16 @@ func (m *MatchingManager) StartMatch() {
 		playerManager.AddMatchedPlayer(player.ID)
 	}
 
+	//매칭 플레이어 수에 따라 플레이어 매니저 통과인원 초기화
+
+	percent := 0.7 //70%씩 통과
+	if len(playerManager.matchedPlayers) <= 5 {
+		percent = 0.8 //5명 이하로 남으면 80% 통과
+	}
+	playerManager.qualifyLimits[0] = int(float64(len(playerManager.matchedPlayers)) * percent)
+	playerManager.maxQualifiedPlayers = playerManager.qualifyLimits[0]
+	playerManager.BroadcastPlayerCount()
+
 	//대기열 초기화
 	m.Players = make(map[string]*MatchingPlayer)
 	m.starting = false
@@ -209,7 +223,7 @@ func (m *MatchingManager) SendMatchingStatus() {
 			Matching: &pb.MatchingMessage_MatchingUpdate{
 				MatchingUpdate: &pb.MatchingUpdate{
 					CurrentPlayers:  int32(len(m.Players)),
-					RequiredPlayers: playersPerRace,
+					RequiredPlayers: maxPlayersPerRace,
 				},
 			},
 		}

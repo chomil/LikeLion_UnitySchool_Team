@@ -22,8 +22,6 @@ public class PlayerController : MonoBehaviour
     private Dictionary<string, OtherPlayerTCP> _otherPlayers = new();
     private Dictionary<string, Dictionary<int, string>> _otherCostumeMessages = new();
     public GameObject myPlayer { get; private set; }
-    private int finishedPlayersCount = 0;
-    private int totalPlayersCount;
     public bool canControlPlayers = false;
     
     private void Awake()
@@ -176,10 +174,6 @@ public class PlayerController : MonoBehaviour
             {
                 continue;
             }
-            if (msg.MessageCase == GameMessage.MessageOneofCase.RaceFinish)
-            {
-                OnRaceFinishMessageReceived(msg.RaceFinish);
-            }
         }
     }
     
@@ -216,34 +210,6 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    public void SetTotalPlayersCount(int count)
-    {
-        totalPlayersCount = count;
-    }
-    
-    public void OnPlayerFinished(string playerId)
-    {
-        finishedPlayersCount++;
-        Debug.Log($"Player {playerId} finished. {finishedPlayersCount}/{totalPlayersCount} players have finished.");
-        
-        if (finishedPlayersCount == totalPlayersCount)
-        {
-            EndRace();
-        }
-    }
-    
-    private void EndRace()
-    {
-        Debug.Log("All players have finished the race!");
-        GameManager.Instance.EndRaceWithMaxQualified();
-    }
-    
-    public void OnRaceFinishMessageReceived(RaceFinishMessage finishMessage)
-    {
-        Debug.Log($"Race finish message received for player: {finishMessage.PlayerId}");
-        GameManager.Instance.PlayerFinished(finishMessage.PlayerId);
-        GameManager.Instance.CheckRaceEndCondition(); // 레이스 종료 조건 체크
-    }
 
     public void SpawnOtherPlayer(SpawnPlayer serverPlayer)
     {
