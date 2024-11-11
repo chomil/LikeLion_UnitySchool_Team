@@ -4,47 +4,54 @@ using UnityEngine;
 
 public class SpectatorCamera : MonoBehaviour
 {
+    public static SpectatorCamera Instance { get; private set; }
+    private Transform target;
     private Camera spectatorCamera;
-    public Vector3 cameraOffset = new Vector3(0, 2, -5); // 카메라 위치 오프셋
+    public Vector3 cameraOffset = new Vector3(0, 3, -6); // 조금 더 멀리서 관전
     public float smoothSpeed = 5f;
+    
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     
     private void Start()
     {
-        spectatorCamera = GetComponentInChildren<Camera>();
-        if(spectatorCamera != null)
-        {
-            spectatorCamera.enabled = false; // 시작 시 비활성화
-        }
+        spectatorCamera = GetComponent<Camera>();
+        gameObject.SetActive(false); // 시작 시 비활성화
     }
 
-    public void SetCamera()
+    public void SetTarget(Transform newTarget)
     {
-        if(spectatorCamera != null)
+        target = newTarget;
+        if(target != null)
         {
-            spectatorCamera.enabled = true;
+            gameObject.SetActive(true);
             StartCoroutine(SmoothFollow());
         }
     }
 
-    public void ClearCamera()
+    public void ClearTarget()
     {
-        if(spectatorCamera != null)
-        {
-            spectatorCamera.enabled = false;
-            StopAllCoroutines();
-        }
+        target = null;
+        gameObject.SetActive(false);
+        StopAllCoroutines();
     }
 
     private IEnumerator SmoothFollow()
     {
-        while(true)
+        while(target != null)
         {
-            // 타겟(플레이어) 뒤쪽에서 살짝 위에 위치하도록
-            Vector3 desiredPosition = transform.position + transform.TransformDirection(cameraOffset);
-            Vector3 smoothedPosition = Vector3.Lerp(spectatorCamera.transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
-            
-            spectatorCamera.transform.position = smoothedPosition;
-            spectatorCamera.transform.LookAt(transform.position);
+            Vector3 desiredPosition = target.position + target.rotation * cameraOffset;
+            transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+            transform.LookAt(target.position + Vector3.up * 1.5f); // 약간 위를 바라보도록
             
             yield return null;
         }

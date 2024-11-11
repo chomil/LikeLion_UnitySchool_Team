@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SpectatorManager : MonoBehaviour
@@ -8,6 +9,9 @@ public class SpectatorManager : MonoBehaviour
 
     private List<string> activePlayerIds = new List<string>();
     private int currentSpectatingIndex = -1;
+    private bool isSpectating = false;
+    private GameObject spectatorCameraPrefab;
+    private SpectatorCamera spectatorCam;
 
     private void Awake()
     {
@@ -21,16 +25,38 @@ public class SpectatorManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void Start()
+    {
+        spectatorCameraPrefab = Resources.Load<GameObject>("Prefabs/Spectatorcamera(player)");
+        if(spectatorCameraPrefab == null)
+        {
+            Debug.LogError("Spectator camera prefab not found!");
+        }
+    }
 
     public void EnterSpectatorMode(string playerId)
     {
+        Debug.Log($"EnterSpectatorMode called for player: {playerId}");
+        
+        if (isSpectating)
+        {
+            Debug.Log("Already in spectator mode");
+            return;
+        }
 
-        // 다음 관전 대상으로 전환
-        SwitchToNextSpectator();
+        isSpectating = true;
         
-        Debug.Log($"Entering spectator mode for player: {playerId}");
-        
-        // 활성 플레이어 목록 갱신
+        if(spectatorCam == null && spectatorCameraPrefab != null)
+        {
+            Debug.Log("Creating spectator camera");
+            var camObj = Instantiate(spectatorCameraPrefab);
+            spectatorCam = camObj.GetComponent<SpectatorCamera>();
+        }
+        else
+        {
+            Debug.Log($"Spectator camera status - cam: {spectatorCam}, prefab: {spectatorCameraPrefab}");
+        }
+
         UpdateActivePlayersList();
         
         if (activePlayerIds.Count == 0)
@@ -39,22 +65,44 @@ public class SpectatorManager : MonoBehaviour
             return;
         }
 
-        // 현재 플레이어를 관전자로 전환
-        PlayerController.Instance.SetPlayerToSpectatorMode(playerId);
-        
-        // UI 활성화
-        SpectatorUI.Instance.ShowSpectatorUI();
+        var playerObj = PlayerController.Instance.myPlayer;
+        if (playerObj != null)
+        {
+            var playerCam = playerObj.GetComponentInChildren<Camera>();
+            if(playerCam != null)
+                playerCam.gameObject.SetActive(false);
+                
+            var playerMovement = playerObj.GetComponent<PlayerMovement>();
+            if(playerMovement != null)
+                playerMovement.enabled = false;
+        }
 
-        // 첫 번째 관전 대상 설정
         currentSpectatingIndex = 0;
         SwitchToCurrentSpectator();
+        SpectatorUI.Instance.ShowSpectatorUI();
     }
 
-    public void UpdateActivePlayers(List<string> players)
+    public void ResetSpectatorMode()
     {
-        activePlayerIds = players;
+        isSpectating = false;
+        
+        if(spectatorCam != null)
+        {
+            spectatorCam.ClearTarget();
+            spectatorCam.gameObject.SetActive(false);
+        }
+
+        SpectatorUI.Instance.HideSpectatorUI();
+        
+        activePlayerIds.Clear();
+        currentSpectatingIndex = -1;
     }
-    
+
+    public void OnSceneLoaded()
+    {
+        ResetSpectatorMode();
+    }
+
     private void UpdateActivePlayersList()
     {
         activePlayerIds.Clear();
@@ -62,7 +110,7 @@ public class SpectatorManager : MonoBehaviour
         
         foreach (var player in players)
         {
-            if (!player.HasFinished() && player.enabled)  // 활성화된 플레이어만 추가
+            if (!player.HasFinished() && player.enabled)
             {
                 activePlayerIds.Add(player.PlayerId);
                 Debug.Log($"Added active player: {player.PlayerId}");
@@ -90,12 +138,16 @@ public class SpectatorManager : MonoBehaviour
     
     private void SwitchToCurrentSpectator()
     {
-        if (activePlayerIds.Count == 0) return;
+        if (activePlayerIds.Count == 0 || spectatorCam == null) return;
         
         string targetPlayerId = activePlayerIds[currentSpectatingIndex];
-        Debug.Log($"Switching to spectator target: {targetPlayerId}");
-        
-        PlayerController.Instance.SwitchSpectatorTarget(targetPlayerId);
-        SpectatorUI.Instance.UpdateSpectatingPlayerInfo(targetPlayerId);
+        var targetPlayer = FindObjectsOfType<OtherPlayerTCP>()
+            .FirstOrDefault(p => p.PlayerId == targetPlayerId);
+
+        if(targetPlayer != null)
+        {
+            spectatorCam.SetTarget(targetPlayer.transform);
+            SpectatorUI.Instance.UpdateSpectatingPlayerInfo(targetPlayerId);
+        }
     }
 }
