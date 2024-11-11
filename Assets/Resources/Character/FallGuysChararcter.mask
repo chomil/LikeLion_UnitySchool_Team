@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FallGuysChararcter
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: FallGuy
+    m_Weight: 0
+  - m_Path: FallGuy/Character
+    m_Weight: 0
+  - m_Path: FallGuy/Character/GEO
+    m_Weight: 0
+  - m_Path: FallGuy/Character/GEO/Body_LOD0
+    m_Weight: 0
+  - m_Path: FallGuy/Character/GEO/Body_LOD1
+    m_Weight: 0
+  - m_Path: FallGuy/Character/GEO/Body_LOD2
+    m_Weight: 0
+  - m_Path: FallGuy/Character/GEO/Body_LOD3
+    m_Weight: 0
+  - m_Path: FallGuy/Character/GEO/Body_LOD4
+    m_Weight: 0
+  - m_Path: FallGuy/Character/LeftPoleTarget
+    m_Weight: 0
+  - m_Path: FallGuy/Character/RightRoleTarget
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Carry
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Head_C_jnt01
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Head_C_jnt01/Eye_L_jnt
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Head_C_jnt01/Eye_R_jnt
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Head_C_jnt01/Head_C_nub
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Prefab_VFX_Infected_V02
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Prefab_VFX_Infected_V02/More_Infected_VFX
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Prefab_VFX_Infected_V02/More_Infected_VFX/Symbols
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Prefab_VFX_Infected_V02/More_Infected_VFX/waistRing
+      (1)
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Prefab_VFX_Infected_V02/SmokeLocal
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Prefab_VFX_Infected_V02/SmokeTrailing
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Shoulder_L_jnt
+    m_Weight: 1
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Shoulder_L_jnt/Elbow_L_jnt
+    m_Weight: 1
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Shoulder_L_jnt/Elbow_L_jnt/Wrist_L_jnt
+    m_Weight: 1
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Shoulder_L_jnt/Elbow_L_jnt/Wrist_L_jnt/Finger01_L_jnt_01
+    m_Weight: 1
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Shoulder_L_jnt/Elbow_L_jnt/Wrist_L_jnt/Finger01_L_jnt_01/Finger01_L_jnt_02
+    m_Weight: 1
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Shoulder_L_jnt/Elbow_L_jnt/Wrist_L_jnt/Finger02_L_jnt_01
+    m_Weight: 1
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Shoulder_L_jnt/Elbow_L_jnt/Wrist_L_jnt/Finger02_L_jnt_01/Finger02_L_jnt_02
+    m_Weight: 1
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Shoulder_L_jnt/Elbow_L_jnt/Wrist_L_jnt/Thumb_L_jnt_01
+    m_Weight: 1
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Shoulder_L_jnt/Elbow_L_jnt/Wrist_L_jnt/Thumb_L_jnt_01/Thumb_L_jnt_02
+    m_Weight: 1
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Shoulder_R_jnt1
+    m_Weight: 1
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Shoulder_R_jnt1/Elbow_R_jnt1
+    m_Weight: 1
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Shoulder_R_jnt1/Elbow_R_jnt1/Wrist_R_jnt1
+    m_Weight: 1
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Shoulder_R_jnt1/Elbow_R_jnt1/Wrist_R_jnt1/Finger01_R_jnt_03
+    m_Weight: 1
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Shoulder_R_jnt1/Elbow_R_jnt1/Wrist_R_jnt1/Finger01_R_jnt_03/Finger01_R_jnt_04
+    m_Weight: 1
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Shoulder_R_jnt1/Elbow_R_jnt1/Wrist_R_jnt1/Finger02_R_jnt_03
+    m_Weight: 1
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Shoulder_R_jnt1/Elbow_R_jnt1/Wrist_R_jnt1/Finger02_R_jnt_03/Finger02_R_jnt_04
+    m_Weight: 1
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Shoulder_R_jnt1/Elbow_R_jnt1/Wrist_R_jnt1/Thumb_R_jnt_03
+    m_Weight: 1
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Chest_C_jnt/Shoulder_R_jnt1/Elbow_R_jnt1/Wrist_R_jnt1/Thumb_R_jnt_03/Thumb_R_jnt_04
+    m_Weight: 1
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/PB_TailTag
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/PB_TailTag/PRP_TagTail_MO
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Pelvis_C_jnt
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Pelvis_C_jnt/Hip_L_jnt
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Pelvis_C_jnt/Hip_L_jnt/Knee_L_jnt
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Pelvis_C_jnt/Hip_L_jnt/Knee_L_jnt/Ankle_L_jnt
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Pelvis_C_jnt/Hip_L_jnt/Knee_L_jnt/Ankle_L_jnt/Ball_L_jnt
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Pelvis_C_jnt/Hip_L_jnt/Knee_L_jnt/Ankle_L_jnt/Ball_L_jnt/Toe_L_jnt
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Pelvis_C_jnt/Hip_R_jnt
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Pelvis_C_jnt/Hip_R_jnt/Knee_R_jnt
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Pelvis_C_jnt/Hip_R_jnt/Knee_R_jnt/Ankle_R_jnt
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Pelvis_C_jnt/Hip_R_jnt/Knee_R_jnt/Ankle_R_jnt/Ball_R_jnt
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Pelvis_C_jnt/Hip_R_jnt/Knee_R_jnt/Ankle_R_jnt/Ball_R_jnt/Toe_R_jnt
+    m_Weight: 0
+  - m_Path: FallGuy/Character/SKELETON/Root/Torso_C_jnt_NoStrechSquash/Torso_C_jnt
+    m_Weight: 0

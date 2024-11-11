@@ -28,7 +28,7 @@ public class SpeedBoostZone : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             var playerMove = other.GetComponent<PlayerMovement>();
-            playerMove.EndBoostSpeed();
+            playerMove.StartBoostSpeed(0);
         }
     }
 }
