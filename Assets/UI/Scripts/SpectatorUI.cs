@@ -39,12 +39,12 @@ public class SpectatorUI : MonoBehaviour
         // 키 입력 처리
         if (gameObject.activeSelf)
         {
-            if (Input.GetKeyDown(KeyCode.PageUp))
+            if (Input.GetKeyDown(KeyCode.PageUp) || Input.GetKeyDown(KeyCode.E))
             {
                 SpectatorManager.Instance?.SwitchToNextSpectator();
                 StartCoroutine(PressEffect(pageUpImage));
             }
-            else if (Input.GetKeyDown(KeyCode.PageDown))
+            else if (Input.GetKeyDown(KeyCode.PageDown) || Input.GetKeyDown(KeyCode.Q))
             {
                 SpectatorManager.Instance?.SwitchToPreviousSpectator();
                 StartCoroutine(PressEffect(pageDownImage));

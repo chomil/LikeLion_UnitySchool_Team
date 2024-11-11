@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	minPlayersPerRace = 4  //레이스에 참여하는 최소 인원 수
+	minPlayersPerRace = 5  //레이스에 참여하는 최소 인원 수
 	maxPlayersPerRace = 30 //레이스에 참여하는 최대 인원 수
 )
 
