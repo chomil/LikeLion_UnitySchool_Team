@@ -98,6 +98,17 @@ public class PlayerMovement : MonoBehaviour
         
         if (curAnimState != AnimState.Ragdoll)
         {        
+            // 잡기
+            if (Input.GetButtonDown("Grab") && isGrounded)
+            { 
+                Grab();
+            }
+            else if(Input.GetButtonUp("Grab"))
+            {
+                anim.SetBool("IsGrabbing", false);
+                nextAnimState = AnimState.GrabOff;
+            }
+            
             // 점프 입력 처리
             if (Input.GetButtonDown("Jump") && isGrounded==true && isJumping==false)
             {
@@ -116,18 +127,6 @@ public class PlayerMovement : MonoBehaviour
                 isSliding = true;
                 nextAnimState = AnimState.Slide;
                 SoundManager.Instance.PlaySfx(moveSounds["Slide"], 0.5f);
-            }
-
-            // 잡기
-            if (Input.GetKey(KeyCode.F) && isGrounded)
-            { 
-                Grab();
-            }
-            else
-            {
-                //isGrabbing = false;
-                anim.SetBool("IsGrabbing", false);
-                curAnimState = AnimState.GrabOff;
             }
         }
         
