@@ -134,6 +134,11 @@ public class GameManager : MonoBehaviour
             {
                 UpdatePlayerCount(msg.PlayerCount.TotalPlayers, msg.PlayerCount.CurrentAlive, msg.PlayerCount.QualifyLimit);
             }
+
+            if (msg.MessageCase == GameMessage.MessageOneofCase.PlayerGrabInfo)
+            {
+                PlayerController.Instance.GrabbedMyPlayer(msg.PlayerGrabInfo.CurrentGrab);
+            }
         }
 
         while (UnityMainThreadDispatcher.Instance?.ExecutionMatchingQueue.Count > 0)

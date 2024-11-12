@@ -35,7 +35,6 @@ public class OtherPlayerTCP : MonoBehaviour
             //예측값-실제값 간 보간으로 수정 권장
             transform.rotation = Quaternion.Euler(OtherRot);
             transform.position = destination;
-            
         }
     }
     

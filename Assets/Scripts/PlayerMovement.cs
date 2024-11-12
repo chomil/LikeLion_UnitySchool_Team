@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject cameraArm;
 
     public StepTrigger stepCollider;
+    public GrabTrigger grabCollider;
 
     public AnimState curAnimState; //현재 나의 애니메이션 상태
     public AnimState nextAnimState; //다음 나의 애니메이션 상태
@@ -40,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isSliding = false;
     private bool isRagdoll = false;
     private bool isGrabbing = false;
+    private bool grabOtherPlayer = false;
 
     private float camPitchAngle = 0f;
     private float camYawAngle = 0f;
@@ -63,6 +65,8 @@ public class PlayerMovement : MonoBehaviour
         SetControl(canControl);
         Physics.gravity = new Vector3(0f,-12f,0f);
         stepCollider.OnStepEvent += OnStep; // 이벤트 바인딩
+        grabCollider.OnGrabEvent += OnGrab;
+        grabCollider.ExitGrabEvent += ExitGrab;
         curAnimState = AnimState.Idle; //초기화
         originSpeed = speed;
     }
@@ -82,7 +86,6 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-
         //마우스 이동에 따른 카메라 공전
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
@@ -95,6 +98,8 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
+
+        
         
         if (curAnimState != AnimState.Ragdoll)
         {        
@@ -105,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if(Input.GetButtonUp("Grab"))
             {
+                isGrabbing = false;
                 anim.SetBool("IsGrabbing", false);
                 nextAnimState = AnimState.GrabOff;
             }
@@ -155,13 +161,17 @@ public class PlayerMovement : MonoBehaviour
             //이동
             rigid.velocity = new Vector3(moveVector.x * speed, rigid.velocity.y, moveVector.z * speed);
             if (moveVector != Vector3.zero)
-            {            
-                //땅에선 입력 이동방향에 따른 플레이어 회전 처리
-                float angle = Vector3.SignedAngle(playerCharacter.transform.forward, moveVector.normalized, Vector3.up);
-                Quaternion targetRotation = Quaternion.Euler(0, angle, 0);                
-                playerCharacter.transform.rotation = Quaternion.RotateTowards(playerCharacter.transform.rotation,
-                    playerCharacter.transform.rotation * targetRotation, 360f * Time.deltaTime);
-                
+            {
+                if (!grabOtherPlayer) //잡기 중일 때는 잡는 대상을 바라보게 고정
+                {
+                    //땅에선 입력 이동방향에 따른 플레이어 회전 처리
+                    float angle = Vector3.SignedAngle(playerCharacter.transform.forward, moveVector.normalized,
+                        Vector3.up);
+                    Quaternion targetRotation = Quaternion.Euler(0, angle, 0);
+                    playerCharacter.transform.rotation = Quaternion.RotateTowards(playerCharacter.transform.rotation,
+                        playerCharacter.transform.rotation * targetRotation, 360f * Time.deltaTime);
+                }
+
                 nextAnimState = AnimState.Move;
             }
             else
@@ -204,7 +214,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void StateChange()
     {
-        //그랩 서버 처리를 어떻게 해야할지 생각 필요
         if (curAnimState == AnimState.GrabOn)
         {
             anim.SetBool("IsGrabbing", true);
@@ -275,10 +284,56 @@ public class PlayerMovement : MonoBehaviour
         nextAnimState = AnimState.Jump;
     }
 
-    public void Grab()
+    private void Grab()
     {
-        //isGrabbing = true;
+        isGrabbing = true;
         curAnimState = AnimState.GrabOn;
+    }
+
+    private void InitGrab(string otherId)
+    {
+        TcpProtobufClient.Instance.SendPlayerGrabInfo(otherId, false);
+        grabOtherPlayer = false;
+        PlayerSpeedControl(0);
+    }
+
+    //Grab Collider Event
+    private void OnGrab(Collider other) 
+    {
+        if (isGrabbing && other.CompareTag("OtherPlayer"))
+        {
+            //서버에 그랩에 대한 정보 전송
+            var otherId = other.gameObject.GetComponent<OtherPlayerTCP>().PlayerId;
+            TcpProtobufClient.Instance.SendPlayerGrabInfo(otherId, true);
+    
+            //잡고 있는 대상으로 rotation 고정
+            grabOtherPlayer = true;
+            Vector3 target = other.gameObject.transform.Find("FallGuy/Character").position;
+            Vector3 dirTotarget = (target - playerCharacter.transform.position).normalized;
+            Quaternion fixAngle = Quaternion.LookRotation(dirTotarget);
+            
+            fixAngle = Quaternion.Euler(playerCharacter.transform.eulerAngles.x, fixAngle.eulerAngles.y, playerCharacter.transform.eulerAngles.z);
+
+            playerCharacter.transform.rotation = Quaternion.Slerp(playerCharacter.transform.rotation, fixAngle, 3f * Time.deltaTime);
+            
+            //잡고 있는 동안 속도 줄이기
+            PlayerSpeedControl(0.3f);
+        }
+        else if (!isGrabbing && other.CompareTag("OtherPlayer")) //잡기 키를 해제할 경우
+        {
+            var otherId = other.gameObject.GetComponent<OtherPlayerTCP>().PlayerId;
+            InitGrab(otherId);
+        }
+    }
+
+    //Grab Collider Event
+    private void ExitGrab(Collider other)
+    {
+        if (isGrabbing && other.CompareTag("OtherPlayer"))
+        {
+            var otherId = other.gameObject.GetComponent<OtherPlayerTCP>().PlayerId;
+            InitGrab(otherId);
+        }
     }
     
     private void OnStep(Collider other)
@@ -335,8 +390,8 @@ public class PlayerMovement : MonoBehaviour
         GetComponentInChildren<Camera>().gameObject.SetActive(false);
     }
 
-    //가속 발판 밟았을 때
-    public void StartBoostSpeed(float mulSpeed)
+    //플레이어 속도 조절 함수
+    public void PlayerSpeedControl(float mulSpeed)
     {
         if (mulSpeed != 0)
             speed = originSpeed * mulSpeed;

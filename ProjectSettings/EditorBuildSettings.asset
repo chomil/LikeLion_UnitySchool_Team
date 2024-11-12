@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/TestScene.unity
     guid: fa4f6f35df612d344a91cea8be07eb6f
+  - enabled: 0
+    path: Assets/Scenes/GrabTestScene.unity
+    guid: 91a0cc12818ab2b4f88aaaa806f69981
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: f09fd08446480c14eb466267c84790d9
