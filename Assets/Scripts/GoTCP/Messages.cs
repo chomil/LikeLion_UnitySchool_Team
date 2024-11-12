@@ -38,7 +38,7 @@ namespace Game {
             "CgpmaW5pc2hUaW1lGAIgASgDIm8KDkNvc3R1bWVNZXNzYWdlEhAKCHBsYXll",
             "cklkGAEgASgJEhkKEXBsYXllckNvc3R1bWVUeXBlGAIgASgFEhkKEXBsYXll",
             "ckNvc3R1bWVOYW1lGAMgASgJEhUKDW90aGVyUGxheWVySWQYBCABKAkiIgoO",
-            "UmFjZUVuZE1lc3NhZ2USEAoIcGxheWVySWQYASABKAki7AQKC0dhbWVNZXNz",
+            "UmFjZUVuZE1lc3NhZ2USEAoIcGxheWVySWQYASABKAkinAUKC0dhbWVNZXNz",
             "YWdlEi8KD3BsYXllcl9wb3NpdGlvbhgBIAEoCzIULmdhbWUuUGxheWVyUG9z",
             "aXRpb25IABIhCgRjaGF0GAIgASgLMhEuZ2FtZS5DaGF0TWVzc2FnZUgAEiMK",
             "BWxvZ2luGAMgASgLMhIuZ2FtZS5Mb2dpbk1lc3NhZ2VIABIyChFwbGF5ZXJf",
@@ -52,24 +52,26 @@ namespace Game {
             "cGVjdGF0b3Jfc3RhdGUYCyABKAsyGy5nYW1lLlNwZWN0YXRvclN0YXRlTWVz",
             "c2FnZUgAEi8KDHBsYXllcl9jb3VudBgMIAEoCzIXLmdhbWUuUGxheWVyQ291",
             "bnRVcGRhdGVIABIvCgtwbGF5ZXJJbmRleBgNIAEoCzIYLmdhbWUuUGxheWVy",
-            "SW5kZXhNZXNzYWdlSABCCQoHbWVzc2FnZSI1Cg9NYXRjaGluZ1JlcXVlc3QS",
-            "EQoJcGxheWVyX2lkGAEgASgJEg8KB3dhaXRpbmcYAiABKAgiaQoQTWF0Y2hp",
-            "bmdSZXNwb25zZRIbChNnYW1lX3NlcnZlcl9hZGRyZXNzGAEgASgJEg8KB3N1",
-            "Y2Nlc3MYAiABKAgSEAoIbWFwX25hbWUYAyADKAkSFQoNbWF0Y2hpbmdfc2Vl",
-            "ZBgEIAEoBSJDCg5NYXRjaGluZ1VwZGF0ZRIXCg9jdXJyZW50X3BsYXllcnMY",
-            "ASABKAUSGAoQcmVxdWlyZWRfcGxheWVycxgCIAEoBSK2AQoPTWF0Y2hpbmdN",
-            "ZXNzYWdlEjEKEG1hdGNoaW5nX3JlcXVlc3QYASABKAsyFS5nYW1lLk1hdGNo",
-            "aW5nUmVxdWVzdEgAEjMKEW1hdGNoaW5nX3Jlc3BvbnNlGAIgASgLMhYuZ2Ft",
-            "ZS5NYXRjaGluZ1Jlc3BvbnNlSAASLwoPbWF0Y2hpbmdfdXBkYXRlGAMgASgL",
-            "MhQuZ2FtZS5NYXRjaGluZ1VwZGF0ZUgAQgoKCG1hdGNoaW5nIlsKFVNwZWN0",
-            "YXRvclN0YXRlTWVzc2FnZRIRCglwbGF5ZXJfaWQYASABKAkSFQoNaXNfc3Bl",
-            "Y3RhdGluZxgCIAEoCBIYChB0YXJnZXRfcGxheWVyX2lkGAMgASgJIlgKEVBs",
-            "YXllckNvdW50VXBkYXRlEhUKDWN1cnJlbnRfYWxpdmUYASABKAUSFQoNdG90",
-            "YWxfcGxheWVycxgCIAEoBRIVCg1xdWFsaWZ5X2xpbWl0GAMgASgFIl8KEVJv",
-            "dW5kU3RhdGVNZXNzYWdlEhUKDWN1cnJlbnRfcm91bmQYASABKAUSGAoQcGxh",
-            "eWVyc19yZXF1aXJlZBgCIAEoBRIZChFxdWFsaWZpZWRfcGxheWVycxgDIAMo",
-            "CSIqChJQbGF5ZXJJbmRleE1lc3NhZ2USFAoMcGxheWVyX2luZGV4GAEgASgF",
-            "Qg1aC0dvL21lc3NhZ2VzYgZwcm90bzM="));
+            "SW5kZXhNZXNzYWdlSAASLgoOcGxheWVyR3JhYkluZm8YDiABKAsyFC5nYW1l",
+            "LlBsYXllckdyYWJJbmZvSABCCQoHbWVzc2FnZSI1Cg9NYXRjaGluZ1JlcXVl",
+            "c3QSEQoJcGxheWVyX2lkGAEgASgJEg8KB3dhaXRpbmcYAiABKAgiaQoQTWF0",
+            "Y2hpbmdSZXNwb25zZRIbChNnYW1lX3NlcnZlcl9hZGRyZXNzGAEgASgJEg8K",
+            "B3N1Y2Nlc3MYAiABKAgSEAoIbWFwX25hbWUYAyADKAkSFQoNbWF0Y2hpbmdf",
+            "c2VlZBgEIAEoBSJDCg5NYXRjaGluZ1VwZGF0ZRIXCg9jdXJyZW50X3BsYXll",
+            "cnMYASABKAUSGAoQcmVxdWlyZWRfcGxheWVycxgCIAEoBSK2AQoPTWF0Y2hp",
+            "bmdNZXNzYWdlEjEKEG1hdGNoaW5nX3JlcXVlc3QYASABKAsyFS5nYW1lLk1h",
+            "dGNoaW5nUmVxdWVzdEgAEjMKEW1hdGNoaW5nX3Jlc3BvbnNlGAIgASgLMhYu",
+            "Z2FtZS5NYXRjaGluZ1Jlc3BvbnNlSAASLwoPbWF0Y2hpbmdfdXBkYXRlGAMg",
+            "ASgLMhQuZ2FtZS5NYXRjaGluZ1VwZGF0ZUgAQgoKCG1hdGNoaW5nIlsKFVNw",
+            "ZWN0YXRvclN0YXRlTWVzc2FnZRIRCglwbGF5ZXJfaWQYASABKAkSFQoNaXNf",
+            "c3BlY3RhdGluZxgCIAEoCBIYChB0YXJnZXRfcGxheWVyX2lkGAMgASgJIlgK",
+            "EVBsYXllckNvdW50VXBkYXRlEhUKDWN1cnJlbnRfYWxpdmUYASABKAUSFQoN",
+            "dG90YWxfcGxheWVycxgCIAEoBRIVCg1xdWFsaWZ5X2xpbWl0GAMgASgFIl8K",
+            "EVJvdW5kU3RhdGVNZXNzYWdlEhUKDWN1cnJlbnRfcm91bmQYASABKAUSGAoQ",
+            "cGxheWVyc19yZXF1aXJlZBgCIAEoBRIZChFxdWFsaWZpZWRfcGxheWVycxgD",
+            "IAMoCSIqChJQbGF5ZXJJbmRleE1lc3NhZ2USFAoMcGxheWVyX2luZGV4GAEg",
+            "ASgFIjkKDlBsYXllckdyYWJJbmZvEhEKCXBsYXllcl9pZBgBIAEoCRIUCgxj",
+            "dXJyZW50X2dyYWIYAiABKAhCDVoLR28vbWVzc2FnZXNiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -82,7 +84,7 @@ namespace Game {
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.RaceFinishMessage), global::Game.RaceFinishMessage.Parser, new[]{ "PlayerId", "FinishTime" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.CostumeMessage), global::Game.CostumeMessage.Parser, new[]{ "PlayerId", "PlayerCostumeType", "PlayerCostumeName", "OtherPlayerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.RaceEndMessage), global::Game.RaceEndMessage.Parser, new[]{ "PlayerId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Game.GameMessage), global::Game.GameMessage.Parser, new[]{ "PlayerPosition", "Chat", "Login", "PlayerAnimState", "SpawnPlayer", "SpawnExistingPlayer", "Logout", "RaceFinish", "PlayerCostume", "RaceEnd", "SpectatorState", "PlayerCount", "PlayerIndex" }, new[]{ "Message" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Game.GameMessage), global::Game.GameMessage.Parser, new[]{ "PlayerPosition", "Chat", "Login", "PlayerAnimState", "SpawnPlayer", "SpawnExistingPlayer", "Logout", "RaceFinish", "PlayerCostume", "RaceEnd", "SpectatorState", "PlayerCount", "PlayerIndex", "PlayerGrabInfo" }, new[]{ "Message" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.MatchingRequest), global::Game.MatchingRequest.Parser, new[]{ "PlayerId", "Waiting" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.MatchingResponse), global::Game.MatchingResponse.Parser, new[]{ "GameServerAddress", "Success", "MapName", "MatchingSeed" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.MatchingUpdate), global::Game.MatchingUpdate.Parser, new[]{ "CurrentPlayers", "RequiredPlayers" }, null, null, null, null),
@@ -90,7 +92,8 @@ namespace Game {
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.SpectatorStateMessage), global::Game.SpectatorStateMessage.Parser, new[]{ "PlayerId", "IsSpectating", "TargetPlayerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.PlayerCountUpdate), global::Game.PlayerCountUpdate.Parser, new[]{ "CurrentAlive", "TotalPlayers", "QualifyLimit" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.RoundStateMessage), global::Game.RoundStateMessage.Parser, new[]{ "CurrentRound", "PlayersRequired", "QualifiedPlayers" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Game.PlayerIndexMessage), global::Game.PlayerIndexMessage.Parser, new[]{ "PlayerIndex" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Game.PlayerIndexMessage), global::Game.PlayerIndexMessage.Parser, new[]{ "PlayerIndex" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Game.PlayerGrabInfo), global::Game.PlayerGrabInfo.Parser, new[]{ "PlayerId", "CurrentGrab" }, null, null, null, null)
           }));
     }
     #endregion
@@ -2697,6 +2700,9 @@ namespace Game {
         case MessageOneofCase.PlayerIndex:
           PlayerIndex = other.PlayerIndex.Clone();
           break;
+        case MessageOneofCase.PlayerGrabInfo:
+          PlayerGrabInfo = other.PlayerGrabInfo.Clone();
+          break;
       }
 
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -2864,6 +2870,18 @@ namespace Game {
       }
     }
 
+    /// <summary>Field number for the "playerGrabInfo" field.</summary>
+    public const int PlayerGrabInfoFieldNumber = 14;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Game.PlayerGrabInfo PlayerGrabInfo {
+      get { return messageCase_ == MessageOneofCase.PlayerGrabInfo ? (global::Game.PlayerGrabInfo) message_ : null; }
+      set {
+        message_ = value;
+        messageCase_ = value == null ? MessageOneofCase.None : MessageOneofCase.PlayerGrabInfo;
+      }
+    }
+
     private object message_;
     /// <summary>Enum of possible cases for the "message" oneof.</summary>
     public enum MessageOneofCase {
@@ -2881,6 +2899,7 @@ namespace Game {
       SpectatorState = 11,
       PlayerCount = 12,
       PlayerIndex = 13,
+      PlayerGrabInfo = 14,
     }
     private MessageOneofCase messageCase_ = MessageOneofCase.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2924,6 +2943,7 @@ namespace Game {
       if (!object.Equals(SpectatorState, other.SpectatorState)) return false;
       if (!object.Equals(PlayerCount, other.PlayerCount)) return false;
       if (!object.Equals(PlayerIndex, other.PlayerIndex)) return false;
+      if (!object.Equals(PlayerGrabInfo, other.PlayerGrabInfo)) return false;
       if (MessageCase != other.MessageCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -2945,6 +2965,7 @@ namespace Game {
       if (messageCase_ == MessageOneofCase.SpectatorState) hash ^= SpectatorState.GetHashCode();
       if (messageCase_ == MessageOneofCase.PlayerCount) hash ^= PlayerCount.GetHashCode();
       if (messageCase_ == MessageOneofCase.PlayerIndex) hash ^= PlayerIndex.GetHashCode();
+      if (messageCase_ == MessageOneofCase.PlayerGrabInfo) hash ^= PlayerGrabInfo.GetHashCode();
       hash ^= (int) messageCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -3016,6 +3037,10 @@ namespace Game {
         output.WriteRawTag(106);
         output.WriteMessage(PlayerIndex);
       }
+      if (messageCase_ == MessageOneofCase.PlayerGrabInfo) {
+        output.WriteRawTag(114);
+        output.WriteMessage(PlayerGrabInfo);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -3078,6 +3103,10 @@ namespace Game {
         output.WriteRawTag(106);
         output.WriteMessage(PlayerIndex);
       }
+      if (messageCase_ == MessageOneofCase.PlayerGrabInfo) {
+        output.WriteRawTag(114);
+        output.WriteMessage(PlayerGrabInfo);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -3126,6 +3155,9 @@ namespace Game {
       }
       if (messageCase_ == MessageOneofCase.PlayerIndex) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(PlayerIndex);
+      }
+      if (messageCase_ == MessageOneofCase.PlayerGrabInfo) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(PlayerGrabInfo);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3217,6 +3249,12 @@ namespace Game {
             PlayerIndex = new global::Game.PlayerIndexMessage();
           }
           PlayerIndex.MergeFrom(other.PlayerIndex);
+          break;
+        case MessageOneofCase.PlayerGrabInfo:
+          if (PlayerGrabInfo == null) {
+            PlayerGrabInfo = new global::Game.PlayerGrabInfo();
+          }
+          PlayerGrabInfo.MergeFrom(other.PlayerGrabInfo);
           break;
       }
 
@@ -3356,6 +3394,15 @@ namespace Game {
             PlayerIndex = subBuilder;
             break;
           }
+          case 114: {
+            global::Game.PlayerGrabInfo subBuilder = new global::Game.PlayerGrabInfo();
+            if (messageCase_ == MessageOneofCase.PlayerGrabInfo) {
+              subBuilder.MergeFrom(PlayerGrabInfo);
+            }
+            input.ReadMessage(subBuilder);
+            PlayerGrabInfo = subBuilder;
+            break;
+          }
         }
       }
     #endif
@@ -3490,6 +3537,15 @@ namespace Game {
             }
             input.ReadMessage(subBuilder);
             PlayerIndex = subBuilder;
+            break;
+          }
+          case 114: {
+            global::Game.PlayerGrabInfo subBuilder = new global::Game.PlayerGrabInfo();
+            if (messageCase_ == MessageOneofCase.PlayerGrabInfo) {
+              subBuilder.MergeFrom(PlayerGrabInfo);
+            }
+            input.ReadMessage(subBuilder);
+            PlayerGrabInfo = subBuilder;
             break;
           }
         }
@@ -5638,6 +5694,241 @@ namespace Game {
             break;
           case 8: {
             PlayerIndex = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class PlayerGrabInfo : pb::IMessage<PlayerGrabInfo>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<PlayerGrabInfo> _parser = new pb::MessageParser<PlayerGrabInfo>(() => new PlayerGrabInfo());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<PlayerGrabInfo> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Game.MessagesReflection.Descriptor.MessageTypes[18]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public PlayerGrabInfo() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public PlayerGrabInfo(PlayerGrabInfo other) : this() {
+      playerId_ = other.playerId_;
+      currentGrab_ = other.currentGrab_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public PlayerGrabInfo Clone() {
+      return new PlayerGrabInfo(this);
+    }
+
+    /// <summary>Field number for the "player_id" field.</summary>
+    public const int PlayerIdFieldNumber = 1;
+    private string playerId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string PlayerId {
+      get { return playerId_; }
+      set {
+        playerId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "current_grab" field.</summary>
+    public const int CurrentGrabFieldNumber = 2;
+    private bool currentGrab_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool CurrentGrab {
+      get { return currentGrab_; }
+      set {
+        currentGrab_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as PlayerGrabInfo);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(PlayerGrabInfo other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (PlayerId != other.PlayerId) return false;
+      if (CurrentGrab != other.CurrentGrab) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (PlayerId.Length != 0) hash ^= PlayerId.GetHashCode();
+      if (CurrentGrab != false) hash ^= CurrentGrab.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (PlayerId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(PlayerId);
+      }
+      if (CurrentGrab != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(CurrentGrab);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (PlayerId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(PlayerId);
+      }
+      if (CurrentGrab != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(CurrentGrab);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (PlayerId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(PlayerId);
+      }
+      if (CurrentGrab != false) {
+        size += 1 + 1;
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(PlayerGrabInfo other) {
+      if (other == null) {
+        return;
+      }
+      if (other.PlayerId.Length != 0) {
+        PlayerId = other.PlayerId;
+      }
+      if (other.CurrentGrab != false) {
+        CurrentGrab = other.CurrentGrab;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            PlayerId = input.ReadString();
+            break;
+          }
+          case 16: {
+            CurrentGrab = input.ReadBool();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            PlayerId = input.ReadString();
+            break;
+          }
+          case 16: {
+            CurrentGrab = input.ReadBool();
             break;
           }
         }

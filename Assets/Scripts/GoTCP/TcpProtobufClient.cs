@@ -245,6 +245,20 @@ public class TcpProtobufClient : MonoBehaviour
         SendMatchingMessage(message);
     }
     
+    public void SendPlayerGrabInfo(string playerId, bool grabbing)
+    {
+        var msg = new PlayerGrabInfo()
+        {
+            PlayerId = playerId,
+            CurrentGrab = grabbing
+        };
+        var message = new GameMessage
+        {
+            PlayerGrabInfo = msg
+        };
+        SendGameMessage(message);
+    }
+    
     //메시지 전송 함수(GameMessage)
     private void SendGameMessage(GameMessage message)
     {

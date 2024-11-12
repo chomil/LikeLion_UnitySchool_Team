@@ -89,9 +89,6 @@ func (pm *PlayerManager) AddPlayer(name string, age int, conn *net.Conn) Player 
 	pm.players[pm.nextID] = &player
 	pm.nextID++
 
-	//pm.SpawnNewPlayerInfo(player)
-	//pm.SendExistingPlayersToNewPlayer(player)
-
 	return player
 }
 
@@ -104,8 +101,6 @@ func (pm *PlayerManager) AddMatchedPlayer(name string) {
 	pm.matchedPlayers[pm.matchID] = player
 	pm.matchID++
 
-	//pm.SpawnNewPlayerInfo(*player)
-	//pm.SendExistingPlayersToNewPlayer(*player)
 	// 플레이어 카운트 업데이트
 	pm.BroadcastPlayerCount()
 }
@@ -728,4 +723,34 @@ func (pm *PlayerManager) BroadcastPlayerCount() {
 		binary.LittleEndian.PutUint32(lengthBuf[1:], uint32(len(response)))
 		(*player.Conn).Write(append(lengthBuf, response...))
 	}
+}
+
+func (pm *PlayerManager) SendGrabbedPlayer(name string, isGrabbing bool) {
+	player, exists := pm.FindPlayerByName(name)
+	if !exists {
+		return
+	}
+
+	grabMessage := &pb.GameMessage{
+		Message: &pb.GameMessage_PlayerGrabInfo{
+			PlayerGrabInfo: &pb.PlayerGrabInfo{
+				PlayerId:    name,
+				CurrentGrab: isGrabbing,
+			},
+		},
+	}
+
+	response, err := proto.Marshal(grabMessage)
+	if err != nil {
+		log.Printf("Failed to marshal player grab message: %v", err)
+		return
+	}
+
+	lengthBuf := make([]byte, 5)
+	lengthBuf[0] = co.GameMessageType
+	binary.LittleEndian.PutUint32(lengthBuf[1:], uint32(len(response)))
+	(*player.Conn).Write(append(lengthBuf, response...))
+
+	fmt.Println("player Grab", name, isGrabbing)
+
 }

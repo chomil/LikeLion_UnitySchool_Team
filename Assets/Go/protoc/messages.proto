@@ -75,6 +75,7 @@ message GameMessage {
     SpectatorStateMessage spectator_state = 11;
     PlayerCountUpdate player_count = 12;
     PlayerIndexMessage playerIndex = 13;
+    PlayerGrabInfo playerGrabInfo = 14;
   }
 }
 
@@ -124,4 +125,9 @@ message RoundStateMessage {
 
 message PlayerIndexMessage {
   int32 player_index = 1;    // 몇 번째 플레이어인지
+}
+
+message PlayerGrabInfo{
+  string player_id = 1;
+  bool current_grab = 2; 
 }
