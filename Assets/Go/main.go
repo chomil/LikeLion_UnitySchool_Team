@@ -150,6 +150,10 @@ func processMessage(message *pb.GameMessage, conn *net.Conn) {
 			mg.GetPlayerManager().SendExistingPlayersToNewPlayer(*newPlayer)
 		}
 
+	case *pb.GameMessage_PlayerGrabInfo:
+		playerId := msg.PlayerGrabInfo.PlayerId
+		isGrabbing := msg.PlayerGrabInfo.CurrentGrab
+		mg.GetPlayerManager().SendGrabbedPlayer(playerId, isGrabbing)
 	default:
 		panic(fmt.Sprintf("unexpected messages.isGameMessage_Message: %#v", msg))
 	}

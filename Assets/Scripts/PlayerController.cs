@@ -333,4 +333,22 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    //서버에서 보낸 그랩 메시지 처리
+    public void GrabbedMyPlayer(bool grabbed)
+    {
+        var pmRb = myPlayer.GetComponent<Rigidbody>();
+        var pm = myPlayer.GetComponent<PlayerMovement>();
+
+        if (grabbed)
+        {
+            pm.PlayerSpeedControl(0.2f);
+            pmRb.mass = 2f;
+        }
+        else
+        {
+            pm.PlayerSpeedControl(0);
+            pmRb.mass = 1f;
+        }
+    }
 }

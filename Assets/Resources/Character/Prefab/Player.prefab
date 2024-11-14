@@ -2246,6 +2246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 573668059040549849}
   - component: {fileID: 7739842888517990020}
+  - component: {fileID: 3488858230219977772}
   m_Layer: 6
   m_Name: GrabCollider
   m_TagString: Untagged
@@ -2289,6 +2290,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.006, y: 0.006, z: 0.006}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3488858230219977772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7889480824182110810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c8a3937dfdde449b7b0a1a8b9aee63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7924805927655566099
 GameObject:
   m_ObjectHideFlags: 0
@@ -2404,6 +2417,7 @@ MonoBehaviour:
   playerCharacter: {fileID: 8506807582639741090}
   cameraArm: {fileID: 7484645778931943838}
   stepCollider: {fileID: 4880137705928406429}
+  grabCollider: {fileID: 3488858230219977772}
   curAnimState: 0
   nextAnimState: 0
   canControl: 0
