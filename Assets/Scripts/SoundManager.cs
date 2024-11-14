@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -117,5 +118,11 @@ public class SoundManager : MonoBehaviour
     public void PlayVictorySound()
     {
         PlaySfx(victorySound, 1f);
+    }
+
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        AudioListener.volume = hasFocus?1:0;
     }
 }

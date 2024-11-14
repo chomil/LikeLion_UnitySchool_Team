@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 
 public class PlayerRespawn : MonoBehaviour
@@ -14,6 +15,8 @@ public class PlayerRespawn : MonoBehaviour
     private Vector3 lastCheckpointPosition;
     private bool isRespawning = false;
     
+    public bool canRespawn = true;
+    
     
     [SerializedDictionary("Name","Audio List")]
     public SerializedDictionary<string, List<AudioClip>> respawnSounds;
@@ -23,6 +26,15 @@ public class PlayerRespawn : MonoBehaviour
         // Set the current position as the default respawn position at start
         defaultRespawnPosition = transform.position;
         lastCheckpointPosition = transform.position;
+
+        if (GameManager.Instance.curRaceType == RaceType.Race)
+        {
+            canRespawn = true;
+        }
+        else
+        {
+            canRespawn = false;
+        }
         
         if (groundLayer.value == 0)
         {
@@ -43,7 +55,15 @@ public class PlayerRespawn : MonoBehaviour
             // Check if the character has fallen out of the map
             if (transform.position.y < minY)
             {
-                StartCoroutine(RespawnCoroutine());
+                if (canRespawn)
+                {
+                    StartCoroutine(RespawnCoroutine());
+                }
+                else
+                {
+                    //리스폰 불가한 스테이지에서는 탈락처리
+                    
+                }
             }
         }
     }

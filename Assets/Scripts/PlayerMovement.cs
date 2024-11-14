@@ -373,6 +373,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // 모든 입력 비활성화를 위한 플래그 설정
         isFinished = _isFinished;
+        rigid.isKinematic = _isFinished;
     }
     
     // 관전 시스템

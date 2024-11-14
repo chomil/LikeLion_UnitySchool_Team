@@ -71,6 +71,15 @@ func GetPlayerManager() *PlayerManager {
 	return playerManager
 }
 
+func InitPlayerManager() {
+	playerManager.matchedPlayers = make(map[int]*Player)
+	playerManager.activePlayersForNextRound = make(map[string]bool)
+	playerManager.currentAlive = 0
+	playerManager.totalPlayers = 0
+	playerManager.currentRound = 0
+	playerManager.readyPlayerCount = 0
+}
+
 // AddPlayer adds a new player to the manager
 func (pm *PlayerManager) AddPlayer(name string, age int, conn *net.Conn) Player {
 	player := Player{
@@ -454,7 +463,7 @@ func (pm *PlayerManager) BroadcastMessage(message *pb.GameMessage) {
 	}
 }
 
-func (pm *PlayerManager) PlayerFinishedRace(playerId string, finishTime int64) {
+func (pm *PlayerManager) PlayerFinishedRace(playerId string, finishTime int64, survive bool) {
 	player, exists := pm.FindPlayerByName(playerId)
 	if !exists {
 		//log.Printf("Player not found: %s", playerId)
@@ -467,13 +476,23 @@ func (pm *PlayerManager) PlayerFinishedRace(playerId string, finishTime int64) {
 		return
 	}
 
-	// 현재 라운드의 통과 제한 인원 체크
-	maxQualified := pm.qualifyLimits[pm.currentRound]
-	if len(pm.activePlayersForNextRound) < maxQualified {
-		pm.activePlayersForNextRound[playerId] = true
-		player.FinishTime = finishTime
+	if survive {
+		// 레이스 라운드의 통과 제한 인원 체크
+		maxQualified := pm.qualifyLimits[pm.currentRound]
+		if len(pm.activePlayersForNextRound) < maxQualified {
+			pm.activePlayersForNextRound[playerId] = true
+			player.FinishTime = finishTime
+			pm.currentAlive--
+		}
+		log.Printf("%d라운드 제한인원 %d, 들어온 인원 %d", pm.currentRound, maxQualified, len(pm.activePlayersForNextRound))
+	} else {
+		// 생존 라운드의 통과 제한 인원 체크
+		maxQualified := pm.qualifyLimits[pm.currentRound]
+		if int(pm.currentAlive) > maxQualified {
+			player.FinishTime = finishTime
+			pm.currentAlive--
+		}
 	}
-	log.Printf("%d라운드 제한인원 %d, 들어온 인원 %d", pm.currentRound, maxQualified, len(pm.activePlayersForNextRound))
 
 	// 모든 플레이어에게 완주 정보 브로드캐스트
 	finishMessage := &pb.GameMessage{
@@ -481,16 +500,17 @@ func (pm *PlayerManager) PlayerFinishedRace(playerId string, finishTime int64) {
 			RaceFinish: &pb.RaceFinishMessage{
 				PlayerId:   playerId,
 				FinishTime: finishTime,
+				Survive:    survive,
 			},
 		},
 	}
 
-	//지금 들어온 플레이어가 인원제한내에 들어온 플레이어라면
-	if pm.activePlayersForNextRound[playerId] {
-		// 플레이어가 완주하면 생존자 수 감소
+	// 이 플레이어가 제한 인원 내일때만 브로드캐스팅
+	if player.FinishTime > 0 {
 		pm.BroadcastMessage(finishMessage)
-		pm.currentAlive--
 		pm.BroadcastPlayerCount()
+	} else {
+		return
 	}
 
 	// 모든 플레이어가 완주했거나 최대 통과 인원에 도달했는지 체크
@@ -503,9 +523,22 @@ func (pm *PlayerManager) PlayerFinishedRace(playerId string, finishTime int64) {
 	}
 
 	log.Printf("%d, %d,%d,%d", finishedCount, totalPlayers, len(pm.activePlayersForNextRound), pm.maxQualifiedPlayers)
-	if finishedCount >= totalPlayers || len(pm.activePlayersForNextRound) >= pm.maxQualifiedPlayers {
-		pm.HandleRaceEnd(playerId)
+
+	if survive { //생존메시지는 레이스 라운드
+		if finishedCount >= totalPlayers || len(pm.activePlayersForNextRound) >= pm.maxQualifiedPlayers {
+			pm.HandleRaceEnd(playerId)
+		}
+	} else { //탈락메시지는 생존 라운드
+		if finishedCount >= totalPlayers-pm.maxQualifiedPlayers {
+			for _, p := range pm.matchedPlayers { //탈락하지 않은 플레이어만 다음라운드에 추가
+				if p.FinishTime == 0 {
+					pm.activePlayersForNextRound[p.Name] = true
+				}
+			}
+			pm.HandleRaceEnd(playerId)
+		}
 	}
+
 }
 
 func (pm *PlayerManager) HandleRaceEnd(playerId string) {

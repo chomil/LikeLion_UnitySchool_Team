@@ -8,6 +8,7 @@ TagManager:
   - FinishLine
   - PlayerStart
   - StartPlatform
+  - Water
   layers:
   - Default
   - TransparentFX

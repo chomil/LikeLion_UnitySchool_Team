@@ -47,6 +47,7 @@ message LogoutMessage {
 message RaceFinishMessage {
   string playerId = 1;
   int64 finishTime = 2;
+  bool survive = 3;
 }
 
 message CostumeMessage {

@@ -54,21 +54,30 @@ public class PlayerTCP : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("FinishLine") && !hasFinished)
+        if (!hasFinished)
         {
-            Debug.Log($"Player {PlayerId} entered finish line");
-            FinishRace();
+            
+            if (other.CompareTag("FinishLine"))
+            {
+                Debug.Log($"Player {PlayerId} entered finish line");
+                FinishRace(true);
+            }
+            else if (other.CompareTag("Water"))
+            {
+                Debug.Log($"Player {PlayerId} fall in water");
+                FinishRace(false);
+            }
         }
     }
     
-    public void FinishRace()
+    public void FinishRace(bool survive)
     {
         if (!hasFinished)
         {
             hasFinished = true;
         
             // 완주 상태를 서버에 전송
-            TcpProtobufClient.Instance?.SendRaceFinish(PlayerId);
+            GameManager.Instance.PlayerFinished(PlayerId, survive);
         
             // 완주 후 애니메이션/위치 동기화를 위한 마지막 상태 전송
             Vector3 myRotation = transform.GetChild(0).transform.eulerAngles;
