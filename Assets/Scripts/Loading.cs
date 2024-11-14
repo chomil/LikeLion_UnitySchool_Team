@@ -12,7 +12,8 @@ public enum RaceType
 {
     Race,
     Team,
-    Final
+    Final,
+    Survive
 }
 
 [System.Serializable]
@@ -45,7 +46,7 @@ public class Loading : MonoBehaviour
 
     bool flag = false;
     private float timer = 0f;
-    private float delay = 5;
+    private float delay = 7f;
 
     // Start is called before the first frame update
     void Start()
@@ -58,8 +59,6 @@ public class Loading : MonoBehaviour
     public static void LoadScene(string sceneName)
     {
         // 이전 코드
-        // nextSceneName = sceneName; 
-        // SceneManager.LoadScene("Loading");
         Debug.Log($"Starting load scene: {sceneName}");
         if (string.IsNullOrEmpty(sceneName))
         {
@@ -94,7 +93,12 @@ public class Loading : MonoBehaviour
             case RaceType.Final:
                 RaceTypeText.text = "최종";
                 break;
+            case RaceType.Survive:
+                RaceTypeText.text = "생존";
+                break;
         }
+
+        GameManager.Instance.curRaceType = temp.raceType;
     }
 
     IEnumerator LoadScene()
@@ -128,6 +132,7 @@ public class Loading : MonoBehaviour
                 {
                     yield return new WaitForSeconds(delay - delayTimer);
                     asyncOperation.allowSceneActivation = true;
+                    
                     SceneChanger.Instance.isRacing = true;
                     yield break;
                 }

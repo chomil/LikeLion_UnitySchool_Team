@@ -34,42 +34,42 @@ namespace Game {
             "KAIiZAoLU3Bhd25QbGF5ZXISEAoIcGxheWVySWQYASABKAkSCQoBeBgCIAEo",
             "AhIJCgF5GAMgASgCEgkKAXoYBCABKAISCgoCcngYBSABKAISCgoCcnkYBiAB",
             "KAISCgoCcnoYByABKAIiIQoNTG9nb3V0TWVzc2FnZRIQCghwbGF5ZXJJZBgB",
-            "IAEoCSI5ChFSYWNlRmluaXNoTWVzc2FnZRIQCghwbGF5ZXJJZBgBIAEoCRIS",
-            "CgpmaW5pc2hUaW1lGAIgASgDIm8KDkNvc3R1bWVNZXNzYWdlEhAKCHBsYXll",
-            "cklkGAEgASgJEhkKEXBsYXllckNvc3R1bWVUeXBlGAIgASgFEhkKEXBsYXll",
-            "ckNvc3R1bWVOYW1lGAMgASgJEhUKDW90aGVyUGxheWVySWQYBCABKAkiIgoO",
-            "UmFjZUVuZE1lc3NhZ2USEAoIcGxheWVySWQYASABKAki7AQKC0dhbWVNZXNz",
-            "YWdlEi8KD3BsYXllcl9wb3NpdGlvbhgBIAEoCzIULmdhbWUuUGxheWVyUG9z",
-            "aXRpb25IABIhCgRjaGF0GAIgASgLMhEuZ2FtZS5DaGF0TWVzc2FnZUgAEiMK",
-            "BWxvZ2luGAMgASgLMhIuZ2FtZS5Mb2dpbk1lc3NhZ2VIABIyChFwbGF5ZXJf",
-            "YW5pbV9zdGF0ZRgEIAEoCzIVLmdhbWUuUGxheWVyQW5pbWF0aW9uSAASKAoL",
-            "c3Bhd25QbGF5ZXIYBSABKAsyES5nYW1lLlNwYXduUGxheWVySAASMAoTc3Bh",
-            "d25FeGlzdGluZ1BsYXllchgGIAEoCzIRLmdhbWUuU3Bhd25QbGF5ZXJIABIl",
-            "CgZsb2dvdXQYByABKAsyEy5nYW1lLkxvZ291dE1lc3NhZ2VIABIuCgtyYWNl",
-            "X2ZpbmlzaBgIIAEoCzIXLmdhbWUuUmFjZUZpbmlzaE1lc3NhZ2VIABIuCg5w",
-            "bGF5ZXJfY29zdHVtZRgJIAEoCzIULmdhbWUuQ29zdHVtZU1lc3NhZ2VIABIo",
-            "CghyYWNlX2VuZBgKIAEoCzIULmdhbWUuUmFjZUVuZE1lc3NhZ2VIABI2Cg9z",
-            "cGVjdGF0b3Jfc3RhdGUYCyABKAsyGy5nYW1lLlNwZWN0YXRvclN0YXRlTWVz",
-            "c2FnZUgAEi8KDHBsYXllcl9jb3VudBgMIAEoCzIXLmdhbWUuUGxheWVyQ291",
-            "bnRVcGRhdGVIABIvCgtwbGF5ZXJJbmRleBgNIAEoCzIYLmdhbWUuUGxheWVy",
-            "SW5kZXhNZXNzYWdlSABCCQoHbWVzc2FnZSI1Cg9NYXRjaGluZ1JlcXVlc3QS",
-            "EQoJcGxheWVyX2lkGAEgASgJEg8KB3dhaXRpbmcYAiABKAgiaQoQTWF0Y2hp",
-            "bmdSZXNwb25zZRIbChNnYW1lX3NlcnZlcl9hZGRyZXNzGAEgASgJEg8KB3N1",
-            "Y2Nlc3MYAiABKAgSEAoIbWFwX25hbWUYAyADKAkSFQoNbWF0Y2hpbmdfc2Vl",
-            "ZBgEIAEoBSJDCg5NYXRjaGluZ1VwZGF0ZRIXCg9jdXJyZW50X3BsYXllcnMY",
-            "ASABKAUSGAoQcmVxdWlyZWRfcGxheWVycxgCIAEoBSK2AQoPTWF0Y2hpbmdN",
-            "ZXNzYWdlEjEKEG1hdGNoaW5nX3JlcXVlc3QYASABKAsyFS5nYW1lLk1hdGNo",
-            "aW5nUmVxdWVzdEgAEjMKEW1hdGNoaW5nX3Jlc3BvbnNlGAIgASgLMhYuZ2Ft",
-            "ZS5NYXRjaGluZ1Jlc3BvbnNlSAASLwoPbWF0Y2hpbmdfdXBkYXRlGAMgASgL",
-            "MhQuZ2FtZS5NYXRjaGluZ1VwZGF0ZUgAQgoKCG1hdGNoaW5nIlsKFVNwZWN0",
-            "YXRvclN0YXRlTWVzc2FnZRIRCglwbGF5ZXJfaWQYASABKAkSFQoNaXNfc3Bl",
-            "Y3RhdGluZxgCIAEoCBIYChB0YXJnZXRfcGxheWVyX2lkGAMgASgJIlgKEVBs",
-            "YXllckNvdW50VXBkYXRlEhUKDWN1cnJlbnRfYWxpdmUYASABKAUSFQoNdG90",
-            "YWxfcGxheWVycxgCIAEoBRIVCg1xdWFsaWZ5X2xpbWl0GAMgASgFIl8KEVJv",
-            "dW5kU3RhdGVNZXNzYWdlEhUKDWN1cnJlbnRfcm91bmQYASABKAUSGAoQcGxh",
-            "eWVyc19yZXF1aXJlZBgCIAEoBRIZChFxdWFsaWZpZWRfcGxheWVycxgDIAMo",
-            "CSIqChJQbGF5ZXJJbmRleE1lc3NhZ2USFAoMcGxheWVyX2luZGV4GAEgASgF",
-            "Qg1aC0dvL21lc3NhZ2VzYgZwcm90bzM="));
+            "IAEoCSJKChFSYWNlRmluaXNoTWVzc2FnZRIQCghwbGF5ZXJJZBgBIAEoCRIS",
+            "CgpmaW5pc2hUaW1lGAIgASgDEg8KB3N1cnZpdmUYAyABKAgibwoOQ29zdHVt",
+            "ZU1lc3NhZ2USEAoIcGxheWVySWQYASABKAkSGQoRcGxheWVyQ29zdHVtZVR5",
+            "cGUYAiABKAUSGQoRcGxheWVyQ29zdHVtZU5hbWUYAyABKAkSFQoNb3RoZXJQ",
+            "bGF5ZXJJZBgEIAEoCSIiCg5SYWNlRW5kTWVzc2FnZRIQCghwbGF5ZXJJZBgB",
+            "IAEoCSLsBAoLR2FtZU1lc3NhZ2USLwoPcGxheWVyX3Bvc2l0aW9uGAEgASgL",
+            "MhQuZ2FtZS5QbGF5ZXJQb3NpdGlvbkgAEiEKBGNoYXQYAiABKAsyES5nYW1l",
+            "LkNoYXRNZXNzYWdlSAASIwoFbG9naW4YAyABKAsyEi5nYW1lLkxvZ2luTWVz",
+            "c2FnZUgAEjIKEXBsYXllcl9hbmltX3N0YXRlGAQgASgLMhUuZ2FtZS5QbGF5",
+            "ZXJBbmltYXRpb25IABIoCgtzcGF3blBsYXllchgFIAEoCzIRLmdhbWUuU3Bh",
+            "d25QbGF5ZXJIABIwChNzcGF3bkV4aXN0aW5nUGxheWVyGAYgASgLMhEuZ2Ft",
+            "ZS5TcGF3blBsYXllckgAEiUKBmxvZ291dBgHIAEoCzITLmdhbWUuTG9nb3V0",
+            "TWVzc2FnZUgAEi4KC3JhY2VfZmluaXNoGAggASgLMhcuZ2FtZS5SYWNlRmlu",
+            "aXNoTWVzc2FnZUgAEi4KDnBsYXllcl9jb3N0dW1lGAkgASgLMhQuZ2FtZS5D",
+            "b3N0dW1lTWVzc2FnZUgAEigKCHJhY2VfZW5kGAogASgLMhQuZ2FtZS5SYWNl",
+            "RW5kTWVzc2FnZUgAEjYKD3NwZWN0YXRvcl9zdGF0ZRgLIAEoCzIbLmdhbWUu",
+            "U3BlY3RhdG9yU3RhdGVNZXNzYWdlSAASLwoMcGxheWVyX2NvdW50GAwgASgL",
+            "MhcuZ2FtZS5QbGF5ZXJDb3VudFVwZGF0ZUgAEi8KC3BsYXllckluZGV4GA0g",
+            "ASgLMhguZ2FtZS5QbGF5ZXJJbmRleE1lc3NhZ2VIAEIJCgdtZXNzYWdlIjUK",
+            "D01hdGNoaW5nUmVxdWVzdBIRCglwbGF5ZXJfaWQYASABKAkSDwoHd2FpdGlu",
+            "ZxgCIAEoCCJpChBNYXRjaGluZ1Jlc3BvbnNlEhsKE2dhbWVfc2VydmVyX2Fk",
+            "ZHJlc3MYASABKAkSDwoHc3VjY2VzcxgCIAEoCBIQCghtYXBfbmFtZRgDIAMo",
+            "CRIVCg1tYXRjaGluZ19zZWVkGAQgASgFIkMKDk1hdGNoaW5nVXBkYXRlEhcK",
+            "D2N1cnJlbnRfcGxheWVycxgBIAEoBRIYChByZXF1aXJlZF9wbGF5ZXJzGAIg",
+            "ASgFIrYBCg9NYXRjaGluZ01lc3NhZ2USMQoQbWF0Y2hpbmdfcmVxdWVzdBgB",
+            "IAEoCzIVLmdhbWUuTWF0Y2hpbmdSZXF1ZXN0SAASMwoRbWF0Y2hpbmdfcmVz",
+            "cG9uc2UYAiABKAsyFi5nYW1lLk1hdGNoaW5nUmVzcG9uc2VIABIvCg9tYXRj",
+            "aGluZ191cGRhdGUYAyABKAsyFC5nYW1lLk1hdGNoaW5nVXBkYXRlSABCCgoI",
+            "bWF0Y2hpbmciWwoVU3BlY3RhdG9yU3RhdGVNZXNzYWdlEhEKCXBsYXllcl9p",
+            "ZBgBIAEoCRIVCg1pc19zcGVjdGF0aW5nGAIgASgIEhgKEHRhcmdldF9wbGF5",
+            "ZXJfaWQYAyABKAkiWAoRUGxheWVyQ291bnRVcGRhdGUSFQoNY3VycmVudF9h",
+            "bGl2ZRgBIAEoBRIVCg10b3RhbF9wbGF5ZXJzGAIgASgFEhUKDXF1YWxpZnlf",
+            "bGltaXQYAyABKAUiXwoRUm91bmRTdGF0ZU1lc3NhZ2USFQoNY3VycmVudF9y",
+            "b3VuZBgBIAEoBRIYChBwbGF5ZXJzX3JlcXVpcmVkGAIgASgFEhkKEXF1YWxp",
+            "ZmllZF9wbGF5ZXJzGAMgAygJIioKElBsYXllckluZGV4TWVzc2FnZRIUCgxw",
+            "bGF5ZXJfaW5kZXgYASABKAVCDVoLR28vbWVzc2FnZXNiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -79,7 +79,7 @@ namespace Game {
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.PlayerAnimation), global::Game.PlayerAnimation.Parser, new[]{ "PlayerAnimState", "PlayerId", "SpeedForward", "SpeedRight" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.SpawnPlayer), global::Game.SpawnPlayer.Parser, new[]{ "PlayerId", "X", "Y", "Z", "Rx", "Ry", "Rz" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.LogoutMessage), global::Game.LogoutMessage.Parser, new[]{ "PlayerId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Game.RaceFinishMessage), global::Game.RaceFinishMessage.Parser, new[]{ "PlayerId", "FinishTime" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Game.RaceFinishMessage), global::Game.RaceFinishMessage.Parser, new[]{ "PlayerId", "FinishTime", "Survive" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.CostumeMessage), global::Game.CostumeMessage.Parser, new[]{ "PlayerId", "PlayerCostumeType", "PlayerCostumeName", "OtherPlayerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.RaceEndMessage), global::Game.RaceEndMessage.Parser, new[]{ "PlayerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.GameMessage), global::Game.GameMessage.Parser, new[]{ "PlayerPosition", "Chat", "Login", "PlayerAnimState", "SpawnPlayer", "SpawnExistingPlayer", "Logout", "RaceFinish", "PlayerCostume", "RaceEnd", "SpectatorState", "PlayerCount", "PlayerIndex" }, new[]{ "Message" }, null, null, null),
@@ -1917,6 +1917,7 @@ namespace Game {
     public RaceFinishMessage(RaceFinishMessage other) : this() {
       playerId_ = other.playerId_;
       finishTime_ = other.finishTime_;
+      survive_ = other.survive_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1950,6 +1951,18 @@ namespace Game {
       }
     }
 
+    /// <summary>Field number for the "survive" field.</summary>
+    public const int SurviveFieldNumber = 3;
+    private bool survive_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Survive {
+      get { return survive_; }
+      set {
+        survive_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1967,6 +1980,7 @@ namespace Game {
       }
       if (PlayerId != other.PlayerId) return false;
       if (FinishTime != other.FinishTime) return false;
+      if (Survive != other.Survive) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1976,6 +1990,7 @@ namespace Game {
       int hash = 1;
       if (PlayerId.Length != 0) hash ^= PlayerId.GetHashCode();
       if (FinishTime != 0L) hash ^= FinishTime.GetHashCode();
+      if (Survive != false) hash ^= Survive.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2002,6 +2017,10 @@ namespace Game {
         output.WriteRawTag(16);
         output.WriteInt64(FinishTime);
       }
+      if (Survive != false) {
+        output.WriteRawTag(24);
+        output.WriteBool(Survive);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2020,6 +2039,10 @@ namespace Game {
         output.WriteRawTag(16);
         output.WriteInt64(FinishTime);
       }
+      if (Survive != false) {
+        output.WriteRawTag(24);
+        output.WriteBool(Survive);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2035,6 +2058,9 @@ namespace Game {
       }
       if (FinishTime != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(FinishTime);
+      }
+      if (Survive != false) {
+        size += 1 + 1;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2053,6 +2079,9 @@ namespace Game {
       }
       if (other.FinishTime != 0L) {
         FinishTime = other.FinishTime;
+      }
+      if (other.Survive != false) {
+        Survive = other.Survive;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2081,6 +2110,10 @@ namespace Game {
             FinishTime = input.ReadInt64();
             break;
           }
+          case 24: {
+            Survive = input.ReadBool();
+            break;
+          }
         }
       }
     #endif
@@ -2106,6 +2139,10 @@ namespace Game {
           }
           case 16: {
             FinishTime = input.ReadInt64();
+            break;
+          }
+          case 24: {
+            Survive = input.ReadBool();
             break;
           }
         }

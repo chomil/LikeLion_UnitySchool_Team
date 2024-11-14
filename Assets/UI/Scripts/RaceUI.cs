@@ -57,12 +57,20 @@ public class RaceUI : MonoBehaviour
         ShowRaceUI();
     }
 
-    public void UpdateQualifiedCount(int current, int max)
+    public void UpdateQualifiedCount(int current, int max, RaceType raceType)
     {
         if (scoreText != null)
         {
-            scoreText.text = $"성공\n{current}/{max}"; 
-            Debug.Log($"Updating score text: {current}/{max}");  // 디버그 추가
+            if (raceType == RaceType.Race)
+            {
+                scoreText.text = $"성공\n{current}/{max}"; 
+                Debug.Log($"Updating score text: {current}/{max}");  // 디버그 추가
+            }
+            else
+            {
+                scoreText.text = $"실패\n{current}/{max}"; 
+                Debug.Log($"Updating score text: {current}/{max}"); 
+            }
         }
     }
 
@@ -75,9 +83,11 @@ public class RaceUI : MonoBehaviour
                 break;
             case RaceState.Qualify:
                 StartCoroutine(StateWindowCoroutine(roundQualified));
+                SoundManager.Instance?.PlayQualifySound();
                 break;
             case RaceState.Eliminate:
                 StartCoroutine(StateWindowCoroutine(roundEliminated));
+                SoundManager.Instance?.PlayEliminateSound();
                 break;
             case RaceState.Win:
                 //임시
@@ -94,6 +104,7 @@ public class RaceUI : MonoBehaviour
         {
             yield return null;
         }
+        //이 부분에서 효과음 넣거나, 애니메이션에서 효과음 넣기
         isMessageOpen = true;
         window.SetActive(true);
         yield return new WaitForSeconds(3.0f);

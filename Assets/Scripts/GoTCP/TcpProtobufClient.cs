@@ -274,13 +274,14 @@ public class TcpProtobufClient : MonoBehaviour
         }
     }
     
-    public void SendRaceFinish(string playerId)
+    public void SendRaceFinish(string playerId, bool survive)
     {
         Debug.Log($"SendRaceFinish 메서드 시작: Player {playerId}");
         var finishMsg = new RaceFinishMessage
         {
             PlayerId = playerId,
-            FinishTime = (long)(Time.time * 1000)  // 밀리초 단위의 완주 시간
+            FinishTime = (long)(Time.time * 1000),  // 밀리초 단위의 완주 시간
+            Survive = survive
         };
         var message = new GameMessage
         {

@@ -138,8 +138,8 @@ func (m *MatchingManager) StartMatch() {
 
 	//초기화필요
 	playerManager := GetPlayerManager()
-	playerManager.matchedPlayers = make(map[int]*Player)
-	playerManager.currentRound = 0
+	InitPlayerManager()
+
 	matchingSeed := rand.Int31()
 
 	// 매칭 시작 로직 구현
