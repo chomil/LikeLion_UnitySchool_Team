@@ -38,5 +38,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Race04.unity
     guid: 06222ac3b3eb6364280f5189bc0f22de
+  - enabled: 1
+    path: Assets/Scenes/Survive01.unity
+    guid: 64cff116679b3d04e99d4b42563c479b
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
