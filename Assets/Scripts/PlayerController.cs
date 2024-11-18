@@ -204,7 +204,7 @@ public class PlayerController : MonoBehaviour
 
     public void PlayersSetControl(bool canControl) //시작 카운트 후 애니메이션 이벤트로 호출됨
     {
-        Debug.Log("레이스 시작 " + canControl);
+        Debug.Log("컨트롤 " + canControl);
         canControlPlayers = canControl;
         if (myPlayer)
         {

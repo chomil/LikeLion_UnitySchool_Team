@@ -327,10 +327,10 @@ public class GameManager : MonoBehaviour
         RaceUI.Instance?.ShowStateWindow(RaceState.Over);
         
         //레이스 오버시 컨트롤 끄기
+        PlayerController.Instance.PlayersSetControl(false);
         PlayerMovement playerMovement = PlayerController.Instance?.myPlayer?.GetComponent<PlayerMovement>();
         if (playerMovement != null)
         {
-            playerMovement.SetControl(false);
             playerMovement.SetFinished(true);
         }
 

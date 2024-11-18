@@ -34,11 +34,18 @@ public class Cannon : MonoBehaviour
         }
         System.Random cannonRandom = new System.Random(cannonSeed);
         
+        
+        yield return new WaitWhile(()=>PlayerController.Instance.canControlPlayers==false);
+        
         while (true)
         {
             float delayTime = repeatTime + (float)cannonRandom.NextDouble() * randomDelay;
             yield return new WaitForSeconds(delayTime);
-            GameObject spawnedObject = Instantiate(bulletObject[Random.Range(0, bulletObject.Count)],transform.position+transform.forward * bulletStartForward, quaternion.identity);
+            if (PlayerController.Instance.canControlPlayers==false)
+            {
+                yield break;
+            }
+            GameObject spawnedObject = Instantiate(bulletObject[cannonRandom.Next(bulletObject.Count)],transform.position+transform.forward * bulletStartForward, quaternion.identity);
             spawnedObject.transform.localScale = new Vector3(bulletScale, bulletScale, bulletScale);
             Rigidbody rigid = spawnedObject.GetComponent<Rigidbody>();
             if (rigid)

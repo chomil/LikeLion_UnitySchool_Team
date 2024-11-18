@@ -49,7 +49,7 @@ public class Loading : MonoBehaviour
     private float delay = 7f;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         SetLoadingScene();
         StartCoroutine(LoadScene());
