@@ -41,5 +41,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Survive01.unity
     guid: 64cff116679b3d04e99d4b42563c479b
+  - enabled: 1
+    path: Assets/Scenes/Winner.unity
+    guid: 0b537d513ed70fa4798a28ba764f4086
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

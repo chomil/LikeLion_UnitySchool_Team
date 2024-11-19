@@ -14,11 +14,6 @@ public class SceneChanger : MonoBehaviour
 {
     public static SceneChanger Instance { get; private set; }
 
-    /*public Button StartButton;
-    public Button CustomizeButton;*/
-    public List<string> RaceList = new(); //일반 레이스
-    public List<string> TeamList; //팀전
-    public List<string> finalList; //결승전
     public bool isRacing = false; //플레이하는 중이 아니라면 플레이어의 입력을 못 받도록 하는 변수
     public int matchingSeed = 0; //게임마다 플레이어들에게 같은 랜덤 시드를 주기 위해 서버로부터 받아서 사용
 
@@ -59,7 +54,7 @@ public class SceneChanger : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && GetCurrentScene() != "Main" && !isRacing)
+        if (Input.GetKeyDown(KeyCode.Escape) && GetCurrentScene() != "Main" && GetCurrentScene() != "Loading" && !isRacing)
         {
             if (GetCurrentScene() == "Matching")
             {
@@ -156,6 +151,11 @@ public class SceneChanger : MonoBehaviour
     {
         // SpectatorManager 참조 에러 방지
         if (scene.name == "Main") return; // 메인 씬에서는 체크하지 않음
+        if (scene.name == "Winner")
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player?.GetComponent<Animator>()?.SetTrigger("WinnerTrigger");
+        }
         
         var spectatorManager = FindObjectOfType<SpectatorManager>();
         if (spectatorManager != null)

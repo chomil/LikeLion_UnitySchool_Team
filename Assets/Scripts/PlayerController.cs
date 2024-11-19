@@ -73,6 +73,8 @@ public class PlayerController : MonoBehaviour
             //로비에서 플레이어 카메라, 움직임 못하게 하기
             myPlayer.GetComponent<PlayerMovement>().cameraArm.SetActive(false);
             myPlayer.GetComponent<PlayerMovement>().enabled = false;
+
+            GameManager.Instance.currentRound = 0;
         }
         
         if (SceneChanger.Instance && SceneChanger.Instance.isRacing)
@@ -150,20 +152,17 @@ public class PlayerController : MonoBehaviour
     {
         string temp = SceneChanger.Instance?.GetCurrentScene();
 
-        if (temp == "Main") return;
-        
-        if (temp == "Loading")
+        if (temp is "Main" or "Loading" or "Winner" or "Costumize")
         {
+            return;
         }
-        else
+        
+        //매칭 없이 에디터에서 레이스 맵 테스트만 할 때 캐릭터 생성
+        if (!myPlayer)
         {
-            //매칭 없이 에디터에서 레이스 맵 테스트만 할 때 캐릭터 생성
-            if (!myPlayer)
-            {
-                myPlayer = Instantiate(myPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
-                myPlayerTcp = myPlayer.GetComponent<PlayerTCP>();
-                InitPosInRace(-1);
-            }
+            myPlayer = Instantiate(myPlayerTcpTemplate.gameObject, Vector3.zero, Quaternion.identity);
+            myPlayerTcp = myPlayer.GetComponent<PlayerTCP>();
+            InitPosInRace(-1);
         }
     }
 

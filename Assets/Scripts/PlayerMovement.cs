@@ -366,7 +366,7 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("isLanded", true);
         
         // 서버에 Idle 상태 전송
-        TcpProtobufClient.Instance.SendPlayerAnimation(curAnimState.ToString(), TCPManager.playerId, 0, 0);
+        TcpProtobufClient.Instance?.SendPlayerAnimation(curAnimState.ToString(), TCPManager.playerId, 0, 0);
     }
 
     public void SetFinished(bool _isFinished)
