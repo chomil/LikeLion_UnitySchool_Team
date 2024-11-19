@@ -72,8 +72,9 @@ func GetPlayerManager() *PlayerManager {
 }
 
 func InitPlayerManager() {
-	playerManager.matchedPlayers = make(map[int]*Player)
 	playerManager.activePlayersForNextRound = make(map[string]bool)
+	playerManager.matchedPlayers = make(map[int]*Player)
+	playerManager.matchID = 1
 	playerManager.currentAlive = 0
 	playerManager.totalPlayers = 0
 	playerManager.currentRound = 0
@@ -104,7 +105,9 @@ func (pm *PlayerManager) AddPlayer(name string, age int, conn *net.Conn) Player 
 func (pm *PlayerManager) AddMatchedPlayer(name string) {
 	player, exists := pm.FindPlayerByName(name)
 	if !exists {
-		fmt.Println("Not found player")
+		fmt.Println("players :", pm.players)
+		fmt.Println("matchedPlayers :", pm.matchedPlayers)
+		fmt.Println("AddMatchedPlayer Not found player", name)
 	}
 
 	pm.matchedPlayers[pm.matchID] = player
@@ -370,12 +373,19 @@ func (pm *PlayerManager) GetPlayer(id int) (*Player, error) {
 
 // RemovePlayer removes a player by ID
 func (pm *PlayerManager) RemovePlayer(id string) error {
-	player, exists := pm.FindPlayerByName(id)
-	if !exists {
-		log.Printf("Player not found: %s", id)
-		return errors.New("Player not found")
+	for key, value := range pm.players {
+		if value.Name == id {
+			delete(pm.players, key)
+			log.Println("삭제", key)
+		}
 	}
-	delete(pm.players, player.ID)
+
+	for key, value := range pm.matchedPlayers {
+		if value.Name == id {
+			delete(pm.matchedPlayers, key)
+		}
+	}
+	delete(pm.activePlayersForNextRound, id)
 
 	// 플레이어 카운트 업데이트
 	pm.BroadcastPlayerCount()
@@ -437,7 +447,13 @@ func (pm *PlayerManager) FindPlayerByName(name string) (*Player, bool) {
 			return player, true // 포인터를 반환합니다.
 		}
 	}
-	//log.Printf("Player not found: %s", name)
+	for _, player := range pm.players {
+		fmt.Println("players :", player.Name)
+	}
+	for _, player := range pm.matchedPlayers {
+		fmt.Println("matchedPlayers :", player.Name)
+	}
+	log.Printf("Player not found: %s", name)
 	return nil, false // 찾지 못한 경우 nil과 false를 반환합니다.
 }
 
@@ -566,15 +582,15 @@ func (pm *PlayerManager) HandleRaceEnd(playerId string) {
 	}
 
 	// 새로운 플레이어 목록 생성 전에 초기화
-	newPlayers := make(map[int]*Player)
+	//newPlayers := make(map[int]*Player)
 	newMatchedPlayers := make(map[int]*Player)
 	newID := 1
 
 	// 현재 라운드의 통과 플레이어 처리
 	for _, player := range pm.matchedPlayers {
+		player.FinishTime = 0 // 완주 시간 초기화
 		if pm.activePlayersForNextRound[player.Name] {
 			player.ID = newID
-			player.FinishTime = 0 // 완주 시간 초기화
 			// 새 라운드 시작 시 플레이어 위치 초기화
 			player.X = 0
 			player.Y = 0
@@ -583,16 +599,16 @@ func (pm *PlayerManager) HandleRaceEnd(playerId string) {
 			player.Ry = 0
 			player.Rz = 0
 
-			newPlayers[newID] = player
+			//newPlayers[newID] = player
 			newMatchedPlayers[newID] = player
 			newID++
 		}
 	}
 
 	// 플레이어 목록 업데이트
-	pm.players = newPlayers
+	//pm.players = newPlayers
 	pm.matchedPlayers = newMatchedPlayers
-	pm.nextID = newID
+	//pm.nextID = newID
 
 	// 라운드 정보 업데이트
 	pm.currentRound++
@@ -612,8 +628,8 @@ func (pm *PlayerManager) HandleRaceEnd(playerId string) {
 	}
 
 	// 상태 업데이트
-	pm.currentAlive = int32(len(newPlayers))
-	pm.totalPlayers = int32(len(newPlayers))
+	pm.currentAlive = int32(len(newMatchedPlayers))
+	pm.totalPlayers = int32(len(newMatchedPlayers))
 
 	log.Printf("=== New Round Start Debug Info ===")
 	log.Printf("New Round: %d", pm.currentRound)
@@ -720,6 +736,7 @@ func (pm *PlayerManager) UpdatePlayerCount() {
 	// 실제 플레이어 수 계산
 	pm.totalPlayers = int32(len(pm.matchedPlayers))
 
+	log.Printf("player total count %d", pm.totalPlayers)
 	// 생존 플레이어 수 계산 (완주하지 않은 플레이어)
 	alive := 0
 	for _, player := range pm.matchedPlayers {

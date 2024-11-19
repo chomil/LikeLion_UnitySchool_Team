@@ -101,10 +101,10 @@ public class RaceUI : MonoBehaviour
 
     public void HideStatusMessage()
     {
-        roundOver.SetActive(false);
-        roundQualified.SetActive(false);
-        roundEliminated.SetActive(false);
-        roundWinner.SetActive(false);
+        roundOver?.SetActive(false);
+        roundQualified?.SetActive(false);
+        roundEliminated?.SetActive(false);
+        roundWinner?.SetActive(false);
         isMessageOpen = false;
     }
 

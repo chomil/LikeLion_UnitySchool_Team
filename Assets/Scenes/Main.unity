@@ -3794,6 +3794,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4891366440482991593, guid: 9696814e451450a408cc8b819a98cc10,
         type: 3}
+      propertyPath: isRacing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4891366440482991593, guid: 9696814e451450a408cc8b819a98cc10,
+        type: 3}
       propertyPath: StartButton
       value: 
       objectReference: {fileID: 1402563344}
