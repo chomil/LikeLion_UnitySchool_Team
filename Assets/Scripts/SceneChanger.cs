@@ -128,7 +128,7 @@ public class SceneChanger : MonoBehaviour
         string mapToLoad = raceToPlay[raceToPlayIdx];
         Debug.Log($"Loading map: {mapToLoad}");
     
-        isRacing = false;  // 로딩 시작 전에 false로 설정
+        //isRacing = false;  // 로딩 시작 전에 false로 설정
         
         Loading.LoadScene(mapToLoad);
         raceToPlayIdx++;
@@ -156,6 +156,11 @@ public class SceneChanger : MonoBehaviour
     {
         // SpectatorManager 참조 에러 방지
         if (scene.name == "Main") return; // 메인 씬에서는 체크하지 않음
+        if (scene.name == "Winner")
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player?.GetComponent<Animator>()?.SetTrigger("WinnerTrigger");
+        }
         
         var spectatorManager = FindObjectOfType<SpectatorManager>();
         if (spectatorManager != null)

@@ -21,20 +21,11 @@ public class RaceUI : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI scoreText;
 
-    [Header("Status UI Elements")] [SerializeField]
-    private Image statusImage; // Round-over-border
-
-    [SerializeField] private TextMeshProUGUI statusText;
-
-    [Header("Victory UI Elements")] [SerializeField]
-    private Image victoryImage; // 우승 이미지
-
-    [SerializeField] private TextMeshProUGUI victoryText;
-
     private bool isMessageOpen = false;
     [SerializeField] private GameObject roundOver;
     [SerializeField] private GameObject roundQualified;
     [SerializeField] private GameObject roundEliminated;
+    [SerializeField] private GameObject roundWinner;
 
     private void Awake()
     {
@@ -50,9 +41,6 @@ public class RaceUI : MonoBehaviour
 
     private void Start()
     {
-        if (statusImage != null) statusImage.gameObject.SetActive(false);
-        if (victoryImage != null) victoryImage.gameObject.SetActive(false);
-        
         // 시작할 때 UI 표시
         ShowRaceUI();
     }
@@ -90,8 +78,7 @@ public class RaceUI : MonoBehaviour
                 SoundManager.Instance?.PlayEliminateSound();
                 break;
             case RaceState.Win:
-                //임시
-                StartCoroutine(StateWindowCoroutine(roundQualified));
+                StartCoroutine(StateWindowCoroutine(roundWinner));
                 break;
             default:
                 break;
@@ -117,6 +104,7 @@ public class RaceUI : MonoBehaviour
         roundOver.SetActive(false);
         roundQualified.SetActive(false);
         roundEliminated.SetActive(false);
+        roundWinner.SetActive(false);
         isMessageOpen = false;
     }
 

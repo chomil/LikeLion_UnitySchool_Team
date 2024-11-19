@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using AYellowpaper.SerializedCollections;
 using Game;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -70,7 +72,7 @@ public class GameManager : MonoBehaviour
     
     private void OnApplicationQuit()
     {
-        TcpProtobufClient.Instance.SendPlayerLogout(TCPManager.playerId);
+        TcpProtobufClient.Instance?.SendPlayerLogout(TCPManager.playerId);
     }
     
 
@@ -351,28 +353,34 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // 통과한 플레이어는 다음 라운드 준비
-        Debug.Log("Qualified player - proceeding to next round");
-        if (curRaceType != RaceType.Race)
-        {
-            RaceUI.Instance?.ShowStateWindow(RaceState.Qualify);
-        }
+
         currentRound++;
     
         if (currentRound < 4)
         {
             Debug.Log($"Loading next round: {currentRound}, Max qualified: {curQualifyLimit}");
-        
+            // 통과한 플레이어는 다음 라운드 준비
+            Debug.Log("Qualified player - proceeding to next round");
+            if (curRaceType != RaceType.Race)
+            {
+                RaceUI.Instance?.ShowStateWindow(RaceState.Qualify);
+            }
             // 모든 통과 플레이어가 동시에 다음 맵으로 이동하도록 함
             SceneChanger.Instance.isRacing = true;  // 이 부분 추가
             StartCoroutine(LoadNextMapWithDelay());
         }
         else
         {
-            HandleGameWin(finishedPlayers[0]);
+            HandleGameWin(activePlayersForNextRound.First());
         }
     }
-    
+
+    private IEnumerator LoadSceneWithDelay(float time, string name)
+    {
+        yield return new WaitForSeconds(time);
+        SceneChanger.Instance.isRacing = false;
+        SceneManager.LoadScene(name);
+    }
     
     private IEnumerator LoadNextMapWithDelay()
     {
@@ -397,7 +405,9 @@ public class GameManager : MonoBehaviour
         // 우승 처리 (UI 표시, 효과음 등)
         if (winnerId == TCPManager.playerId)
         {
-            RaceUI.Instance.ShowStateWindow(RaceState.Win);
+            RaceUI.Instance?.ShowStateWindow(RaceState.Win);
+            //우승자 씬으로 넘어가기
+            StartCoroutine(LoadSceneWithDelay(7, "Winner"));
         }
     }
     
