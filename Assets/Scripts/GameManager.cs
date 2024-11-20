@@ -208,15 +208,15 @@ public class GameManager : MonoBehaviour
             Debug.Log($"Round {currentRound + 1}: Players to qualify: {curQualifyLimit}");
         }
 
-        if (activePlayersForNextRound.Count > 0)
+        if (currentRound>0 && activePlayersForNextRound.Count > 0)
         {
             activePlayers = new HashSet<string>(activePlayersForNextRound);
-            activePlayersForNextRound.Clear();
         }
 
         isRaceEnded = false;
         //currentQualifiedCount = 0;
         finishedPlayers.Clear();
+        activePlayersForNextRound.Clear();
 
         // UI 초기화
         RaceUI.Instance?.ShowRaceUI();
@@ -237,6 +237,11 @@ public class GameManager : MonoBehaviour
         activePlayers.Add(playerId);
         Debug.Log($"Player {playerId} joined. Total players: {activePlayers.Count}/{MaxPlayers}");
         return true;
+    }
+    
+    public void RemoveActivePlayer(string playerId)
+    {
+        activePlayers.Remove(playerId);
     }
 
     public void PlayerFinished(string playerId, bool survive)
