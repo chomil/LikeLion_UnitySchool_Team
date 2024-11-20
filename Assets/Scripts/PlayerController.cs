@@ -221,7 +221,8 @@ public class PlayerController : MonoBehaviour
         otherPlayerTcp.OtherRot = new Vector3(serverPlayer.Rx, serverPlayer.Ry, serverPlayer.Rz);
         otherPlayerTcp.PlayerId = serverPlayer.PlayerId;
         _otherPlayers.TryAdd(serverPlayer.PlayerId, otherPlayerTcp);
-        
+
+        GameManager.Instance.RegisterPlayer(serverPlayer.PlayerId);
         
         //코스튬 로드
         if (_otherCostumeMessages.TryGetValue(serverPlayer.PlayerId, out Dictionary<int, string> otherCostumeMessage))
@@ -259,6 +260,8 @@ public class PlayerController : MonoBehaviour
             }
             _otherPlayers.Remove(playerId);
         }
+        
+        GameManager.Instance.RemoveActivePlayer(playerId);
     }
     
     // 관전 시스템
