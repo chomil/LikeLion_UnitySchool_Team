@@ -2288,7 +2288,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.006, y: 0.006, z: 0.006}
+  m_Size: {x: 0.01, y: 0.01, z: 0.01}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3488858230219977772
 MonoBehaviour:
@@ -2525,6 +2525,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
+  canRespawn: 1
   respawnSounds:
     _serializedList:
     - Key: Checkpoint
