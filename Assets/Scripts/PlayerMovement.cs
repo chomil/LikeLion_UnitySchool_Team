@@ -111,8 +111,7 @@ public class PlayerMovement : MonoBehaviour
             else if(Input.GetButtonUp("Grab"))
             {
                 isGrabbing = false;
-                anim.SetBool("IsGrabbing", false);
-                nextAnimState = AnimState.GrabOff;
+                curAnimState = AnimState.GrabOff;
             }
             
             // 점프 입력 처리
@@ -219,9 +218,9 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("IsGrabbing", true);
             TcpProtobufClient.Instance?.SendPlayerAnimation(curAnimState.ToString(), TCPManager.playerId,0,0);
         }
-
-        if (curAnimState == AnimState.GrabOff)
+        else if (curAnimState == AnimState.GrabOff)
         {
+            anim.SetBool("IsGrabbing", false);
             TcpProtobufClient.Instance?.SendPlayerAnimation(curAnimState.ToString(), TCPManager.playerId,0,0);
         }
         
