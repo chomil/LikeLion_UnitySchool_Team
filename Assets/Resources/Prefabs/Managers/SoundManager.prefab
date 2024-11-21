@@ -48,9 +48,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxAudioSource: {fileID: 2324765778232798815}
   bgmAudioSource: {fileID: 1519245259993888677}
-  qualifySound: {fileID: 8300000, guid: 34b116c4b9c14bc45af08a51c39d5638, type: 3}
-  eliminateSound: {fileID: 8300000, guid: 802756f790ff9374f8152558fc5083f3, type: 3}
-  victorySound: {fileID: 8300000, guid: 3436c1082f23d8946ab4005f5583ae99, type: 3}
+  bgms:
+    _serializedList:
+    - Key: Main
+      Value: {fileID: 8300000, guid: 837794507f30b8840990ac2b1cce536e, type: 3}
+    - Key: Loading
+      Value: {fileID: 8300000, guid: 11c5e45cbd26fe045b1c851dee48fa09, type: 3}
+    - Key: Final
+      Value: {fileID: 8300000, guid: 8acb875ef4de5894a998225ff722aab0, type: 3}
+    - Key: Race
+      Value: {fileID: 8300000, guid: a26430373bf743a40aa18a207b7d96dd, type: 3}
+    - Key: Survive
+      Value: {fileID: 8300000, guid: 0676c75027d1c7545b7d7c1b467defb9, type: 3}
+    - Key: Winner
+      Value: {fileID: 8300000, guid: 2e8d064d80526554f8a8e100ff54510b, type: 3}
+  sfxs:
+    _serializedList:
+    - Key: UIPop
+      Value: {fileID: 8300000, guid: 085a98ba9c904c749859bdfd879a478d, type: 3}
+    - Key: UIPlay
+      Value: {fileID: 8300000, guid: 4a838503ac519934e8ad2afcc2627511, type: 3}
+    - Key: UIMenu
+      Value: {fileID: 8300000, guid: 523e07872a1387f4f853cecc3e27f24b, type: 3}
+    - Key: UIBack
+      Value: {fileID: 8300000, guid: 00f41b98c8cbdbd4d88f681e2b45a200, type: 3}
+    - Key: UICancle
+      Value: {fileID: 8300000, guid: ab0cf64860a35e349b3e30fc9c3781e9, type: 3}
+    - Key: UISelect
+      Value: {fileID: 8300000, guid: bd604a2233d535b418d3ce6a9b762e6e, type: 3}
+    - Key: Win
+      Value: {fileID: 8300000, guid: 25a089b12fd5ba9439f3ea0dc2292d9a, type: 3}
+    - Key: RaceEnd
+      Value: {fileID: 8300000, guid: a8626d4037b129c4badec85735d5420a, type: 3}
+    - Key: PlayerLose
+      Value: {fileID: 8300000, guid: 802756f790ff9374f8152558fc5083f3, type: 3}
+    - Key: PlayerFinish
+      Value: {fileID: 8300000, guid: 34b116c4b9c14bc45af08a51c39d5638, type: 3}
+    - Key: PlayerWin
+      Value: {fileID: 8300000, guid: 3436c1082f23d8946ab4005f5583ae99, type: 3}
+    - Key: Finish
+      Value: {fileID: 8300000, guid: 7c1f2fbdbecba25478d5ecdd0a8bfb8a, type: 3}
+    - Key: Lose
+      Value: {fileID: 8300000, guid: cf754abc4d4a4994cbd368da9469c3e0, type: 3}
+    - Key: MatchingFall
+      Value: {fileID: 8300000, guid: f85b3f05d538e0840b64b1bb28f0cfda, type: 3}
 --- !u!1 &5513120050410142381
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +136,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -224,7 +265,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1

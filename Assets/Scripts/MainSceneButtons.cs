@@ -18,12 +18,14 @@ public class MainSceneButtons : MonoBehaviour
 
     private void PlayRace()
     {
+        SoundManager.Instance.PlaySfx("UIPlay");
         SceneChanger.Instance.MatchingGame();
         //SceneChanger.Instance.PlayRace();
     }
 
     private void GoCustomizeScene()
     {
+        SoundManager.Instance.PlaySfx("UIMenu");
         SceneChanger.Instance.GoCustomizeScene();
     }
 }

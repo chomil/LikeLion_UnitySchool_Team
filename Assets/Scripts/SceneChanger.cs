@@ -149,14 +149,49 @@ public class SceneChanger : MonoBehaviour
     // 씬 전환 시 관전 모드 리셋
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // SpectatorManager 참조 에러 방지
-        if (scene.name == "Main") return; // 메인 씬에서는 체크하지 않음
+        if (scene.name == "Main")
+        {
+            SoundManager.Instance.PlaySfx("UIBack", 0.3f);
+            SoundManager.Instance.PlayBGM("Main",0.1f);
+            return;
+        }
         if (scene.name == "Winner")
         {
+            SoundManager.Instance.PlayBGM("Winner",0.1f);
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player?.GetComponent<Animator>()?.SetTrigger("WinnerTrigger");
+            return;
         }
+        if (scene.name == "Loading")
+        {
+            SoundManager.Instance.PlayBGM("Loading",0.1f);
+            return;
+        }
+        if (scene.name == "Matching")
+        {
+            SoundManager.Instance.PlaySfx("MatchingFall", 0.3f);
+            return;
+        }
+
         
+        if (scene.name.Contains("Race")||scene.name.Contains("Final")||scene.name.Contains("Survive"))
+        {
+            if (GameManager.Instance.curRaceType == RaceType.Race)
+            {
+                SoundManager.Instance.PlayBGM("Race",0.1f);
+            }
+            else if (GameManager.Instance.curRaceType == RaceType.Survive)
+            {
+                SoundManager.Instance.PlayBGM("Survive",0.1f);
+            }
+            else if (GameManager.Instance.curRaceType == RaceType.Final)
+            {
+                SoundManager.Instance.PlayBGM("Final",0.1f);
+            }
+            
+            SoundManager.Instance.StopBGM();
+        }
+
         var spectatorManager = FindObjectOfType<SpectatorManager>();
         if (spectatorManager != null)
         {
