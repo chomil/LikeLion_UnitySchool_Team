@@ -42,7 +42,7 @@ public class OtherPlayerTCP : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, destination, Time.deltaTime * 5.0f);
             if (Vector3.Distance(transform.position,destination) > 1)
             {
-                transform.rotation = targetRotation;
+                transform.position = destination;
             }
         }
     }
