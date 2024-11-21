@@ -25,7 +25,6 @@ public class SpectatorCamera : MonoBehaviour
     private void Start()
     {
         spectatorCamera = GetComponent<Camera>();
-        gameObject.SetActive(false); // 시작 시 비활성화
     }
 
     public void SetTarget(Transform newTarget)

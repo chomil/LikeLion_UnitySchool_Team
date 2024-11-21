@@ -37,6 +37,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OtherPlayerFinish(string name)
+    {
+        if (_otherPlayers.ContainsKey(name))
+        {
+            _otherPlayers[name].FinishRace();
+        }
+    }
+
     private void Start()
     {
         InitMainScene();   

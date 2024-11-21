@@ -194,10 +194,6 @@ public class SceneChanger : MonoBehaviour
             SoundManager.Instance.StopBGM();
         }
 
-        var spectatorManager = FindObjectOfType<SpectatorManager>();
-        if (spectatorManager != null)
-        {
-            spectatorManager.OnSceneLoaded();
-        }
+        SpectatorManager.Instance?.OnSceneLoaded();
     }
 }

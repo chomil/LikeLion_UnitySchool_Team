@@ -19,8 +19,8 @@ public class TcpProtobufClient : MonoBehaviour
     private NetworkStream stream;
     private bool isRunning = false;
 
-    private const string SERVER_IP = "127.0.0.1"; //Localhost
-    //private const string SERVER_IP = "211.188.58.240"; //Public IP	
+    //private const string SERVER_IP = "127.0.0.1"; //Localhost
+    private const string SERVER_IP = "211.188.58.240"; //Public IP	
     private const int SERVER_PORT = 8888;
 
     private void Awake()

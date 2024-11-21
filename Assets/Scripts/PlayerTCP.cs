@@ -78,6 +78,18 @@ public class PlayerTCP : MonoBehaviour
         if (!hasFinished)
         {
             hasFinished = true;
+            
+            SkinnedMeshRenderer[] renders = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
+            Collider[] colliders = gameObject.GetComponentsInChildren<Collider>();
+
+            foreach (var render in renders)
+            {
+                render.enabled = false;
+            }
+            foreach (var collider in colliders)
+            {
+                collider.enabled = false;
+            }
         
             // 완주 상태를 서버에 전송
             GameManager.Instance.PlayerFinished(PlayerId, survive);
