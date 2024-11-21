@@ -18,7 +18,7 @@ public class RotationFloor : MonoBehaviour
     private List<Collision> others = new List<Collision>();
     private Quaternion prevRotation;
 
-    private void FixedUpdate()
+    private void Update()
     {
         prevRotation = transform.rotation;
         
