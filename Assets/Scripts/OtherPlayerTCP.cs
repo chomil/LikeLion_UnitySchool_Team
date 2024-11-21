@@ -46,6 +46,9 @@ public class OtherPlayerTCP : MonoBehaviour
             // 완주 시 마지막 위치 정확히 적용
             transform.position = destination;
             transform.rotation = Quaternion.Euler(OtherRot);
+            
+            // SpectatorManager에 완주 알림
+            SpectatorManager.Instance?.OnPlayerFinished(PlayerId);
             Debug.Log($"Other player {PlayerId} finished race");
         }
     }
