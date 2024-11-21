@@ -90,6 +90,10 @@ public class PlayerTCP : MonoBehaviour
                 myRotation.x, myRotation.y, myRotation.z,
                 "Idle"  // 완주 시 Idle 상태로 변경
             );
+            
+            
+            // SpectatorManager에 완주 알림
+            SpectatorManager.Instance?.OnPlayerFinished(PlayerId);
         }
     }
     public bool HasFinished()

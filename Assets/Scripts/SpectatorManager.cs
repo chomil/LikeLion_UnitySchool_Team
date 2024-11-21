@@ -12,6 +12,8 @@ public class SpectatorManager : MonoBehaviour
     private bool isSpectating = false;
     private GameObject spectatorCameraPrefab;
     private SpectatorCamera spectatorCam;
+    
+    private List<string> finishedPlayerIds = new List<string>(); // 완주한 플레이어 목록 추가
 
     private void Awake()
     {
@@ -44,6 +46,18 @@ public class SpectatorManager : MonoBehaviour
             return;
         }
 
+        UpdateActivePlayersList();
+        
+        
+        // 방금 완주한 플레이어는 activePlayerIds에서 제외
+        activePlayerIds.RemoveAll(id => id == playerId || finishedPlayerIds.Contains(id));
+        
+        if (activePlayerIds.Count == 0)
+        {
+            Debug.LogWarning("No active players to spectate!");
+            return;
+        }
+        
         isSpectating = true;
         
         if(spectatorCam == null && spectatorCameraPrefab != null)
@@ -56,14 +70,7 @@ public class SpectatorManager : MonoBehaviour
         {
             Debug.Log($"Spectator camera status - cam: {spectatorCam}, prefab: {spectatorCameraPrefab}");
         }
-
-        UpdateActivePlayersList();
         
-        if (activePlayerIds.Count == 0)
-        {
-            Debug.LogWarning("No active players to spectate!");
-            return;
-        }
 
         var playerObj = PlayerController.Instance.myPlayer;
         if (playerObj != null)
@@ -76,9 +83,30 @@ public class SpectatorManager : MonoBehaviour
             if(playerMovement != null)
                 playerMovement.enabled = false;
         }
+        
+        // 관전 가능한 다른 플레이어 찾기
+        var availablePlayers = FindObjectsOfType<OtherPlayerTCP>()
+            .Where(p => p.PlayerId != playerId && !p.HasFinished()) // 완주한 플레이어와 현재 플레이어 제외
+            .ToList();
 
-        currentSpectatingIndex = 0;
-        SwitchToCurrentSpectator();
+        // 첫 번째로 관전할 플레이어 선택 및 즉시 전환
+        if (activePlayerIds.Count > 0)
+        {
+            // 랜덤한 플레이어 선택
+            var randomIndex = Random.Range(0, availablePlayers.Count);
+            var targetPlayer = availablePlayers[randomIndex];
+        
+            // 선택된 플레이어의 인덱스 찾기
+            currentSpectatingIndex = activePlayerIds.IndexOf(targetPlayer.PlayerId);
+        
+            if (currentSpectatingIndex != -1)
+            {
+                spectatorCam.gameObject.SetActive(true);
+                spectatorCam.SetTarget(targetPlayer.transform);
+                SpectatorUI.Instance.UpdateSpectatingPlayerInfo(targetPlayer.PlayerId);
+            }
+        }
+        
         SpectatorUI.Instance.ShowSpectatorUI();
     }
 
@@ -110,14 +138,36 @@ public class SpectatorManager : MonoBehaviour
         
         foreach (var player in players)
         {
-            if (!player.HasFinished() && player.enabled)
+            // 완주하지 않은 플레이어만 관전 목록에 추가
+            if (player != null && 
+                player.enabled && 
+                !finishedPlayerIds.Contains(player.PlayerId))  // HasFinished() 대신 finishedPlayerIds 체크
             {
                 activePlayerIds.Add(player.PlayerId);
-                Debug.Log($"Added active player: {player.PlayerId}");
+                Debug.Log($"Added active player for spectating: {player.PlayerId}");
             }
         }
 
+        // 관전 가능한 플레이어가 없는 경우 처리
+        if (activePlayerIds.Count == 0)
+        {
+            Debug.Log("No active players left to spectate");
+            DisableSpectatorMode();
+        }
+
         Debug.Log($"Total active players: {activePlayerIds.Count}");
+        
+    }
+    
+    private void DisableSpectatorMode()
+    {
+        isSpectating = false;
+        if(spectatorCam != null)
+        {
+            spectatorCam.ClearTarget();
+            spectatorCam.gameObject.SetActive(false);
+        }
+        SpectatorUI.Instance.HideSpectatorUI();
     }
 
     public void SwitchToNextSpectator()
@@ -138,7 +188,11 @@ public class SpectatorManager : MonoBehaviour
     
     private void SwitchToCurrentSpectator()
     {
-        if (activePlayerIds.Count == 0 || spectatorCam == null) return;
+        if (activePlayerIds.Count == 0 || spectatorCam == null) 
+        {
+            DisableSpectatorMode();
+            return;
+        }
         
         string targetPlayerId = activePlayerIds[currentSpectatingIndex];
         var targetPlayer = FindObjectsOfType<OtherPlayerTCP>()
@@ -148,6 +202,52 @@ public class SpectatorManager : MonoBehaviour
         {
             spectatorCam.SetTarget(targetPlayer.transform);
             SpectatorUI.Instance.UpdateSpectatingPlayerInfo(targetPlayerId);
+        }
+        else
+        {
+            // 타겟 플레이어를 찾지 못했거나 이미 완주한 경우 다음 플레이어로 전환
+            activePlayerIds.RemoveAt(currentSpectatingIndex);
+            if (activePlayerIds.Count > 0)
+            {
+                currentSpectatingIndex = currentSpectatingIndex % activePlayerIds.Count;
+                SwitchToCurrentSpectator();
+            }
+            else
+            {
+                DisableSpectatorMode();
+            }
+        }
+    }
+    
+    public void OnPlayerFinished(string playerId)
+    {
+        // 완주한 플레이어 목록에 추가
+        if (!finishedPlayerIds.Contains(playerId))
+        {
+            finishedPlayerIds.Add(playerId);
+            Debug.Log($"Added {playerId} to finished players list");
+        }
+        
+        // 플레이어가 완주했을 때 호출
+        if (activePlayerIds.Contains(playerId))
+        {
+            activePlayerIds.Remove(playerId);
+            // 현재 관전 중인 플레이어가 완주한 경우 다음 플레이어로 전환
+            if (currentSpectatingIndex >= activePlayerIds.Count)
+            {
+                currentSpectatingIndex = 0;
+            }
+            if (activePlayerIds.Count > 0)
+            {
+                SwitchToCurrentSpectator();
+            }
+            else
+            {
+                DisableSpectatorMode();
+            }
+            
+            // 관전 목록 업데이트
+            UpdateActivePlayersList();
         }
     }
 }
