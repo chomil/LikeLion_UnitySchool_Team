@@ -105,7 +105,7 @@ func (m *MatchingManager) StartCountdown() {
 	go func() {
 		ticker := time.NewTicker(500 * time.Millisecond) // 0.5초마다 체크
 		defer ticker.Stop()
-		timeout := time.After(10 * time.Second) // 10초 타임아웃 설정
+		timeout := time.After(30 * time.Second) // 30초 타임아웃 설정
 
 		for {
 			select {

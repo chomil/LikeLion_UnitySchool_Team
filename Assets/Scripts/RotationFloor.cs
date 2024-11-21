@@ -15,14 +15,14 @@ public class RotationFloor : MonoBehaviour
     public RotationAxis rotationAxis = RotationAxis.Y;
     public float rotationSpeed = 50.0f;
     
-    private List<Collision> others = new List<Collision>();
+    private List<GameObject> others = new List<GameObject>();
     private Quaternion prevRotation;
 
-    private void Update()
+    private void FixedUpdate()
     {
         prevRotation = transform.rotation;
         
-        float rotationValue = rotationSpeed * Time.deltaTime;
+        float rotationValue = rotationSpeed * Time.fixedDeltaTime;
         Vector3 axis = Vector3.zero;
         switch (rotationAxis)
         {
@@ -38,14 +38,14 @@ public class RotationFloor : MonoBehaviour
         }
         transform.Rotate(axis, rotationValue);
         
-        foreach (Collision other in others)
+        // 현재 발판의 회전과 이전 회전 간의 차이를 구함
+        Quaternion deltaRotation = transform.rotation * Quaternion.Inverse(prevRotation);
+
+        foreach (GameObject other in others)
         {
-            Rigidbody otherRigid = other.gameObject.GetComponent<Rigidbody>();
+            Rigidbody otherRigid = other.GetComponent<Rigidbody>();
             if (otherRigid)
             {
-                // 현재 발판의 회전과 이전 회전 간의 차이를 구함
-                Quaternion deltaRotation = transform.rotation * Quaternion.Inverse(prevRotation);
-
                 // 플레이어의 위치가 회전에 의해 이동하도록 설정
                 Vector3 playerPositionRelativeToPlatform = otherRigid.position - transform.position;
                 Vector3 rotatedPosition = deltaRotation * playerPositionRelativeToPlatform;
@@ -56,15 +56,19 @@ public class RotationFloor : MonoBehaviour
         }
     }
     
-    
-    
     private void OnCollisionEnter(Collision other)
-    {      
-        others.Add(other);
+    {
+        if (!others.Contains(other.gameObject))
+        {
+            others.Add(other.gameObject);
+        }
     }
     
     private void OnCollisionExit(Collision other)
-    {            
-        others.Remove(other);
+    {        
+        if (others.Contains(other.gameObject))
+        {
+            others.Remove(other.gameObject);
+        }
     }
 }
