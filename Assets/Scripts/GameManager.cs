@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
     private const int MaxPlayers = 30;
     private HashSet<string> activePlayers = new HashSet<string>();
 
-    [SerializedDictionary("Name", "Bgm")] public SerializedDictionary<string, AudioClip> bgms;
 
     public GameData gameData;
 
@@ -57,6 +56,7 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         EditorApplication.quitting += OnApplicationQuit;
 #endif
+        SoundManager.Instance.PlayBGM("Main",0.1f);
         InitRace();
     }
 
@@ -271,6 +271,7 @@ public class GameManager : MonoBehaviour
 
             if (curRaceType == RaceType.Race)
             {
+                SoundManager.Instance.PlaySfx("Finish");
                 RaceUI.Instance?.ShowStateWindow(RaceState.Qualify);
             }
             else
@@ -323,6 +324,8 @@ public class GameManager : MonoBehaviour
     {
         if (isRaceEnded) return;
 
+        SoundManager.Instance.StopBGM();
+        
         isRaceEnded = true;
 
         activePlayersForNextRound.Clear();

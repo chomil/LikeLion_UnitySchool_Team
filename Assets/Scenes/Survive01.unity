@@ -1563,26 +1563,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: water_001
       objectReference: {fileID: 0}
-    - target: {fileID: 64208006645980724, guid: 8e60cca5ee76502498aff7e69a8d5b84,
-        type: 3}
-      propertyPath: m_TagString
-      value: Water
-      objectReference: {fileID: 0}
-    - target: {fileID: 842116484421305486, guid: 8e60cca5ee76502498aff7e69a8d5b84,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 842116484421305486, guid: 8e60cca5ee76502498aff7e69a8d5b84,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 842116484421305486, guid: 8e60cca5ee76502498aff7e69a8d5b84,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 842116484421305486, guid: 8e60cca5ee76502498aff7e69a8d5b84,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1633,47 +1613,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2009978344622342113, guid: 8e60cca5ee76502498aff7e69a8d5b84,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 18828350c378a304593d23e643250ead, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 64208006645980724, guid: 8e60cca5ee76502498aff7e69a8d5b84,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 821919899}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e60cca5ee76502498aff7e69a8d5b84, type: 3}
---- !u!1 &821919898 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 64208006645980724, guid: 8e60cca5ee76502498aff7e69a8d5b84,
-    type: 3}
-  m_PrefabInstance: {fileID: 821919897}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &821919899
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 821919898}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &821919902 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 842116484421305486, guid: 8e60cca5ee76502498aff7e69a8d5b84,

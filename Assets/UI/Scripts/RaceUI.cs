@@ -67,31 +67,48 @@ public class RaceUI : MonoBehaviour
         switch (state)
         {
             case RaceState.Over:
-                StartCoroutine(StateWindowCoroutine(roundOver));
+                StartCoroutine(StateWindowCoroutine(roundOver,state));
                 break;
             case RaceState.Qualify:
-                StartCoroutine(StateWindowCoroutine(roundQualified));
-                SoundManager.Instance?.PlayQualifySound();
+                StartCoroutine(StateWindowCoroutine(roundQualified,state));
                 break;
             case RaceState.Eliminate:
-                StartCoroutine(StateWindowCoroutine(roundEliminated));
-                SoundManager.Instance?.PlayEliminateSound();
+                StartCoroutine(StateWindowCoroutine(roundEliminated,state));
                 break;
             case RaceState.Win:
-                StartCoroutine(StateWindowCoroutine(roundWinner));
+                StartCoroutine(StateWindowCoroutine(roundWinner,state));
                 break;
             default:
                 break;
         }
     }
 
-    private IEnumerator StateWindowCoroutine(GameObject window)
+    private IEnumerator StateWindowCoroutine(GameObject window, RaceState state)
     {    
         while (isMessageOpen)
         {
             yield return null;
         }
-        //이 부분에서 효과음 넣거나, 애니메이션에서 효과음 넣기
+
+        if (state == RaceState.Eliminate)
+        {
+            SoundManager.Instance.PlaySfx("PlayerLose");
+            SoundManager.Instance.PlaySfx("Lose", 0.2f);
+        }
+        else if (state == RaceState.Qualify)
+        {
+            SoundManager.Instance.PlaySfx("PlayerFinish");
+            SoundManager.Instance.PlaySfx("Win", 0.2f);
+        }
+        else if (state == RaceState.Over)
+        {
+            SoundManager.Instance.PlaySfx("RaceEnd");
+        }
+        else if (state == RaceState.Win)
+        {
+            SoundManager.Instance.PlaySfx("Win", 0.2f);
+        }
+        
         isMessageOpen = true;
         window.SetActive(true);
         yield return new WaitForSeconds(3.0f);

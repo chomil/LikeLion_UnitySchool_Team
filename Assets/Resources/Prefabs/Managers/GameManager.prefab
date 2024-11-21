@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4090842174163079486}
   - component: {fileID: 2392536235542360573}
+  - component: {fileID: 7891282253091912373}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,11 +45,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5436453ea1e763241abe944e40d30743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgms:
-    _serializedList:
-    - Key: Main
-      Value: {fileID: 8300000, guid: 837794507f30b8840990ac2b1cce536e, type: 3}
-    - Key: Race
-      Value: {fileID: 8300000, guid: a26430373bf743a40aa18a207b7d96dd, type: 3}
   gameData: {fileID: 11400000, guid: d3c06685aa5ee71478e32b7a20b6ec55, type: 2}
-  maxQualifiedPlayers: 10
+  currentRound: 0
+  curRaceType: 0
+--- !u!114 &7891282253091912373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3642719119478259579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ef798896dafc34a80c6eb8bcf8d1fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

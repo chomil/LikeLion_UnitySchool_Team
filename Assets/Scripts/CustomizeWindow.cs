@@ -36,6 +36,9 @@ public class CustomizeWindow : MonoBehaviour
         {
             return;
         }
+        
+        
+        SoundManager.Instance.PlaySfx("UIPop");
 
         if (curMenu != ItemType.None)
         {
@@ -92,6 +95,10 @@ public class CustomizeWindow : MonoBehaviour
         {
             return;
         }
+        
+        
+        SoundManager.Instance.PlaySfx("UISelect");
+        
         selectedItemButton.SetSelect(false);
         selectedItemText.text = clickButton.itemData.itemName;
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCostume>().ChangeCostume(clickButton.itemData);

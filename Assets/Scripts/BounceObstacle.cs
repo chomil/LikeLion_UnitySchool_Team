@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class BounceObstacle : MonoBehaviour
@@ -31,6 +32,8 @@ public class BounceObstacle : MonoBehaviour
                         other.gameObject.GetComponent<PlayerMovement>().Jump(0);
                     }
                     otherRigid.AddForce(gameObject.transform.up * bouncePower, ForceMode.Impulse);
+                    transform.DOScale(0.3f, 0.1f).SetRelative(true).SetLoops(2, LoopType.Yoyo);
+                    SoundManager.Instance.PlaySfx("Bounce");
                     break;
                 
                 case ObstacleType.Movable:

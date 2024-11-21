@@ -8,6 +8,7 @@ public class ManageToTitleScene : MonoBehaviour
 {
     public void GoToMain()
     {
+        SoundManager.Instance.PlaySfx("UISelect");
         SceneManager.LoadScene("Main");
     }
 }
