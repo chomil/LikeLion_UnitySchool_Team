@@ -153,6 +153,8 @@ public class SceneChanger : MonoBehaviour
         {
             SoundManager.Instance.PlaySfx("UIBack", 0.3f);
             SoundManager.Instance.PlayBGM("Main",0.1f);
+
+            RaceUI.Instance?.HideRaceWindows();
             return;
         }
         if (scene.name == "Winner")

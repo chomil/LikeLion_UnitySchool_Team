@@ -373,6 +373,8 @@ public class GameManager : MonoBehaviour
             }
 
             SceneChanger.Instance.isRacing = false;
+            
+            StartCoroutine(RaceUI.Instance?.OpenExitWindow(7.0f));
             return;
         }
 
