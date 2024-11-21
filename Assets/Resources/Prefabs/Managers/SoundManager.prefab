@@ -86,6 +86,8 @@ MonoBehaviour:
       Value: {fileID: 8300000, guid: 34b116c4b9c14bc45af08a51c39d5638, type: 3}
     - Key: PlayerWin
       Value: {fileID: 8300000, guid: 3436c1082f23d8946ab4005f5583ae99, type: 3}
+    - Key: Bounce
+      Value: {fileID: 8300000, guid: b19743e43409f0d4db5f9c60cc0ea2fb, type: 3}
     - Key: Finish
       Value: {fileID: 8300000, guid: 7c1f2fbdbecba25478d5ecdd0a8bfb8a, type: 3}
     - Key: Lose

@@ -9,6 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: water_1
   m_Shader: {fileID: 4800000, guid: 054425febb1ccc94588ec5b490776d38, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
   - _ALPHABLEND_ON
@@ -19,6 +21,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -143,7 +146,7 @@ Material:
     - _TessEdgeLength: 16
     - _TessMaxDisp: 25
     - _UVSec: 0
-    - _Water_Texture_Opacity: 0.226
+    - _Water_Texture_Opacity: 0.05
     - _WaveBigPower: 1.98
     - _WaveBigScale: 0.57
     - _WaveBigSpeed: 1.5
@@ -169,3 +172,4 @@ Material:
     - _WaveSpeed: {r: 0.2, g: 0.2, b: 0, a: 0}
     - _WaveSpeed2: {r: -0.1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
