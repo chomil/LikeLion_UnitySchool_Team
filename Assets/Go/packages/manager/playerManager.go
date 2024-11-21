@@ -792,7 +792,7 @@ func (pm *PlayerManager) SendGrabbedPlayer(name string, isGrabbing bool) {
 
 	response, err := proto.Marshal(grabMessage)
 	if err != nil {
-		log.Printf("Failed to marshal player grab message: %v", err)
+		//log.Printf("Failed to marshal player grab message: %v", err)
 		return
 	}
 
@@ -801,6 +801,6 @@ func (pm *PlayerManager) SendGrabbedPlayer(name string, isGrabbing bool) {
 	binary.LittleEndian.PutUint32(lengthBuf[1:], uint32(len(response)))
 	(*player.Conn).Write(append(lengthBuf, response...))
 
-	fmt.Println("player Grab", name, isGrabbing)
+	//fmt.Println("player Grab", name, isGrabbing)
 
 }

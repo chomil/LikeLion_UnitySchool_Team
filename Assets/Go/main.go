@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/binary"
 	"fmt"
+	"io"
 	"log"
 	"net"
 
@@ -33,30 +34,38 @@ func main() {
 	}
 }
 
+const maxMessageSize = 1024 * 1024 // 1MB 메시지 크기 제한
+
 func handleConnection(conn net.Conn) {
 	defer conn.Close()
 	for {
-		// 메시지 길이를 먼저 읽습니다 (4바이트)
+		// 메시지 길이 읽기 (4바이트)
 		lengthBuf := make([]byte, 4)
-		_, err := conn.Read(lengthBuf)
+		_, err := io.ReadFull(conn, lengthBuf)
 		if err != nil {
 			log.Printf("Failed to read message length: %v", err)
 			return
 		}
 		length := binary.LittleEndian.Uint32(lengthBuf)
 
-		// 메시지 타입을 먼저 읽습니다 (1바이트)
+		// 메시지 크기 검증
+		if length > maxMessageSize || length < 1 { // 최소 1바이트 이상이어야 함
+			log.Printf("Invalid message size: %d bytes", length)
+			return
+		}
+
+		// 메시지 타입 읽기 (1바이트)
 		typeBuf := make([]byte, 1)
-		_, err = conn.Read(typeBuf)
+		_, err = io.ReadFull(conn, typeBuf)
 		if err != nil {
 			log.Printf("Failed to read message type: %v", err)
 			return
 		}
 		messageType := typeBuf[0]
 
-		// 메시지 본문을 읽습니다
-		messageBuf := make([]byte, length-1) // 타입 바이트 제외
-		_, err = conn.Read(messageBuf)
+		// 메시지 본문 읽기
+		messageBuf := make([]byte, length-1)
+		_, err = io.ReadFull(conn, messageBuf)
 		if err != nil {
 			log.Printf("Failed to read message body: %v", err)
 			return
@@ -83,7 +92,6 @@ func handleConnection(conn net.Conn) {
 		default:
 			log.Printf("Unknown message type: %v", messageType)
 		}
-
 	}
 }
 
