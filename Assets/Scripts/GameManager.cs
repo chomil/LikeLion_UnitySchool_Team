@@ -283,6 +283,10 @@ public class GameManager : MonoBehaviour
             Debug.Log($"[GameManager] Starting spectator mode for qualified player {finishedPlayerId}");
             StartCoroutine(EnterSpectatorModeAfterDelay(finishedPlayerId));
         }
+        else
+        {
+            PlayerController.Instance.OtherPlayerFinish(finishedPlayerId);
+        }
     }
 
 
@@ -454,7 +458,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator EnterSpectatorModeAfterDelay(string playerId)
     {
         Debug.Log($"[GameManager] Waiting before spectator mode transition...");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
         if (SpectatorManager.Instance != null)
         {

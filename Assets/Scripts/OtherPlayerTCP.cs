@@ -43,6 +43,19 @@ public class OtherPlayerTCP : MonoBehaviour
         if (!hasFinished)
         {
             hasFinished = true;
+
+            SkinnedMeshRenderer[] renders = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
+            Collider[] colliders = gameObject.GetComponentsInChildren<Collider>();
+
+            foreach (var render in renders)
+            {
+                render.enabled = false;
+            }
+            foreach (var collider in colliders)
+            {
+                collider.enabled = false;
+            }
+            
             // 완주 시 마지막 위치 정확히 적용
             transform.position = destination;
             transform.rotation = Quaternion.Euler(OtherRot);

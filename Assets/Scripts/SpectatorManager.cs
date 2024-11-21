@@ -9,7 +9,7 @@ public class SpectatorManager : MonoBehaviour
 
     private List<string> activePlayerIds = new List<string>();
     private int currentSpectatingIndex = -1;
-    private bool isSpectating = false;
+    public bool isSpectating = false;
     private GameObject spectatorCameraPrefab;
     private SpectatorCamera spectatorCam;
     
@@ -121,7 +121,7 @@ public class SpectatorManager : MonoBehaviour
         }
 
         SpectatorUI.Instance.HideSpectatorUI();
-        
+        finishedPlayerIds.Clear();
         activePlayerIds.Clear();
         currentSpectatingIndex = -1;
     }
@@ -193,6 +193,8 @@ public class SpectatorManager : MonoBehaviour
             DisableSpectatorMode();
             return;
         }
+        
+        spectatorCam.gameObject.SetActive(true);
         
         string targetPlayerId = activePlayerIds[currentSpectatingIndex];
         var targetPlayer = FindObjectsOfType<OtherPlayerTCP>()
