@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -26,6 +27,8 @@ public class RaceUI : MonoBehaviour
     [SerializeField] private GameObject roundQualified;
     [SerializeField] private GameObject roundEliminated;
     [SerializeField] private GameObject roundWinner;
+    
+    [SerializeField] private GameObject exitWindow;
 
     private void Awake()
     {
@@ -83,6 +86,15 @@ public class RaceUI : MonoBehaviour
         }
     }
 
+    public IEnumerator OpenExitWindow(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        exitWindow.SetActive(true);
+
+        SoundManager.Instance.PlaySfx("UIPop");
+        exitWindow.transform.DOScale(1.2f, 0.1f).SetLoops(2, LoopType.Yoyo);
+    }
+
     private IEnumerator StateWindowCoroutine(GameObject window, RaceState state)
     {    
         while (isMessageOpen)
@@ -116,12 +128,13 @@ public class RaceUI : MonoBehaviour
         isMessageOpen = false;
     }
 
-    public void HideStatusMessage()
+    public void HideRaceWindows()
     {
         roundOver?.SetActive(false);
         roundQualified?.SetActive(false);
         roundEliminated?.SetActive(false);
         roundWinner?.SetActive(false);
+        exitWindow?.SetActive(false);
         isMessageOpen = false;
     }
 
