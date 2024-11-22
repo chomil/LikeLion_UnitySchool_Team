@@ -33,17 +33,17 @@ public class OtherPlayerTCP : MonoBehaviour
         if (!hasFinished)
         {
             //예측값-실제값 간 보간으로 수정 권장
-            //transform.rotation = Quaternion.Euler(OtherRot);
-            //transform.position = destination;
+            transform.rotation = Quaternion.Euler(OtherRot);
+            transform.position = destination;
             
-            Quaternion targetRotation = Quaternion.Euler(OtherRot);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5.0f);
-
-            transform.position = Vector3.Lerp(transform.position, destination, Time.deltaTime * 5.0f);
-            if (Vector3.Distance(transform.position,destination) > 1)
-            {
-                transform.position = destination;
-            }
+            // Quaternion targetRotation = Quaternion.Euler(OtherRot);
+            // transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5.0f);
+            //
+            // transform.position = Vector3.Lerp(transform.position, destination, Time.deltaTime * 5.0f);
+            // if (Vector3.Distance(transform.position,destination) > 1)
+            // {
+            //     transform.position = destination;
+            // }
         }
     }
     
